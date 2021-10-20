@@ -18,7 +18,6 @@ void Player::loadImage()
 		// simple error message if previous call fails
 		std::cout << "problem loading logo" << std::endl;
 	}
-
 	m_playerSprite.setTexture(m_playerTexture);
 }
 

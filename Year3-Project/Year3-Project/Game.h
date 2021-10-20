@@ -12,6 +12,8 @@
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
 #include "Player.h"
+#include "Menu.h"
+
 
 class Game
 {
@@ -39,6 +41,8 @@ private:
 	bool m_exitGame; // control exiting game
 
 	Player m_player;
+
+	Menu m_gameMenu;
 
 
 };

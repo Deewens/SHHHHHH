@@ -12,3 +12,17 @@ const int static NORTHEAST = 5;
 const int static NORTHWEST = 6;
 const int static SOUTHEAST = 7;
 const int static SOUTHWEST = 8;
+
+//menu option number
+
+const int MENU_OPTION_NUMBER = 4;
+
+//menu button states
+
+enum class ButtonState { READY, OVER, DOWN };
+
+enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS};
+
+
+static GameState m_gameState = GameState::MENU;
+

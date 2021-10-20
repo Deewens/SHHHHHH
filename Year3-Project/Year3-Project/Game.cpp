@@ -20,6 +20,8 @@ Game::Game() :
 	m_window{ sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!" },
 	m_exitGame{false} //when true game will exit
 {
+	m_gameMenu.Init();
+
 }
 
 /// <summary>
@@ -103,7 +105,22 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	m_player.update();
+	switch (m_gameState)
+	{
+	case GameState::MENU:
+		break;
+	case GameState::GAMEPLAY:		
+		m_player.update();
+		break;
+	case GameState::EXIT:
+		break;
+	case GameState::OPTIONS:
+		break;	
+	default:
+		break;
+	}
+	m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+
 }
 
 /// <summary>
@@ -112,7 +129,25 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::Black);
-	m_player.render(m_window);
+
+	switch (m_gameState)
+	{
+	case GameState::MENU:
+		m_gameMenu.draw(m_window);
+		break;
+	case GameState::GAMEPLAY:
+		m_player.render(m_window);
+		m_gameMenu.draw(m_window);
+		break;
+	case GameState::EXIT:
+		break;
+	case GameState::OPTIONS:
+		m_gameMenu.draw(m_window);
+		break;	
+	default:
+		break;
+	}
+	//m_gameMenu.draw(m_window);
 	m_window.display();
 }
 
