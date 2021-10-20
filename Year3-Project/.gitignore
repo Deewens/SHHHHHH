@@ -383,6 +383,8 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains Rider
+# JetBrains CLion/CMake
 .idea/
+CMakeLists.txt
+cmake-build-debug/
 *.sln.iml
