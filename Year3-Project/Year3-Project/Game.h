@@ -10,6 +10,8 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+#include "Globals.h"
+#include "Player.h"
 
 class Game
 {
@@ -28,8 +30,6 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void setupFontAndText();
-	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
 	sf::Font m_ArialBlackfont; // font used by message
@@ -37,6 +37,9 @@ private:
 	sf::Texture m_logoTexture; // texture used for sfml logo
 	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
+
+	Player m_player;
+
 
 };
 
