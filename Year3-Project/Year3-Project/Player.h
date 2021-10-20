@@ -2,38 +2,28 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include"Globals.h"
+#include "Globals.h"
+#include "Character.h"
 
-class Player
+class Player : public Character
 {
 
 private:
-
-	sf::Sprite m_playerSprite;
-
-	sf::Texture m_playerTexture;
-
-	float m_speed{};
-
-	bool m_isAlive=true; 
-
-	int m_direction; 
-
-	bool m_isMoving=false;
+	bool m_isAlive=true;
 
 public:
 
 	Player();
 
-	void loadImage();
+	void loadImage() override;
 
 	void setDirection(int t_direction);
 
-	void update();
+	void update() override;
 
 	void move();
 
-	void render(sf::RenderWindow& t_window);
+	void render(sf::RenderWindow& t_window) override;
 
 };
 

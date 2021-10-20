@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class Game
 {
@@ -39,8 +40,7 @@ private:
 	bool m_exitGame; // control exiting game
 
 	Player m_player;
-
-
+    Enemy m_enemy;
 };
 
 #endif // !GAME_HPP

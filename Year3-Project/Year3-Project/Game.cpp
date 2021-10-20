@@ -20,6 +20,7 @@ Game::Game() :
 	m_window{ sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!" },
 	m_exitGame{false} //when true game will exit
 {
+
 }
 
 /// <summary>
@@ -104,6 +105,7 @@ void Game::update(sf::Time t_deltaTime)
 	}
 
 	m_player.update();
+    m_enemy.update();
 }
 
 /// <summary>
@@ -113,6 +115,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	m_player.render(m_window);
+    m_enemy.render(m_window);
 	m_window.display();
 }
 
