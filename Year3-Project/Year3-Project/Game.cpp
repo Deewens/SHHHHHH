@@ -105,17 +105,20 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
+	m_player.update();
+    m_enemy.update();
+
 	switch (m_gameState)
 	{
 	case GameState::MENU:
 		break;
-	case GameState::GAMEPLAY:		
+	case GameState::GAMEPLAY:
 		m_player.update();
 		break;
 	case GameState::EXIT:
 		break;
 	case GameState::OPTIONS:
-		break;	
+		break;
 	default:
 		break;
 	}
@@ -138,12 +141,13 @@ void Game::render()
 	case GameState::GAMEPLAY:
 		m_player.render(m_window);
 		m_gameMenu.draw(m_window);
-		break;
+        m_enemy.render(m_window);
+        break;
 	case GameState::EXIT:
 		break;
 	case GameState::OPTIONS:
 		m_gameMenu.draw(m_window);
-		break;	
+		break;
 	default:
 		break;
 	}

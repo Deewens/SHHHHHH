@@ -3,22 +3,20 @@
 Player::Player()
 {
 	m_speed = 2;
-	loadImage();
+	Player::loadImage();
 
-	m_playerSprite.setOrigin(19, 21.5);
-	m_playerSprite.setPosition(100, 100);
-	m_playerSprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
+	m_sprite.setOrigin(19, 21.5);
+	m_sprite.setPosition(100, 100);
+	m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
 	
 }
 
 void Player::loadImage()
 {
-	if (!m_playerTexture.loadFromFile("ASSETS\\IMAGES\\spritesheet_characters.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
-	}
-	m_playerSprite.setTexture(m_playerTexture);
+	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\spritesheet_characters.png"))
+		std::cout << "problem loading player texture" << std::endl;
+
+	m_sprite.setTexture(m_texture);
 }
 
 
@@ -28,41 +26,41 @@ void Player::setDirection(int t_direction)
 	m_direction = t_direction;
 	if (t_direction == NORTH)
 	{
-		m_playerSprite.setRotation(270);
-		m_playerSprite.move(0, -m_speed);
+		m_sprite.setRotation(270);
+		m_sprite.move(0, -m_speed);
 	}
 	if (t_direction == SOUTH)
 	{
-		m_playerSprite.setRotation(90);
-		m_playerSprite.move(0, m_speed);
+		m_sprite.setRotation(90);
+		m_sprite.move(0, m_speed);
 	}
 	if (t_direction == EAST)
 	{
-		m_playerSprite.setRotation(0);
-		m_playerSprite.move(m_speed, 0);
+		m_sprite.setRotation(0);
+		m_sprite.move(m_speed, 0);
 
 	}
 	if (t_direction == WEST)
 	{
-		m_playerSprite.setRotation(180);
-		m_playerSprite.move(-m_speed, 0);
+		m_sprite.setRotation(180);
+		m_sprite.move(-m_speed, 0);
 
 	}
 	if (t_direction == NORTHWEST)
 	{
-		m_playerSprite.setRotation(225);
+		m_sprite.setRotation(225);
 	}
 	if (t_direction == NORTHEAST)
 	{
-		m_playerSprite.setRotation(315);
+		m_sprite.setRotation(315);
 	}
 	if (t_direction == SOUTHWEST)
 	{
-		m_playerSprite.setRotation(135);
+		m_sprite.setRotation(135);
 	}
 	if (t_direction == SOUTHEAST)
 	{
-		m_playerSprite.setRotation(45);
+		m_sprite.setRotation(45);
 	}
 }
 
@@ -124,5 +122,5 @@ void Player::move()
 
 void Player::render(sf::RenderWindow& t_window)
 {
-	t_window.draw(m_playerSprite);
+	t_window.draw(m_sprite);
 }
