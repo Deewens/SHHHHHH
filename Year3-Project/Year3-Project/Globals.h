@@ -26,3 +26,7 @@ enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS};
 
 static GameState m_gameState = GameState::MENU;
 
+enum class PlayeMovingState {IDLE,CROUCHING , WALKING , RUNNING};
+
+static PlayeMovingState m_playerState = PlayeMovingState::IDLE;
+

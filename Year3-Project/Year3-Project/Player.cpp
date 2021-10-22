@@ -109,6 +109,7 @@ void Player::move()
 		!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		m_isMoving = false;
+		m_playerState = PlayeMovingState::IDLE;
 	}	
 }
 
