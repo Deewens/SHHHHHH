@@ -17,12 +17,3 @@ void Character::loadImage()
     m_sprite.setTexture(m_texture);
 }
 
-void Character::setSpeed(const float &speed)
-{
-    this->m_speed = speed;
-}
-
-float Character::getSpeed()
-{
-    return this->m_speed;
-}

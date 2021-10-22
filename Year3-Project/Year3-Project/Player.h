@@ -15,8 +15,6 @@ public:
 
 	Player();
 
-	void loadImage() override;
-
 	void setDirection(int t_direction);
 
 	void update() override;

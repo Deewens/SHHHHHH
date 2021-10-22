@@ -18,12 +18,8 @@ protected:
 public:
     Character();
 
-    // Getter/Setter
-    void setSpeed(const float& speed);
-    float getSpeed();
-
     // Abstract methods
-    virtual void loadImage() = 0;
+    void loadImage();
     virtual void update() = 0;
     virtual void render(sf::RenderWindow& t_window) = 0;
 };

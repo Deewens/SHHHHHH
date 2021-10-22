@@ -9,7 +9,6 @@ public:
     Enemy();
 
     // Overrides
-    void loadImage() override;
 
     void setDirection(int t_direction);
 

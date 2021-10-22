@@ -5,18 +5,10 @@ Player::Player()
 	m_speed = 2;
 	Player::loadImage();
 
-	m_sprite.setOrigin(19, 21.5);
+	m_sprite.setOrigin(19, 22);
 	m_sprite.setPosition(100, 100);
 	m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
 	
-}
-
-void Player::loadImage()
-{
-	if (!m_texture.loadFromFile("ASSETS\\IMAGES\\spritesheet_characters.png"))
-		std::cout << "problem loading player texture" << std::endl;
-
-	m_sprite.setTexture(m_texture);
 }
 
 

@@ -6,17 +6,9 @@ Enemy::Enemy()
     Enemy::loadImage();
     Enemy::setDirection(SOUTHEAST);
 
-    m_sprite.setOrigin(19, 21.5);
+    m_sprite.setOrigin(17.5, 21.5);
     m_sprite.setPosition(100, 100);
     m_sprite.setTextureRect(sf::IntRect(424, 0, 35, 43));
-}
-
-void Enemy::loadImage()
-{
-    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\spritesheet_characters.png"))
-        std::cout << "problem loading enemy texture" << std::endl;
-
-    m_sprite.setTexture(m_texture);
 }
 
 void Enemy::setDirection(int t_direction)
