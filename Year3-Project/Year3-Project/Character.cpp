@@ -8,6 +8,22 @@ Character::Character()
     Character::loadImage();
 }
 
+sf::Vector2f Character::getPosition()
+{
+    return m_sprite.getPosition();
+}
+
+float Character::getRadius()
+{
+    sf::Vector2f origin = m_sprite.getOrigin();
+    float value = origin.x;
+    if (origin.y > value)
+    {
+        value = origin.y;
+    }
+    return value;
+}
+
 void Character::loadImage()
 {
     // Load a default sprite if loadImage is not overrided

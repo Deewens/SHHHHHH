@@ -21,38 +21,42 @@ void Player::setDirection(int t_direction)
 		m_sprite.setRotation(270);
 		m_sprite.move(0, -m_speed);
 	}
-	if (t_direction == SOUTH)
+	else if (t_direction == SOUTH)
 	{
 		m_sprite.setRotation(90);
 		m_sprite.move(0, m_speed);
 	}
-	if (t_direction == EAST)
+	else if (t_direction == EAST)
 	{
 		m_sprite.setRotation(0);
 		m_sprite.move(m_speed, 0);
 
 	}
-	if (t_direction == WEST)
+	else if (t_direction == WEST)
 	{
 		m_sprite.setRotation(180);
 		m_sprite.move(-m_speed, 0);
 
 	}
-	if (t_direction == NORTHWEST)
+	else if (t_direction == NORTHWEST)
 	{
 		m_sprite.setRotation(225);
+		m_sprite.move(-m_speed, -m_speed);
 	}
-	if (t_direction == NORTHEAST)
+	else if (t_direction == NORTHEAST)
 	{
 		m_sprite.setRotation(315);
+		m_sprite.move(m_speed, -m_speed);
 	}
-	if (t_direction == SOUTHWEST)
+	else if (t_direction == SOUTHWEST)
 	{
 		m_sprite.setRotation(135);
+		m_sprite.move(-m_speed, m_speed);
 	}
-	if (t_direction == SOUTHEAST)
+	else if (t_direction == SOUTHEAST)
 	{
 		m_sprite.setRotation(45);
+		m_sprite.move(m_speed, m_speed);
 	}
 }
 
@@ -63,53 +67,50 @@ void Player::update()
 
 void Player::move()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		m_isMoving = true;
-		setDirection(NORTH);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		m_isMoving = true;
-		setDirection(SOUTH);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		m_isMoving = true;
-		setDirection(WEST);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_isMoving = true;
-		setDirection(EAST);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		m_isMoving = true;
-		setDirection(NORTHWEST);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_isMoving = true;
-		setDirection(NORTHEAST);
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		m_isMoving = true;
-		setDirection(SOUTHWEST);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		m_isMoving = true;
-		setDirection(SOUTHEAST);
-	}
-
 	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Down) &&
 		!sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		m_isMoving = false;
-		m_playerState = PlayeMovingState::IDLE;
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_isMoving = true;
+		setDirection(NORTHWEST);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_isMoving = true;
+		setDirection(NORTHEAST);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_isMoving = true;
+		setDirection(SOUTHWEST);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_isMoving = true;
+		setDirection(SOUTHEAST);
+	}	
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		m_isMoving = true;
+		setDirection(NORTH);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		m_isMoving = true;
+		setDirection(SOUTH);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		m_isMoving = true;
+		setDirection(WEST);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		m_isMoving = true;
+		setDirection(EAST);
 	}	
 }
 

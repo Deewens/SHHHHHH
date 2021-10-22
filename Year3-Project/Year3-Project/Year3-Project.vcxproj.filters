@@ -42,7 +42,11 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="Noise.cpp">
+=======
+    <ClCompile Include="CollisionManager.cpp">
+>>>>>>> 3bc99fc95e9e1f2ec2aa9bb230de044fcbf147ad
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,7 +72,11 @@
     <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Noise.h">
+=======
+    <ClInclude Include="CollisionManager.h">
+>>>>>>> 3bc99fc95e9e1f2ec2aa9bb230de044fcbf147ad
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

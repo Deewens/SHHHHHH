@@ -18,6 +18,9 @@ protected:
 public:
     Character();
 
+    sf::Vector2f getPosition();
+    float getRadius();
+
     // Abstract methods
     void loadImage();
     virtual void update() = 0;
