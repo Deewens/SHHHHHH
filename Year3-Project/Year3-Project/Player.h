@@ -21,7 +21,5 @@ public:
 
 	void move();
 
-	void render(sf::RenderWindow& t_window) override;
-
 };
 

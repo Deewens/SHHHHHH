@@ -116,8 +116,3 @@ void Player::move()
 
 	
 }
-
-void Player::render(sf::RenderWindow& t_window)
-{
-	t_window.draw(m_sprite);
-}

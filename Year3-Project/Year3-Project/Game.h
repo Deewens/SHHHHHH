@@ -14,6 +14,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Menu.h"
+#include "Pickup.h"
 #include "CollisionManager.h"
 
 
@@ -42,6 +43,7 @@ private:
 
 	Player m_player;
     Enemy m_enemy;
+	Pickup m_pickup;
 
 	Menu m_gameMenu;
 

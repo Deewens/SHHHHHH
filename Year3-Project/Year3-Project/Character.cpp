@@ -33,3 +33,8 @@ void Character::loadImage()
     m_sprite.setTexture(m_texture);
 }
 
+void Character::render(sf::RenderWindow& t_window)
+{
+    t_window.draw(m_sprite);
+}
+
