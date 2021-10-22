@@ -58,8 +58,3 @@ void Enemy::update()
 {
 
 }
-
-void Enemy::render(sf::RenderWindow &t_window)
-{
-    t_window.draw(m_sprite);
-}

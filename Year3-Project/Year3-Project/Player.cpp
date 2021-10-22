@@ -111,10 +111,5 @@ void Player::move()
 	{
 		m_isMoving = true;
 		setDirection(EAST);
-	}	
-}
-
-void Player::render(sf::RenderWindow& t_window)
-{
-	t_window.draw(m_sprite);
+	}
 }

@@ -14,6 +14,16 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	}
 }
 
+void CollisionManager::check(Player& t_player, Pickup& t_pickup)
+{
+	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
+	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
+	if (collisionDistance >= distanceAway)
+	{
+		std::cout << "pickup";
+	}
+}
+
 float CollisionManager::distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b)
 {
 	sf::Vector2f vectorBetween = t_a - t_b;

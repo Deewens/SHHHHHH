@@ -13,8 +13,6 @@ public:
     void setDirection(int t_direction);
 
     void update() override;
-
-    void render(sf::RenderWindow &t_window) override;
 };
 
 

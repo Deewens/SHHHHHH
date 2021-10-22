@@ -140,6 +140,7 @@ void Game::render()
 		m_gameMenu.draw(m_window);
 		break;
 	case GameState::GAMEPLAY:
+		m_pickup.render(m_window);
 		m_player.render(m_window);
 		m_gameMenu.draw(m_window);
         m_enemy.render(m_window);
@@ -159,5 +160,6 @@ void Game::render()
 void Game::checkCollisions()
 {
 	collisions.check(m_player, m_enemy);
+	collisions.check(m_player, m_pickup);
 }
 

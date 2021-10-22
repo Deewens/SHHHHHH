@@ -21,10 +21,11 @@ public:
     sf::Vector2f getPosition();
     float getRadius();
 
-    // Abstract methods
     void loadImage();
+    void render(sf::RenderWindow& t_window);
+
+    // Abstract methods
     virtual void update() = 0;
-    virtual void render(sf::RenderWindow& t_window) = 0;
 };
 
 
