@@ -7,8 +7,7 @@ Player::Player()
 
 	m_sprite.setOrigin(19, 22);
 	m_sprite.setPosition(100, 100);
-	m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
-	
+	m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));	
 }
 
 
@@ -19,7 +18,7 @@ void Player::setDirection(int t_direction)
 	if (t_direction == NORTH)
 	{
 		m_sprite.setRotation(270);
-		m_sprite.move(0, -m_speed);
+		m_sprite.move(0, -m_speed);	
 	}
 	else if (t_direction == SOUTH)
 	{
@@ -30,13 +29,11 @@ void Player::setDirection(int t_direction)
 	{
 		m_sprite.setRotation(0);
 		m_sprite.move(m_speed, 0);
-
 	}
 	else if (t_direction == WEST)
 	{
 		m_sprite.setRotation(180);
 		m_sprite.move(-m_speed, 0);
-
 	}
 	else if (t_direction == NORTHWEST)
 	{

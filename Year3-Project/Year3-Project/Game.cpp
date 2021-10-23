@@ -115,6 +115,7 @@ void Game::update(sf::Time t_deltaTime)
 	case GameState::GAMEPLAY:
 		m_player.update();
 		checkCollisions();
+		collisions.update();
 		break;
 	case GameState::EXIT:
 		break;
@@ -144,6 +145,7 @@ void Game::render()
 		m_player.render(m_window);
 		m_gameMenu.draw(m_window);
         m_enemy.render(m_window);
+		collisions.renderNoises(m_window);
         break;
 	case GameState::EXIT:
 		break;

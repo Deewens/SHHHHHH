@@ -11,6 +11,7 @@ class Player : public Character
 private:
 	bool m_isAlive=true;
 
+
 public:
 
 	Player();
@@ -20,6 +21,5 @@ public:
 	void update() override;
 
 	void move();
-
 };
 

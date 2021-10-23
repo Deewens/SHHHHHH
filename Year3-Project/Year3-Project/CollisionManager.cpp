@@ -21,7 +21,18 @@ void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 	if (collisionDistance >= distanceAway)
 	{
 		std::cout << "pickup";
+		m_noise.init(NoiseLevels::GREEN, t_player.getPosition());
 	}
+}
+
+void CollisionManager::renderNoises(sf::RenderWindow& t_window)
+{
+	m_noise.render(t_window);
+}
+
+void CollisionManager::update()
+{
+	m_noise.update();
 }
 
 float CollisionManager::distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b)

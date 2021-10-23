@@ -30,3 +30,6 @@ enum class PlayeMovingState {IDLE,CROUCHING , WALKING , RUNNING};
 
 static PlayeMovingState m_playerState = PlayeMovingState::IDLE;
 
+enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
+
+static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
