@@ -12,7 +12,7 @@ public:
 
     void setDirection(int t_direction);
 
-    void update() override;
+    void update(float dt) override;
 };
 
 

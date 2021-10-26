@@ -70,6 +70,8 @@ void Game::processEvents()
 	sf::Event newEvent;
 	while (m_window.pollEvent(newEvent))
 	{
+		m_player.processEvents(newEvent);
+
 		if ( sf::Event::Closed == newEvent.type) // window message
 		{
 			m_exitGame = true;
@@ -106,15 +108,13 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
-	m_player.update();
-    m_enemy.update();
-
 	switch (m_gameState)
 	{
 	case GameState::MENU:
 		break;
 	case GameState::GAMEPLAY:
-		m_player.update();
+		m_player.update(t_deltaTime.asSeconds());
+		m_enemy.update(t_deltaTime.asSeconds());
 		checkCollisions();
 		collisions.update();
 		m_grid.update();

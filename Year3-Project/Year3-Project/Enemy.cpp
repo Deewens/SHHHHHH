@@ -54,7 +54,7 @@ void Enemy::setDirection(int t_direction)
     }
 }
 
-void Enemy::update()
+void Enemy::update(float dt)
 {
 
 }

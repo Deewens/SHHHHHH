@@ -25,7 +25,7 @@ public:
     void render(sf::RenderWindow& t_window);
 
     // Abstract methods
-    virtual void update() = 0;
+    virtual void update(float dt) = 0;
 };
 
 
