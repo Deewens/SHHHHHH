@@ -35,5 +35,8 @@ void Grid::update()
 	{
 		m_gridDraw = true;
 	}
-	
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::G))
+	{
+		m_gridDraw = false;
+	}
 }

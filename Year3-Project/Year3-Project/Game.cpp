@@ -18,8 +18,7 @@
 /// </summary>
 Game::Game() :
 	m_window{ sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!" },
-	m_exitGame{false}, //when true game will exit
-	m_hud()
+	m_exitGame{false} //when true game will exit
 {
 	m_gameMenu.Init();
 	m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
@@ -107,6 +106,8 @@ void Game::update(sf::Time t_deltaTime)
 		m_window.close();
 	}
 
+	m_player.update();
+    m_enemy.update();
 
 	switch (m_gameState)
 	{
@@ -114,14 +115,11 @@ void Game::update(sf::Time t_deltaTime)
 		break;
 	case GameState::GAMEPLAY:
 		m_player.update();
-		m_enemy.update();
 		checkCollisions();
 		collisions.update();
 		m_grid.update();
-		m_hud.update();
 		break;
 	case GameState::EXIT:
-		m_exitGame = true;
 		break;
 	case GameState::OPTIONS:
 		break;
@@ -147,7 +145,6 @@ void Game::render()
 	case GameState::GAMEPLAY:
 		m_pickup.render(m_window);
 		m_player.render(m_window);
-		m_hud.render(m_window);
 		m_gameMenu.render(m_window);
         m_enemy.render(m_window);
 		collisions.renderNoises(m_window);
