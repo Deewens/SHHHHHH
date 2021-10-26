@@ -57,7 +57,7 @@ public:
             }
             if (MainMenuButtons[3].pressed == true)
             {
-                std::cout << " 4 pressed" << std::endl;
+                m_gameState = GameState::EXIT;
             }
         }
         else if (m_gameState == GameState::GAMEPLAY)
