@@ -21,6 +21,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	m_gameMenu.Init();
+	m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
 
 }
 
@@ -116,6 +117,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_player.update();
 		checkCollisions();
 		collisions.update();
+		m_grid.update();
 		break;
 	case GameState::EXIT:
 		break;
@@ -138,19 +140,20 @@ void Game::render()
 	switch (m_gameState)
 	{
 	case GameState::MENU:
-		m_gameMenu.draw(m_window);
+		m_gameMenu.render(m_window);
 		break;
 	case GameState::GAMEPLAY:
 		m_pickup.render(m_window);
 		m_player.render(m_window);
-		m_gameMenu.draw(m_window);
+		m_gameMenu.render(m_window);
         m_enemy.render(m_window);
 		collisions.renderNoises(m_window);
+		m_grid.render(m_window);
         break;
 	case GameState::EXIT:
 		break;
 	case GameState::OPTIONS:
-		m_gameMenu.draw(m_window);
+		m_gameMenu.render(m_window);
 		break;
 	default:
 		break;

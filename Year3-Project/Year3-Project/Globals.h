@@ -3,6 +3,8 @@
 const int screen_Width = 1440;
 const int screem_Height = 900;
 
+static const int tileSize{ 30 };
+
 //The direction the sprite is moving in
 const int static WEST = 1;
 const int static EAST = 2;

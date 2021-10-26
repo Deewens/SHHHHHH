@@ -6,7 +6,6 @@ Noise::Noise()
 }
 Noise::~Noise()
 {
-
 }
 
 void Noise::init(NoiseLevels t_noiseLevel, sf::Vector2f t_location)

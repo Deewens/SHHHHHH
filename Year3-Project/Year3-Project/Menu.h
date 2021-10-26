@@ -78,7 +78,7 @@ public:
            
         }        
     }
-    void draw(sf::RenderWindow& t_window)
+    void render(sf::RenderWindow& t_window)
     {
         if (m_gameState == GameState::MENU)
         {
