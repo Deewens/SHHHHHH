@@ -2,6 +2,7 @@
 
 CollisionManager::CollisionManager()
 {
+	bulletCounter = 0;
 }
 
 void CollisionManager::check(Player& t_player, Enemy& t_enemy)
@@ -16,23 +17,36 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 
 void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 {
-	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
-	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
-	if (collisionDistance >= distanceAway)
+	if (bulletCounter >= CAN_PULSE)
 	{
-		std::cout << "pickup";
-		m_noise.init(NoiseLevels::GREEN, t_player.getPosition());
+		float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
+		float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
+		if (collisionDistance >= distanceAway)
+		{
+			std::cout << "pickup";
+			Noise t_noise;
+			t_noise.init(NoiseLevels::RED, t_player.getPosition());
+			m_noises.push_back(t_noise);
+			bulletCounter = 0;
+		}
 	}
+	bulletCounter++;
 }
 
 void CollisionManager::renderNoises(sf::RenderWindow& t_window)
 {
-	m_noise.render(t_window);
+	for (Noise& t_noise: m_noises)
+	{
+		t_noise.render(t_window);
+	}
 }
 
 void CollisionManager::update()
 {
-	m_noise.update();
+	for (Noise& t_noise : m_noises)
+	{
+		t_noise.update();
+	}
 }
 
 float CollisionManager::distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b)

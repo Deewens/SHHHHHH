@@ -15,6 +15,6 @@ private:
 	sf::CircleShape m_noiseShape;
 	float m_maxStrength{0.0f};
 	float m_strength{0.0f};
-	const float RADIOUS_SCALE{ 0.1f };
+	const float RADIUS_SCALE{ 0.5f };
 };
 
