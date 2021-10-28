@@ -5,6 +5,7 @@ Noise::Noise()
 	m_strength = 0;
 	m_noiseShape.setOutlineThickness(1.0f);
 	m_noiseShape.setFillColor(sf::Color::Transparent);
+    m_noiseDone = false;
 }
 Noise::~Noise()
 {
@@ -44,7 +45,7 @@ void Noise::render(sf::RenderWindow& t_window)
 void Noise::update()
 {	
 		
-	if (m_strength<= m_maxStrength)
+	if (m_strength <= m_maxStrength)
 	{
 		m_strength = m_strength + RADIUS_SCALE;
 		m_noiseShape.setOrigin(sf::Vector2f(m_strength, m_strength));
@@ -52,8 +53,9 @@ void Noise::update()
 	}
 	else
 	{
-		
+        m_noiseDone = true;
 	}
+
 	if (m_strength <= 50)
 	{
 		m_noiseShape.setOutlineColor(sf::Color::Green);
@@ -66,4 +68,9 @@ void Noise::update()
 	{
 		m_noiseShape.setOutlineColor(sf::Color::Red);
 	}
+}
+
+bool Noise::isNoiseDone()
+{
+    return this->m_noiseDone;
 }
