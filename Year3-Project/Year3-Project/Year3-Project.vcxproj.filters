@@ -100,4 +100,7 @@
       <Filter>Resource Files\FONTS</Filter>
     </Font>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
 </Project>

@@ -14,6 +14,7 @@ public:
 	void check(Player& t_player, Pickup& t_pickup);
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();
+    std::vector<Noise>* getNoises();
 private:
 	int bulletCounter;
 	const int CAN_PULSE = 30;

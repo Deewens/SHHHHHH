@@ -37,7 +37,10 @@ void CollisionManager::renderNoises(sf::RenderWindow& t_window)
 {
 	for (Noise& t_noise: m_noises)
 	{
-		t_noise.render(t_window);
+        if (!t_noise.isNoiseDone())
+        {
+            t_noise.render(t_window);
+        }
 	}
 }
 
@@ -53,4 +56,9 @@ float CollisionManager::distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b)
 {
 	sf::Vector2f vectorBetween = t_a - t_b;
 	return sqrt((vectorBetween.x * vectorBetween.x) + (vectorBetween.y * vectorBetween.y));
+}
+
+std::vector<Noise>* CollisionManager::getNoises()
+{
+    return &m_noises;
 }

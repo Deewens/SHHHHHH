@@ -11,10 +11,14 @@ public:
 	void render(sf::RenderWindow & t_window);
 	void update();
 
+    bool isNoiseDone();
+
 private:
 	sf::CircleShape m_noiseShape;
 	float m_maxStrength{0.0f};
 	float m_strength{0.0f};
-	const float RADIUS_SCALE{ 0.5f };
+    float RADIUS_SCALE{ 0.5f };
+    bool m_noiseDone;
+
 };
 
