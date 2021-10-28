@@ -120,6 +120,7 @@ void Game::update(sf::Time t_deltaTime)
 		m_grid.update();
 		break;
 	case GameState::EXIT:
+		m_exitGame = true;
 		break;
 	case GameState::OPTIONS:
 		break;
