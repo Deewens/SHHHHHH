@@ -14,7 +14,9 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Menu.h"
+#include "Pickup.h"
 #include "CollisionManager.h"
+#include "Grid.h"
 
 
 class Game
@@ -41,10 +43,14 @@ private:
 	CollisionManager collisions;
 
 	Player m_player;
+
     Enemy m_enemy;
+
+	Pickup m_pickup;
 
 	Menu m_gameMenu;
 
+	Grid m_grid;
 
 };
 

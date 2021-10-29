@@ -54,12 +54,7 @@ void Enemy::setDirection(int t_direction)
     }
 }
 
-void Enemy::update()
+void Enemy::update(float dt)
 {
 
-}
-
-void Enemy::render(sf::RenderWindow &t_window)
-{
-    t_window.draw(m_sprite);
 }

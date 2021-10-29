@@ -5,23 +5,31 @@
 #include "Globals.h"
 #include "Character.h"
 
+struct Direction {
+    bool up = false;
+    bool down = false;
+    bool right = false;
+    bool left = false;
+};
+
 class Player : public Character
 {
 
 private:
-	bool m_isAlive=true;
+    bool m_isAlive = true;
+    Direction m_isMoving;
 
 public:
 
-	Player();
+    Player();
 
-	void setDirection(int t_direction);
+    void setDirection(int t_direction);
 
-	void update() override;
+    void update(float dt) override;
 
-	void move();
+    void move(float dt);
 
-	void render(sf::RenderWindow& t_window) override;
+    void processEvents(sf::Event event);
 
 };
 

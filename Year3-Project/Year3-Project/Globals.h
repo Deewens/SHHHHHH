@@ -3,6 +3,8 @@
 const int screen_Width = 1440;
 const int screem_Height = 900;
 
+static const int tileSize{ 30 };
+
 //The direction the sprite is moving in
 const int static WEST = 1;
 const int static EAST = 2;
@@ -34,3 +36,10 @@ enum class PlayeMovingState {IDLE,CROUCHING , WALKING , RUNNING};
 
 static PlayeMovingState m_playerState = PlayeMovingState::IDLE;
 
+const float CROUCHING_SPEED = 25.f;
+const float WALKING_SPEED = 75.f;
+const float RUNNING_SPEED = 150.f;
+
+enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
+
+static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
