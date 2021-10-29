@@ -6,7 +6,6 @@ class Noise
 {
 public:
 	Noise();
-	~Noise();
 	void init(NoiseLevels t_noiseLevel, sf::Vector2f t_location);
 	void render(sf::RenderWindow & t_window);
 	void update();

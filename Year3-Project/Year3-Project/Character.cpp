@@ -35,6 +35,11 @@ void Character::loadImage()
 
 void Character::render(sf::RenderWindow& t_window)
 {
+    //sf::RectangleShape rectangle(sf::Vector2f(6.0f, 6.0f));
+   // rectangle.setFillColor(sf::Color::Yellow);
+    //rectangle.setPosition(m_sprite.getPosition());
+
     t_window.draw(m_sprite);
+    //t_window.draw(rectangle);
 }
 

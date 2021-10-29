@@ -7,9 +7,6 @@ Noise::Noise()
 	m_noiseShape.setFillColor(sf::Color::Transparent);
     m_noiseDone = false;
 }
-Noise::~Noise()
-{
-}
 
 void Noise::init(NoiseLevels t_noiseLevel, sf::Vector2f t_location)
 {

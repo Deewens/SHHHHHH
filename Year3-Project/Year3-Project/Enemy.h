@@ -2,6 +2,7 @@
 #define YEAR3_PROJECT_ENEMY_H
 
 #include "Character.h"
+#include<math.h>
 
 class Enemy : public Character
 {
@@ -13,6 +14,16 @@ public:
     void setDirection(int t_direction);
 
     void update(float dt) override;
+
+    void visionConeInit(float t_angle);
+
+    void renderVisionCone(sf::RenderWindow& t_window);
+
+private:
+
+    sf::Vertex coneVision[3] =
+    {        
+    };
 };
 
 
