@@ -13,6 +13,10 @@ const int static NORTHWEST = 6;
 const int static SOUTHEAST = 7;
 const int static SOUTHWEST = 8;
 
+enum class Directions {NORTH,EAST,WEST,SOUTH,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST};
+
+static Directions m_direction = Directions::EAST;
+
 //menu option number
 
 const int MENU_OPTION_NUMBER = 4;
