@@ -5,6 +5,7 @@
 #include<math.h>
 #include"Globals.h"
 #include"Player.h"
+#include"MyVector2.h"
 
 class Enemy : public Character
 {
@@ -19,16 +20,15 @@ public:
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
-    void visionConeCollisionCheck(Player& player);
+    void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
 
-    void pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t_p3, sf::Vector2f t_targetLocation);
+    void pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t_p3);
 
     void setVisionCone(float t_angel);
 
     sf::Vector2f rotatedVector(const sf::Vector2f& vector, float t_angle);
 
     void rotate(sf::Vector2f& vector, float t_angle);
-
 
 private:
 
@@ -48,12 +48,13 @@ private:
     sf::Vector2f m_visionP2{};
     sf::Vector2f m_visionP3{};
 
+    sf::Vector2f m_playerLocation{};
+
     enum class EnemyState
     {
-        IDLE,
-        SEEK
+        SEEK,
+        ATTACK
     }m_EnemyState;
-
 
 };
 
