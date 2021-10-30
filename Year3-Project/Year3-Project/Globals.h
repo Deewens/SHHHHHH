@@ -44,9 +44,7 @@ enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
 
 static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
 
-static const float VISION_CONE_LENGTH{ 200.0f };
+const float PI = 3.141599f;
 
-static const float VISION_CONE_ANGLE{ 60.0f };
 
-;
 
