@@ -95,7 +95,7 @@ void Enemy::pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t
     sf::Vector2f X3 = m_playerLocation - t_p3;
 
     //dot1 = v1.v1' = (y2 - y1)*(x - x1) + (-x2 + x1)*(y - y1)
-    //dot2 = v1.v2' = (y3 - y2)*(x - x2) + (-x3 + x2)*(y - y2)
+    //dot2 = v2.v2' = (y3 - y2)*(x - x2) + (-x3 + x2)*(y - y2)
     //dot3 = v3.v3' = (y1 - y3)*(x - x3) + (-x1 + x3)*(y - y3)
 
     float result1 = vectorDotProduct(V1, X1);

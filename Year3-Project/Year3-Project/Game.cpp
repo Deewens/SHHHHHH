@@ -144,13 +144,15 @@ void Game::render()
 		m_gameMenu.render(m_window);
 		break;
 	case GameState::GAMEPLAY:
+		m_environment.render(m_window);
 		m_pickup.render(m_window);
 		m_player.render(m_window);
-		m_gameMenu.render(m_window);
 		m_enemy.renderVisionCone(m_window);
         m_enemy.render(m_window);
 		collisions.renderNoises(m_window);
 		m_grid.render(m_window);
+		m_gameMenu.render(m_window);
+		
         break;
 	case GameState::EXIT:
 		break;

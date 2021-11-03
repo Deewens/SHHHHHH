@@ -17,6 +17,7 @@
 #include "Pickup.h"
 #include "CollisionManager.h"
 #include "Grid.h"
+#include "Environment.h"
 
 
 class Game
@@ -51,6 +52,8 @@ private:
 	Menu m_gameMenu;
 
 	Grid m_grid;
+
+	Environment m_environment;
 
 };
 
