@@ -12,3 +12,8 @@ void Environment::render(sf::RenderWindow& t_window)
 {
 	t_window.draw(rect);
 }
+
+sf::FloatRect Environment::getCollisionRect()
+{
+	return rect.getGlobalBounds();
+}

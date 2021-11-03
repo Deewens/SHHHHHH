@@ -113,6 +113,13 @@ void Player::processEvents(sf::Event event)
     }
 }
 
+void Player::awayFrom(sf::Vector2f t_obstacle)
+{
+    sf::Vector2f gap = t_obstacle - m_sprite.getPosition();
+    gap = (getRadius() / sqrt((gap.x * gap.x) + (gap.y * gap.y))) * gap;
+    m_sprite.setPosition(t_obstacle - gap);
+}
+
 void Player::move(float dt)
 {
     sf::Vector2f velocity = sf::Vector2f(0, 0);

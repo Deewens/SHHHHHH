@@ -171,5 +171,6 @@ void Game::checkCollisions()
 	collisions.check(m_player, m_enemy);
 	collisions.check(m_player, m_pickup);
 	m_enemy.visionConeCollisionCheck(m_player.getPosition());
+	collisions.check(m_player, m_environment);
 }
 

@@ -32,7 +32,7 @@ public:
 
     void processEvents(sf::Event event);
 
-
+    void awayFrom(sf::Vector2f t_obstacle);
 
 };
 
