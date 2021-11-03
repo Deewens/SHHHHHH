@@ -62,6 +62,13 @@ void Enemy::update(float dt)
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
 {
      t_window.draw(coneVision);
+
+     sf::Vertex line[] =
+     {
+         m_directionLine0,
+         m_directionLine1
+     };
+     t_window.draw(line, 2, sf::Lines);
 }
 
 void Enemy::visionConeCollisionCheck(sf::Vector2f t_playerLocation)
@@ -101,11 +108,14 @@ void Enemy::pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t
 
     if (result1 > 0 && result2 > 0 && result3 > 0)
     {
-        std::cout << "SEE" << std::endl;
+        //std::cout << "makes Noise" << std::endl;
+        m_directionEnd = m_playerLocation;
+        move(m_playerLocation,m_sprite.getPosition());
+
     }
     else
     {
-        std::cout << "CANT SEE" << std::endl;
+        //std::cout << "becomes Silence" << std::endl;
     }
 }
 
@@ -163,6 +173,48 @@ void Enemy::rotate(sf::Vector2f& vector, float t_angle)
         cos * vector.x - sin * vector.y,
         sin * vector.x + cos * vector.y);
 }
+void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
+{
+    sf::Vector2f m_movement = vectorUnitVector(t_startVec - t_finishVec);
+
+    m_movement = 1.0f * m_movement;
+   
+    if (m_movement.y > 0 && m_movement.x == 0)
+    {
+        setDirection(SOUTH);
+    }
+    else if (m_movement.y < 0 && m_movement.x == 0)
+    {
+        setDirection(NORTH);
+    }
+    else if (m_movement.x > 0 && m_movement.x == 0)
+    {
+        setDirection(EAST);
+    }
+    else if (m_movement.x < 0 && m_movement.x == 0)
+    {
+        setDirection(WEST);
+    }
+    else if (m_movement.y > 0 && m_movement.x > 0)
+    {
+        setDirection(SOUTHEAST);
+    }
+    else if (m_movement.y > 0 && m_movement.x < 0)
+    {
+        setDirection(SOUTHWEST);
+    }
+    else if (m_movement.y < 0 && m_movement.x > 0)
+    {
+        setDirection(NORTHEAST);
+    }
+    else if (m_movement.y < 0 && m_movement.x < 0)
+    {
+        setDirection(NORTHWEST);
+    }
+    m_sprite.move(m_movement);
+}
+
+
 
 
 

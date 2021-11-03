@@ -30,6 +30,9 @@ public:
 
     void rotate(sf::Vector2f& vector, float t_angle);
 
+    void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
+
+
 private:
 
        
@@ -49,6 +52,14 @@ private:
     sf::Vector2f m_visionP3{};
 
     sf::Vector2f m_playerLocation{};
+
+    sf::Vector2f m_directionStart{};
+    sf::Vector2f m_directionEnd{};
+
+    sf::Vertex m_directionLine0;
+    sf::Vertex m_directionLine1;
+
+    sf::Vector2f m_movementVector{};
 
     enum class EnemyState
     {
