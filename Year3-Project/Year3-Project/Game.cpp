@@ -6,9 +6,6 @@
 /// </summary>
 
 #include "Game.h"
-#include <iostream>
-
-
 
 /// <summary>
 /// default constructor
@@ -17,12 +14,11 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!" },
-	m_exitGame{false} //when true game will exit
+	m_window(sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!"),
+	m_exitGame(false), //when true game will exit
+    m_world(m_window)
 {
-	m_gameMenu.Init();
-	m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
-
+    m_gameMenu.Init();
 }
 
 /// <summary>
@@ -70,8 +66,7 @@ void Game::processEvents()
 	sf::Event newEvent;
 	while (m_window.pollEvent(newEvent))
 	{
-		m_player.processEvents(newEvent);
-
+        m_world.processEvents(newEvent);
 		if ( sf::Event::Closed == newEvent.type) // window message
 		{
 			m_exitGame = true;
@@ -102,7 +97,6 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-
 	if (m_exitGame)
 	{
 		m_window.close();
@@ -110,22 +104,18 @@ void Game::update(sf::Time t_deltaTime)
 
 	switch (m_gameState)
 	{
-	case GameState::MENU:
-		break;
-	case GameState::GAMEPLAY:
-		m_player.update(t_deltaTime.asSeconds());
-		m_enemy.update(t_deltaTime.asSeconds());
-		checkCollisions();
-		collisions.update();
-		m_grid.update();
-		break;
-	case GameState::EXIT:
-		m_exitGame = true;
-		break;
-	case GameState::OPTIONS:
-		break;
-	default:
-		break;
+        case GameState::MENU:
+            break;
+        case GameState::GAMEPLAY:
+            m_world.update(t_deltaTime);
+            break;
+        case GameState::EXIT:
+            m_exitGame = true;
+            break;
+        case GameState::OPTIONS:
+            break;
+        default:
+            break;
 	}
 	m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
 
@@ -140,37 +130,23 @@ void Game::render()
 
 	switch (m_gameState)
 	{
-	case GameState::MENU:
-		m_gameMenu.render(m_window);
-		break;
-	case GameState::GAMEPLAY:
-		m_environment.render(m_window);
-		m_pickup.render(m_window);
-		m_player.render(m_window);
-		m_enemy.renderVisionCone(m_window);
-        m_enemy.render(m_window);
-		collisions.renderNoises(m_window);
-		m_grid.render(m_window);
-		m_gameMenu.render(m_window);
-		
-        break;
-	case GameState::EXIT:
-		break;
-	case GameState::OPTIONS:
-		m_gameMenu.render(m_window);
-		break;
-	default:
-		break;
+        case GameState::MENU:
+            m_window.draw(m_gameMenu);
+            break;
+        case GameState::GAMEPLAY:
+            //m_window.draw(m_gameMenu);
+            m_world.draw();
+            //m_window.setView(m_window.getDefaultView());
+            break;
+        case GameState::EXIT:
+            break;
+        case GameState::OPTIONS:
+            m_window.draw(m_gameMenu);
+            break;
+        default:
+            break;
 	}
 	//m_gameMenu.draw(m_window);
 	m_window.display();
-}
-
-void Game::checkCollisions()
-{
-	collisions.check(m_player, m_enemy);
-	collisions.check(m_player, m_pickup);
-	m_enemy.visionConeCollisionCheck(m_player.getPosition());
-	collisions.check(m_player, m_environment);
 }
 

@@ -1,5 +1,6 @@
 #include "Character.h"
 
+
 Character::Character()
 {
     m_speed = 2;
@@ -33,13 +34,8 @@ void Character::loadImage()
     m_sprite.setTexture(m_texture);
 }
 
-void Character::render(sf::RenderWindow& t_window)
+void Character::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    //sf::RectangleShape rectangle(sf::Vector2f(6.0f, 6.0f));
-   // rectangle.setFillColor(sf::Color::Yellow);
-    //rectangle.setPosition(m_sprite.getPosition());
-
-    t_window.draw(m_sprite);
-    //t_window.draw(rectangle);
+    target.draw(m_sprite);
 }
 

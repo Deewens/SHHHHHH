@@ -20,15 +20,6 @@ Grid::Grid(int t_rows, int t_cols) : m_rows(t_rows), m_cols(t_cols)
 	}
 }
 
-void Grid::render(sf::RenderWindow& t_window)
-{
-	if (m_gridDraw)
-	{
-		t_window.draw(m_colLine, 96, sf::Lines);
-		t_window.draw(m_rowLine, 60, sf::Lines);
-	}
-}
-
 void Grid::update()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
@@ -39,4 +30,13 @@ void Grid::update()
 	{
 		m_gridDraw = false;
 	}
+}
+
+void Grid::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    if (m_gridDraw)
+    {
+        target.draw(m_colLine, 96, sf::Lines);
+        target.draw(m_rowLine, 60, sf::Lines);
+    }
 }

@@ -18,7 +18,6 @@ class Player : public Character
 private:
     bool m_isAlive = true;
     Direction m_isMoving;
-    
 
 public:
 

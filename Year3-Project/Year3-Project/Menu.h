@@ -3,7 +3,7 @@
 #include"MenuButton.h"
 #include<iostream>
 
-class Menu 
+class Menu : public sf::Drawable
 {
 public:
 
@@ -79,28 +79,8 @@ public:
            
         }        
     }
-    void render(sf::RenderWindow& t_window)
-    {
-        if (m_gameState == GameState::MENU)
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                t_window.draw(MainMenuButtons[i].shape);
-                t_window.draw(MainMenuButtons[i].text);
-            }
 
-        }
-        else if (m_gameState == GameState::GAMEPLAY)
-        {
-            t_window.draw(GameBackButton.shape);
-            t_window.draw(GameBackButton.text);
-        }
-        else if (m_gameState == GameState::OPTIONS)
-        {
-            t_window.draw(GameBackButton.shape);
-            t_window.draw(GameBackButton.text);
-            t_window.draw(gameText);           
-        }        
-    }
+private:
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 };
 

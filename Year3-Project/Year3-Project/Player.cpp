@@ -156,18 +156,4 @@ void Player::move(float dt)
         setDirection(WEST);
 
     m_sprite.move(velocity);
-
-    // Prevent player from going outside the screen
-    if (m_sprite.getPosition().x < 0.f)
-        m_sprite.setPosition(0.f, m_sprite.getPosition().y);
-
-    if (m_sprite.getPosition().y < 0.f)
-        m_sprite.setPosition(m_sprite.getPosition().x, 0.f);
-
-    if (m_sprite.getPosition().x + m_sprite.getGlobalBounds().width > screen_Width)
-        m_sprite.setPosition(screen_Width - m_sprite.getGlobalBounds().width, m_sprite.getPosition().y);
-
-    if (m_sprite.getPosition().y + m_sprite.getGlobalBounds().height > screem_Height)
-        m_sprite.setPosition(m_sprite.getPosition().x, screem_Height - m_sprite.getGlobalBounds().height);
-
 }

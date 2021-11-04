@@ -17,6 +17,7 @@
 #include "Pickup.h"
 #include "CollisionManager.h"
 #include "Grid.h"
+#include "World.h"
 #include "Environment.h"
 
 
@@ -36,25 +37,14 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
-	void checkCollisions();
-	
+
 
 	sf::RenderWindow m_window; // main SFML window
+    World m_world;
+
 	bool m_exitGame; // control exiting game
-	CollisionManager collisions;
-
-	Player m_player;
-
-    Enemy m_enemy;
-
-	Pickup m_pickup;
 
 	Menu m_gameMenu;
-
-	Grid m_grid;
-
-	Environment m_environment;
-
 };
 
 #endif // !GAME_HPP
