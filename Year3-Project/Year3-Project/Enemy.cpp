@@ -177,46 +177,19 @@ void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
 {
     sf::Vector2f m_movement = vectorUnitVector(t_startVec - t_finishVec);
 
-    m_movement = 1.0f * m_movement;
-   
-    if (m_movement.y > 0 && m_movement.x == 0)
-    {
-        setDirection(SOUTH);
-    }
-    else if (m_movement.y < 0 && m_movement.x == 0)
-    {
-        setDirection(NORTH);
-    }
-    else if (m_movement.x > 0 && m_movement.x == 0)
-    {
-        setDirection(EAST);
-    }
-    else if (m_movement.x < 0 && m_movement.x == 0)
-    {
-        setDirection(WEST);
-    }
-    else if (m_movement.y > 0 && m_movement.x > 0)
-    {
-        setDirection(SOUTHEAST);
-    }
-    else if (m_movement.y > 0 && m_movement.x < 0)
-    {
-        setDirection(SOUTHWEST);
-    }
-    else if (m_movement.y < 0 && m_movement.x > 0)
-    {
-        setDirection(NORTHEAST);
-    }
-    else if (m_movement.y < 0 && m_movement.x < 0)
-    {
-        setDirection(NORTHWEST);
-    }
+    float m_angleRad = atan2(m_movement.y, m_movement.x);
+
+    int m_angleInDeg = m_angleRad * 180 / PI;
+
+    m_sprite.setRotation(m_angleInDeg);
+
+    m_movement = ENEMY_SPEED * m_movement;  
+
     m_sprite.move(m_movement);
 }
 
 
-
-
+//https://gamedev.stackexchange.com/questions/23743/whats-the-most-efficient-way-to-find-barycentric-coordinates
 
 
 

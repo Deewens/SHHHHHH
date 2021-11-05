@@ -16,7 +16,7 @@ public:
 	void update();
     std::vector<Noise>* getNoises();
 private:
-	int bulletCounter;
+	int pulseDelay;
 	const int CAN_PULSE = 30;
 	float distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b);
 	std::vector<Noise> m_noises;

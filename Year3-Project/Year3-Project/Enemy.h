@@ -6,6 +6,7 @@
 #include"Globals.h"
 #include"Player.h"
 #include"MyVector2.h"
+#include <stdlib.h>
 
 class Enemy : public Character
 {
@@ -60,6 +61,8 @@ private:
     sf::Vertex m_directionLine1;
 
     sf::Vector2f m_movementVector{};
+
+    const float ENEMY_SPEED = 1.0f;
 
     enum class EnemyState
     {
