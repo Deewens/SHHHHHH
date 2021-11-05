@@ -18,7 +18,6 @@ class Player : public Character
 private:
     bool m_isAlive = true;
     Direction m_isMoving;
-    
 
 public:
 
@@ -32,7 +31,7 @@ public:
 
     void processEvents(sf::Event event);
 
-
+    void awayFrom(sf::Vector2f t_obstacle);
 
 };
 

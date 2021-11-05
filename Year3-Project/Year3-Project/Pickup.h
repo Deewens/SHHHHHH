@@ -2,15 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-class Pickup
+class Pickup : public sf::Drawable
 {
 public:
 	Pickup();
-	void render(sf::RenderWindow& t_window);
 
 	sf::Vector2f getPosition();
 	float getRadius();
 private:
 	sf::RectangleShape rect;
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 };
 

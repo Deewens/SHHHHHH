@@ -46,8 +46,11 @@ void Enemy::setDirection(int t_direction)
 
 void Enemy::update(float dt)
 {
-    pointInTriangle(m_visionP1, m_visionP2, m_visionP3);
-
+    if (isPointInTriangle(m_playerLocation,m_visionP1,m_visionP2,m_visionP3))
+    {
+        m_directionEnd = m_playerLocation;
+        move(m_playerLocation,m_sprite.getPosition());
+    }
     if (m_EnemyState == EnemyState::SEEK)
     {
         setVisionCone(30);
@@ -74,49 +77,6 @@ void Enemy::renderVisionCone(sf::RenderWindow& t_window)
 void Enemy::visionConeCollisionCheck(sf::Vector2f t_playerLocation)
 {
     m_playerLocation = t_playerLocation;
-}
-
-void Enemy::pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t_p3)
-{
-    //v1 = <y2 - y1, -x2 + x1>
-    //v2 = <y3 - y2, -x3 + x2>
-    //v3 = <y1 - y3, -x1 + x3>
-
-    sf::Vector2f V1 = t_p2 - t_p1;
-    sf::Vector2f V2 = t_p3 - t_p2;
-    sf::Vector2f V3 = t_p1 - t_p3;
-
-    //v1' = <x - x1, y - y1>
-    //v2' = <x - x2, y - y2>
-    //v3' = <x - x3, y - y3>
-
-    sf::Vector2f X1 = m_playerLocation - t_p1;
-    sf::Vector2f X2 = m_playerLocation - t_p2;
-    sf::Vector2f X3 = m_playerLocation - t_p3;
-
-    //dot1 = v1.v1' = (y2 - y1)*(x - x1) + (-x2 + x1)*(y - y1)
-    //dot2 = v1.v2' = (y3 - y2)*(x - x2) + (-x3 + x2)*(y - y2)
-    //dot3 = v3.v3' = (y1 - y3)*(x - x3) + (-x1 + x3)*(y - y3)
-
-    float result1 = vectorDotProduct(V1, X1);
-    float result2 = vectorDotProduct(V2, X2);
-    float result3 = vectorDotProduct(V3, X3);
-
-    //std::cout << result1 << std::endl;
-    //std::cout << result2 << std::endl;
-    //std::cout << result3 << std::endl;
-
-    if (result1 > 0 && result2 > 0 && result3 > 0)
-    {
-        //std::cout << "makes Noise" << std::endl;
-        m_directionEnd = m_playerLocation;
-        move(m_playerLocation,m_sprite.getPosition());
-
-    }
-    else
-    {
-        //std::cout << "becomes Silence" << std::endl;
-    }
 }
 
 void Enemy::setVisionCone(float t_angle)
@@ -189,9 +149,23 @@ void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
 }
 
 
-//https://gamedev.stackexchange.com/questions/23743/whats-the-most-efficient-way-to-find-barycentric-coordinates
 
+float sign(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3)
+{
+    return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+}
 
+bool Enemy::isPointInTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3)
+{
+    float d1, d2, d3;
+    bool has_neg, has_pos;
 
+    d1 = sign(pt, v1, v2);
+    d2 = sign(pt, v2, v3);
+    d3 = sign(pt, v3, v1);
 
+    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
 
+    return !(has_neg && has_pos);
+}

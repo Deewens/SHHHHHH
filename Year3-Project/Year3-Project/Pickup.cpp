@@ -8,11 +8,6 @@ Pickup::Pickup()
 	rect.setPosition(sf::Vector2f(150, 150));
 }
 
-void Pickup::render(sf::RenderWindow& t_window)
-{
-	t_window.draw(rect);
-}
-
 sf::Vector2f Pickup::getPosition()
 {
 	return rect.getPosition();
@@ -21,4 +16,9 @@ sf::Vector2f Pickup::getPosition()
 float Pickup::getRadius()
 {
 	return rect.getOrigin().x;
+}
+
+void Pickup::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    target.draw(rect);
 }

@@ -23,8 +23,6 @@ public:
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
 
-    void pointInTriangle(sf::Vector2f t_p1, sf::Vector2f t_p2, sf::Vector2f t_p3);
-
     void setVisionCone(float t_angel);
 
     sf::Vector2f rotatedVector(const sf::Vector2f& vector, float t_angle);
@@ -32,6 +30,10 @@ public:
     void rotate(sf::Vector2f& vector, float t_angle);
 
     void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
+
+    bool isPointInTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3);
+
+
 
 
 private:

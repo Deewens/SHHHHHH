@@ -113,6 +113,13 @@ void Player::processEvents(sf::Event event)
     }
 }
 
+void Player::awayFrom(sf::Vector2f t_obstacle)
+{
+    sf::Vector2f gap = t_obstacle - m_sprite.getPosition();
+    gap = (getRadius() / sqrt((gap.x * gap.x) + (gap.y * gap.y))) * gap;
+    m_sprite.setPosition(t_obstacle - gap);
+}
+
 void Player::move(float dt)
 {
     sf::Vector2f velocity = sf::Vector2f(0, 0);
@@ -149,18 +156,4 @@ void Player::move(float dt)
         setDirection(WEST);
 
     m_sprite.move(velocity);
-
-    // Prevent player from going outside the screen
-    if (m_sprite.getPosition().x < 0.f)
-        m_sprite.setPosition(0.f, m_sprite.getPosition().y);
-
-    if (m_sprite.getPosition().y < 0.f)
-        m_sprite.setPosition(m_sprite.getPosition().x, 0.f);
-
-    if (m_sprite.getPosition().x + m_sprite.getGlobalBounds().width > screen_Width)
-        m_sprite.setPosition(screen_Width - m_sprite.getGlobalBounds().width, m_sprite.getPosition().y);
-
-    if (m_sprite.getPosition().y + m_sprite.getGlobalBounds().height > screem_Height)
-        m_sprite.setPosition(m_sprite.getPosition().x, screem_Height - m_sprite.getGlobalBounds().height);
-
 }

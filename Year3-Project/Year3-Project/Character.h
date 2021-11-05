@@ -6,7 +6,7 @@
 
 #include "Globals.h"
 
-class Character
+class Character : public sf::Drawable, public sf::Transformable
 {
 protected:
     float m_speed;
@@ -22,10 +22,12 @@ public:
     float getRadius();
 
     void loadImage();
-    void render(sf::RenderWindow& t_window);
 
     // Abstract methods
     virtual void update(float dt) = 0;
+
+private:
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 };
 
 

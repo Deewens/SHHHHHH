@@ -3,7 +3,7 @@
 #include "Globals.h"
 #include<iostream>
 
-class Grid
+class Grid : public sf::Drawable
 {
 public:
 	Grid();
@@ -21,6 +21,8 @@ private:
 	sf::Vertex m_rowLine[60];
 
 	bool m_gridDraw = false;
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 
 };
 
