@@ -7,6 +7,7 @@
 #include"Player.h"
 #include"MyVector2.h"
 #include <stdlib.h>
+#include "tinyc2.h"
 
 class Enemy : public Character
 {
@@ -31,10 +32,11 @@ public:
 
     void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
 
+    bool isBeingSeen();
+
     bool isPointInTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3);
 
-
-
+    bool IsCircleWithinTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3);
 
 private:
 
@@ -65,6 +67,11 @@ private:
     sf::Vector2f m_movementVector{};
 
     const float ENEMY_SPEED = 1.0f;
+
+    c2Circle circle_player;
+
+    c2Poly poly_visionCone;
+
 
     enum class EnemyState
     {

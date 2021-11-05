@@ -48,6 +48,7 @@
     <ClCompile Include="Pickup.h" />
     <ClInclude Include="MyVector2.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="tinyc2.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

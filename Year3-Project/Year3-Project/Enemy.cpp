@@ -46,11 +46,6 @@ void Enemy::setDirection(int t_direction)
 
 void Enemy::update(float dt)
 {
-    if (isPointInTriangle(m_playerLocation,m_visionP1,m_visionP2,m_visionP3))
-    {
-        m_directionEnd = m_playerLocation;
-        move(m_playerLocation,m_sprite.getPosition());
-    }
     if (m_EnemyState == EnemyState::SEEK)
     {
         setVisionCone(30);
@@ -59,7 +54,11 @@ void Enemy::update(float dt)
     {
         setVisionCone(20);
     }
-
+    if (isBeingSeen())
+    {
+        m_directionEnd = m_playerLocation;
+        move(m_playerLocation, m_sprite.getPosition());
+    }
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
@@ -148,24 +147,25 @@ void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
     m_sprite.move(m_movement);
 }
 
-
-
-float sign(sf::Vector2f p1, sf::Vector2f p2, sf::Vector2f p3)
+bool Enemy::isBeingSeen()
 {
-    return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    circle_player.r = 17.0f;
+    poly_visionCone.count = 3;
+
+    poly_visionCone.verts[0] = c2V(m_visionP1.x, m_visionP1.y);
+    poly_visionCone.verts[1] = c2V(m_visionP2.x, m_visionP2.y);
+    poly_visionCone.verts[2] = c2V(m_visionP3.x, m_visionP3.y);
+
+    circle_player.p.x = m_playerLocation.x;
+    circle_player.p.y = m_playerLocation.y;
+
+    int result = c2CircletoPoly(circle_player, &poly_visionCone, NULL);
+
+    return result != 0;
+
 }
 
-bool Enemy::isPointInTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3)
-{
-    float d1, d2, d3;
-    bool has_neg, has_pos;
 
-    d1 = sign(pt, v1, v2);
-    d2 = sign(pt, v2, v3);
-    d3 = sign(pt, v3, v1);
 
-    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
 
-    return !(has_neg && has_pos);
-}
+
