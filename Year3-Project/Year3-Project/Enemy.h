@@ -34,9 +34,9 @@ public:
 
     bool isBeingSeen();
 
-    bool isPointInTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3);
+    void debug();
 
-    bool IsCircleWithinTriangle(sf::Vector2f pt, sf::Vector2f v1, sf::Vector2f v2, sf::Vector2f v3);
+
 
 private:
 
@@ -72,6 +72,7 @@ private:
 
     c2Poly poly_visionCone;
 
+    sf::CircleShape m_playerCircle;
 
     enum class EnemyState
     {

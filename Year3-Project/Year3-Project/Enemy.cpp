@@ -2,7 +2,6 @@
 
 Enemy::Enemy()
 {
-    m_speed = 2;
     Enemy::loadImage();
     Enemy::setDirection(EAST);
 
@@ -58,12 +57,19 @@ void Enemy::update(float dt)
     {
         m_directionEnd = m_playerLocation;
         move(m_playerLocation, m_sprite.getPosition());
+        m_EnemyState = EnemyState::ATTACK;
     }
+    else
+    {
+        m_EnemyState = EnemyState::SEEK;
+    }
+    //debug();
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
 {
      t_window.draw(coneVision);
+
 
      sf::Vertex line[] =
      {
@@ -71,6 +77,7 @@ void Enemy::renderVisionCone(sf::RenderWindow& t_window)
          m_directionLine1
      };
      t_window.draw(line, 2, sf::Lines);
+     t_window.draw(m_playerCircle);
 }
 
 void Enemy::visionConeCollisionCheck(sf::Vector2f t_playerLocation)
@@ -107,7 +114,6 @@ void Enemy::setVisionCone(float t_angle)
         coneVision[0].color = sf::Color::Red;
         coneVision[1].color = sf::Color::Transparent;
         coneVision[2].color = sf::Color::Transparent;
-
     }
 }
 
@@ -150,6 +156,7 @@ void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
 bool Enemy::isBeingSeen()
 {
     circle_player.r = 17.0f;
+
     poly_visionCone.count = 3;
 
     poly_visionCone.verts[0] = c2V(m_visionP1.x, m_visionP1.y);
@@ -162,7 +169,25 @@ bool Enemy::isBeingSeen()
     int result = c2CircletoPoly(circle_player, &poly_visionCone, NULL);
 
     return result != 0;
+}
+void Enemy::debug()
+{
+    m_playerCircle.setRadius(17.0f);
+    m_playerCircle.setOrigin(17.0f, 17.0);
+    m_playerCircle.setPosition(m_playerLocation);
+    m_playerCircle.setFillColor(sf::Color::Yellow);
 
+    if (isBeingSeen())
+    {
+        m_directionLine0 = m_playerLocation;
+        m_directionLine1 = m_visionP1;
+        std::cout << "SEEN" << std::endl;
+    }
+    else
+    {
+        std::cout << "NOT SEEN" << std::endl;
+
+    }
 }
 
 
