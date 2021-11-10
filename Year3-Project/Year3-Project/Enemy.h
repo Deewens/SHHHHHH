@@ -18,7 +18,7 @@ public:
 
     void setDirection(int t_direction);
 
-    void update(float dt) override;
+    void update(sf::Time deltaTime) override;
 
     void renderVisionCone(sf::RenderWindow& t_window);
 

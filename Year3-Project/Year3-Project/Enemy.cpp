@@ -43,7 +43,7 @@ void Enemy::setDirection(int t_direction)
     }
 }
 
-void Enemy::update(float dt)
+void Enemy::update(sf::Time deltaTime)
 {
     if (m_EnemyState == EnemyState::SEEK)
     {

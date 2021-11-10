@@ -5,6 +5,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "Globals.h"
+#include "Animation.h"
+#include "AnimatedSprite.h"
 
 class Character : public sf::Drawable, public sf::Transformable
 {
@@ -24,10 +26,10 @@ public:
     void loadImage();
 
     // Abstract methods
-    virtual void update(float dt) = 0;
+    virtual void update(sf::Time deltaTime) = 0;
 
 private:
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
 
 

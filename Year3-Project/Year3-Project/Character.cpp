@@ -28,14 +28,15 @@ float Character::getRadius()
 void Character::loadImage()
 {
     // Load a default sprite if loadImage is not overrided
-    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\spritesheet_characters.png"))
+    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\CharacterSpriteSheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
-    m_sprite.setTexture(m_texture);
+    //m_sprite.setTexture(m_texture);
 }
 
 void Character::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    target.draw(m_sprite);
+    //target.draw(m_sprite);
+    //target.draw(m_animatedSprite);
 }
 

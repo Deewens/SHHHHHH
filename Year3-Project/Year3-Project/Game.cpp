@@ -114,8 +114,8 @@ void Game::update(sf::Time t_deltaTime)
 			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
-            m_player.update(t_deltaTime.asSeconds());
-            m_enemy.update(t_deltaTime.asSeconds());
+            m_player.update(t_deltaTime);
+            m_enemy.update(t_deltaTime);
             m_grid.update();
             checkCollisions();
             collisions.update();
