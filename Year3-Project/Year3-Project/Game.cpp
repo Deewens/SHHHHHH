@@ -16,9 +16,12 @@
 Game::Game() :
 	m_window(sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!"),
 	m_exitGame(false), //when true game will exit
-    m_world(m_window)
-{
+    m_worldView(m_window.getDefaultView()),
+    m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
+    m_spawnPosition(100.f, 100.f){
     m_gameMenu.Init();
+    m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
+    m_worldView.setCenter(m_spawnPosition);
 }
 
 /// <summary>
@@ -66,7 +69,6 @@ void Game::processEvents()
 	sf::Event newEvent;
 	while (m_window.pollEvent(newEvent))
 	{
-        m_world.processEvents(newEvent);
 		if ( sf::Event::Closed == newEvent.type) // window message
 		{
 			m_exitGame = true;
@@ -75,6 +77,10 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+        if (m_gameState == GameState::GAMEPLAY)
+        {
+            m_player.processEvents(newEvent);
+        }
 	}
 }
 
@@ -108,17 +114,36 @@ void Game::update(sf::Time t_deltaTime)
 			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
-            m_world.update(t_deltaTime);
+            m_player.update(t_deltaTime.asSeconds());
+            m_enemy.update(t_deltaTime.asSeconds());
+            m_grid.update();
+            checkCollisions();
+            collisions.update();
+
+            if (m_player.getPosition().x > m_worldView.getCenter().x + (m_window.getSize().x/2.f)/2.f
+                || m_player.getPosition().x < m_worldView.getCenter().x - (m_window.getSize().x / 2.f)/2.f
+                || m_player.getPosition().y > m_worldView.getCenter().y + (m_window.getSize().y/2.f)/2.f
+                || m_player.getPosition().y < m_worldView.getCenter().y - (m_window.getSize().y / 2.f)/2.f)
+            {
+                m_worldView.move(m_player.getVelocity());
+
+                // DEBUG
+                //m_movementRectDebug.move(m_player.getVelocity());
+            }
+            //m_worldView.setCenter(m_player.getPosition());
+
             break;
         case GameState::EXIT:
             m_exitGame = true;
             break;
         case GameState::OPTIONS:
             break;
+        case GameState::PAUSE:
+            std::cout << "pause" << std::endl;
+            break;
         default:
             break;
 	}
-
 }
 
 /// <summary>
@@ -135,8 +160,14 @@ void Game::render()
             break;
         case GameState::GAMEPLAY:
             //m_window.draw(m_gameMenu);
-            m_world.draw();
-            //m_window.setView(m_window.getDefaultView());
+            m_window.setView(m_worldView);
+            m_environment.render(m_window);
+            m_window.draw(m_player);
+            m_window.draw(m_pickup);
+            m_window.draw(m_enemy);
+            m_enemy.renderVisionCone(m_window);
+            m_window.draw(m_grid);
+            collisions.renderNoises(m_window);
             break;
         case GameState::EXIT:
             break;
@@ -150,9 +181,12 @@ void Game::render()
 	m_window.display();
 }
 
-//void Game::checkCollisions()
-//{
-	//collisions.check(m_player, m_enemy);
-	//collisions.check(m_player, m_pickup);
-//}
+void Game::checkCollisions()
+{
+    collisions.check(m_player, m_enemy);
+    collisions.check(m_player, m_pickup);
+    m_enemy.visionConeCollisionCheck(m_player.getPosition());
+    collisions.check(m_player, m_environment);
+}
+
 

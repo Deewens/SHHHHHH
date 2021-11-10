@@ -31,6 +31,8 @@ private:
     Pickup m_pickup;
     Grid m_grid;
     Environment m_environment;
+    Menu m_gameMenu;
+
 
 public:
     explicit World(sf::RenderWindow& window);

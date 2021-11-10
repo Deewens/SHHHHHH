@@ -18,6 +18,7 @@ class Player : public Character
 private:
     bool m_isAlive = true;
     Direction m_isMoving;
+    sf::Vector2f m_velocity;
 
 public:
 
@@ -32,6 +33,8 @@ public:
     void processEvents(sf::Event event);
 
     void awayFrom(sf::Vector2f t_obstacle);
+
+    sf::Vector2f getVelocity();
 
 };
 

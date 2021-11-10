@@ -37,14 +37,27 @@ private:
 	void processKeys(sf::Event t_event);
 	void update(sf::Time t_deltaTime);
 	void render();
+    void checkCollisions();
 
 
-	sf::RenderWindow m_window; // main SFML window
-    World m_world;
+    sf::RenderWindow m_window; // main SFML window
 
 	bool m_exitGame; // control exiting game
 
-	Menu m_gameMenu;
+    sf::View m_worldView; // Take care of the view (camera)
+
+    sf::FloatRect m_worldBounds;
+    sf::Vector2f m_spawnPosition;
+
+    CollisionManager collisions;
+
+    // Game entities
+    Player m_player;
+    Enemy m_enemy;
+    Pickup m_pickup;
+    Grid m_grid;
+    Environment m_environment;
+    Menu m_gameMenu;
 };
 
 #endif // !GAME_HPP

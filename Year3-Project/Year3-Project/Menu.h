@@ -60,7 +60,8 @@ public:
             }
             if (MainMenuButtons[1].pressed == true)
             {
-                m_gameState = GameState::OPTIONS;
+                //m_gameState = GameState::OPTIONS;
+                std::cout << " 2 pressed" << std::endl;
             }
             if (MainMenuButtons[2].pressed == true)
             {

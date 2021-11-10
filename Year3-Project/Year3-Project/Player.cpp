@@ -82,7 +82,7 @@ void Player::processEvents(sf::Event event)
             m_speed = RUNNING_SPEED;
             m_playerState = PlayeMovingState::RUNNING;
         }
-        if (event.key.code == sf::Keyboard::P && m_gameState == GameState::GAMEPLAY)
+        if (event.key.code == sf::Keyboard::P)
         {
             m_gameState = GameState::PAUSE;
         }
@@ -126,38 +126,43 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 
 void Player::move(float dt)
 {
-    sf::Vector2f velocity = sf::Vector2f(0, 0);
-    velocity.x = 0.f;
-    velocity.y = 0.f;
+    m_velocity = sf::Vector2f(0, 0);
+    m_velocity.x = 0.f;
+    m_velocity.y = 0.f;
 
     if (m_isMoving.up)
-        velocity.y += -m_speed * dt;
+        m_velocity.y += -m_speed * dt;
 
     if (m_isMoving.down)
-        velocity.y += m_speed * dt;
+        m_velocity.y += m_speed * dt;
 
     if (m_isMoving.left)
-        velocity.x += -m_speed * dt;
+        m_velocity.x += -m_speed * dt;
 
     if (m_isMoving.right)
-        velocity.x += m_speed * dt;
+        m_velocity.x += m_speed * dt;
 
-    if (velocity.y > 0 && velocity.x > 0)
+    if (m_velocity.y > 0 && m_velocity.x > 0)
         setDirection(SOUTHEAST);
-    else if (velocity.y > 0 && velocity.x < 0)
+    else if (m_velocity.y > 0 && m_velocity.x < 0)
         setDirection(SOUTHWEST);
-    else if (velocity.y < 0 && velocity.x > 0)
+    else if (m_velocity.y < 0 && m_velocity.x > 0)
         setDirection(NORTHEAST);
-    else if (velocity.y < 0 && velocity.x < 0)
+    else if (m_velocity.y < 0 && m_velocity.x < 0)
         setDirection(NORTHWEST);
-    else if (velocity.y > 0)
+    else if (m_velocity.y > 0)
         setDirection(SOUTH);
-    else if (velocity.y < 0)
+    else if (m_velocity.y < 0)
         setDirection(NORTH);
-    else if (velocity.x > 0)
+    else if (m_velocity.x > 0)
         setDirection(EAST);
-    else if (velocity.x < 0)
+    else if (m_velocity.x < 0)
         setDirection(WEST);
 
-    m_sprite.move(velocity);
+    m_sprite.move(m_velocity);
+}
+
+sf::Vector2f Player::getVelocity()
+{
+    return m_velocity;
 }

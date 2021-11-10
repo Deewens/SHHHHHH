@@ -22,13 +22,15 @@ void World::update(sf::Time dt)
     collisions.update();
 
     m_worldView.setCenter(m_player.getPosition());
+    
+    m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
 }
 
 void World::draw()
 {
     m_window.setView(m_worldView);
+    m_window.draw(m_gameMenu);
     m_environment.render(m_window);
-
     m_window.draw(m_player);
     m_window.draw(m_pickup);
     m_window.draw(m_enemy);
