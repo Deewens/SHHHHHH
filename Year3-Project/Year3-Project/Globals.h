@@ -1,9 +1,9 @@
 #pragma once
 
-const int screen_Width = 1440;
-const int screem_Height = 900;
+const int screen_Width = 2400;
+const int screem_Height = 1500;
 
-static const int tileSize{ 30 };
+static const int tileSize{ 60 };
 
 //The direction the sprite is moving in
 const int static WEST = 1;
