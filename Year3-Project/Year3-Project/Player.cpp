@@ -82,6 +82,10 @@ void Player::processEvents(sf::Event event)
             m_speed = RUNNING_SPEED;
             m_playerState = PlayeMovingState::RUNNING;
         }
+        if (event.key.code == sf::Keyboard::P && m_gameState == GameState::GAMEPLAY)
+        {
+            m_gameState = GameState::PAUSE;
+        }
     }
 
     if (event.type == sf::Event::KeyReleased)

@@ -17,7 +17,7 @@ public:
     {
         pressed = false;
         readyPos = pos;
-        curFillColor = sf::Color::Blue;
+        curFillColor = sf::Color::Red;
         downPos = sf::Vector2f(pos.x - 10, pos.y + 10);
         shape.setSize(t_size);
         shape.setPosition(pos);
@@ -36,7 +36,7 @@ public:
         if (state == ButtonState::READY)
         {
             shape.setPosition(readyPos);
-            curFillColor = sf::Color::Blue;
+            curFillColor = sf::Color::Red;
             if (shape.getGlobalBounds().contains(mousePos))
             {
                 state = ButtonState::OVER;
@@ -44,7 +44,7 @@ public:
         }
         if (state == ButtonState::OVER)
         {
-            curFillColor = sf::Color::Green;
+            curFillColor = sf::Color::Yellow;
             if (shape.getGlobalBounds().contains(mousePos))
             {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -59,7 +59,7 @@ public:
         }
         if (state == ButtonState::DOWN)
         {
-            curFillColor = sf::Color::Magenta;
+            curFillColor = sf::Color::Black;
             shape.setPosition(downPos);
             if (shape.getGlobalBounds().contains(mousePos))
             {

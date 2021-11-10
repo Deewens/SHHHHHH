@@ -105,6 +105,7 @@ void Game::update(sf::Time t_deltaTime)
 	switch (m_gameState)
 	{
         case GameState::MENU:
+			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
             m_world.update(t_deltaTime);
@@ -117,7 +118,6 @@ void Game::update(sf::Time t_deltaTime)
         default:
             break;
 	}
-	m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
 
 }
 

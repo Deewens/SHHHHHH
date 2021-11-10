@@ -27,7 +27,7 @@ const int MENU_OPTION_NUMBER = 4;
 
 enum class ButtonState { READY, OVER, DOWN };
 
-enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS};
+enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS,PAUSE};
 
 
 static GameState m_gameState = GameState::MENU;

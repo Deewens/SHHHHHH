@@ -12,10 +12,21 @@ public:
     MenuButton GameBackButton;
     sf::Text gameText;
 
+    sf::Texture m_backgroundTexture;
+    sf::Sprite m_backgroundSprite;
+
 
     void Init()
     {       
-        font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf");        
+        font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf");  
+
+        if (!m_backgroundTexture.loadFromFile("ASSETS\\IMAGES\\MenuBackground.png"))
+        {
+            std::cout << "problem loading Menu Background" << std::endl;
+        }
+        m_backgroundSprite.setTexture(m_backgroundTexture);
+        m_backgroundSprite.setScale(1.1, 1.1);
+        m_backgroundSprite.setPosition(300, 10);
 
         GameBackButton.Init(sf::Vector2f(0, 0), font,sf::Vector2f(250, 40), sf::Vector2f(0, 0));
         GameBackButton.text.setString("Back To Menu");
@@ -75,8 +86,7 @@ public:
             if (GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
-            }
-           
+            }           
         }        
     }
 
