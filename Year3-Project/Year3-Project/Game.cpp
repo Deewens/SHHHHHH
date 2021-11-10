@@ -22,6 +22,7 @@ Game::Game() :
     m_gameMenu.Init();
     m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);
+    pauseMenuSetUp();
 }
 
 /// <summary>
@@ -73,13 +74,24 @@ void Game::processEvents()
 		{
 			m_exitGame = true;
 		}
+        
 		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
 		{
 			processKeys(newEvent);
 		}
-        if (m_gameState == GameState::GAMEPLAY)
+        if (GameState::GAMEPLAY == m_gameState)
         {
             m_player.processEvents(newEvent);
+        }
+        else if (GameState::PAUSE == m_gameState)
+        {
+            if (sf::Event::KeyReleased == newEvent.type)
+            {
+                if (newEvent.key.code == sf::Keyboard::P)
+                {
+                    m_gameState = GameState::GAMEPLAY;
+                }
+            }
         }
 	}
 }
@@ -91,6 +103,7 @@ void Game::processEvents()
 /// <param name="t_event">key press event</param>
 void Game::processKeys(sf::Event t_event)
 {
+    
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
@@ -137,6 +150,7 @@ void Game::update(sf::Time t_deltaTime)
             m_exitGame = true;
             break;
         case GameState::OPTIONS:
+            std::cout << "option" << std::endl;
             break;
         case GameState::PAUSE:
             std::cout << "pause" << std::endl;
@@ -174,6 +188,17 @@ void Game::render()
         case GameState::OPTIONS:
             m_window.draw(m_gameMenu);
             break;
+        case GameState::PAUSE:
+            m_window.setView(m_worldView);
+            m_environment.render(m_window);
+            m_window.draw(m_player);
+            m_window.draw(m_pickup);
+            m_window.draw(m_enemy);
+            m_enemy.renderVisionCone(m_window);
+            m_window.draw(m_grid);
+            collisions.renderNoises(m_window);
+            m_window.draw(m_pauseRect);
+            break;
         default:
             break;
 	}
@@ -187,6 +212,13 @@ void Game::checkCollisions()
     collisions.check(m_player, m_pickup);
     m_enemy.visionConeCollisionCheck(m_player.getPosition());
     collisions.check(m_player, m_environment);
+}
+
+void Game::pauseMenuSetUp()
+{
+    m_pauseRect.setSize(sf::Vector2f(screen_Width/2, screem_Height/2));
+    m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
+    m_pauseRect.setPosition(100, 100);
 }
 
 

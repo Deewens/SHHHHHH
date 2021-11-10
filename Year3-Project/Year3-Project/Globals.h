@@ -30,11 +30,11 @@ enum class ButtonState { READY, OVER, DOWN };
 enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS,PAUSE};
 
 
-static GameState m_gameState = GameState::MENU;
+extern GameState m_gameState;
 
-enum class PlayeMovingState {IDLE,CROUCHING , WALKING , RUNNING};
+enum class PlayerMovingState {IDLE,CROUCHING , WALKING , RUNNING};
 
-static PlayeMovingState m_playerState = PlayeMovingState::IDLE;
+static PlayerMovingState m_playerState = PlayerMovingState::IDLE;
 
 const float CROUCHING_SPEED = 25.f;
 const float WALKING_SPEED = 75.f;

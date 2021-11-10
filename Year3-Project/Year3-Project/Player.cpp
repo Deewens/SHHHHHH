@@ -74,22 +74,23 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::LControl)
         {
             m_speed = CROUCHING_SPEED;
-            m_playerState = PlayeMovingState::CROUCHING;
+            m_playerState = PlayerMovingState::CROUCHING;
         }
 
         if (event.key.code == sf::Keyboard::Space)
         {
             m_speed = RUNNING_SPEED;
-            m_playerState = PlayeMovingState::RUNNING;
+            m_playerState = PlayerMovingState::RUNNING;
         }
-        if (event.key.code == sf::Keyboard::P)
-        {
-            m_gameState = GameState::PAUSE;
-        }
+              
     }
 
     if (event.type == sf::Event::KeyReleased)
     {
+        if (event.key.code == sf::Keyboard::P)
+        {
+            m_gameState = GameState::PAUSE;
+        }  
         if (event.key.code == sf::Keyboard::Up)
         {
             m_isMoving.up = false;
@@ -112,7 +113,7 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
         {
             m_speed = WALKING_SPEED;
-            m_playerState = PlayeMovingState::WALKING;
+            m_playerState = PlayerMovingState::WALKING;
         }
     }
 }

@@ -17,6 +17,9 @@ class Player : public Character
 
 private:
     bool m_isAlive = true;
+
+    bool m_pausePressed = false;
+
     Direction m_isMoving;
     sf::Vector2f m_velocity;
 

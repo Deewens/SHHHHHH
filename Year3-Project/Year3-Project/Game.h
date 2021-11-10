@@ -39,6 +39,8 @@ private:
 	void render();
     void checkCollisions();
 
+    void pauseMenuSetUp();
+
 
     sf::RenderWindow m_window; // main SFML window
 
@@ -58,6 +60,8 @@ private:
     Grid m_grid;
     Environment m_environment;
     Menu m_gameMenu;
+
+    sf::RectangleShape m_pauseRect;
 };
 
 #endif // !GAME_HPP
