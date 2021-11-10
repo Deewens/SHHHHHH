@@ -4,6 +4,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     if (m_gameState == GameState::MENU)
     {
+        std::cout << "test" << std::endl;
         for (int i = 0; i < 4; i++)
         {
             target.draw(MainMenuButtons[i].shape);
