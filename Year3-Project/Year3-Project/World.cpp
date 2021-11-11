@@ -15,8 +15,8 @@ World::World(sf::RenderWindow &window) :
 void World::update(sf::Time dt)
 {
     //m_worldView.move(0.f, -50.f * dt.asSeconds());
-    m_player.update(dt.asSeconds());
-    m_enemy.update(dt.asSeconds());
+    m_player.update(dt);
+    m_enemy.update(dt);
     m_grid.update();
     checkCollisions();
     collisions.update();

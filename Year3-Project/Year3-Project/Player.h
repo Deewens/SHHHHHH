@@ -23,13 +23,20 @@ private:
     Direction m_isMoving;
     sf::Vector2f m_velocity;
 
+    sf::Texture m_idlingTexture;
+    sf::Texture m_runningTexture;
+
+    AnimatedSprite m_animatedSprite;
+    Animation* m_currentAnimation;
+    Animation m_idlingAnimation;
+
 public:
 
     Player();
 
     void setDirection(int t_direction);
 
-    void update(float dt) override;
+    void update(sf::Time deltaTime) override;
 
     void move(float dt);
 
@@ -41,5 +48,8 @@ public:
 
     void boundryCheck();
 
+    void loadTextures();
+
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
 

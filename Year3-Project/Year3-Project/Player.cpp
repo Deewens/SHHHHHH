@@ -3,12 +3,36 @@
 Player::Player()
 {
     m_speed = WALKING_SPEED;
-    Player::loadImage();
+    Player::loadTextures();
 
-    m_sprite.setOrigin(19, 22);
-    m_sprite.setPosition(100, 100);
-    m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
-    
+    m_idlingAnimation.setSpriteSheet(m_idlingTexture);
+    //m_idlingAnimation.addFrame(sf::IntRect(0, 0, 60, 51));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 51, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 103, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 155, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 207, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 259, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 311, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 363, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 415, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 467, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 519, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 571, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 623, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 675, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 727, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 779, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 831, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 883, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 935, 60, 52));
+    m_idlingAnimation.addFrame(sf::IntRect(0, 987, 60, 52));
+
+    m_currentAnimation = &m_idlingAnimation;
+
+
+    m_animatedSprite = AnimatedSprite(sf::seconds(0.2), false, true);
+    m_animatedSprite.setPosition(100, 100);
+    m_animatedSprite.setOrigin(30, 26);
 }
 
 
@@ -18,36 +42,39 @@ void Player::setDirection(int t_direction)
     switch (t_direction)
     {
     case NORTH:
-        m_sprite.setRotation(270);
+        m_animatedSprite.setRotation(270);
         break;
     case SOUTH:
-        m_sprite.setRotation(90);
+        m_animatedSprite.setRotation(90);
         break;
     case EAST:
-        m_sprite.setRotation(0);
+        m_animatedSprite.setRotation(0);
         break;
     case WEST:
-        m_sprite.setRotation(180);
+        m_animatedSprite.setRotation(180);
         break;
     case NORTHWEST:
-        m_sprite.setRotation(225);
+        m_animatedSprite.setRotation(225);
         break;
     case NORTHEAST:
-        m_sprite.setRotation(315);
+        m_animatedSprite.setRotation(315);
         break;
     case SOUTHWEST:
-        m_sprite.setRotation(135);
+        m_animatedSprite.setRotation(135);
         break;
     case SOUTHEAST:
-        m_sprite.setRotation(45);
+        m_animatedSprite.setRotation(45);
         break;
     }
 }
 
-void Player::update(float dt)
+void Player::update(sf::Time deltaTime)
 {
+    move(deltaTime.asSeconds());
+
+    m_animatedSprite.update(deltaTime);
+    m_animatedSprite.play(*m_currentAnimation);
     boundryCheck();
-    move(dt);
 }
 
 void Player::processEvents(sf::Event event)
@@ -84,7 +111,7 @@ void Player::processEvents(sf::Event event)
             m_speed = RUNNING_SPEED;
             m_playerState = PlayerMovingState::RUNNING;
         }
-              
+
     }
 
     if (event.type == sf::Event::KeyReleased)
@@ -92,7 +119,7 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::P)
         {
             m_gameState = GameState::PAUSE;
-        }  
+        }
         if (event.key.code == sf::Keyboard::Up)
         {
             m_isMoving.up = false;
@@ -122,9 +149,9 @@ void Player::processEvents(sf::Event event)
 
 void Player::awayFrom(sf::Vector2f t_obstacle)
 {
-    sf::Vector2f gap = t_obstacle - m_sprite.getPosition();
+    sf::Vector2f gap = t_obstacle - m_animatedSprite.getPosition();
     gap = (getRadius() / sqrt((gap.x * gap.x) + (gap.y * gap.y))) * gap;
-    m_sprite.setPosition(t_obstacle - gap);
+    m_animatedSprite.setPosition(t_obstacle - gap);
 }
 
 void Player::move(float dt)
@@ -150,7 +177,7 @@ void Player::move(float dt)
     else if (m_velocity.y < 0 && m_velocity.x > 0)
         setDirection(NORTHEAST);
     else if (m_velocity.y < 0 && m_velocity.x < 0)
-        setDirection(NORTHWEST);        
+        setDirection(NORTHWEST);
     else if (m_velocity.y > 0)
         setDirection(SOUTH);
     else if (m_velocity.y < 0)
@@ -160,12 +187,24 @@ void Player::move(float dt)
     else if (m_velocity.x < 0)
         setDirection(WEST);
 
-    m_sprite.move(m_velocity);
+    m_animatedSprite.move(m_velocity);
 }
 
 sf::Vector2f Player::getVelocity()
 {
     return m_velocity;
+}
+
+void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const
+{
+    target.draw(m_animatedSprite);
+}
+
+void Player::loadTextures()
+{
+    // Load a default sprite if loadImage is not overrided
+    if (!m_idlingTexture.loadFromFile("ASSETS/IMAGES/Player/IdleSpriteSheet.png"))
+        std::cout << "problem loading character texture" << std::endl;
 }
 
 void Player::boundryCheck()
