@@ -2,7 +2,7 @@
 
 Enemy::Enemy()
 {
-    Enemy::loadImage();
+    loadTextures();
     Enemy::setDirection(EAST);
 
     m_sprite.setOrigin(17.5, 21.5);
@@ -188,6 +188,13 @@ void Enemy::debug()
         std::cout << "NOT SEEN" << std::endl;
 
     }
+}
+
+void Enemy::loadTextures()
+{
+    // Load a default sprite if loadImage is not overrided
+    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\CharacterSpriteSheet.png"))
+        std::cout << "problem loading character texture" << std::endl;
 }
 
 

@@ -36,11 +36,12 @@ public:
 
     void debug();
 
+    void loadTextures();
 
 
 private:
 
-       
+    sf::Texture m_texture;
     sf::VertexArray coneVision;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };

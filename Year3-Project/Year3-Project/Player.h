@@ -20,7 +20,8 @@ private:
     Direction m_isMoving;
     sf::Vector2f m_velocity;
 
-    sf::Texture testTexture;
+    sf::Texture m_idlingTexture;
+    sf::Texture m_runningTexture;
 
     AnimatedSprite m_animatedSprite;
     Animation* m_currentAnimation;
@@ -41,6 +42,8 @@ public:
     void awayFrom(sf::Vector2f t_obstacle);
 
     sf::Vector2f getVelocity();
+
+    void loadTextures();
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };

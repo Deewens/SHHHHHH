@@ -5,8 +5,6 @@ Character::Character()
 {
     m_speed = 2;
     m_direction = SOUTHEAST;
-
-    Character::loadImage();
 }
 
 sf::Vector2f Character::getPosition()
@@ -23,15 +21,6 @@ float Character::getRadius()
         value = origin.y;
     }
     return value;
-}
-
-void Character::loadImage()
-{
-    // Load a default sprite if loadImage is not overrided
-    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\CharacterSpriteSheet.png"))
-        std::cout << "problem loading character texture" << std::endl;
-
-    //m_sprite.setTexture(m_texture);
 }
 
 void Character::draw(sf::RenderTarget &target, sf::RenderStates states) const
