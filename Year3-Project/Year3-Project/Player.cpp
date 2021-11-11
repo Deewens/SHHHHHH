@@ -8,6 +8,7 @@ Player::Player()
     m_sprite.setOrigin(19, 22);
     m_sprite.setPosition(100, 100);
     m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
+    
 }
 
 
@@ -45,6 +46,7 @@ void Player::setDirection(int t_direction)
 
 void Player::update(float dt)
 {
+    boundryCheck();
     move(dt);
 }
 
@@ -127,9 +129,7 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 
 void Player::move(float dt)
 {
-    m_velocity = sf::Vector2f(0, 0);
-    m_velocity.x = 0.f;
-    m_velocity.y = 0.f;
+    m_velocity = sf::Vector2f(0.0f, 0.0f);
 
     if (m_isMoving.up)
         m_velocity.y += -m_speed * dt;
@@ -150,7 +150,7 @@ void Player::move(float dt)
     else if (m_velocity.y < 0 && m_velocity.x > 0)
         setDirection(NORTHEAST);
     else if (m_velocity.y < 0 && m_velocity.x < 0)
-        setDirection(NORTHWEST);
+        setDirection(NORTHWEST);        
     else if (m_velocity.y > 0)
         setDirection(SOUTH);
     else if (m_velocity.y < 0)
@@ -166,4 +166,24 @@ void Player::move(float dt)
 sf::Vector2f Player::getVelocity()
 {
     return m_velocity;
+}
+
+void Player::boundryCheck()
+{
+    if (m_sprite.getPosition().x > screen_Width - m_sprite.getTextureRect().width)
+    {
+        m_sprite.setPosition(screen_Width - m_sprite.getTextureRect().width, m_sprite.getPosition().y);
+    }
+    if (m_sprite.getPosition().x < m_sprite.getTextureRect().width)
+    {
+        m_sprite.setPosition(m_sprite.getTextureRect().width, m_sprite.getPosition().y);
+    }
+    if (m_sprite.getPosition().y > screen_Height - m_sprite.getTextureRect().height)
+    {
+        m_sprite.setPosition(m_sprite.getPosition().x, screen_Height - m_sprite.getTextureRect().height);
+    }
+    if (m_sprite.getPosition().y < m_sprite.getTextureRect().height)
+    {
+        m_sprite.setPosition(m_sprite.getPosition().x, m_sprite.getTextureRect().height);
+    }
 }

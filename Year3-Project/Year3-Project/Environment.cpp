@@ -17,3 +17,8 @@ sf::FloatRect Environment::getCollisionRect()
 {
 	return rect.getGlobalBounds();
 }
+
+void Environment::impassable()
+{
+	
+}

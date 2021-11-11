@@ -49,7 +49,7 @@ void World::loadTextures()
 
 void World::buildScenes()
 {
-    m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
+    m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
 }
 
 void World::processEvents(sf::Event event)

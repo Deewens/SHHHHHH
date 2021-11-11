@@ -14,13 +14,13 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window(sf::VideoMode{ screen_Width, screem_Height, 32U }, "SHHHH...!"),
+	m_window(sf::VideoMode{ screen_Width, screen_Height, 32U }, "SHHHH...!"),
 	m_exitGame(false), //when true game will exit
     m_worldView(m_window.getDefaultView()),
     m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
     m_spawnPosition(100.f, 100.f){
     m_gameMenu.Init();
-    m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
+    m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
 }
@@ -173,6 +173,7 @@ void Game::render()
             m_window.draw(m_gameMenu);
             break;
         case GameState::GAMEPLAY:
+            m_window.clear(sf::Color::Color(52, 168, 235));
             //m_window.draw(m_gameMenu);
             m_window.setView(m_worldView);
             m_environment.render(m_window);
@@ -216,7 +217,7 @@ void Game::checkCollisions()
 
 void Game::pauseMenuSetUp()
 {
-    m_pauseRect.setSize(sf::Vector2f(screen_Width/2, screem_Height/2));
+    m_pauseRect.setSize(sf::Vector2f(screen_Width/2, screen_Height/2));
     m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
     m_pauseRect.setPosition(100, 100);
 }

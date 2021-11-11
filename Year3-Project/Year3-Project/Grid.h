@@ -2,6 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
 #include<iostream>
+#include<string>
+#include<vector>
 
 class Grid : public sf::Drawable
 {
@@ -24,5 +26,13 @@ private:
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 
+	void debug();
+
+	int m_size = 0;	
+
+	sf::Font m_gridFont;
+
+	sf::Text m_gridTextElement;
+	std::vector<sf::Text> m_gridText;
 };
 
