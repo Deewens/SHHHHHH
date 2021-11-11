@@ -41,6 +41,8 @@ private:
 
     void pauseMenuSetUp();
 
+    void cameraMovement(sf::Time dt);
+
 
     sf::RenderWindow m_window; // main SFML window
 
