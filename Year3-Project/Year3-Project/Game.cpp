@@ -133,17 +133,7 @@ void Game::update(sf::Time t_deltaTime)
             checkCollisions();
             collisions.update();
 
-            if (m_player.getPosition().x > m_worldView.getCenter().x + (m_window.getSize().x/2.f)/2.f
-                || m_player.getPosition().x < m_worldView.getCenter().x - (m_window.getSize().x / 2.f)/2.f
-                || m_player.getPosition().y > m_worldView.getCenter().y + (m_window.getSize().y/2.f)/2.f
-                || m_player.getPosition().y < m_worldView.getCenter().y - (m_window.getSize().y / 2.f)/2.f)
-            {
-                m_worldView.move(m_player.getVelocity());
-
-                // DEBUG
-                //m_movementRectDebug.move(m_player.getVelocity());
-            }
-            //m_worldView.setCenter(m_player.getPosition());
+            cameraMovement(t_deltaTime);
 
             break;
         case GameState::EXIT:
@@ -220,6 +210,12 @@ void Game::pauseMenuSetUp()
     m_pauseRect.setSize(sf::Vector2f(screen_Width/2, screen_Height/2));
     m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
     m_pauseRect.setPosition(100, 100);
+}
+
+void Game::cameraMovement(sf::Time dt)
+{
+    sf::Vector2f movement = m_player.getPosition() - m_worldView.getCenter();
+    m_worldView.move(movement * dt.asSeconds());
 }
 
 
