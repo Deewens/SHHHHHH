@@ -5,24 +5,19 @@ Player::Player()
     m_speed = WALKING_SPEED;
     Player::loadImage();
 
-    sf::Texture testTexture;
     if (!testTexture.loadFromFile("ASSETS\\IMAGES\\CharacterSpriteSheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
-    Animation idlingAnim;
-    idlingAnim.setSpriteSheet(testTexture);
-    idlingAnim.addFrame(sf::IntRect(54, 1524, 196, 168));
-    idlingAnim.addFrame(sf::IntRect(54, 1524, 196, 168));
+    m_idlingAnimation.setSpriteSheet(testTexture);
+    m_idlingAnimation.addFrame(sf::IntRect(54, 1524, 196, 168));
+    m_idlingAnimation.addFrame(sf::IntRect(54, 1524, 196, 168));
 
-    m_currentAnimation = &idlingAnim;
+    m_currentAnimation = &m_idlingAnimation;
 
 
     m_animatedSprite = AnimatedSprite(sf::seconds(0.2), false, true);
     m_animatedSprite.setPosition(100, 100);
     m_animatedSprite.setOrigin(98, 84);
-    m_animatedSprite.setAnimation(idlingAnim);
-    //m_animatedSprite.play(*m_currentAnimation);
-    m_animatedSprite.play();
 
     /*m_sprite.setOrigin(98, 84);
     m_sprite.setPosition(100, 100);
@@ -67,6 +62,7 @@ void Player::update(sf::Time deltaTime)
     move(deltaTime.asSeconds());
 
     m_animatedSprite.update(deltaTime);
+    m_animatedSprite.play(*m_currentAnimation);
 }
 
 void Player::processEvents(sf::Event event)

@@ -18,7 +18,8 @@ Game::Game() :
 	m_exitGame(false), //when true game will exit
     m_worldView(m_window.getDefaultView()),
     m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
-    m_spawnPosition(100.f, 100.f){
+    m_spawnPosition(100.f, 100.f)
+{
     m_gameMenu.Init();
     m_grid = Grid(screem_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);

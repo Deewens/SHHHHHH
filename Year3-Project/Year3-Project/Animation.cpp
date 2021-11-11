@@ -52,8 +52,5 @@ std::size_t Animation::getSize() const
 
 const sf::IntRect& Animation::getFrame(std::size_t n) const
 {
-    // FIXME: GAME CRASH HERE
-    std::cout << "Crash here" << std::endl;
-    std::cout << n << std::endl;
     return m_frames[n];
 }

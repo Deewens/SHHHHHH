@@ -5,7 +5,6 @@
 #include <SFML/Graphics.hpp>
 
 #include "Globals.h"
-#include "Animation.h"
 #include "AnimatedSprite.h"
 
 class Character : public sf::Drawable, public sf::Transformable

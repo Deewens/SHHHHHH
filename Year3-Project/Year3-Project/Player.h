@@ -20,8 +20,11 @@ private:
     Direction m_isMoving;
     sf::Vector2f m_velocity;
 
+    sf::Texture testTexture;
+
     AnimatedSprite m_animatedSprite;
     Animation* m_currentAnimation;
+    Animation m_idlingAnimation;
 
 public:
 
