@@ -174,16 +174,16 @@ void Player::boundryCheck()
     {
         m_sprite.setPosition(screen_Width - m_sprite.getTextureRect().width, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().x < 0)
+    if (m_sprite.getPosition().x < getRadius())
     {
-        m_sprite.setPosition(0, m_sprite.getPosition().y);
+        m_sprite.setPosition(getRadius(), m_sprite.getPosition().y);
     }
     if (m_sprite.getPosition().y > screen_Height - m_sprite.getTextureRect().height)
     {
         m_sprite.setPosition(m_sprite.getPosition().x, screen_Height - m_sprite.getTextureRect().height);
     }
-    if (m_sprite.getPosition().y < 0)
+    if (m_sprite.getPosition().y < getRadius())
     {
-        m_sprite.setPosition(m_sprite.getPosition().x, 0);
+        m_sprite.setPosition(m_sprite.getPosition().x, getRadius());
     }
 }
