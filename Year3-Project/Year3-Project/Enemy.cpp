@@ -1,14 +1,48 @@
 #include "Enemy.h"
 
-Enemy::Enemy()
+Enemy::Enemy() :
+        m_runningAnim(m_sprite),
+        m_idlingAnim(m_sprite)
 {
     Enemy::loadTexture();
     Enemy::setDirection(EAST);
 
-    m_sprite.setOrigin(17.5, 21.5);
+    std::ifstream spriteSheetData("ASSETS/IMAGES/data/characters_sprite_sheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    for (auto& frames : json["frames"])
+    {
+        std::string filename = frames["filename"];
+
+        std::string::size_type idlingFound = filename.find("zombies/idling/");
+        std::string::size_type runningFound = filename.find("zombies/running");
+
+        if (idlingFound != std::string::npos)
+        {
+            nlohmann::json frame = frames["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_idlingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+        else if (runningFound != std::string::npos)
+        {
+            nlohmann::json frame = frames["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
+        }
+    }
+
+    m_sprite.setOrigin(30, 30);
     m_sprite.setPosition(300, 300);
-    m_sprite.setTextureRect(sf::IntRect(424, 0, 35, 43));
-    
+
     m_EnemyState = EnemyState::SEEK;
 }
 
@@ -58,10 +92,12 @@ void Enemy::update(sf::Time deltaTime)
         m_directionEnd = m_playerLocation;
         move(m_playerLocation, m_sprite.getPosition());
         m_EnemyState = EnemyState::ATTACK;
+        m_runningAnim.update(deltaTime.asSeconds());
     }
     else
     {
         m_EnemyState = EnemyState::SEEK;
+        m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
 }

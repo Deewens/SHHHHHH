@@ -2,12 +2,13 @@
 #define YEAR3_PROJECT_ENEMY_H
 
 #include "Character.h"
-#include<math.h>
-#include"Globals.h"
-#include"Player.h"
-#include"MyVector2.h"
+#include <math.h>
+#include "Globals.h"
+#include "Player.h"
+#include "MyVector2.h"
 #include <stdlib.h>
 #include "tinyc2.h"
+#include "Animation.h"
 
 class Enemy : public Character
 {
@@ -41,6 +42,9 @@ private:
 
     sf::Texture m_texture;
     sf::VertexArray coneVision;
+
+    Animation m_runningAnim;
+    Animation m_idlingAnim;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };
     const float VISION_CONE_LENGTH_ATTACK{ 300.0f };

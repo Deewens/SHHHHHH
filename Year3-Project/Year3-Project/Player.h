@@ -51,7 +51,5 @@ public:
     sf::Vector2f getVelocity();
 
     void boundryCheck();
-
-    void loadTexture() override;
 };
 

@@ -11,7 +11,7 @@ Player::Player() :
     Player::loadTexture();
 
     // Get spritesheet data
-    std::ifstream spriteSheetData("ASSETS/IMAGES/Player/PlayerSpriteSheet.json");
+    std::ifstream spriteSheetData("ASSETS/IMAGES/data/characters_sprite_sheet.json");
     nlohmann::json json;
     spriteSheetData >> json;
 
@@ -19,9 +19,9 @@ Player::Player() :
     {
         std::string filename = val["filename"];
 
-        std::string::size_type idleFound = filename.find("Idle");
-        std::string::size_type runningFound = filename.find("Running");
-        std::string::size_type throwingFound = filename.find("Throwing");
+        std::string::size_type idleFound = filename.find("player/idling/");
+        std::string::size_type runningFound = filename.find("player/running/");
+        std::string::size_type throwingFound = filename.find("player/throwing/");
         // Found something
         if (idleFound != std::string::npos)
         {
@@ -225,12 +225,4 @@ void Player::boundryCheck()
     {
         m_sprite.setPosition(m_sprite.getPosition().x, getRadius());
     }
-}
-
-void Player::loadTexture()
-{
-    if (!m_texture.loadFromFile("ASSETS/IMAGES/Player/PlayerSpriteSheet.png"))
-        std::cout << "problem loading character texture" << std::endl;
-
-    m_sprite.setTexture(m_texture);
 }
