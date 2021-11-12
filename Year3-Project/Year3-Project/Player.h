@@ -23,23 +23,21 @@ private:
     Direction m_isMoving;
     sf::Vector2f m_velocity;
 
+    void unitVector(sf::Vector2f& t_vector, float dt);
+    void move(float dt);
+    void setDirection(int t_direction);
+    void boundryCheck();
+    sf::Vector2f getVelocity();
+
 public:
 
     Player();
 
-    void setDirection(int t_direction);
-
     void update(float dt) override;
-
-    void move(float dt);
 
     void processEvents(sf::Event event);
 
     void awayFrom(sf::Vector2f t_obstacle);
-
-    sf::Vector2f getVelocity();
-
-    void boundryCheck();
 
 };
 

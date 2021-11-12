@@ -1,5 +1,11 @@
 #include "Player.h"
 
+void Player::unitVector(sf::Vector2f& t_vector, float dt)
+{
+    float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));
+    t_vector = (t_vector * m_speed * dt) /length;
+}
+
 Player::Player()
 {
     m_speed = WALKING_SPEED;
@@ -144,13 +150,25 @@ void Player::move(float dt)
         m_velocity.x += m_speed * dt;
 
     if (m_velocity.y > 0 && m_velocity.x > 0)
+    {
         setDirection(SOUTHEAST);
+        unitVector(m_velocity, dt);
+    }
     else if (m_velocity.y > 0 && m_velocity.x < 0)
+    {
         setDirection(SOUTHWEST);
+        unitVector(m_velocity, dt);
+    }
     else if (m_velocity.y < 0 && m_velocity.x > 0)
+    {
         setDirection(NORTHEAST);
+        unitVector(m_velocity, dt);
+    }
     else if (m_velocity.y < 0 && m_velocity.x < 0)
-        setDirection(NORTHWEST);        
+    {
+        setDirection(NORTHWEST);
+        unitVector(m_velocity, dt);
+    }
     else if (m_velocity.y > 0)
         setDirection(SOUTH);
     else if (m_velocity.y < 0)
@@ -187,3 +205,4 @@ void Player::boundryCheck()
         m_sprite.setPosition(m_sprite.getPosition().x, getRadius());
     }
 }
+

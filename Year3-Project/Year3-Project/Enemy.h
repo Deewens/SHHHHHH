@@ -1,11 +1,12 @@
 #ifndef YEAR3_PROJECT_ENEMY_H
 #define YEAR3_PROJECT_ENEMY_H
 
+#define _USE_MATH_DEFINES
+
 #include "Character.h"
-#include<math.h>
-#include"Globals.h"
-#include"Player.h"
-#include"MyVector2.h"
+#include <math.h>
+#include "Globals.h"
+#include "Player.h"
 #include <stdlib.h>
 #include "tinyc2.h"
 
@@ -14,15 +15,15 @@ class Enemy : public Character
 public:
     Enemy();
 
-    // Overrides
-
-    void setDirection(int t_direction);
-
     void update(float dt) override;
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
+
+private:
+
+    void setDirection(int t_direction);   
 
     void setVisionCone(float t_angel);
 
@@ -34,13 +35,10 @@ public:
 
     bool isBeingSeen();
 
+    void unitVector(sf::Vector2f& t_vector);
+
     void debug();
 
-
-
-private:
-
-       
     sf::VertexArray coneVision;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };

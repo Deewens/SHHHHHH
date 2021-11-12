@@ -18,12 +18,15 @@ void Noise::init(NoiseLevels t_noiseLevel, sf::Vector2f t_location)
 		m_maxStrength = 0;
 		break;
 	case NoiseLevels::GREEN:
+		m_noiseShape.setOutlineColor(sf::Color::Green);
 		m_maxStrength = 50;
 		break;
 	case NoiseLevels::YELLOW:
+		m_noiseShape.setOutlineColor(sf::Color::Yellow);
 		m_maxStrength = 100;
 		break;
 	case NoiseLevels::RED:
+		m_noiseShape.setOutlineColor(sf::Color::Red);
 		m_maxStrength = 150;
 	default:
 		break;
@@ -51,19 +54,6 @@ void Noise::update()
 	else
 	{
         m_noiseDone = true;
-	}
-
-	if (m_strength <= 50)
-	{
-		m_noiseShape.setOutlineColor(sf::Color::Green);
-	}
-	else if (m_strength <=100)
-	{
-		m_noiseShape.setOutlineColor(sf::Color::Yellow);
-	}
-	else
-	{
-		m_noiseShape.setOutlineColor(sf::Color::Red);
 	}
 }
 

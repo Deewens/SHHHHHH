@@ -133,7 +133,7 @@ void Game::update(sf::Time t_deltaTime)
             m_grid.update();
             checkCollisions();
             collisions.update();
-            m_cell.cellIdFinder(m_player.getPosition());
+            cellIdFinder(m_player.getPosition());
 
             cameraMovement(t_deltaTime);
 
@@ -203,7 +203,6 @@ void Game::checkCollisions()
 {
     collisions.check(m_player, m_enemy);
     collisions.check(m_player, m_pickup);
-    m_enemy.visionConeCollisionCheck(m_player.getPosition());
     collisions.check(m_player, m_environment);
 }
 
@@ -218,6 +217,15 @@ void Game::cameraMovement(sf::Time dt)
 {
     sf::Vector2f movement = m_player.getPosition() - m_worldView.getCenter();
     m_worldView.move(movement * dt.asSeconds());
+}
+
+int Game::cellIdFinder(sf::Vector2f t_targetLocation)
+{
+    int m_id = floor(t_targetLocation.x / tileSize) + (floor(t_targetLocation.y / tileSize) * m_gridCols);
+
+    std::cout << std::to_string(m_id) << std::endl;
+
+    return m_id;
 }
 
 

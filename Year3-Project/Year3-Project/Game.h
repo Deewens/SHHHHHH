@@ -17,9 +17,7 @@
 #include "Pickup.h"
 #include "CollisionManager.h"
 #include "Grid.h"
-#include "World.h"
 #include "Environment.h"
-#include "Cell.h"
 
 
 class Game
@@ -44,6 +42,8 @@ private:
 
     void cameraMovement(sf::Time dt);
 
+    int cellIdFinder(sf::Vector2f t_targetLocation);
+
 
     sf::RenderWindow m_window; // main SFML window
 
@@ -63,7 +63,6 @@ private:
     Grid m_grid;
     Environment m_environment;
     Menu m_gameMenu;
-    Cell m_cell;
 
     sf::RectangleShape m_pauseRect;
 };

@@ -130,8 +130,8 @@ void Enemy::rotate(sf::Vector2f& vector, float t_angle)
 {
     // No assert here, because turning a zero vector is well-defined (yields always zero vector)
 
-   float cos = std::cos(t_angle*PI/180);
-   float sin = std::sin(t_angle*PI/180);
+   float cos = std::cos(t_angle*M_PI/180);
+   float sin = std::sin(t_angle*M_PI/180);
 
     // Don't manipulate x and y separately, otherwise they're overwritten too early
     vector = sf::Vector2f(
@@ -140,13 +140,35 @@ void Enemy::rotate(sf::Vector2f& vector, float t_angle)
 }
 void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
 {
-    sf::Vector2f m_movement = vectorUnitVector(t_startVec - t_finishVec);
+    sf::Vector2f m_movement = t_startVec - t_finishVec;
+    
 
     float m_angleRad = atan2(m_movement.y, m_movement.x);
 
-    int m_angleInDeg = m_angleRad * 180 / PI;
+    int m_angleInDeg = (m_angleRad * 180.0f) / M_PI;
+
+    int intermediaryAngle = m_angleInDeg % 45;
+
+    m_angleInDeg -= intermediaryAngle;
+
+    if (abs(intermediaryAngle) > 22)
+    {
+        if (intermediaryAngle > 0)
+        {
+            m_angleInDeg += 45;
+        }
+        else
+        {
+            m_angleInDeg -= 45;
+        }
+    }
 
     m_sprite.setRotation(m_angleInDeg);
+
+    m_angleRad = m_angleInDeg * M_PI / 180;
+    m_movement = sf::Vector2f(cos(m_angleRad), sin(m_angleRad));
+    
+    unitVector(m_movement);
 
     m_movement = ENEMY_SPEED * m_movement;  
 
@@ -169,6 +191,11 @@ bool Enemy::isBeingSeen()
     int result = c2CircletoPoly(circle_player, &poly_visionCone, NULL);
 
     return result != 0;
+}
+void Enemy::unitVector(sf::Vector2f& t_vector)
+{
+    float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));
+    t_vector = t_vector / length;
 }
 void Enemy::debug()
 {
