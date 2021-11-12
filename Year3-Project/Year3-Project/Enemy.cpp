@@ -2,7 +2,7 @@
 
 Enemy::Enemy()
 {
-    loadTextures();
+    Enemy::loadTexture();
     Enemy::setDirection(EAST);
 
     m_sprite.setOrigin(17.5, 21.5);
@@ -182,19 +182,11 @@ void Enemy::debug()
         m_directionLine0 = m_playerLocation;
         m_directionLine1 = m_visionP1;
         std::cout << "SEEN" << std::endl;
-    }
-    else
+    } else
     {
         std::cout << "NOT SEEN" << std::endl;
 
     }
-}
-
-void Enemy::loadTextures()
-{
-    // Load a default sprite if loadImage is not overrided
-    if (!m_texture.loadFromFile("ASSETS\\IMAGES\\CharacterSpriteSheet.png"))
-        std::cout << "problem loading character texture" << std::endl;
 }
 
 

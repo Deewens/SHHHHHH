@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
@@ -37,6 +38,7 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionManager.h" />
@@ -45,6 +47,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuButton.h" />
     <ClCompile Include="Noise.h" />

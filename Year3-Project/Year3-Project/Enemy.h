@@ -36,8 +36,6 @@ public:
 
     void debug();
 
-    void loadTextures();
-
 
 private:
 

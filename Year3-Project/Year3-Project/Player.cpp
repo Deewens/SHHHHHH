@@ -1,38 +1,64 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player() :
+    m_runningAnim(m_sprite, true),
+    m_walkingAnim(m_sprite, true),
+    m_crouchingAnim(m_sprite, true),
+    m_idlingAnim(m_sprite, true),
+    m_throwingAnim(m_sprite, true)
 {
     m_speed = WALKING_SPEED;
-    Player::loadTextures();
+    Player::loadTexture();
 
-    m_idlingAnimation.setSpriteSheet(m_idlingTexture);
-    //m_idlingAnimation.addFrame(sf::IntRect(0, 0, 60, 51));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 51, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 103, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 155, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 207, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 259, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 311, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 363, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 415, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 467, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 519, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 571, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 623, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 675, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 727, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 779, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 831, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 883, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 935, 60, 52));
-    m_idlingAnimation.addFrame(sf::IntRect(0, 987, 60, 52));
+    // Get spritesheet data
+    std::ifstream spriteSheetData("ASSETS/IMAGES/Player/PlayerSpriteSheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
 
-    m_currentAnimation = &m_idlingAnimation;
+    for (auto& val : json["frames"])
+    {
+        std::string filename = val["filename"];
 
+        std::string::size_type idleFound = filename.find("Idle");
+        std::string::size_type runningFound = filename.find("Running");
+        std::string::size_type throwingFound = filename.find("Throwing");
+        // Found something
+        if (idleFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
 
-    m_animatedSprite = AnimatedSprite(sf::seconds(0.2), false, true);
-    m_animatedSprite.setPosition(100, 100);
-    m_animatedSprite.setOrigin(30, 26);
+            m_idlingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+        else if (runningFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
+            m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.2});
+            m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.5});
+        }
+        else if (throwingFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_throwingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+    }
+
+    m_sprite.setPosition(100, 100);
+    m_sprite.setOrigin(30, 26);
 }
 
 
@@ -42,28 +68,28 @@ void Player::setDirection(int t_direction)
     switch (t_direction)
     {
     case NORTH:
-        m_animatedSprite.setRotation(270);
+        m_sprite.setRotation(270);
         break;
     case SOUTH:
-        m_animatedSprite.setRotation(90);
+        m_sprite.setRotation(90);
         break;
     case EAST:
-        m_animatedSprite.setRotation(0);
+        m_sprite.setRotation(0);
         break;
     case WEST:
-        m_animatedSprite.setRotation(180);
+        m_sprite.setRotation(180);
         break;
     case NORTHWEST:
-        m_animatedSprite.setRotation(225);
+        m_sprite.setRotation(225);
         break;
     case NORTHEAST:
-        m_animatedSprite.setRotation(315);
+        m_sprite.setRotation(315);
         break;
     case SOUTHWEST:
-        m_animatedSprite.setRotation(135);
+        m_sprite.setRotation(135);
         break;
     case SOUTHEAST:
-        m_animatedSprite.setRotation(45);
+        m_sprite.setRotation(45);
         break;
     }
 }
@@ -71,9 +97,30 @@ void Player::setDirection(int t_direction)
 void Player::update(sf::Time deltaTime)
 {
     move(deltaTime.asSeconds());
+    if (m_velocity.x == 0 && m_velocity.y == 0)
+        m_playerState = PlayerMovingState::IDLE;
 
-    m_animatedSprite.update(deltaTime);
-    m_animatedSprite.play(*m_currentAnimation);
+    // Update animations
+    switch (m_playerState)
+    {
+        case PlayerMovingState::RUNNING:
+            m_runningAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::WALKING:
+            m_walkingAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::CROUCHING:
+            m_crouchingAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::IDLE:
+            m_idlingAnim.update(deltaTime.asSeconds());
+            break;
+        default:
+            m_idlingAnim.update(deltaTime.asSeconds());
+    }
+
+    //std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
+
     boundryCheck();
 }
 
@@ -81,37 +128,19 @@ void Player::processEvents(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::Up)
+        if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
         {
-            m_isMoving.up = true;
+            if (event.key.code == sf::Keyboard::LControl)
+            {
+                m_speed = CROUCHING_SPEED;
+                m_playerState = PlayerMovingState::CROUCHING;
+            }
+            if (event.key.code == sf::Keyboard::Space)
+            {
+                m_speed = RUNNING_SPEED;
+                m_playerState = PlayerMovingState::RUNNING;
+            }
         }
-
-        if (event.key.code == sf::Keyboard::Down)
-        {
-            m_isMoving.down = true;
-        }
-
-        if (event.key.code == sf::Keyboard::Left)
-        {
-            m_isMoving.left = true;
-        }
-        if (event.key.code == sf::Keyboard::Right)
-        {
-            m_isMoving.right = true;
-        }
-
-        if (event.key.code == sf::Keyboard::LControl)
-        {
-            m_speed = CROUCHING_SPEED;
-            m_playerState = PlayerMovingState::CROUCHING;
-        }
-
-        if (event.key.code == sf::Keyboard::Space)
-        {
-            m_speed = RUNNING_SPEED;
-            m_playerState = PlayerMovingState::RUNNING;
-        }
-
     }
 
     if (event.type == sf::Event::KeyReleased)
@@ -119,24 +148,6 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::P)
         {
             m_gameState = GameState::PAUSE;
-        }
-        if (event.key.code == sf::Keyboard::Up)
-        {
-            m_isMoving.up = false;
-        }
-
-        if (event.key.code == sf::Keyboard::Down)
-        {
-            m_isMoving.down = false;
-        }
-
-        if (event.key.code == sf::Keyboard::Left)
-        {
-            m_isMoving.left = false;
-        }
-        if (event.key.code == sf::Keyboard::Right)
-        {
-            m_isMoving.right = false;
         }
 
         if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
@@ -149,25 +160,26 @@ void Player::processEvents(sf::Event event)
 
 void Player::awayFrom(sf::Vector2f t_obstacle)
 {
-    sf::Vector2f gap = t_obstacle - m_animatedSprite.getPosition();
+    sf::Vector2f gap = t_obstacle - m_sprite.getPosition();
     gap = (getRadius() / sqrt((gap.x * gap.x) + (gap.y * gap.y))) * gap;
-    m_animatedSprite.setPosition(t_obstacle - gap);
+    m_sprite.setPosition(t_obstacle - gap);
 }
 
 void Player::move(float dt)
 {
     m_velocity = sf::Vector2f(0.0f, 0.0f);
+    //m_playerState = PlayerMovingState::WALKING;
 
-    if (m_isMoving.up)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         m_velocity.y += -m_speed * dt;
 
-    if (m_isMoving.down)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         m_velocity.y += m_speed * dt;
 
-    if (m_isMoving.left)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         m_velocity.x += -m_speed * dt;
 
-    if (m_isMoving.right)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         m_velocity.x += m_speed * dt;
 
     if (m_velocity.y > 0 && m_velocity.x > 0)
@@ -187,24 +199,12 @@ void Player::move(float dt)
     else if (m_velocity.x < 0)
         setDirection(WEST);
 
-    m_animatedSprite.move(m_velocity);
+    m_sprite.move(m_velocity);
 }
 
 sf::Vector2f Player::getVelocity()
 {
     return m_velocity;
-}
-
-void Player::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    target.draw(m_animatedSprite);
-}
-
-void Player::loadTextures()
-{
-    // Load a default sprite if loadImage is not overrided
-    if (!m_idlingTexture.loadFromFile("ASSETS/IMAGES/Player/IdleSpriteSheet.png"))
-        std::cout << "problem loading character texture" << std::endl;
 }
 
 void Player::boundryCheck()
@@ -225,4 +225,12 @@ void Player::boundryCheck()
     {
         m_sprite.setPosition(m_sprite.getPosition().x, m_sprite.getTextureRect().height);
     }
+}
+
+void Player::loadTexture()
+{
+    if (!m_texture.loadFromFile("ASSETS/IMAGES/Player/PlayerSpriteSheet.png"))
+        std::cout << "problem loading character texture" << std::endl;
+
+    m_sprite.setTexture(m_texture);
 }
