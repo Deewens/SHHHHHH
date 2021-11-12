@@ -84,7 +84,3 @@ float CollisionManager::clamp(float t_pos, float t_min, float t_max)
 	return t_pos;
 }
 
-std::vector<Noise>* CollisionManager::getNoises()
-{
-    return &m_noises;
-}
