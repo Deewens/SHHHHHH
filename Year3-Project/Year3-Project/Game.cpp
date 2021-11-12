@@ -132,6 +132,7 @@ void Game::update(sf::Time t_deltaTime)
             m_grid.update();
             checkCollisions();
             collisions.update();
+            m_cell.cellIdFinder(m_player.getPosition());
 
             if (m_player.getPosition().x > m_worldView.getCenter().x + (m_window.getSize().x/2.f)/2.f
                 || m_player.getPosition().x < m_worldView.getCenter().x - (m_window.getSize().x / 2.f)/2.f

@@ -5,6 +5,10 @@ const int screen_Height = 1080;
 
 static const int tileSize{ 60 };
 
+const int m_gridCols = screen_Width / tileSize;
+const int m_gridRows = screen_Height / tileSize;
+
+
 //The direction the sprite is moving in
 const int static WEST = 1;
 const int static EAST = 2;

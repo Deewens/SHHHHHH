@@ -19,6 +19,7 @@
 #include "Grid.h"
 #include "World.h"
 #include "Environment.h"
+#include "Cell.h"
 
 
 class Game
@@ -60,6 +61,7 @@ private:
     Grid m_grid;
     Environment m_environment;
     Menu m_gameMenu;
+    Cell m_cell;
 
     sf::RectangleShape m_pauseRect;
 };
