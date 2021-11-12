@@ -23,6 +23,7 @@ Game::Game() :
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
+    m_environment = Environment(74, screen_Height / tileSize, screen_Width / tileSize, 0);
 }
 
 /// <summary>

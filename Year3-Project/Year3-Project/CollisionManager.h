@@ -16,7 +16,6 @@ public:
 	void check(Player& t_player, Environment& t_environment);
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();
-    std::vector<Noise>* getNoises();
 private:
 	int pulseDelay;
 	const int CAN_PULSE = 30;
