@@ -25,6 +25,8 @@ Game::Game() :
     m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
     m_environment = Environment(74, screen_Height / tileSize, screen_Width / tileSize, 0);
+
+    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
 }
 
 /// <summary>
@@ -146,6 +148,7 @@ void Game::update(sf::Time t_deltaTime)
             std::cout << "option" << std::endl;
             break;
         case GameState::PAUSE:
+            m_pauseRect.setPosition(m_player.getPosition().x,m_player.getPosition().y);
             std::cout << "pause" << std::endl;
             break;
         default:
@@ -210,9 +213,9 @@ void Game::checkCollisions()
 
 void Game::pauseMenuSetUp()
 {
-    m_pauseRect.setSize(sf::Vector2f(screen_Width/2, screen_Height/2));
+    m_pauseRect.setSize(sf::Vector2f(screen_Width/4, screen_Height/4));
     m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
-    m_pauseRect.setPosition(100, 100);
+    m_pauseRect.setOrigin(screen_Width/8,screen_Height/8);
 }
 
 void Game::cameraMovement(sf::Time dt)
