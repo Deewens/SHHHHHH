@@ -1,31 +1,43 @@
 #include "Animation.h"
 
-Animation::Animation() : m_textures(nullptr)
+Animation::Animation(sf::Sprite &target, bool looping) : target(target), isLooping(looping)
+{
+    progress = totalLength = 0.0;
+}
+
+Animation::~Animation()
 {
 }
 
-void Animation::addFrame(sf::IntRect rect)
+void Animation::addFrame(Frame &&frame)
 {
-    m_frames.push_back(rect);
+    totalLength += frame.duration;
+    frames.push_back(std::move(frame));
 }
 
-void Animation::setSpriteSheet(const sf::Texture &texture)
+void Animation::update(double deltaTime)
 {
-    m_textures = &texture;
+    progress += deltaTime;
+    double p = progress;
+
+    for (std::size_t i = 0; i < frames.size(); i++)
+    {
+        p -= frames[i].duration;
+
+        // We check if p has some time left at the end of the animation...
+        if (isLooping && p > 0.0 && &(frames[i]) == &(frames.back()))
+        {
+            i = 0; // start over from the beginning
+            continue; // break off the loop and start where i is
+        }
+
+        // if we have progressed OR if we're on the last frame, apply and stop.
+        if (p <= 0.0 || &(frames[i]) == &frames.back())
+        {
+            target.setTextureRect(frames[i].rect);
+            break; // we found our frame
+        }
+    }
 }
 
-const sf::Texture* Animation::getSpriteSheet() const
-{
-    return m_textures;
-}
-
-std::size_t Animation::getSize() const
-{
-    return m_frames.size();
-}
-
-const sf::IntRect &Animation::getFrame(std::size_t n) const
-{
-    return m_frames[n];
-}
 

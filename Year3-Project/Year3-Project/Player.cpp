@@ -1,20 +1,71 @@
 #include "Player.h"
 
+
 void Player::unitVector(sf::Vector2f& t_vector, float dt)
 {
     float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));
     t_vector = (t_vector * m_speed * dt) /length;
 }
 
-Player::Player()
+Player::Player() :
+    m_runningAnim(m_sprite, true),
+    m_walkingAnim(m_sprite, true),
+    m_crouchingAnim(m_sprite, true),
+    m_idlingAnim(m_sprite, true),
+    m_throwingAnim(m_sprite, true)
 {
     m_speed = WALKING_SPEED;
-    Player::loadImage();
+    Player::loadTexture();
 
-    m_sprite.setOrigin(19, 22);
+    // Get spritesheet data
+    std::ifstream spriteSheetData("ASSETS/IMAGES/data/characters_sprite_sheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    for (auto& val : json["frames"])
+    {
+        std::string filename = val["filename"];
+
+        std::string::size_type idleFound = filename.find("player/idling/");
+        std::string::size_type runningFound = filename.find("player/running/");
+        std::string::size_type throwingFound = filename.find("player/throwing/");
+        // Found something
+        if (idleFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_idlingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+        else if (runningFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
+            m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.2});
+            m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.5});
+        }
+        else if (throwingFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_throwingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+    }
+
     m_sprite.setPosition(100, 100);
-    m_sprite.setTextureRect(sf::IntRect(351, 132, 38, 44));
-    
+    m_sprite.setOrigin(30, 26);
 }
 
 
@@ -50,47 +101,53 @@ void Player::setDirection(int t_direction)
     }
 }
 
-void Player::update(float dt)
+void Player::update(sf::Time deltaTime)
 {
+    move(deltaTime.asSeconds());
+    if (m_velocity.x == 0 && m_velocity.y == 0)
+        m_playerState = PlayerMovingState::IDLE;
+
+    // Update animations
+    switch (m_playerState)
+    {
+        case PlayerMovingState::RUNNING:
+            m_runningAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::WALKING:
+            m_walkingAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::CROUCHING:
+            m_crouchingAnim.update(deltaTime.asSeconds());
+            break;
+        case PlayerMovingState::IDLE:
+            m_idlingAnim.update(deltaTime.asSeconds());
+            break;
+        default:
+            m_idlingAnim.update(deltaTime.asSeconds());
+    }
+
+    //std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
+
     boundryCheck();
-    move(dt);
 }
 
 void Player::processEvents(sf::Event event)
 {
     if (event.type == sf::Event::KeyPressed)
     {
-        if (event.key.code == sf::Keyboard::Up)
+        if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
         {
-            m_isMoving.up = true;
+            if (event.key.code == sf::Keyboard::LControl)
+            {
+                m_speed = CROUCHING_SPEED;
+                m_playerState = PlayerMovingState::CROUCHING;
+            }
+            if (event.key.code == sf::Keyboard::Space)
+            {
+                m_speed = RUNNING_SPEED;
+                m_playerState = PlayerMovingState::RUNNING;
+            }
         }
-
-        if (event.key.code == sf::Keyboard::Down)
-        {
-            m_isMoving.down = true;
-        }
-
-        if (event.key.code == sf::Keyboard::Left)
-        {
-            m_isMoving.left = true;
-        }
-        if (event.key.code == sf::Keyboard::Right)
-        {
-            m_isMoving.right = true;
-        }
-
-        if (event.key.code == sf::Keyboard::LControl)
-        {
-            m_speed = CROUCHING_SPEED;
-            m_playerState = PlayerMovingState::CROUCHING;
-        }
-
-        if (event.key.code == sf::Keyboard::Space)
-        {
-            m_speed = RUNNING_SPEED;
-            m_playerState = PlayerMovingState::RUNNING;
-        }
-              
     }
 
     if (event.type == sf::Event::KeyReleased)
@@ -98,24 +155,6 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::P)
         {
             m_gameState = GameState::PAUSE;
-        }  
-        if (event.key.code == sf::Keyboard::Up)
-        {
-            m_isMoving.up = false;
-        }
-
-        if (event.key.code == sf::Keyboard::Down)
-        {
-            m_isMoving.down = false;
-        }
-
-        if (event.key.code == sf::Keyboard::Left)
-        {
-            m_isMoving.left = false;
-        }
-        if (event.key.code == sf::Keyboard::Right)
-        {
-            m_isMoving.right = false;
         }
 
         if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
@@ -136,17 +175,18 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 void Player::move(float dt)
 {
     m_velocity = sf::Vector2f(0.0f, 0.0f);
+    //m_playerState = PlayerMovingState::WALKING;
 
-    if (m_isMoving.up)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         m_velocity.y += -m_speed * dt;
 
-    if (m_isMoving.down)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         m_velocity.y += m_speed * dt;
 
-    if (m_isMoving.left)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         m_velocity.x += -m_speed * dt;
 
-    if (m_isMoving.right)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         m_velocity.x += m_speed * dt;
 
     if (m_velocity.y > 0 && m_velocity.x > 0)

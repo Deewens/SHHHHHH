@@ -12,7 +12,6 @@ protected:
     float m_speed;
     sf::Texture m_texture;
     sf::Sprite m_sprite;
-    bool m_isMoving = false;
     int m_direction;
 
 public:
@@ -21,13 +20,11 @@ public:
     sf::Vector2f getPosition();
     float getRadius();
 
-    void loadImage();
-
     // Abstract methods
-    virtual void update(float dt) = 0;
-
+    virtual void update(sf::Time deltaTime) = 0;
+    virtual void loadTexture();
 private:
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 };
 
 

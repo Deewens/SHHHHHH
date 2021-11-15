@@ -3,20 +3,27 @@
 
 #include <SFML/Graphics.hpp>
 
+struct Frame
+{
+    sf::IntRect rect;
+    double duration = 0.2; // In seconds
+};
+
 class Animation
 {
-public:
-    Animation();
-
-    void addFrame(sf::IntRect rect);
-    void setSpriteSheet(const sf::Texture& texture);
-    const sf::Texture* getSpriteSheet() const;
-    std::size_t getSize() const;
-    const sf::IntRect& getFrame(std::size_t n) const;
-
 private:
-    std::vector<sf::IntRect> m_frames;
-    const sf::Texture* m_textures;
+    std::vector<Frame> frames;
+    double totalLength;
+    double progress;
+    sf::Sprite &target;
+    bool isLooping;
+
+public:
+    Animation(sf::Sprite &target, bool looping = true);
+    virtual ~Animation();
+    void addFrame(Frame&& frame);
+    void update(double deltaTime);
+    const double getLength() const { return totalLength; }
 };
 
 

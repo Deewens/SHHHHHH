@@ -18,7 +18,8 @@ Game::Game() :
 	m_exitGame(false), //when true game will exit
     m_worldView(m_window.getDefaultView()),
     m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
-    m_spawnPosition(100.f, 100.f){
+    m_spawnPosition(100.f, 100.f)
+{
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);
@@ -128,8 +129,8 @@ void Game::update(sf::Time t_deltaTime)
 			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
-            m_player.update(t_deltaTime.asSeconds());
-            m_enemy.update(t_deltaTime.asSeconds());
+            m_player.update(t_deltaTime);
+            m_enemy.update(t_deltaTime);
             m_grid.update();
             checkCollisions();
             collisions.update();
