@@ -40,6 +40,15 @@ private:
     void boundryCheck();
     sf::Vector2f getVelocity();
 
+    sf::RectangleShape m_powerBar;
+
+    sf::RectangleShape m_powerthrow;
+
+    bool m_throw = false;
+
+    sf::Vector2f m_powerBarSize = { 50,5 };
+    sf::Vector2f m_powerSize = { 0,4 };
+
 public:
 
     Player();
@@ -49,6 +58,8 @@ public:
     void processEvents(sf::Event event);
 
     void awayFrom(sf::Vector2f t_obstacle);
+
+    void renderPowerBar(sf::RenderWindow& t_window);
 
 };
 

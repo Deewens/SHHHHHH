@@ -66,6 +66,15 @@ Player::Player() :
 
     m_sprite.setPosition(100, 100);
     m_sprite.setOrigin(30, 26);
+
+   
+
+    m_powerBar.setSize(m_powerBarSize);
+    m_powerBar.setFillColor(sf::Color::White);
+    m_powerthrow.setSize(m_powerSize);
+    m_powerthrow.setOutlineThickness(1);
+    m_powerthrow.setFillColor(sf::Color::Red);
+
 }
 
 
@@ -125,11 +134,24 @@ void Player::update(sf::Time deltaTime)
         default:
             m_idlingAnim.update(deltaTime.asSeconds());
     }
-
-    //std::cout << m_velocity.x << ", " << m_velocity.y << std::endl;
-
     boundryCheck();
+
+    if (m_throw)
+    {
+        m_powerBar.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
+        m_powerBar.setRotation(m_sprite.getRotation());
+
+        if (m_powerSize.x < m_powerBarSize.x)
+        {
+            m_powerSize.x++;
+        }
+
+        m_powerthrow.setSize(m_powerSize);
+        m_powerthrow.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
+        m_powerthrow.setRotation(m_sprite.getRotation());
+    }    
 }
+
 
 void Player::processEvents(sf::Event event)
 {
@@ -162,6 +184,12 @@ void Player::processEvents(sf::Event event)
             m_speed = WALKING_SPEED;
             m_playerState = PlayerMovingState::WALKING;
         }
+        if (event.key.code == sf::Keyboard::RControl)
+        {
+            m_throw = false;
+            m_powerSize.x = 0;
+            
+        }
     }
 }
 
@@ -172,11 +200,24 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
     m_sprite.setPosition(t_obstacle - gap);
 }
 
+void Player::renderPowerBar(sf::RenderWindow& t_window)
+{
+    if (m_throw)
+    { 
+        t_window.draw(m_powerBar);   
+        t_window.draw(m_powerthrow);
+    }
+}
+
 void Player::move(float dt)
 {
     m_velocity = sf::Vector2f(0.0f, 0.0f);
     //m_playerState = PlayerMovingState::WALKING;
 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
+    {
+        m_throw = true;
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         m_velocity.y += -m_speed * dt;
 

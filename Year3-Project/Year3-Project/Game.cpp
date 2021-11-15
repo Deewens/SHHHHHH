@@ -179,6 +179,7 @@ void Game::render()
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
+            m_player.renderPowerBar(m_window);
             break;
         case GameState::EXIT:
             break;
@@ -227,7 +228,7 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
 {
     int m_id = floor(t_targetLocation.x / tileSize) + (floor(t_targetLocation.y / tileSize) * m_gridCols);
 
-    std::cout << std::to_string(m_id) << std::endl;
+    //std::cout << std::to_string(m_id) << std::endl;
 
     return m_id;
 }
