@@ -13,7 +13,7 @@ Grid::Grid(int t_rows, int t_cols) : m_rows(t_rows), m_cols(t_cols)
 		m_colLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), screen_Height });
 	}
 
-	for (size_t i = 0; i < m_rows; i++)
+	for (int i = 0; i < m_rows; i++)
 	{
 		m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{ 0,(float)(i * tileSize) });
 		m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width ,(float)(i * tileSize) });

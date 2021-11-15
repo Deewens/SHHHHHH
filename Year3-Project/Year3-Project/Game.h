@@ -66,6 +66,8 @@ private:
     Menu m_gameMenu;
 
     sf::RectangleShape m_pauseRect;
+
+
 };
 
 #endif // !GAME_HPP

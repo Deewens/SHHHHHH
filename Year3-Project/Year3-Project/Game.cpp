@@ -27,6 +27,7 @@ Game::Game() :
     setupEnvironment();
 
     m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
+
 }
 
 /// <summary>
@@ -257,5 +258,7 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
 
     return m_id;
 }
+
+
 
 
