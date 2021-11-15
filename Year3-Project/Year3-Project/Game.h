@@ -39,6 +39,7 @@ private:
     void checkCollisions();
 
     void pauseMenuSetUp();
+    void setupEnvironment();
 
     void cameraMovement(sf::Time dt);
 
@@ -61,7 +62,7 @@ private:
     Enemy m_enemy;
     Pickup m_pickup;
     Grid m_grid;
-    Environment m_environment;
+    std::vector<Environment> m_environment;
     Menu m_gameMenu;
 
     sf::RectangleShape m_pauseRect;

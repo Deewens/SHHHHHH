@@ -24,7 +24,7 @@ Game::Game() :
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
     m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
-    m_environment = Environment(74, screen_Height / tileSize, screen_Width / tileSize, 0);
+    setupEnvironment();
 
     m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
 }
@@ -86,6 +86,13 @@ void Game::processEvents()
         if (GameState::GAMEPLAY == m_gameState)
         {
             m_player.processEvents(newEvent);
+            if (sf::Event::KeyReleased == newEvent.type)
+            {
+                if (newEvent.key.code == sf::Keyboard::D)
+                {
+                    m_grid.toggleDraw();
+                }
+            }
         }
         else if (GameState::PAUSE == m_gameState)
         {
@@ -133,7 +140,6 @@ void Game::update(sf::Time t_deltaTime)
         case GameState::GAMEPLAY:
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
-            m_grid.update();
             checkCollisions();
             collisions.update();
             cellIdFinder(m_player.getPosition());
@@ -172,7 +178,10 @@ void Game::render()
             m_window.clear(sf::Color::Color(52, 168, 235));
             //m_window.draw(m_gameMenu);
             m_window.setView(m_worldView);
-            m_environment.render(m_window);
+            for (Environment env : m_environment)
+            {
+                env.render(m_window);
+            }
             m_window.draw(m_player);
             m_window.draw(m_pickup);
             m_window.draw(m_enemy);
@@ -188,7 +197,10 @@ void Game::render()
             break;
         case GameState::PAUSE:
             m_window.setView(m_worldView);
-            m_environment.render(m_window);
+            for (Environment env : m_environment)
+            {
+                env.render(m_window);
+            }
             m_window.draw(m_player);
             m_window.draw(m_pickup);
             m_window.draw(m_enemy);
@@ -208,7 +220,10 @@ void Game::checkCollisions()
 {
     collisions.check(m_player, m_enemy);
     collisions.check(m_player, m_pickup);
-    collisions.check(m_player, m_environment);
+    for (Environment env : m_environment)
+    {
+        collisions.check(m_player, env);
+    }
 }
 
 void Game::pauseMenuSetUp()
@@ -216,6 +231,16 @@ void Game::pauseMenuSetUp()
     m_pauseRect.setSize(sf::Vector2f(screen_Width/4, screen_Height/4));
     m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
     m_pauseRect.setOrigin(screen_Width/8,screen_Height/8);
+}
+
+void Game::setupEnvironment()
+{
+    //temp manually setting it
+    int nums[] = { 73, 74, 75, 77, 78, 79, 43, 44, 45, 12 };
+    for (int i = 0; i < 10; i++)
+    {
+        m_environment.push_back(Environment(nums[i], screen_Height / tileSize, screen_Width / tileSize, 0));
+    }
 }
 
 void Game::cameraMovement(sf::Time dt)
