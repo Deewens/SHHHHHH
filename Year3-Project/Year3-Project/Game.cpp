@@ -86,6 +86,13 @@ void Game::processEvents()
         if (GameState::GAMEPLAY == m_gameState)
         {
             m_player.processEvents(newEvent);
+            if (sf::Event::KeyReleased == newEvent.type)
+            {
+                if (newEvent.key.code == sf::Keyboard::D)
+                {
+                    m_grid.toggleDraw();
+                }
+            }
         }
         else if (GameState::PAUSE == m_gameState)
         {
@@ -133,7 +140,6 @@ void Game::update(sf::Time t_deltaTime)
         case GameState::GAMEPLAY:
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
-            m_grid.update();
             checkCollisions();
             collisions.update();
             cellIdFinder(m_player.getPosition());

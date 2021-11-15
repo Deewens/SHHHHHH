@@ -13,7 +13,7 @@ public:
 
 	void render(sf::RenderWindow& t_window);
 
-	void update();
+	void toggleDraw();
 
 private:
 	int m_rows;

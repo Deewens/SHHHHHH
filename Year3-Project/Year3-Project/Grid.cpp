@@ -20,19 +20,11 @@ Grid::Grid(int t_rows, int t_cols) : m_rows(t_rows), m_cols(t_cols)
 	}
 }
 
-void Grid::update()
+void Grid::toggleDraw()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::G))
-	{
-		m_gridDraw = true;
-	}
-	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::G))
-	{
-		m_gridDraw = false;
-	}
-
-	//debug();
+	m_gridDraw = !m_gridDraw;
 }
+
 
 void Grid::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
