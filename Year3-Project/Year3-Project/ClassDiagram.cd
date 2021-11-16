@@ -3,116 +3,148 @@
   <Class Name="Character">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIQEAAAAAAAAAAAAAAAAgAAIBAgAACAAAAAAUCAA=</HashCode>
+      <HashCode>AAAAIQAABAAAAAAAAAIAAAAgAAIAAgAACAAAAAAECAA=</HashCode>
       <FileName>Character.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CollisionManager">
-    <Position X="11" Y="0.5" Width="1.5" />
+    <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAAAAAAAAAAAAAACCAAAAACAAAACEAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAIAQAAAAAAAAABAACEAAAAACAAAACEgAA=</HashCode>
       <FileName>CollisionManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Enemy">
-    <Position X="0.5" Y="4.5" Width="1.5" />
+    <Position X="0.5" Y="4.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Enemy::EnemyState">
+        <TypeIdentifier>
+          <NewMemberFileName>Enemy.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAEAAA=</HashCode>
+      <HashCode>gIgAh0EEIBRCAACAABCQAAAAQAAQAIAQlAACSAsEAAA=</HashCode>
       <FileName>Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Game">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="5" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>CAAAAgBAIAAAABAAQAAEAgAQAYiAAACAAAAAAAAUAAA=</HashCode>
+      <HashCode>KAAAQgBgIACAADAAQAAEAgAQAYiCAACQAAAAAAAUCAI=</HashCode>
       <FileName>Game.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Grid">
-    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Position X="11" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAEAAgAAAABAAAAACAAAAAAAIAAAAAAAAAAEAAAUAAA=</HashCode>
+      <HashCode>AAEAAgAAAABIAAAACAKAAQAAIAAAAIAAAAAEAAIQAAA=</HashCode>
       <FileName>Grid.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Menu">
-    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Position X="8.75" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAAAAIAAAAAACAAAAAAAAAAEAAAACAAAUAAA=</HashCode>
+      <HashCode>AAIAAIAAAAAAIAAEAAICAAAAAAAAAAEAAAACAAAEAAA=</HashCode>
       <FileName>Menu.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MenuButton">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="7" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQQAAAAAAAAAAAABEAAAAAAAAAAAgAMAAACAAAABAA=</HashCode>
       <FileName>MenuButton.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Noise">
-    <Position X="9.25" Y="3.75" Width="1.5" />
+    <Position X="11" Y="4.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAAIAAAAAAAAAAAAAAAAACBAQAAAAAIAABAAAAAUAAA=</HashCode>
+      <HashCode>CAAIRAAAAAAAAAAAAAAABCBAAAAAAAIAAAAAAAAUAAA=</HashCode>
       <FileName>Noise.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Pickup">
-    <Position X="11" Y="3.75" Width="1.5" />
+    <Position X="13" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAAAICAAAAAAAAAACAAAAAAQAAA=</HashCode>
+      <HashCode>AAAAIAAAAAAAAAAAAAIAICAAAAAAAAAACAAAAAAAAAA=</HashCode>
       <FileName>Pickup.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Player">
-    <Position X="2.25" Y="4.5" Width="1.5" />
-    <InheritanceLine Type="Character" FixedToPoint="true">
-      <Path>
-        <Point X="2.25" Y="3.786" />
-        <Point X="2.25" Y="4.125" />
-        <Point X="3.062" Y="4.125" />
-        <Point X="3.062" Y="4.5" />
-      </Path>
+    <Position X="3" Y="4.5" Width="1.75" />
+    <InheritanceLine Type="Character">
       <InheritanceModifierLabel ManuallyPlaced="true">
         <Position X="0.101" Y="0.107" />
       </InheritanceModifierLabel>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAEAAAAAIACAAAAAAAAAAQAAAIAAAAAAAQAEAAA=</HashCode>
+      <HashCode>ABAABAEAAJAAICKAAAAAAAAAQQAwAIQFRABAAwAEBAA=</HashCode>
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Animation">
+    <Position X="8.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAgoAAAAAIAAAAAAAAAAIAAIQAEAAE=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Environment">
+    <Position X="7" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAIAAAAAAAAAAAAAAAQAAQAAQ=</HashCode>
+      <FileName>Environment.h</FileName>
+    </TypeIdentifier>
+  </Class>
   <Struct Name="Direction">
-    <Position X="4" Y="5" Width="1.5" />
+    <Position X="3.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAgAAgAA=</HashCode>
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Struct>
+  <Struct Name="Frame">
+    <Position X="8.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Animation.h</FileName>
+    </TypeIdentifier>
+  </Struct>
   <Enum Name="ButtonState">
-    <Position X="5.75" Y="3.75" Width="1.5" />
+    <Position X="7" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAIAAAAAAAAAAAQACAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Globals.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="GameState">
-    <Position X="7.5" Y="3.75" Width="1.5" />
+    <Position X="8.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAAACgAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAIAAAIAAAAAAAAAAACgAABAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Globals.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="NoiseLevels">
-    <Position X="5.75" Y="5.5" Width="1.5" />
+    <Position X="7" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAgAQIAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Globals.h</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="PlayeMovingState">
-    <Position X="7.5" Y="5.5" Width="1.5" />
+  <Enum Name="PlayerMovingState">
+    <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAEAAAAAAAAAAAAEAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Globals.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Directions">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgggAAAAABAAAQABABAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Globals.h</FileName>
     </TypeIdentifier>
   </Enum>
