@@ -3,6 +3,7 @@
 CollisionManager::CollisionManager()
 {
 	pulseDelay = 0;
+	CAN_PULSE = 0;
 }
 
 void CollisionManager::check(Player& t_player, Enemy& t_enemy)
@@ -18,6 +19,23 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 
 void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 {
+	switch (m_playerState)
+	{
+	case PlayerMovingState::RUNNING:
+ 		CAN_PULSE = 5;
+		break;
+	case PlayerMovingState::WALKING:
+		CAN_PULSE = 20;
+		break;
+	case PlayerMovingState::CROUCHING:
+		CAN_PULSE = 80;
+		break;
+	case PlayerMovingState::IDLE:
+		CAN_PULSE = 1000;
+		break;
+	default:
+		break;
+	}
 	if (pulseDelay >= CAN_PULSE)
 	{
 		float collisionDistance = t_player.getRadius() + t_pickup.getRadius();

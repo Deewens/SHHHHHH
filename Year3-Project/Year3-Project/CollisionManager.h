@@ -18,7 +18,7 @@ public:
 	void update();
 private:
 	int pulseDelay;
-	const int CAN_PULSE = 30;
+	int CAN_PULSE;
 	float distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b);
 	float clamp(float t_pos, float t_min, float t_max);
 	std::vector<Noise> m_noises;
