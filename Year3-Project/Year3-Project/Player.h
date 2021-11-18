@@ -31,7 +31,7 @@ private:
     Animation m_idlingAnim;
     Animation m_throwingAnim;
 
-    Direction m_isMoving;
+    Direction m_movementDir;
     sf::Vector2f m_velocity;
 
     void unitVector(sf::Vector2f& t_vector, float dt);

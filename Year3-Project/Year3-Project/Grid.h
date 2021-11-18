@@ -15,6 +15,8 @@ public:
 
 	void toggleDraw();
 
+	void debug();
+
 private:
 	int m_rows;
 	int m_cols;
@@ -26,7 +28,6 @@ private:
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 
-	void debug();
 
 	int m_size = 0;	
 

@@ -32,10 +32,10 @@ void Grid::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(m_colLine, 96, sf::Lines);
         target.draw(m_rowLine, 60, sf::Lines);
-		//for (int i = 0; i < m_size; i++)
-		//{
-			//target.draw(m_gridText[i]);
-		//}
+		for (int i = 0; i < m_size; i++)
+		{
+			target.draw(m_gridText[i]);
+		}
     }
 }
 void Grid::debug()
