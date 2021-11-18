@@ -9,6 +9,7 @@
 /// same as #pragma once
 /// Don't forget the endif at the bottom
 /// </summary>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
 #include "Player.h"
@@ -67,6 +68,7 @@ private:
 
     sf::RectangleShape m_pauseRect;
 
+    sf::Texture m_groundTexture;
 
 };
 

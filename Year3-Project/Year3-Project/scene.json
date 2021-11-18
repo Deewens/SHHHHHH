@@ -1,0 +1,54 @@
+{
+  "scene": [
+    {
+      "spriteName": "grass",
+      "gridIndex": 73,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 74,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 75,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 77,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 78,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 79,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 43,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 44,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 45,
+      "rotation": 0.0
+    },
+    {
+      "spriteName": "grass",
+      "gridIndex": 12,
+      "rotation": 0.0
+    }
+  ]
+}

@@ -31,7 +31,7 @@ void Character::draw(sf::RenderTarget &target, sf::RenderStates states) const
 void Character::loadTexture()
 {
     // Load a default sprite if loadImage is not overrided
-    if (!m_texture.loadFromFile("ASSETS/IMAGES/characters_sprite_sheet.png"))
+    if (!m_texture.loadFromFile("ASSETS/IMAGES/sprite_sheets/characters_sprite_sheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
     m_sprite.setTexture(m_texture);

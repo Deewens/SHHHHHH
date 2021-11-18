@@ -18,7 +18,7 @@ Player::Player() :
     Player::loadTexture();
 
     // Get spritesheet data
-    std::ifstream spriteSheetData("ASSETS/IMAGES/data/characters_sprite_sheet.json");
+    std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/characters_sprite_sheet.json");
     nlohmann::json json;
     spriteSheetData >> json;
 

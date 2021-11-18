@@ -219,10 +219,10 @@ void Game::checkCollisions()
 {
     collisions.check(m_player, m_enemy);
     collisions.check(m_player, m_pickup);
-    for (Environment env : m_environment)
+/*    for (Environment env : m_environment)
     {
         collisions.check(m_player, env);
-    }
+    }*/
 }
 
 void Game::pauseMenuSetUp()
@@ -234,12 +234,27 @@ void Game::pauseMenuSetUp()
 
 void Game::setupEnvironment()
 {
+    if (!m_groundTexture.loadFromFile("ASSETS/IMAGES/sprite_sheets/ground_sprite_sheet.png"))
+        std::cout << "problem loading character texture" << std::endl;
+
     //temp manually setting it
-    int nums[] = { 73, 74, 75, 77, 78, 79, 43, 44, 45, 12 };
+    //std::vector<int> nums = {73, 74, 75, 77, 78, 79, 43, 44, 45, 12};
+
+    std::ifstream spriteSheetData("scene.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    nlohmann::json scene = json["scene"];
+
+    for (auto& el : scene)
+    {
+        m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, 0));
+    }
+/*    int nums[] = { 73, 74, 75, 77, 78, 79, 43, 44, 45, 12 };
     for (int i = 0; i < 10; i++)
     {
         m_environment.push_back(Environment(nums[i], screen_Height / tileSize, screen_Width / tileSize, 0));
-    }
+    }*/
 }
 
 void Game::cameraMovement(sf::Time dt)
