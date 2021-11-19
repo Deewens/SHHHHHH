@@ -19,43 +19,43 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 
 void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 {
-	switch (m_playerState)
-	{
-	case PlayerMovingState::RUNNING:
- 		m_canPulse = 100;
-		break;
-	case PlayerMovingState::WALKING:
-		m_canPulse = 20;
-		break;
-	case PlayerMovingState::CROUCHING:
-		m_canPulse = 5;
-		break;
-	case PlayerMovingState::IDLE:
-		break;
-	default:
-		break;
-	}
-	if (m_pulseDelay >= m_canPulse)
-	{
-		float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
-		float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
-		if (collisionDistance >= distanceAway)
-		{
-			std::cout << "pickup";
-			Noise t_noise;
-			t_noise.init(NoiseLevels::RED, t_player.getPosition());
-			m_noises.push_back(t_noise);
-			m_pulseDelay = 0;
-		}
-	}
-	m_pulseDelay++;
+	//switch (m_playerState)
+	//{
+	//case PlayerMovingState::RUNNING:
+ //		m_canPulse = 100;
+	//	break;
+	//case PlayerMovingState::WALKING:
+	//	m_canPulse = 20;
+	//	break;
+	//case PlayerMovingState::CROUCHING:
+	//	m_canPulse = 5;
+	//	break;
+	//case PlayerMovingState::IDLE:
+	//	break;
+	//default:
+	//	break;
+	//}
+	//if (m_pulseDelay >= m_canPulse)
+	//{
+	//	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
+	//	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
+	//	if (collisionDistance >= distanceAway)
+	//	{
+	//		std::cout << "pickup";
+	//		Noise t_noise;
+	//		t_noise.init(NoiseLevels::RED, t_player.getPosition());
+	//		m_noises.push_back(t_noise);
+	//		m_pulseDelay = 0;
+	//	}
+	//}
+	//m_pulseDelay++;
 
-	/*float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
+	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
 	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
 		std::cout << "pickup";
-	}*/
+	}
 }
 
 void CollisionManager::check(Player& t_player, Environment& t_environment)
