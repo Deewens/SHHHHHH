@@ -2,8 +2,8 @@
 
 CollisionManager::CollisionManager()
 {
-	pulseDelay = 0;
-	CAN_PULSE = 0;
+	m_pulseDelay = 0;
+	m_canPulse = 0;
 }
 
 void CollisionManager::check(Player& t_player, Enemy& t_enemy)
@@ -22,21 +22,20 @@ void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 	switch (m_playerState)
 	{
 	case PlayerMovingState::RUNNING:
- 		CAN_PULSE = 5;
+ 		m_canPulse = 100;
 		break;
 	case PlayerMovingState::WALKING:
-		CAN_PULSE = 20;
+		m_canPulse = 20;
 		break;
 	case PlayerMovingState::CROUCHING:
-		CAN_PULSE = 80;
+		m_canPulse = 5;
 		break;
 	case PlayerMovingState::IDLE:
-		//CAN_PULSE = 1000;
 		break;
 	default:
 		break;
 	}
-	if (pulseDelay >= CAN_PULSE)
+	if (m_pulseDelay >= m_canPulse)
 	{
 		float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
 		float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
@@ -46,10 +45,17 @@ void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 			Noise t_noise;
 			t_noise.init(NoiseLevels::RED, t_player.getPosition());
 			m_noises.push_back(t_noise);
-			pulseDelay = 0;
+			m_pulseDelay = 0;
 		}
 	}
-	pulseDelay++;
+	m_pulseDelay++;
+
+	/*float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
+	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
+	if (collisionDistance >= distanceAway)
+	{
+		std::cout << "pickup";
+	}*/
 }
 
 void CollisionManager::check(Player& t_player, Environment& t_environment)

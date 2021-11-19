@@ -19,9 +19,9 @@ public:
 	void update();
 private:
 
-	int pulseDelay;
+	int m_pulseDelay;
 
-	int CAN_PULSE;
+	int m_canPulse;
 
 	float distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b);
 	float clamp(float t_pos, float t_min, float t_max);
