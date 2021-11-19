@@ -29,6 +29,7 @@ Game::Game() :
     m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
     m_menuView.reset(sf::FloatRect(0,0, screen_Width, screen_Height));
 
+    m_grid.debug();
 }
 
 /// <summary>
@@ -147,9 +148,7 @@ void Game::update(sf::Time t_deltaTime)
             checkCollisions();
             collisions.update();
             cellIdFinder(m_player.getPosition());
-
             cameraMovement(t_deltaTime);
-
             break;
         case GameState::EXIT:
             m_exitGame = true;

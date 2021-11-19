@@ -38,7 +38,9 @@ extern GameState m_gameState;
 
 enum class PlayerMovingState {IDLE,CROUCHING , WALKING , RUNNING};
 
-static PlayerMovingState m_playerState = PlayerMovingState::IDLE;
+extern PlayerMovingState m_playerState;
+
+
 
 const float CROUCHING_SPEED = 25.f;
 const float WALKING_SPEED = 75.f;
