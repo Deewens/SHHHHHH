@@ -219,16 +219,27 @@ void Player::move(float dt)
         m_throw = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
         m_velocity.y += -m_speed * dt;
-
+        m_playerState = PlayerMovingState::WALKING;
+    }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        m_playerState = PlayerMovingState::WALKING;
         m_velocity.y += m_speed * dt;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        m_playerState = PlayerMovingState::WALKING;
         m_velocity.x += -m_speed * dt;
+    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        m_playerState = PlayerMovingState::WALKING;
         m_velocity.x += m_speed * dt;
+    }
 
     if (m_velocity.y > 0 && m_velocity.x > 0)
     {

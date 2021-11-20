@@ -16,17 +16,19 @@
 Game::Game() :
 	m_window(sf::VideoMode{ screen_Width, screen_Height, 32U }, "SHHHH...!"),
 	m_exitGame(false), //when true game will exit
-    m_worldView(m_window.getDefaultView()),
-    m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
+    //m_worldView(m_window.getDefaultView()),
+    //m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
     m_spawnPosition(100.f, 100.f)
 {
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
-    m_worldView.setCenter(m_spawnPosition);
+    //m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
     setupEnvironment();
 
     m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
+    m_menuView.reset(sf::FloatRect(0,0, screen_Width, screen_Height));
+
     m_grid.debug();
 }
 
@@ -139,6 +141,8 @@ void Game::update(sf::Time t_deltaTime)
 			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
+            m_window.setView(m_worldView);
+
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
             checkCollisions();
@@ -174,6 +178,7 @@ void Game::render()
             m_window.draw(m_gameMenu);
             break;
         case GameState::GAMEPLAY:
+
             m_window.clear(sf::Color::Color(52, 168, 235));
             //m_window.draw(m_gameMenu);
             m_window.setView(m_worldView);

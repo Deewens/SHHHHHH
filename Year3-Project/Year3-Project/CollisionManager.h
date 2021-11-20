@@ -10,6 +10,7 @@
 class CollisionManager
 {
 public:
+
 	CollisionManager();
 	void check(Player& t_player, Enemy& t_enemy);
 	void check(Player& t_player, Pickup& t_pickup);
@@ -17,8 +18,11 @@ public:
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();
 private:
-	int pulseDelay;
-	const int CAN_PULSE = 30;
+
+	int m_pulseDelay;
+
+	int m_canPulse;
+
 	float distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b);
 	float clamp(float t_pos, float t_min, float t_max);
 	std::vector<Noise> m_noises;
