@@ -252,7 +252,7 @@ void Game::setupEnvironment()
     // Build scene from the json file
     for (auto& el : scene)
     {
-        m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, 0));
+        m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, el["rotation"]));
     }
 
     // Add impassable wall

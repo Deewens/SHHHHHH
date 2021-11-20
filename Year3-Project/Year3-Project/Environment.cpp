@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Environment.h"
 
 Environment::Environment(sf::RectangleShape& t_rect, int t_tileCode, int t_rows, int t_cols, float t_rotation,
