@@ -228,9 +228,7 @@ void Game::checkCollisions()
     for (Environment env : m_environment)
     {
         if (env.isImpassable())
-        {
             collisions.check(m_player, env);
-        }
     }
 }
 
