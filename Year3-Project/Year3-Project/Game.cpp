@@ -179,7 +179,7 @@ void Game::render()
             break;
         case GameState::GAMEPLAY:
 
-            m_window.clear(sf::Color::Color(52, 168, 235));
+            m_window.clear(sf::Color(52, 168, 235));
             //m_window.draw(m_gameMenu);
             m_window.setView(m_worldView);
             for (Environment env : m_environment)
@@ -224,16 +224,19 @@ void Game::checkCollisions()
 {
     collisions.check(m_player, m_enemy);
     collisions.check(m_player, m_pickup);
-/*    for (Environment env : m_environment)
+    for (Environment env : m_environment)
     {
-        collisions.check(m_player, env);
-    }*/
+        if (env.isImpassable())
+        {
+            collisions.check(m_player, env);
+        }
+    }
 }
 
 void Game::pauseMenuSetUp()
 {
     m_pauseRect.setSize(sf::Vector2f(screen_Width/4, screen_Height/4));
-    m_pauseRect.setFillColor(sf::Color::Color(225, 0, 0, 100));
+    m_pauseRect.setFillColor(sf::Color(225, 0, 0, 100));
     m_pauseRect.setOrigin(screen_Width/8,screen_Height/8);
 }
 
@@ -242,24 +245,21 @@ void Game::setupEnvironment()
     if (!m_groundTexture.loadFromFile("ASSETS/IMAGES/sprite_sheets/ground_sprite_sheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
-    //temp manually setting it
-    //std::vector<int> nums = {73, 74, 75, 77, 78, 79, 43, 44, 45, 12};
-
     std::ifstream spriteSheetData("scene.json");
     nlohmann::json json;
     spriteSheetData >> json;
 
     nlohmann::json scene = json["scene"];
-
+    // Build scene from the json file
     for (auto& el : scene)
     {
         m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, 0));
     }
-/*    int nums[] = { 73, 74, 75, 77, 78, 79, 43, 44, 45, 12 };
-    for (int i = 0; i < 10; i++)
-    {
-        m_environment.push_back(Environment(nums[i], screen_Height / tileSize, screen_Width / tileSize, 0));
-    }*/
+
+    // Add impassable wall
+    sf::RectangleShape wall;
+    wall.setFillColor(sf::Color::Red);
+    m_environment.push_back(Environment(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true));
 }
 
 void Game::cameraMovement(sf::Time dt)

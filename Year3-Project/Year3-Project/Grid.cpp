@@ -50,9 +50,9 @@ void Grid::debug()
 	
 	int m_id = 0;
 
-	for (int i = 0; i < m_cols; i++)
+	for (int i = 0; i < m_rows; i++)
 	{
-		for(int j = 0; j < m_rows; j++)
+		for(int j = 0; j < m_cols; j++)
 		{
 			m_gridTextElement.setString(std::to_string(m_id));
 			m_gridTextElement.setPosition(j * tileSize, i* tileSize);
