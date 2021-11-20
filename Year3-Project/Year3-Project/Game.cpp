@@ -142,7 +142,7 @@ void Game::update(sf::Time t_deltaTime)
             break;
         case GameState::GAMEPLAY:
             m_window.setView(m_worldView);
-
+            m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
             checkCollisions();
@@ -157,7 +157,7 @@ void Game::update(sf::Time t_deltaTime)
             std::cout << "option" << std::endl;
             break;
         case GameState::PAUSE:
-            m_pauseRect.setPosition(m_player.getPosition().x,m_player.getPosition().y);
+            m_pauseRect.setPosition(m_worldView.getCenter());
             std::cout << "pause" << std::endl;
             break;
         default:
@@ -193,6 +193,7 @@ void Game::render()
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_player.renderPowerBar(m_window);
+            m_hud.render(m_window);
             break;
         case GameState::EXIT:
             break;

@@ -19,6 +19,7 @@
 #include "CollisionManager.h"
 #include "Grid.h"
 #include "Environment.h"
+#include "HUD.h"
 
 
 class Game
@@ -67,6 +68,7 @@ private:
     Grid m_grid;
     std::vector<Environment> m_environment;
     Menu m_gameMenu;
+    HUD m_hud;
 
     sf::RectangleShape m_pauseRect;
 

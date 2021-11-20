@@ -27,10 +27,12 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="OrientedBoundingBox.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
@@ -43,11 +45,13 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
     <ClInclude Include="Grid.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="json.hpp" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuButton.h" />
     <ClCompile Include="Noise.h" />
     <ClCompile Include="Pickup.h" />
+    <ClInclude Include="OrientedBoundingBox.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="tinyc2.h" />
   </ItemGroup>
