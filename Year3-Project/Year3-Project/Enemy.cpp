@@ -15,8 +15,8 @@ Enemy::Enemy() :
     {
         std::string filename = frames["filename"];
 
-        std::string::size_type idlingFound = filename.find("zombies/idling/");
-        std::string::size_type runningFound = filename.find("zombies/running");
+        std::string::size_type idlingFound = filename.find("zombies/purple/idling/");
+        std::string::size_type runningFound = filename.find("zombies/purple/running");
 
         if (idlingFound != std::string::npos)
         {
