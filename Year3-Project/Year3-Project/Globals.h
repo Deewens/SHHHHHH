@@ -1,7 +1,7 @@
 #pragma once
 
-const int screen_Width = 1920;
-const int screen_Height = 1080;
+const int screen_Width = 1200;
+const int screen_Height = 900;
 
 static const int tileSize{ 60 };
 
