@@ -1,16 +1,20 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Globals.h"
 
 class Pickup : public sf::Drawable
 {
 public:
-	Pickup();
+	Pickup(int t_gridNum , const PickUpType& m_type);
 
 	sf::Vector2f getPosition();
+
 	float getRadius();
 
-	void setUpSprite();
+	void setUpSpriteBottle();
+
+	void setUpSpriteCan();
 private:
 
 	sf::RectangleShape rect;
