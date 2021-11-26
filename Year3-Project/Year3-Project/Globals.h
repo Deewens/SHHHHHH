@@ -1,7 +1,7 @@
 #pragma once
 
-const int screen_Width = 1920;
-const int screen_Height = 1080;
+const int screen_Width = 1200;
+const int screen_Height = 900;
 
 static const int tileSize{ 60 };
 
@@ -33,14 +33,11 @@ enum class ButtonState { READY, OVER, DOWN };
 
 enum class GameState { MENU, GAMEPLAY, EXIT, OPTIONS,PAUSE};
 
-
 extern GameState m_gameState;
 
 enum class PlayerMovingState {IDLE,CROUCHING , WALKING , RUNNING};
 
 extern PlayerMovingState m_playerState;
-
-
 
 const float CROUCHING_SPEED = 25.f;
 const float WALKING_SPEED = 75.f;
@@ -49,3 +46,7 @@ const float RUNNING_SPEED = 150.f;
 enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
 
 static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
+
+enum class PickUpType {BOTTLE , CAN};
+
+static PickUpType m_pickUpType = PickUpType::BOTTLE;
