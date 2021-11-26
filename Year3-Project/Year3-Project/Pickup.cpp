@@ -1,12 +1,12 @@
 #include "Pickup.h"
 
-//Pickup::Pickup()
-//{
-//	rect.setSize(sf::Vector2f(20, 20));
-//	rect.setOrigin(sf::Vector2f(10, 10));
-//	rect.setFillColor(sf::Color::Cyan);
-//	rect.setPosition(sf::Vector2f(150, 150));	
-//}
+Pickup::Pickup()
+{
+	rect.setSize(sf::Vector2f(20, 20));
+	rect.setOrigin(sf::Vector2f(10, 10));
+	rect.setFillColor(sf::Color::Cyan);
+	rect.setPosition(sf::Vector2f(150, 150));	
+}
 
 Pickup::Pickup(int t_gridNum, const PickUpType& m_type)
 {

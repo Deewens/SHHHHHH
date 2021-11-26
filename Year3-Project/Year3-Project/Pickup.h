@@ -6,6 +6,7 @@
 class Pickup : public sf::Drawable
 {
 public:
+	Pickup();
 	Pickup(int t_gridNum , const PickUpType& m_type);
 
 	sf::Vector2f getPosition();
