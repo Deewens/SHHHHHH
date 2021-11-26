@@ -244,7 +244,7 @@ void Game::setupEnvironment()
     if (!m_groundTexture.loadFromFile("ASSETS/IMAGES/sprite_sheets/ground_sprite_sheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
-    std::ifstream spriteSheetData("scene_test.json");
+    std::ifstream spriteSheetData("scene.json");
     nlohmann::json json;
     spriteSheetData >> json;
 
