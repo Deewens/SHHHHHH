@@ -19,39 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Animation.cpp" />
-    <ClCompile Include="Character.cpp" />
-    <ClCompile Include="CollisionManager.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Global.cpp" />
-    <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuButton.cpp" />
-    <ClCompile Include="Noise.cpp" />
-    <ClCompile Include="Pickup.cpp" />
-    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Animation.h" />
-    <ClInclude Include="Character.h" />
-    <ClInclude Include="CollisionManager.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Environment.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Globals.h" />
-    <ClInclude Include="Grid.h" />
-    <ClInclude Include="HUD.h" />
-    <ClInclude Include="json.hpp" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MenuButton.h" />
-    <ClCompile Include="Noise.h" />
-    <ClCompile Include="Pickup.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="tinyc2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ASSETS\IMAGES\SFML-LOGO.png">
@@ -67,13 +39,10 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
     </Font>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ClassDiagram.cd" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{700ddb8e-a8b1-45ae-821d-fce20ce7fff1}</ProjectGuid>
-    <RootNamespace>Year3_Project</RootNamespace>
+    <ProjectGuid>{39118ad1-a4ea-4415-b5e4-cb77b8566d4b}</ProjectGuid>
+    <RootNamespace>LevelBuilder</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
