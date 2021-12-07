@@ -11,6 +11,12 @@
 /// </summary>
 #include <SFML/Graphics.hpp>
 
+const int screen_Width = 1800;
+const int menu_Width = 300;
+const int screen_Height = 1350;
+
+static const int tileSize{ 90 };
+
 class Game
 {
 public:
@@ -28,15 +34,19 @@ private:
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void setupFontAndText();
 	void setupSprite();
 
 	sf::RenderWindow m_window; // main SFML window
-	sf::Font m_ArialBlackfont; // font used by message
-	sf::Text m_welcomeMessage; // text used for message on screen
-	sf::Texture m_logoTexture; // texture used for sfml logo
-	sf::Sprite m_logoSprite; // sprite used for sfml logo
 	bool m_exitGame; // control exiting game
+
+	sf::Sprite mapArea;
+	sf::Texture mapTexture;
+
+	static const int cols = screen_Width / tileSize;
+	sf::Vertex m_colLine[cols * 2];
+	static const int rows = screen_Height / tileSize;
+	sf::Vertex m_rowLine[rows * 2];
+	
 
 };
 

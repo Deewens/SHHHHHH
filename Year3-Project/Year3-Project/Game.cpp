@@ -1,8 +1,5 @@
 /// <summary>
-/// @author Peter Lowe
-/// @date May 2019
-///
-/// you need to change the above lines or lose marks
+/// 
 /// </summary>
 
 #include "Game.h"
@@ -26,7 +23,7 @@ Game::Game() :
     pauseMenuSetUp();
     setupEnvironment();
 
-    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
+    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width, screen_Height));
     m_menuView.reset(sf::FloatRect(0,0, screen_Width, screen_Height));
 
     m_grid.debug();

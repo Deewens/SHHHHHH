@@ -8,11 +8,6 @@
 #include "Game.h"
 #include <iostream>
 
-const int screen_Width = 1200;
-const int screen_Height = 900;
-
-static const int tileSize{ 60 };
-
 /// <summary>
 /// default constructor
 /// setup the window properties
@@ -20,10 +15,9 @@ static const int tileSize{ 60 };
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ screen_Width, screen_Height, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ screen_Width + menu_Width, screen_Height, 32U }, "LevelLoader" },
 	m_exitGame{false} //when true game will exit
 {
-	setupFontAndText(); // load font 
 	setupSprite(); // load texture
 }
 
@@ -114,29 +108,10 @@ void Game::update(sf::Time t_deltaTime)
 void Game::render()
 {
 	m_window.clear(sf::Color::White);
-	m_window.draw(m_welcomeMessage);
-	m_window.draw(m_logoSprite);
+	m_window.draw(mapArea);
+	m_window.draw(m_colLine, cols * 2, sf::Lines);
+	m_window.draw(m_rowLine, rows * 2, sf::Lines);
 	m_window.display();
-}
-
-/// <summary>
-/// load the font and setup the text message for screen
-/// </summary>
-void Game::setupFontAndText()
-{
-	if (!m_ArialBlackfont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
-	{
-		std::cout << "problem loading arial black font" << std::endl;
-	}
-	m_welcomeMessage.setFont(m_ArialBlackfont);
-	m_welcomeMessage.setString("SFML Game");
-	m_welcomeMessage.setStyle(sf::Text::Underlined | sf::Text::Italic | sf::Text::Bold);
-	m_welcomeMessage.setPosition(40.0f, 40.0f);
-	m_welcomeMessage.setCharacterSize(80U);
-	m_welcomeMessage.setOutlineColor(sf::Color::Red);
-	m_welcomeMessage.setFillColor(sf::Color::Black);
-	m_welcomeMessage.setOutlineThickness(3.0f);
-
 }
 
 /// <summary>
@@ -144,11 +119,26 @@ void Game::setupFontAndText()
 /// </summary>
 void Game::setupSprite()
 {
-	if (!m_logoTexture.loadFromFile("ASSETS\\IMAGES\\SFML-LOGO.png"))
+	if (!mapTexture.loadFromFile("ASSETS/IMAGES/Map.png"))
 	{
-		// simple error message if previous call fails
-		std::cout << "problem loading logo" << std::endl;
+
 	}
-	m_logoSprite.setTexture(m_logoTexture);
-	m_logoSprite.setPosition(300.0f, 180.0f);
+	mapArea.setTexture(mapTexture);
+	mapArea.setScale(sf::Vector2f((float)screen_Width / (float)mapTexture.getSize().x, (float)screen_Height / (float)mapTexture.getSize().y));
+	
+	for (int i = 0; i < cols; i++)
+	{
+		m_colLine[i * 2] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), 0 });
+		m_colLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), screen_Height });
+		m_colLine[i * 2].color = sf::Color::Black;
+		m_colLine[i * 2 + 1].color = sf::Color::Black;
+	}
+
+	for (int i = 0; i < rows; i++)
+	{
+		m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{ 0,(float)(i * tileSize) });
+		m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width ,(float)(i * tileSize) });
+		m_rowLine[i * 2].color = sf::Color::Black;
+		m_rowLine[i * 2 + 1].color = sf::Color::Black;
+	}
 }
