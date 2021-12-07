@@ -21,7 +21,6 @@
 
 #define TINYC2_IMPL
 #include "Game.h"
-//#define TINYC2_IMPL
 
 /// <summary>
 /// main enrtry point

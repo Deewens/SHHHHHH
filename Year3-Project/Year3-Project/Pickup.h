@@ -6,29 +6,30 @@
 class Pickup : public sf::Drawable
 {
 public:
-	Pickup();
-	Pickup(int t_gridNum , const PickUpType& m_type);
-
-	sf::Vector2f getPosition();
-
-	float getRadius();
+	Pickup(int t_gridNum);
 
 	void setUpSpriteBottle();
 
-	void setUpSpriteCan();
-private:
+	sf::Sprite getSprite();
 
-	sf::RectangleShape rect;
+	//bool pickUpCollected(sf::Sprite m_player);
+
+	sf::Vector2f Pickup::getPosition();
+
+	float Pickup::getRadius();
+
+private:
 
 	sf::Texture m_bottleTexture;
 	sf::Sprite m_bottleSprite;
 
-	sf::Texture m_canTexture;
-	sf::Sprite m_canSprite;
-
-
     void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
 
+	int m_gridNum = -1;
 
+	float m_col{};
+	float m_row{};
+
+	sf::Vector2f m_position{};
 };
 

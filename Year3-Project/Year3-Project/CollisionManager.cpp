@@ -17,7 +17,7 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	}
 }
 
-void CollisionManager::check(Player& t_player, Pickup& t_pickup)
+bool CollisionManager::check(Player& t_player, Pickup& t_pickup)
 {
 	//switch (m_playerState)
 	//{
@@ -54,7 +54,11 @@ void CollisionManager::check(Player& t_player, Pickup& t_pickup)
 	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
-		std::cout << "pickup";
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }
 

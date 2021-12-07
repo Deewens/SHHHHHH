@@ -14,11 +14,10 @@ public:
 
 	CollisionManager();
 	void check(Player& t_player, Enemy& t_enemy);
-	void check(Player& t_player, Pickup& t_pickup);
+	bool check(Player& t_player, Pickup& t_pickup);
 	void check(Player& t_player, Environment& t_environment);
 
 	bool static collision(const sf::Sprite& object1, const sf::Sprite& object2);
-
 
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();

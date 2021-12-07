@@ -21,6 +21,8 @@ public:
 
     void setUpSprite();
 
+    bool m_pickUpHud[2] = { false,false };
+
 private:
 
     sf::Font m_hudFont;
@@ -37,5 +39,9 @@ private:
 
     sf::Texture m_backpackTexture;
     sf::Sprite m_backpackSprite;
+
+    sf::Texture m_hudBottleTexture;
+    sf::Sprite m_hudBottleSprite[2];
+
 };
 

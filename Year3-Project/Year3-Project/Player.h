@@ -40,6 +40,7 @@ private:
     void boundryCheck();
     sf::Vector2f getVelocity();
 
+
     sf::RectangleShape m_powerBar;
 
     sf::RectangleShape m_powerthrow;
@@ -60,6 +61,8 @@ public:
     void awayFrom(sf::Vector2f t_obstacle);
 
     void renderPowerBar(sf::RenderWindow& t_window);
+
+    sf::Sprite getSprite();
 
 };
 

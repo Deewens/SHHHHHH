@@ -1,33 +1,10 @@
 #include "Pickup.h"
 
-Pickup::Pickup()
-{
-	rect.setSize(sf::Vector2f(20, 20));
-	rect.setOrigin(sf::Vector2f(10, 10));
-	rect.setFillColor(sf::Color::Cyan);
-	rect.setPosition(sf::Vector2f(150, 150));	
-}
 
-Pickup::Pickup(int t_gridNum, const PickUpType& m_type)
-{
-	if (m_type == PickUpType::BOTTLE)
-	{
-		setUpSpriteBottle();
-	}
-	if (m_type == PickUpType::CAN)
-	{
-		setUpSpriteCan();
-	}
-}
-
-sf::Vector2f Pickup::getPosition()
-{
-	return rect.getPosition();
-}
-
-float Pickup::getRadius()
-{
-	return rect.getOrigin().x;
+Pickup::Pickup(int t_gridNum)
+{	
+	m_gridNum = t_gridNum;
+   setUpSpriteBottle();	
 }
 
 void Pickup::setUpSpriteBottle()
@@ -37,24 +14,37 @@ void Pickup::setUpSpriteBottle()
 		// simple error message if previous call fails
 		std::cout << "problem loading backpack texture" << std::endl;
 	}
+
 	m_bottleSprite.setTexture(m_bottleTexture);
-	m_bottleSprite.setOrigin(m_bottleSprite.getGlobalBounds().width / 2, m_bottleSprite.getGlobalBounds().height / 2);
+	m_bottleSprite.setScale(0.025, 0.025);		
+
+	m_col = m_gridNum % (screen_Width / tileSize);
+	m_row= (m_gridNum - m_col) / (screen_Width / tileSize);
+
+	m_position.x = (m_col * tileSize) + (tileSize / 2);
+	m_position.y = (m_row * tileSize) + (tileSize / 2);
+
+	m_bottleSprite.setPosition(m_position);
 }
 
-void Pickup::setUpSpriteCan()
+
+sf::Sprite Pickup::getSprite()
+{	
+	return m_bottleSprite;	
+}
+
+sf::Vector2f Pickup::getPosition()
 {
-	if (!m_canTexture.loadFromFile("ASSETS\\IMAGES\\Can.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading backpack texture" << std::endl;
-	}
-	m_canSprite.setTexture(m_canTexture);
-	m_canSprite.setOrigin(m_canSprite.getGlobalBounds().width / 2, m_canSprite.getGlobalBounds().height / 2);
+	return m_bottleSprite.getPosition();
+}
 
-
+float Pickup::getRadius()
+{
+	return m_bottleSprite.getOrigin().x;
 }
 
 void Pickup::draw(sf::RenderTarget &target, sf::RenderStates states) const
-{
-    target.draw(rect);
+{	
+	target.draw(m_bottleSprite);	
 }
+

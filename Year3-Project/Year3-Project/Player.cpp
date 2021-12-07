@@ -278,6 +278,11 @@ sf::Vector2f Player::getVelocity()
     return m_velocity;
 }
 
+sf::Sprite Player::getSprite()
+{
+    return m_sprite;
+}
+
 void Player::boundryCheck()
 {
     if (m_sprite.getPosition().x > screen_Width - m_sprite.getTextureRect().width)
