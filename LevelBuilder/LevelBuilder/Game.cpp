@@ -19,6 +19,7 @@ Game::Game() :
 	m_exitGame{false} //when true game will exit
 {
 	setupSprite(); // load texture
+	setupHUD();
 }
 
 /// <summary>
@@ -111,6 +112,14 @@ void Game::render()
 	m_window.draw(mapArea);
 	m_window.draw(m_colLine, cols * 2, sf::Lines);
 	m_window.draw(m_rowLine, rows * 2, sf::Lines);
+	saveButton->render(m_window);
+	deleteButton->render(m_window);
+	upButton->render(m_window);
+	downButton->render(m_window);
+	for (Button* button : tileOptions)
+	{
+		button->render(m_window);
+	}
 	m_window.display();
 }
 
@@ -140,5 +149,33 @@ void Game::setupSprite()
 		m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width ,(float)(i * tileSize) });
 		m_rowLine[i * 2].color = sf::Color::Black;
 		m_rowLine[i * 2 + 1].color = sf::Color::Black;
+	}
+}
+
+void Game::setupHUD()
+{
+	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
+	deleteButton = new Button(sf::Vector2f(screen_Width + menu_Width / 4, screen_Height - 160), sf::Vector2f(menu_Width / 2, 50), sf::Color::Red, 
+		"Delete", 30, sf::Color::Black);
+	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), 20), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+		"^", 30, sf::Color::Black);
+	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), screen_Height - 230), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+		"v", 30, sf::Color::Black);
+
+	Button* temp;
+	int imageCount = 5;
+	std::string images[5] = { "ASSETS/IMAGES/SFML-LOGO.png",
+		"ASSETS/IMAGES/SFML-LOGO.png",
+		"ASSETS/IMAGES/SFML-LOGO.png",
+		"ASSETS/IMAGES/SFML-LOGO.png",
+		"ASSETS/IMAGES/SFML-LOGO.png" };
+	for (int i = 0; i < imageCount; i++)
+	{
+		if (!m_texture.loadFromFile(images[i]))
+		{
+
+		}
+		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture);
+		tileOptions.push_back(temp);
 	}
 }

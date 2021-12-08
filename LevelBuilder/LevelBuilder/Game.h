@@ -10,12 +10,8 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
-
-const int screen_Width = 1800;
-const int menu_Width = 300;
-const int screen_Height = 1350;
-
-static const int tileSize{ 90 };
+#include "Globals.h"
+#include "Button.h"
 
 class Game
 {
@@ -35,6 +31,7 @@ private:
 	void render();
 	
 	void setupSprite();
+	void setupHUD();
 
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game
@@ -46,7 +43,13 @@ private:
 	sf::Vertex m_colLine[cols * 2];
 	static const int rows = screen_Height / tileSize;
 	sf::Vertex m_rowLine[rows * 2];
-	
+
+	Button* saveButton;
+	Button* deleteButton;
+	Button* upButton;
+	Button* downButton;
+	std::vector<Button*> tileOptions;
+	sf::Texture m_texture;
 
 };
 
