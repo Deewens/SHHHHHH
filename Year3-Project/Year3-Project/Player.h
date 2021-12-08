@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "Animation.h"
 #include "json.hpp"
+#include "SoundHolder.h"
 
 struct Direction {
     bool up = false;
@@ -49,9 +50,15 @@ private:
     sf::Vector2f m_powerBarSize = { 50,5 };
     sf::Vector2f m_powerSize = { 0,4 };
 
+    std::vector<sf::Sound*> footstepWalkSounds;
+    std::vector<sf::Sound*> footstepRunSounds;
+    std::vector<sf::Sound*> footstepSneakSounds;
+    sf::Clock clock;
+
 public:
 
     Player();
+    void loadSoundHolder(SoundHolder& soundHolder);
 
     void update(sf::Time deltaTime) override;
 

@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <random>
+#include "Utils.h"
 
 void Player::unitVector(sf::Vector2f& t_vector, float dt)
 {
@@ -48,8 +50,8 @@ Player::Player() :
             int width = frame["w"];
             int height = frame["h"];
 
-            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
-            m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.2});
+            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.025});
+            m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
             m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.5});
         }
         else if (throwingFound != std::string::npos)
@@ -116,17 +118,39 @@ void Player::update(sf::Time deltaTime)
     if (m_velocity.x == 0 && m_velocity.y == 0)
         m_playerState = PlayerMovingState::IDLE;
 
+    sf::Time elapsed = clock.getElapsedTime();
+
+
     // Update animations
     switch (m_playerState)
     {
         case PlayerMovingState::RUNNING:
             m_runningAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 0.25)
+            {
+                Utils::playRandomSound(footstepRunSounds);
+                clock.restart();
+            }
             break;
         case PlayerMovingState::WALKING:
             m_walkingAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 0.5)
+            {
+                Utils::playRandomSound(footstepWalkSounds);
+                clock.restart();
+            }
+
             break;
         case PlayerMovingState::CROUCHING:
             m_crouchingAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 0.75)
+            {
+                Utils::playRandomSound(footstepSneakSounds);
+                clock.restart();
+            }
             break;
         case PlayerMovingState::IDLE:
             m_idlingAnim.update(deltaTime.asSeconds());
@@ -296,5 +320,40 @@ void Player::boundryCheck()
     {
         m_sprite.setPosition(m_sprite.getPosition().x, getRadius());
     }
+}
+
+void Player::loadSoundHolder(SoundHolder& soundHolder)
+{
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand1)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand2)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand3)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand4)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand5)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand6)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand7)));
+    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand8)));
+
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand2)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand3)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand4)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand5)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand6)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand7)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand8)));
+
+    footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand1)));
+    footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand2)));
+    footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand3)));
+    footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand4)));
+
+    for (auto sound : footstepWalkSounds)
+        sound->setVolume(20);
+
+    for (auto sound : footstepRunSounds)
+        sound->setVolume(20);
+
+    for (auto sound : footstepSneakSounds)
+        sound->setVolume(20);
 }
 

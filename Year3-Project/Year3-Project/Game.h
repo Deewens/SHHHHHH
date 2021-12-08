@@ -20,6 +20,7 @@
 #include "Grid.h"
 #include "Environment.h"
 #include "HUD.h"
+#include "SoundHolder.h"
 
 
 class Game
@@ -42,6 +43,7 @@ private:
 
     void pauseMenuSetUp();
     void setupEnvironment();
+    void loadSounds();
 
     void cameraMovement(sf::Time dt);
 
@@ -74,6 +76,7 @@ private:
 
     sf::Texture m_groundTexture;
 
+    SoundHolder m_sounds;
 };
 
 #endif // !GAME_HPP
