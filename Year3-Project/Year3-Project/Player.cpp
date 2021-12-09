@@ -8,11 +8,12 @@ void Player::unitVector(sf::Vector2f& t_vector, float dt)
 }
 
 Player::Player() :
-    m_runningAnim(m_sprite, true),
-    m_walkingAnim(m_sprite, true),
-    m_crouchingAnim(m_sprite, true),
-    m_idlingAnim(m_sprite, true),
-    m_throwingAnim(m_sprite, true)
+    m_runningAnim(m_sprite),
+    m_walkingAnim(m_sprite),
+    m_crouchingAnim(m_sprite),
+    m_idlingAnim(m_sprite),
+    m_startThrowingAnim(m_sprite, false),
+    m_endThrowingAnim(m_sprite, false)
 {
     m_speed = WALKING_SPEED;
     Player::loadTexture();
@@ -28,7 +29,8 @@ Player::Player() :
 
         std::string::size_type idleFound = filename.find("player/idling/");
         std::string::size_type runningFound = filename.find("player/running/");
-        std::string::size_type throwingFound = filename.find("player/throwing/");
+        std::string::size_type startThrowingFound = filename.find("player/throwing/start/");
+        std::string::size_type endThrowingFound = filename.find("player/throwing/end/");
         // Found something
         if (idleFound != std::string::npos)
         {
@@ -52,7 +54,7 @@ Player::Player() :
             m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.2});
             m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.5});
         }
-        else if (throwingFound != std::string::npos)
+        else if (startThrowingFound != std::string::npos)
         {
             nlohmann::json frame = val["frame"];
             int x = frame["x"];
@@ -60,7 +62,17 @@ Player::Player() :
             int width = frame["w"];
             int height = frame["h"];
 
-            m_throwingAnim.addFrame({sf::IntRect(x, y, width, height)});
+            m_startThrowingAnim.addFrame({sf::IntRect(x, y, width, height)});
+        }
+        else if (endThrowingFound != std::string::npos)
+        {
+            nlohmann::json frame = val["frame"];
+            int x = frame["x"];
+            int y = frame["y"];
+            int width = frame["w"];
+            int height = frame["h"];
+
+            m_endThrowingAnim.addFrame({sf::IntRect(x, y, width, height)});
         }
     }
 
@@ -138,6 +150,8 @@ void Player::update(sf::Time deltaTime)
 
     if (m_throw)
     {
+
+        m_endThrowingAnim.update(deltaTime.asSeconds());
         m_powerBar.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
         m_powerBar.setRotation(m_sprite.getRotation());
 
@@ -187,6 +201,7 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::RControl)
         {
             m_throw = false;
+            m_endThrowingAnim.reset();
             m_powerSize.x = 0;
             
         }

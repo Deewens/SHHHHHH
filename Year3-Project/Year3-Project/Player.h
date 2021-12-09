@@ -29,7 +29,8 @@ private:
     Animation m_runningAnim;
 
     Animation m_idlingAnim;
-    Animation m_throwingAnim;
+    Animation m_startThrowingAnim;
+    Animation m_endThrowingAnim;
 
     Direction m_movementDir;
     sf::Vector2f m_velocity;
