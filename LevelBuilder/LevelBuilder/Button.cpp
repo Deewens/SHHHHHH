@@ -80,7 +80,7 @@ void Button::render(sf::RenderWindow& t_window)
 	if (isSprite)
 	{
 		t_window.draw(m_sprite);
-		if (isSelected)
+		if (isSelected && scrollHeight > tileListTop - buttonStartSize.height && scrollHeight < tileListBottom)
 		{
 			t_window.draw(m_button);
 		}
