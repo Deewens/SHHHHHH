@@ -112,8 +112,6 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(mapArea);
-	m_window.draw(m_colLine, cols * 2, sf::Lines);
-	m_window.draw(m_rowLine, rows * 2, sf::Lines);
 	saveButton->render(m_window);
 	deleteButton->render(m_window);
 	upButton->render(m_window);
@@ -122,6 +120,15 @@ void Game::render()
 	{
 		button->render(m_window);
 	}
+	for (int i = 0; i < mapSize; i++)
+	{
+		if (m_MapTiles[i] != nullptr)
+		{
+			m_MapTiles[i]->render(m_window);
+		}
+	}
+	m_window.draw(m_colLine, cols * 2, sf::Lines);
+	m_window.draw(m_rowLine, rows * 2, sf::Lines);
 	m_window.display();
 }
 
@@ -165,19 +172,22 @@ void Game::setupHUD()
 		"v", 30, sf::Color::Black);
 
 	Button* temp;
-	int imageCount = 5;
-	std::string images[5] = { "ASSETS/IMAGES/SFML-LOGO.png",
-		"ASSETS/IMAGES/SFML-LOGO.png",
-		"ASSETS/IMAGES/SFML-LOGO.png",
-		"ASSETS/IMAGES/SFML-LOGO.png",
-		"ASSETS/IMAGES/SFML-LOGO.png" };
+	int imageCount = 8;
+	std::string images[8] = { "SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png",
+		"SFML-LOGO.png" };
 	for (int i = 0; i < imageCount; i++)
 	{
-		if (!m_texture.loadFromFile(images[i]))
+		if (!m_texture.loadFromFile("ASSETS/IMAGES/" + images[i]))
 		{
 
 		}
-		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture);
+		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture, images[i]);
 		tileOptions.push_back(temp);
 	}
 }
@@ -185,11 +195,11 @@ void Game::setupHUD()
 void Game::manageClicks(sf::Event t_event)
 {
 	sf::Vector2i click = sf::Mouse::getPosition(m_window);
+	//holding down mouse
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
 		if (upButton->isInside(click))
 		{
-			std::cout << "up" << std::endl;
 			for (Button* button : tileOptions)
 			{
 				button->moveUp(0.2f);
@@ -197,7 +207,6 @@ void Game::manageClicks(sf::Event t_event)
 		}
 		if (downButton->isInside(click))
 		{
-			std::cout << "down" << std::endl;
 			for (Button* button : tileOptions)
 			{
 				button->moveDown(0.2f);
@@ -206,15 +215,49 @@ void Game::manageClicks(sf::Event t_event)
 	}
 	if (t_event.type == sf::Event::MouseButtonReleased && t_event.mouseButton.button == sf::Mouse::Left)
 	{
+		//check if you interacted with the ui
 		if (click.x >= screen_Width && click.x < screen_Width + menu_Width &&
 			click.y >= 0 && click.y <= screen_Height)
 		{
-			std::cout << "ui" << std::endl;
+			for (Button* button : tileOptions)
+			{
+				if (button->isInside(click))
+				{
+					if (selectedButton != nullptr)
+						selectedButton->setSelected(false);
+					selectedButton = button;
+					button->setSelected(true);
+					if (isDeleting)
+					{
+						isDeleting = false;
+						deleteButton->setSelected(false);
+					}
+				}
+			}
+			if (deleteButton->isInside(click))
+			{
+				isDeleting = true;
+				deleteButton->setSelected(true);
+				if (selectedButton != nullptr)
+				{
+					selectedButton->setSelected(false);
+					selectedButton = nullptr;
+				}
+			}
 		}
-		if (click.x <= screen_Width && click.x > 0 &&
+		//check if you clicked on the map
+		else if (click.x <= screen_Width && click.x > 0 &&
 			click.y >= 0 && click.y <= screen_Height)
 		{
-			std::cout << "map" << std::endl;
+			int tileNum = trunc(click.x / tileSize) + (trunc(click.y / tileSize) * (screen_Width / tileSize));
+			if (isDeleting)
+			{
+				m_MapTiles[tileNum] = nullptr;
+			}
+			else if (selectedButton != nullptr)
+			{
+				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum);
+			}
 		}
 	}
 }

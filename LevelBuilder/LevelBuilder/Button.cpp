@@ -50,9 +50,11 @@ Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Color t_color, 
 
 	buttonSize = buttonStartSize;
 	scrollHeight = t_location.y;
+	
+	m_buttonColor = t_color;
 }
 
-Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture t_texture) : m_texture(t_texture)
+Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture t_texture, std::string t_spriteName) : m_texture(t_texture), m_spriteName(t_spriteName)
 {
 	m_sprite.setTexture(m_texture);
 	m_sprite.setPosition(t_location);
@@ -66,6 +68,11 @@ Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture t_textu
 
 	buttonSize = buttonStartSize;
 	scrollHeight = t_location.y;
+	checkSpriteVisible();
+
+	m_button.setFillColor(sf::Color::Transparent);
+	m_button.setOutlineThickness(5);
+	m_button.setOutlineColor(sf::Color::Red);
 }
 
 void Button::render(sf::RenderWindow& t_window)
@@ -73,6 +80,10 @@ void Button::render(sf::RenderWindow& t_window)
 	if (isSprite)
 	{
 		t_window.draw(m_sprite);
+		if (isSelected)
+		{
+			t_window.draw(m_button);
+		}
 	}
 	else
 	{
@@ -87,6 +98,11 @@ bool Button::isInside(sf::Vector2i t_click)
 	if (isSprite)
 	{
 		buttonRect = m_sprite.getGlobalBounds();
+		if (t_click.x >= buttonRect.left && t_click.x < buttonRect.left + buttonRect.width &&
+			t_click.y >= buttonRect.top && t_click.y <= buttonRect.top + buttonRect.height)
+		{
+			return true;
+		}
 	}
 	else
 	{
@@ -102,108 +118,96 @@ bool Button::isInside(sf::Vector2i t_click)
 
 void Button::moveUp(float t_speed)
 {
-	sf::Vector2f pos;
 	if (isSprite)
 	{
-		sf::Vector2f scale = m_sprite.getScale();
-		pos = m_sprite.getPosition();
 		scrollHeight -= t_speed;
-		pos.y = scrollHeight;
-		if (scrollHeight < tileListTop)
-		{
-			float difference = tileListTop - scrollHeight;
-			if (difference <= buttonStartSize.height)
-			{
-				buttonSize.top = difference;
-				buttonSize.height =buttonStartSize.height - difference;
-			}
-			sf::IntRect texRect;
-			texRect.top = (buttonSize.top) / scale.x;
-			texRect.left = 0;
-			texRect.height = buttonSize.height / scale.x;
-			texRect.width = buttonSize.width / scale.y;
-			m_sprite.setTextureRect(texRect);
-			pos.y = tileListTop;
-		}
-		else if (scrollHeight > tileListBottom - buttonStartSize.height)
-		{
-			float difference = buttonStartSize.height - (scrollHeight - (tileListBottom - buttonStartSize.height));
-			sf::IntRect texRect;
-			texRect.top = 0;
-			texRect.left = 0;
-			if (difference <= buttonStartSize.height)
-			{
-				buttonSize.height = difference;
-				texRect.height = difference / scale.x;
-			}
-			else
-			{
-				texRect.height = 0;
-			}
-			texRect.width = buttonSize.width / scale.y;
-			m_sprite.setTextureRect(texRect);
-		}
-		m_sprite.setPosition(pos);
-	}
-	else
-	{
-		pos = m_button.getPosition();
+		checkSpriteVisible();
 	}
 }
 
 void Button::moveDown(float t_speed)
 {
-	sf::Vector2f pos;
 	if (isSprite)
 	{
-		sf::Vector2f scale = m_sprite.getScale();
-		pos = m_sprite.getPosition();
 		scrollHeight += t_speed;
-		pos.y = scrollHeight;
-		if (scrollHeight > tileListBottom - buttonStartSize.height)
-		{
-			float difference = buttonStartSize.height - (scrollHeight - (tileListBottom - buttonStartSize.height));
-			sf::IntRect texRect;
-			texRect.top = 0;
-			texRect.left = 0;
-			if (difference >= 0)
-			{
-				buttonSize.height = difference;
-				texRect.height = difference / scale.x;
-			}
-			else
-			{
-				texRect.height = 0;
-			}
-			texRect.width = buttonSize.width / scale.y;
-			m_sprite.setTextureRect(texRect);
-		}
-		else if (scrollHeight < tileListTop)
-		{
-			float difference = tileListTop - scrollHeight;
-			if (difference <= buttonStartSize.height)
-			{
-				buttonSize.top = difference;
-				buttonSize.height = buttonStartSize.height - difference;
-			}
-			else
-			{
-				buttonSize.top = scrollHeight;
-				buttonSize.height = buttonStartSize.height;
-			}
-			sf::IntRect texRect;
-			texRect.top = (buttonSize.top) / scale.x;
-			texRect.left = 0;
-			texRect.height = buttonSize.height / scale.x;
-			texRect.width = buttonSize.width / scale.y;
-			m_sprite.setTextureRect(texRect);
-			pos.y = tileListTop;
-
-		}
-		m_sprite.setPosition(pos);
+		checkSpriteVisible();
 	}
-	else
+}
+
+void Button::setSelected(bool t_selected)
+{
+	isSelected = t_selected;
+	if (isSprite && isSelected)
 	{
-		pos = m_button.getPosition();
+		m_button.setPosition(m_sprite.getPosition());
+		m_button.setSize(sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height));
+	}
+	if (!isSprite)
+	{
+		if (isSelected)
+		{
+			m_button.setFillColor(sf::Color::Yellow);
+		}
+		else
+		{
+			m_button.setFillColor(m_buttonColor);
+		}
+	}
+}
+
+sf::Texture& Button::getTexture()
+{
+	return m_texture;
+}
+
+std::string Button::getSpriteName()
+{
+	return m_spriteName;
+}
+
+void Button::checkSpriteVisible()
+{
+	sf::Vector2f pos;
+	sf::Vector2f scale = m_sprite.getScale();
+	pos = m_sprite.getPosition();
+	sf::IntRect texRect;
+	pos.y = scrollHeight;
+	if (scrollHeight < tileListTop)
+	{
+		float difference = tileListTop - scrollHeight;
+		if (difference <= buttonStartSize.height)
+		{
+			buttonSize.top = difference;
+			buttonSize.height = buttonStartSize.height - difference;
+		}
+		texRect.top = (buttonSize.top) / scale.x;
+		texRect.left = 0;
+		texRect.height = buttonSize.height / scale.x;
+		texRect.width = buttonSize.width / scale.y;
+		m_sprite.setTextureRect(texRect);
+		pos.y = tileListTop;
+	}
+	else if (scrollHeight > tileListBottom - buttonStartSize.height)
+	{
+		float difference = buttonStartSize.height - (scrollHeight - (tileListBottom - buttonStartSize.height));
+		texRect.top = 0;
+		texRect.left = 0;
+		if (difference <= buttonStartSize.height && difference >= 0)
+		{
+			buttonSize.height = difference;
+			texRect.height = difference / scale.x;
+		}
+		else
+		{
+			texRect.height = 0;
+		}
+		texRect.width = buttonSize.width / scale.y;
+		m_sprite.setTextureRect(texRect);
+	}
+	m_sprite.setPosition(pos);
+	if (isSelected)
+	{
+		m_button.setPosition(pos);
+		m_button.setSize(sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height));
 	}
 }

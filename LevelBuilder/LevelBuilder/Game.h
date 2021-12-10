@@ -13,6 +13,7 @@
 #include "Globals.h"
 #include "Button.h"
 #include <iostream>
+#include "Tile.h"
 
 class Game
 {
@@ -51,8 +52,13 @@ private:
 	Button* upButton;
 	Button* downButton;
 	std::vector<Button*> tileOptions;
+	Button* selectedButton;
 	sf::Texture m_texture;
 
+	static const int mapSize = (screen_Height / tileSize) * (screen_Width / tileSize);
+	Tile* m_MapTiles[mapSize];
+
+	bool isDeleting = false;
 };
 
 #endif // !GAME_HPP
