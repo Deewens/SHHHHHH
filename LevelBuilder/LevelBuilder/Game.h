@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
 #include "Button.h"
+#include <iostream>
 
 class Game
 {
@@ -32,6 +33,7 @@ private:
 	
 	void setupSprite();
 	void setupHUD();
+	void manageClicks(sf::Event t_event);
 
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game

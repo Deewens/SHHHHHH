@@ -76,6 +76,7 @@ void Game::processEvents()
 			processKeys(newEvent);
 		}
 	}
+	manageClicks(newEvent);
 }
 
 
@@ -89,6 +90,7 @@ void Game::processKeys(sf::Event t_event)
 	{
 		m_exitGame = true;
 	}
+	
 }
 
 /// <summary>
@@ -177,5 +179,42 @@ void Game::setupHUD()
 		}
 		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture);
 		tileOptions.push_back(temp);
+	}
+}
+
+void Game::manageClicks(sf::Event t_event)
+{
+	sf::Vector2i click = sf::Mouse::getPosition(m_window);
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		if (upButton->isInside(click))
+		{
+			std::cout << "up" << std::endl;
+			for (Button* button : tileOptions)
+			{
+				button->moveUp(0.2f);
+			}
+		}
+		if (downButton->isInside(click))
+		{
+			std::cout << "down" << std::endl;
+			for (Button* button : tileOptions)
+			{
+				button->moveDown(0.2f);
+			}
+		}
+	}
+	if (t_event.type == sf::Event::MouseButtonReleased && t_event.mouseButton.button == sf::Mouse::Left)
+	{
+		if (click.x >= screen_Width && click.x < screen_Width + menu_Width &&
+			click.y >= 0 && click.y <= screen_Height)
+		{
+			std::cout << "ui" << std::endl;
+		}
+		if (click.x <= screen_Width && click.x > 0 &&
+			click.y >= 0 && click.y <= screen_Height)
+		{
+			std::cout << "map" << std::endl;
+		}
 	}
 }
