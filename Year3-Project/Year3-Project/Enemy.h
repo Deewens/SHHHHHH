@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include "tinyc2.h"
 #include "Animation.h"
+#include "Utils.h"
 
 class Enemy : public Character
 {
@@ -21,6 +22,8 @@ public:
     void renderVisionCone(sf::RenderWindow& t_window);
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
+
+    void loadSoundHolder(SoundHolder& soundHolder);
 
 private:
 
@@ -41,6 +44,7 @@ private:
     void debug();
 
 
+
 private:
 
     sf::Texture m_texture;
@@ -48,6 +52,9 @@ private:
 
     Animation m_runningAnim;
     Animation m_idlingAnim;
+
+    std::vector<sf::Sound*> footstepWalkSounds;
+    std::vector<sf::Sound*> footstepRunSounds;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };
     const float VISION_CONE_LENGTH_ATTACK{ 300.0f };
@@ -85,6 +92,8 @@ private:
         SEEK,
         ATTACK
     }m_EnemyState;
+
+    sf::Clock clock;
 
 };
 

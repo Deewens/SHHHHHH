@@ -22,6 +22,7 @@ Game::Game() :
 {
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
+    m_enemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);

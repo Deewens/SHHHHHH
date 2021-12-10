@@ -127,7 +127,7 @@ void Player::update(sf::Time deltaTime)
         case PlayerMovingState::RUNNING:
             m_runningAnim.update(deltaTime.asSeconds());
 
-            if (elapsed.asSeconds() >= 0.25)
+            if (elapsed.asSeconds() >= 0.1)
             {
                 Utils::playRandomSound(footstepRunSounds);
                 clock.restart();
