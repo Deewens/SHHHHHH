@@ -30,7 +30,7 @@ Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, in
     m_sprite.setTextureRect(sf::IntRect(x, y, width, height));
     m_sprite.setScale((float)tileSize/width, (float)tileSize/height);
 
-    m_sprite.setOrigin(sf::Vector2f(width / 2, height / 2));
+    m_sprite.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
     m_sprite.setRotation(m_rotation);
     float col = t_tileCode % t_cols;
     float row = (t_tileCode - col) / t_cols;

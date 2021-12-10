@@ -12,7 +12,7 @@ Animation::~Animation()
 void Animation::addFrame(Frame &&frame)
 {
     totalLength += frame.duration;
-    frames.push_back(std::move(frame));
+    frames.push_back(frame);
 }
 
 void Animation::update(double deltaTime)
@@ -38,6 +38,12 @@ void Animation::update(double deltaTime)
             break; // we found our frame
         }
     }
+
+}
+
+void Animation::reset()
+{
+    progress = totalLength = 0;
 }
 
 

@@ -23,6 +23,7 @@ public:
     virtual ~Animation();
     void addFrame(Frame&& frame);
     void update(double deltaTime);
+    void reset();
     const double getLength() const { return totalLength; }
 };
 

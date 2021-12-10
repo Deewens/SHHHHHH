@@ -30,7 +30,8 @@ private:
     Animation m_runningAnim;
 
     Animation m_idlingAnim;
-    Animation m_throwingAnim;
+    Animation m_startThrowingAnim;
+    Animation m_endThrowingAnim;
 
     Direction m_movementDir;
     sf::Vector2f m_velocity;
@@ -40,6 +41,7 @@ private:
     void setDirection(int t_direction);
     void boundryCheck();
     sf::Vector2f getVelocity();
+
 
     sf::RectangleShape m_powerBar;
 
@@ -67,6 +69,8 @@ public:
     void awayFrom(sf::Vector2f t_obstacle);
 
     void renderPowerBar(sf::RenderWindow& t_window);
+
+    sf::Sprite getSprite();
 
 };
 

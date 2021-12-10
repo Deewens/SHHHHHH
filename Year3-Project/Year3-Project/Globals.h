@@ -46,7 +46,3 @@ const float RUNNING_SPEED = 150.f;
 enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
 
 static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
-
-enum class PickUpType {BOTTLE , CAN};
-
-static PickUpType m_pickUpType = PickUpType::BOTTLE;

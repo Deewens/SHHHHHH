@@ -1,8 +1,5 @@
 /// <summary>
-/// @author Peter Lowe
-/// @date May 2019
 ///
-/// you need to change the above lines or lose marks
 /// </summary>
 
 #include "Game.h"
@@ -16,24 +13,19 @@
 Game::Game() :
 	m_window(sf::VideoMode{ screen_Width, screen_Height, 32U }, "SHHHH...!"),
 	m_exitGame(false), //when true game will exit
-    //m_worldView(m_window.getDefaultView()),
-    //m_worldBounds(0.f, 0.f, m_worldView.getSize().x / 2.f,m_worldBounds.height - m_worldView.getSize().y / 2.f),
-    m_spawnPosition(100.f, 100.f)
-{
+    m_spawnPosition(100.f, 100.f){
+
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
     m_enemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
-    //m_worldView.setCenter(m_spawnPosition);
     pauseMenuSetUp();
     setupEnvironment();
-
-
+    setUpPickUps();
     m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
     m_menuView.reset(sf::FloatRect(0,0, screen_Width, screen_Height));
-
     m_grid.debug();
 }
 
@@ -191,15 +183,21 @@ void Game::render()
             break;
         case GameState::GAMEPLAY:
 
-            m_window.clear(sf::Color(52, 168, 235));
-            //m_window.draw(m_gameMenu);
+            m_window.clear(sf::Color(0, 157, 196));
             m_window.setView(m_worldView);
+
             for (Environment env : m_environment)
             {
                 env.render(m_window);
             }
+            for (int i=0 ; i<2 ; i++)
+            {
+                if (m_pickupCollected[i] == false)
+                {
+                    m_window.draw(*m_pickup[i]);
+                }
+            }
             m_window.draw(m_player);
-            m_window.draw(m_pickup);
             m_window.draw(m_enemy);
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
@@ -219,7 +217,7 @@ void Game::render()
                 env.render(m_window);
             }
             m_window.draw(m_player);
-            m_window.draw(m_pickup);
+            //m_window.draw(m_pickup);
             m_window.draw(m_enemy);
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
@@ -229,14 +227,23 @@ void Game::render()
         default:
             break;
 	}
-	//m_gameMenu.draw(m_window);
 	m_window.display();
 }
 
 void Game::checkCollisions()
 {
     collisions.check(m_player, m_enemy);
-    collisions.check(m_player, m_pickup);
+
+    if (collisions.check(m_player, *m_pickup[0]))
+    {
+        m_pickupCollected[0] = true;
+        m_hud.m_pickUpHud[0] = true;
+    }
+    if (collisions.check(m_player, *m_pickup[1]))
+    {
+        m_pickupCollected[1] = true;
+        m_hud.m_pickUpHud[1] = true;
+    }
     for (Environment env : m_environment)
     {
         if (env.isImpassable())
@@ -266,11 +273,10 @@ void Game::setupEnvironment()
     {
         m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, el["rotation"]));
     }
-
     // Add impassable wall
-    sf::RectangleShape wall;
-    wall.setFillColor(sf::Color::Red);
-    m_environment.push_back(Environment(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true));
+    //sf::RectangleShape wall;
+    //wall.setFillColor(sf::Color::Red);
+    //m_environment.push_back(Environment(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true));
 }
 
 void Game::cameraMovement(sf::Time dt)
@@ -286,6 +292,11 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
     //std::cout << std::to_string(m_id) << std::endl;
 
     return m_id;
+}
+void Game::setUpPickUps()
+{
+    m_pickup[0] =new Pickup(22);
+    m_pickup[1] =new Pickup(43);
 }
 
 void Game::loadSounds()

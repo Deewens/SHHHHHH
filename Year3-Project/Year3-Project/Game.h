@@ -49,6 +49,9 @@ private:
 
     int cellIdFinder(sf::Vector2f t_targetLocation);
 
+    void setUpPickUps();
+
+
 
     sf::RenderWindow m_window; // main SFML window
 
@@ -66,7 +69,12 @@ private:
     // Game entities
     Player m_player;
     Enemy m_enemy;
-    Pickup m_pickup;
+
+    //std::vector<Pickup*> m_pickup;
+    Pickup *m_pickup[2];
+
+    bool m_pickupCollected[2] = { false,false };
+
     Grid m_grid;
     std::vector<Environment> m_environment;
     Menu m_gameMenu;
