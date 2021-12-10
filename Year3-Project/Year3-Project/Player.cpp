@@ -6,7 +6,7 @@
 void Player::unitVector(sf::Vector2f& t_vector, float dt)
 {
     float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));
-    t_vector = (t_vector * m_speed * dt) /length;
+    t_vector = (t_vector * m_speed * dt) / length;
 }
 
 Player::Player() :
@@ -20,7 +20,7 @@ Player::Player() :
     m_speed = WALKING_SPEED;
     Player::loadTexture();
 
-    // Get spritesheet data
+    // Get sprite sheet data
     std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/characters_sprite_sheet.json");
     nlohmann::json json;
     spriteSheetData >> json;
@@ -81,14 +81,11 @@ Player::Player() :
     m_sprite.setPosition(100, 100);
     m_sprite.setOrigin(30, 26);
 
-   
-
     m_powerBar.setSize(m_powerBarSize);
     m_powerBar.setFillColor(sf::Color::White);
     m_powerthrow.setSize(m_powerSize);
     m_powerthrow.setOutlineThickness(1);
     m_powerthrow.setFillColor(sf::Color::Red);
-
 }
 
 
@@ -131,7 +128,6 @@ void Player::update(sf::Time deltaTime)
         m_playerState = PlayerMovingState::IDLE;
 
     sf::Time elapsed = clock.getElapsedTime();
-
 
     // Update animations
     switch (m_playerState)
@@ -193,6 +189,8 @@ void Player::update(sf::Time deltaTime)
 
 void Player::processEvents(sf::Event event)
 {
+    sf::Time elapsed = clock.getElapsedTime();
+
     if (event.type == sf::Event::KeyPressed)
     {
         if (event.key.code == sf::Keyboard::LControl || event.key.code == sf::Keyboard::Space)
@@ -207,6 +205,10 @@ void Player::processEvents(sf::Event event)
                 m_speed = RUNNING_SPEED;
                 m_playerState = PlayerMovingState::RUNNING;
             }
+        }
+        else
+        {
+            m_playerState = PlayerMovingState::WALKING;
         }
     }
 
@@ -227,7 +229,6 @@ void Player::processEvents(sf::Event event)
             m_throw = false;
             m_endThrowingAnim.reset();
             m_powerSize.x = 0;
-            
         }
     }
 }
@@ -251,34 +252,23 @@ void Player::renderPowerBar(sf::RenderWindow& t_window)
 void Player::move(float dt)
 {
     m_velocity = sf::Vector2f(0.0f, 0.0f);
-    //m_playerState = PlayerMovingState::WALKING;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
     {
         m_throw = true;
     }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
         m_velocity.y += -m_speed * dt;
-        m_playerState = PlayerMovingState::WALKING;
-    }
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        m_playerState = PlayerMovingState::WALKING;
         m_velocity.y += m_speed * dt;
-    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        m_playerState = PlayerMovingState::WALKING;
         m_velocity.x += -m_speed * dt;
-    }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        m_playerState = PlayerMovingState::WALKING;
         m_velocity.x += m_speed * dt;
-    }
 
     if (m_velocity.y > 0 && m_velocity.x > 0)
     {
