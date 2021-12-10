@@ -138,7 +138,9 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-
+    sf::Vector2f playerPos;
+    sf::Vector2f enemyPos;
+    float dist;
 	switch (m_gameState)
 	{
         case GameState::MENU:
@@ -153,6 +155,11 @@ void Game::update(sf::Time t_deltaTime)
             collisions.update();
             cellIdFinder(m_player.getPosition());
             cameraMovement(t_deltaTime);
+
+            playerPos = m_player.getPosition();
+            enemyPos = m_enemy.getPosition();
+            dist = Utils::getDistanceBetweenPoints(playerPos, enemyPos);
+            std::cout << dist << std::endl;
             break;
         case GameState::EXIT:
             m_exitGame = true;

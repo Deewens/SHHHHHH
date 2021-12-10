@@ -5,11 +5,15 @@
 
 #include <SFML/Audio.hpp>
 
+#include <cmath>
+
 class Utils
 {
 public:
     static int generateRandomNumber(int from, int to);
     static void playRandomSound(std::vector<sf::Sound*>& sounds);
+
+    static float getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q);
 
 private:
     Utils(); // This class is not an object and cannot be instantiated - Not Implemented

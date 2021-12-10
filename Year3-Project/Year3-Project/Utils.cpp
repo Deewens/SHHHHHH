@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+
 /// <summary>
 /// Generate a random number between two values
 /// </summary>
@@ -17,4 +18,9 @@ void Utils::playRandomSound(std::vector<sf::Sound*> &sounds)
     int random = generateRandomNumber(0, (int) sounds.size()-1);
     sf::Sound* sound = sounds.at(random);
     sound->play();
+}
+
+float Utils::getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q)
+{
+    return sqrt(pow(q.x - p.x, 2) + pow(q.y - p.y, 2));
 }
