@@ -289,10 +289,12 @@ void Enemy::loadSoundHolder(SoundHolder& soundHolder)
 void Enemy::changeSoundsVolume(float newVolume)
 {
     for (auto sound : footstepRunSounds)
-        sound->setVolume(newVolume);
+        if (sound->getVolume() != newVolume)
+            sound->setVolume(newVolume);
 
     for (auto sound : footstepRunSounds)
-        sound->setVolume(newVolume);
+        if (sound->getVolume() != newVolume)
+            sound->setVolume(newVolume);
 }
 
 
