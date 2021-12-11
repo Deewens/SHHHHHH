@@ -54,7 +54,6 @@ private:
     Animation m_runningAnim;
     Animation m_idlingAnim;
 
-    std::vector<sf::Sound*> footstepWalkSounds;
     std::vector<sf::Sound*> footstepRunSounds;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };

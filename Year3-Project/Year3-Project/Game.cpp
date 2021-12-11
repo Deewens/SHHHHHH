@@ -152,10 +152,8 @@ void Game::update(sf::Time t_deltaTime)
             cellIdFinder(m_player.getPosition());
             cameraMovement(t_deltaTime);
 
-
             dist = m_player.getDistance(m_enemy);
             volume = std::max<float>(0.f, 100.f - 100.f/300.f * dist);
-            std::cout << volume << std::endl;
             m_enemy.changeSoundsVolume(volume);
             break;
         case GameState::EXIT:

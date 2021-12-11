@@ -261,15 +261,6 @@ void Enemy::debug()
 
 void Enemy::loadSoundHolder(SoundHolder& soundHolder)
 {
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand1)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand2)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand3)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand4)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand5)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand6)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand7)));
-    footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand8)));
-
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand2)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand3)));
@@ -279,19 +270,12 @@ void Enemy::loadSoundHolder(SoundHolder& soundHolder)
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand7)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand8)));
 
-    for (auto sound : footstepWalkSounds)
-        sound->setVolume(20);
-
     for (auto sound : footstepRunSounds)
         sound->setVolume(20);
 }
 
 void Enemy::changeSoundsVolume(float newVolume)
 {
-    for (auto sound : footstepRunSounds)
-        if (sound->getVolume() != newVolume)
-            sound->setVolume(newVolume);
-
     for (auto sound : footstepRunSounds)
         if (sound->getVolume() != newVolume)
             sound->setVolume(newVolume);

@@ -1,18 +1,18 @@
 #include "Player.h"
 
-void Player::unitVector(sf::Vector2f& t_vector, float dt)
+void Player::unitVector(sf::Vector2f &t_vector, float dt)
 {
     float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));
     t_vector = (t_vector * m_speed * dt) / length;
 }
 
 Player::Player() :
-    m_runningAnim(m_sprite),
-    m_walkingAnim(m_sprite),
-    m_crouchingAnim(m_sprite),
-    m_idlingAnim(m_sprite),
-    m_startThrowingAnim(m_sprite, false),
-    m_endThrowingAnim(m_sprite, false)
+        m_runningAnim(m_sprite),
+        m_walkingAnim(m_sprite),
+        m_crouchingAnim(m_sprite),
+        m_idlingAnim(m_sprite),
+        m_startThrowingAnim(m_sprite, false),
+        m_endThrowingAnim(m_sprite, false)
 {
     m_speed = WALKING_SPEED;
     Player::loadTexture();
@@ -22,7 +22,7 @@ Player::Player() :
     nlohmann::json json;
     spriteSheetData >> json;
 
-    for (auto& val : json["frames"])
+    for (auto &val: json["frames"])
     {
         std::string filename = val["filename"];
 
@@ -40,8 +40,7 @@ Player::Player() :
             int height = frame["h"];
 
             m_idlingAnim.addFrame({sf::IntRect(x, y, width, height)});
-        }
-        else if (runningFound != std::string::npos)
+        } else if (runningFound != std::string::npos)
         {
             nlohmann::json frame = val["frame"];
             int x = frame["x"];
@@ -52,8 +51,7 @@ Player::Player() :
             m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.025});
             m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
             m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.25});
-        }
-        else if (startThrowingFound != std::string::npos)
+        } else if (startThrowingFound != std::string::npos)
         {
             nlohmann::json frame = val["frame"];
             int x = frame["x"];
@@ -62,8 +60,7 @@ Player::Player() :
             int height = frame["h"];
 
             m_startThrowingAnim.addFrame({sf::IntRect(x, y, width, height)});
-        }
-        else if (endThrowingFound != std::string::npos)
+        } else if (endThrowingFound != std::string::npos)
         {
             nlohmann::json frame = val["frame"];
             int x = frame["x"];
@@ -86,35 +83,34 @@ Player::Player() :
 }
 
 
-
 void Player::setDirection(int t_direction)
 {
     switch (t_direction)
     {
-    case NORTH:
-        m_sprite.setRotation(270);
-        break;
-    case SOUTH:
-        m_sprite.setRotation(90);
-        break;
-    case EAST:
-        m_sprite.setRotation(0);
-        break;
-    case WEST:
-        m_sprite.setRotation(180);
-        break;
-    case NORTHWEST:
-        m_sprite.setRotation(225);
-        break;
-    case NORTHEAST:
-        m_sprite.setRotation(315);
-        break;
-    case SOUTHWEST:
-        m_sprite.setRotation(135);
-        break;
-    case SOUTHEAST:
-        m_sprite.setRotation(45);
-        break;
+        case NORTH:
+            m_sprite.setRotation(270);
+            break;
+        case SOUTH:
+            m_sprite.setRotation(90);
+            break;
+        case EAST:
+            m_sprite.setRotation(0);
+            break;
+        case WEST:
+            m_sprite.setRotation(180);
+            break;
+        case NORTHWEST:
+            m_sprite.setRotation(225);
+            break;
+        case NORTHEAST:
+            m_sprite.setRotation(315);
+            break;
+        case SOUTHWEST:
+            m_sprite.setRotation(135);
+            break;
+        case SOUTHEAST:
+            m_sprite.setRotation(45);
+            break;
     }
 }
 
@@ -167,7 +163,6 @@ void Player::update(sf::Time deltaTime)
 
     if (m_throw)
     {
-
         m_endThrowingAnim.update(deltaTime.asSeconds());
         m_powerBar.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
         m_powerBar.setRotation(m_sprite.getRotation());
@@ -180,7 +175,7 @@ void Player::update(sf::Time deltaTime)
         m_powerthrow.setSize(m_powerSize);
         m_powerthrow.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
         m_powerthrow.setRotation(m_sprite.getRotation());
-    }    
+    }
 }
 
 
@@ -202,10 +197,6 @@ void Player::processEvents(sf::Event event)
                 m_speed = RUNNING_SPEED;
                 m_playerState = PlayerMovingState::RUNNING;
             }
-        }
-        else
-        {
-            m_playerState = PlayerMovingState::WALKING;
         }
     }
 
@@ -237,11 +228,11 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
     m_sprite.setPosition(t_obstacle - gap);
 }
 
-void Player::renderPowerBar(sf::RenderWindow& t_window)
+void Player::renderPowerBar(sf::RenderWindow &t_window)
 {
     if (m_throw)
-    { 
-        t_window.draw(m_powerBar);   
+    {
+        t_window.draw(m_powerBar);
         t_window.draw(m_powerthrow);
     }
 }
@@ -249,6 +240,13 @@ void Player::renderPowerBar(sf::RenderWindow& t_window)
 void Player::move(float dt)
 {
     m_velocity = sf::Vector2f(0.0f, 0.0f);
+
+    if ((sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::Down)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::Left)
+         || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        && (m_playerState != PlayerMovingState::RUNNING && m_playerState != PlayerMovingState::CROUCHING))
+        m_playerState = PlayerMovingState::WALKING;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
     {
@@ -271,23 +269,19 @@ void Player::move(float dt)
     {
         setDirection(SOUTHEAST);
         unitVector(m_velocity, dt);
-    }
-    else if (m_velocity.y > 0 && m_velocity.x < 0)
+    } else if (m_velocity.y > 0 && m_velocity.x < 0)
     {
         setDirection(SOUTHWEST);
         unitVector(m_velocity, dt);
-    }
-    else if (m_velocity.y < 0 && m_velocity.x > 0)
+    } else if (m_velocity.y < 0 && m_velocity.x > 0)
     {
         setDirection(NORTHEAST);
         unitVector(m_velocity, dt);
-    }
-    else if (m_velocity.y < 0 && m_velocity.x < 0)
+    } else if (m_velocity.y < 0 && m_velocity.x < 0)
     {
         setDirection(NORTHWEST);
         unitVector(m_velocity, dt);
-    }
-    else if (m_velocity.y > 0)
+    } else if (m_velocity.y > 0)
         setDirection(SOUTH);
     else if (m_velocity.y < 0)
         setDirection(NORTH);
@@ -329,7 +323,7 @@ void Player::boundryCheck()
     }
 }
 
-void Player::loadSoundHolder(SoundHolder& soundHolder)
+void Player::loadSoundHolder(SoundHolder &soundHolder)
 {
     footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand1)));
     footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand2)));
@@ -354,13 +348,13 @@ void Player::loadSoundHolder(SoundHolder& soundHolder)
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand3)));
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand4)));
 
-    for (auto sound : footstepWalkSounds)
+    for (auto sound: footstepWalkSounds)
         sound->setVolume(20);
 
-    for (auto sound : footstepRunSounds)
+    for (auto sound: footstepRunSounds)
         sound->setVolume(20);
 
-    for (auto sound : footstepSneakSounds)
+    for (auto sound: footstepSneakSounds)
         sound->setVolume(20);
 }
 
