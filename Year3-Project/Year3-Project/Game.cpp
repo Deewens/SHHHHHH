@@ -2,6 +2,8 @@
 ///
 /// </summary>
 
+#include <algorithm>
+
 #include "Game.h"
 
 /// <summary>
@@ -134,6 +136,7 @@ void Game::update(sf::Time t_deltaTime)
     sf::Vector2f playerPos;
     sf::Vector2f enemyPos;
     float dist;
+    float volume;
 	switch (m_gameState)
 	{
         case GameState::MENU:
@@ -149,10 +152,11 @@ void Game::update(sf::Time t_deltaTime)
             cellIdFinder(m_player.getPosition());
             cameraMovement(t_deltaTime);
 
-            playerPos = m_player.getPosition();
-            enemyPos = m_enemy.getPosition();
-            dist = Utils::getDistanceBetweenPoints(playerPos, enemyPos);
-            std::cout << dist << std::endl;
+
+            dist = m_player.getDistance(m_enemy);
+            volume = std::max<float>(0.f, 100.f - 100.f/300.f * dist);
+            std::cout << volume << std::endl;
+            m_enemy.changeSoundsVolume(volume);
             break;
         case GameState::EXIT:
             m_exitGame = true;

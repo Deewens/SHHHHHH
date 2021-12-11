@@ -1,8 +1,5 @@
 #include "Player.h"
 
-#include <random>
-#include "Utils.h"
-
 void Player::unitVector(sf::Vector2f& t_vector, float dt)
 {
     float length = sqrt((t_vector.x * t_vector.x) + (t_vector.y * t_vector.y));

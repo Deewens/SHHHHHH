@@ -25,6 +25,7 @@ public:
 
     void loadSoundHolder(SoundHolder& soundHolder);
 
+    void changeSoundsVolume(float newVolume);
 private:
 
     void setDirection(int t_direction);   

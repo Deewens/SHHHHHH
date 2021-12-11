@@ -37,3 +37,10 @@ void Character::loadTexture()
     m_sprite.setTexture(m_texture);
 }
 
+float Character::getDistance(Character& t_character)
+{
+    return Utils::getDistanceBetweenPoints(this->getPosition(), t_character.getPosition());
+}
+
+void Character::update(sf::Time deltaTime) {}
+

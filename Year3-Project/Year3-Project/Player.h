@@ -1,14 +1,16 @@
 #pragma once
 
+#include <iostream>
 #include <fstream>
+#include <random>
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Globals.h"
 #include "Character.h"
 #include "Animation.h"
 #include "json.hpp"
 #include "SoundHolder.h"
+#include "Utils.h"
 
 struct Direction {
     bool up = false;

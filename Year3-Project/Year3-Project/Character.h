@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "Globals.h"
+#include "Utils.h"
 
 class Character : public sf::Drawable, public sf::Transformable
 {
@@ -19,9 +20,10 @@ public:
 
     sf::Vector2f getPosition();
     float getRadius();
+    float getDistance(Character& t_character);
 
     // Abstract methods
-    virtual void update(sf::Time deltaTime) = 0;
+    virtual void update(sf::Time deltaTime);
     virtual void loadTexture();
 private:
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
