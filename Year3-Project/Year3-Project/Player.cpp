@@ -51,7 +51,7 @@ Player::Player() :
 
             m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.025});
             m_walkingAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
-            m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.5});
+            m_crouchingAnim.addFrame({sf::IntRect(x, y, width, height), 0.25});
         }
         else if (startThrowingFound != std::string::npos)
         {
@@ -132,7 +132,7 @@ void Player::update(sf::Time deltaTime)
         case PlayerMovingState::RUNNING:
             m_runningAnim.update(deltaTime.asSeconds());
 
-            if (elapsed.asSeconds() >= 0.1)
+            if (elapsed.asSeconds() >= 0.25)
             {
                 Utils::playRandomSound(footstepRunSounds);
                 clock.restart();
@@ -151,7 +151,7 @@ void Player::update(sf::Time deltaTime)
         case PlayerMovingState::CROUCHING:
             m_crouchingAnim.update(deltaTime.asSeconds());
 
-            if (elapsed.asSeconds() >= 0.75)
+            if (elapsed.asSeconds() >= 2.5)
             {
                 Utils::playRandomSound(footstepSneakSounds);
                 clock.restart();
