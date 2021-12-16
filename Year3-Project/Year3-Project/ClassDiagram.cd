@@ -3,14 +3,14 @@
   <Class Name="Character">
     <Position X="1.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIQAABAAAAAAAAAIAAAAgAAIAAgAACAAAAAAECAA=</HashCode>
+      <HashCode>AAAAIQAABAAAQAAAAAIAAAAgAAIAAgAACAAAAAAECAA=</HashCode>
       <FileName>Character.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CollisionManager">
     <Position X="13" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAIAQAAAAAAAAABAACEAAAAACAAAACEgAA=</HashCode>
+      <HashCode>AIAAAAAAAAAIAQAAAAAAAAAAAACEAAAAACAAAACEAAA=</HashCode>
       <FileName>CollisionManager.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -27,14 +27,14 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>gIgAh0EEIBRCAACAABCQAAAAQAAQAIAQlAACSAsEAAA=</HashCode>
+      <HashCode>oIgAh0EEIhRiAACAABCQAAAAQAAQAIAQlAACSAsEAAA=</HashCode>
       <FileName>Enemy.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Game">
     <Position X="5" Y="3" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>KAAAQgBgIACAADAAQAAEAgAQAYiCAACQAAAAAAAUCAI=</HashCode>
+      <HashCode>KAgAQgBgIACAADAASAAEAgAQA4iCAASQBAAKQAAUCAI=</HashCode>
       <FileName>Game.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -69,7 +69,7 @@
   <Class Name="Pickup">
     <Position X="13" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAIAAAAAAAAAAAAAIAICAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <HashCode>AAEAIAAAACQAAACAABIAACAAIgAAAAQACAAEACEAAAA=</HashCode>
       <FileName>Pickup.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -81,22 +81,43 @@
       </InheritanceModifierLabel>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>ABAABAEAAJAAICKAAAAAAAAAQQAwAIQFRABAAwAEBAA=</HashCode>
+      <HashCode>AjACBAAAApAgMCKAABAAgAAAQQAwAIQBRABCkwAEBAA=</HashCode>
       <FileName>Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Animation">
     <Position X="8.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAAAgoAAAAAIAAAAAAAAAAIAAIQAEAAE=</HashCode>
+      <HashCode>AAAAAAAEAAAEAAAgoAAAAAIAAAAAAAAAAIAAIQAEAAE=</HashCode>
       <FileName>Animation.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Environment">
     <Position X="7" Y="7" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAACAAAAAAAAAAAAIAAAAAAAAAAAAAAAQAAQAAQ=</HashCode>
+      <HashCode>AAAAAAACAAAIAAAAAAAAAAAgAAAAAAAAAAQAQAEwAAA=</HashCode>
       <FileName>Environment.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HUD">
+    <Position X="11" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAAERBBAAAAmAAAAAABAAEAgAUIAA=</HashCode>
+      <FileName>HUD.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SoundHolder">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAQAAAAAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>SoundHolder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Utils">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAAAEAgAEAAAAA=</HashCode>
+      <FileName>Utils.h</FileName>
     </TypeIdentifier>
   </Class>
   <Struct Name="Direction">
@@ -146,6 +167,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAgggAAAAABAAAQABABAAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Globals.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Sounds">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQCAAAAADsFwIAAAAEAgEAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundIdentifiers.h</FileName>
     </TypeIdentifier>
   </Enum>
   <Font Name="Segoe UI" Size="9" />
