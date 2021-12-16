@@ -79,6 +79,8 @@ void Enemy::setDirection(int t_direction)
 
 void Enemy::update(sf::Time deltaTime)
 {
+    sf::Time elapsed = clock.getElapsedTime();
+
     if (m_EnemyState == EnemyState::SEEK)
     {
         setVisionCone(30);
@@ -93,6 +95,11 @@ void Enemy::update(sf::Time deltaTime)
         move(m_playerLocation, m_sprite.getPosition());
         m_EnemyState = EnemyState::ATTACK;
         m_runningAnim.update(deltaTime.asSeconds());
+        if (elapsed.asSeconds() >= 0.5)
+        {
+            Utils::playRandomSound(footstepRunSounds);
+            clock.restart();
+        }
     }
     else
     {
@@ -251,6 +258,27 @@ void Enemy::debug()
     }
 }
 
+void Enemy::loadSoundHolder(SoundHolder& soundHolder)
+{
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand2)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand3)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand4)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand5)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand6)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand7)));
+    footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand8)));
+
+    for (auto sound : footstepRunSounds)
+        sound->setVolume(20);
+}
+
+void Enemy::changeSoundsVolume(float newVolume)
+{
+    for (auto sound : footstepRunSounds)
+        if (sound->getVolume() != newVolume)
+            sound->setVolume(newVolume);
+}
 
 
 

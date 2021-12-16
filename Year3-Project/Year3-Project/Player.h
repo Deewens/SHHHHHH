@@ -1,14 +1,17 @@
 #pragma once
 
+#include <iostream>
 #include <fstream>
+#include <random>
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include "Globals.h"
 #include "Character.h"
 #include "Animation.h"
 #include "json.hpp"
 #include <math.h>
+#include "SoundHolder.h"
+#include "Utils.h"
 
 struct Direction {
     bool up = false;
@@ -30,13 +33,13 @@ private:
     Animation m_runningAnim;
 
     Animation m_idlingAnim;
-    Animation m_throwingAnim;
+    Animation m_startThrowingAnim;
+    Animation m_endThrowingAnim;
 
     Direction m_movementDir;
     sf::Vector2f m_velocity;
 
     void unitVector(sf::Vector2f& t_vector, float dt);
-    void move(float dt);
     void setDirection(int t_direction);
     void boundryCheck();
     sf::Vector2f getVelocity();
@@ -52,9 +55,15 @@ private:
     sf::Vector2f m_powerBarSize = { 50,5 };
     sf::Vector2f m_powerSize = { 0,4 };
 
+    std::vector<sf::Sound*> footstepWalkSounds;
+    std::vector<sf::Sound*> footstepRunSounds;
+    std::vector<sf::Sound*> footstepSneakSounds;
+    sf::Clock clock;
+
 public:
 
     Player();
+    void loadSoundHolder(SoundHolder& soundHolder);
 
     void update(sf::Time deltaTime) override;
 
@@ -71,6 +80,8 @@ public:
     float m_throwPower();
 
     bool m_throw[2] = { false,false };
+
+    void move(float dt);
 
 };
 

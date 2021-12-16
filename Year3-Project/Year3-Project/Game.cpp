@@ -1,9 +1,8 @@
 /// <summary>
-/// @author Peter Lowe
-/// @date May 2019
 ///
-/// you need to change the above lines or lose marks
 /// </summary>
+
+#include <algorithm>
 
 #include "Game.h"
 
@@ -17,6 +16,11 @@ Game::Game() :
 	m_window(sf::VideoMode{ screen_Width, screen_Height, 32U }, "SHHHH...!"),
 	m_exitGame(false), //when true game will exit
     m_spawnPosition(100.f, 100.f){
+
+    loadSounds();
+    m_player.loadSoundHolder(m_sounds);
+    m_enemy.loadSoundHolder(m_sounds);
+
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
     pauseMenuSetUp();
@@ -129,7 +133,10 @@ void Game::update(sf::Time t_deltaTime)
 	{
 		m_window.close();
 	}
-
+    sf::Vector2f playerPos;
+    sf::Vector2f enemyPos;
+    float dist;
+    float volume;
 	switch (m_gameState)
 	{
         case GameState::MENU:
@@ -159,6 +166,11 @@ void Game::update(sf::Time t_deltaTime)
             {
                 m_pickup[i]->move();
             }
+            cameraMovement(t_deltaTime);
+
+            dist = m_player.getDistance(m_enemy);
+            volume = std::max<float>(0.f, 100.f - 100.f/300.f * dist);
+            m_enemy.changeSoundsVolume(volume);
             break;
         case GameState::EXIT:
             m_exitGame = true;
@@ -252,6 +264,7 @@ void Game::checkCollisions()
         m_hud.m_pickUpHud[1] = true;
         m_player.m_readyToTHrow[1] = true;
     }   
+    
     for (Environment env : m_environment)
     {
         if (env.isImpassable())
@@ -317,3 +330,34 @@ void Game::checkPickUps()
         m_hud.m_pickUpHud[1] = false;
     }
 }
+
+void Game::loadSounds()
+{
+    std::string path = "ASSETS/SOUNDS";
+    m_sounds.load(Sounds::Footsteps_Walk_Sand1, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand1M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand2, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand2M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand3, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand3M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand4, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand4M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand5, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand5M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand6, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand6M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand7, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand7M.wav");
+    m_sounds.load(Sounds::Footsteps_Walk_Sand8, path + "/Footsteps/Sand/Walk/Footsteps_Walk_Sand8M.wav");
+
+    m_sounds.load(Sounds::Footsteps_Run_Sand1, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand1M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand2, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand2M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand3, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand3M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand4, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand4M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand5, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand5M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand6, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand6M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand7, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand7M.wav");
+    m_sounds.load(Sounds::Footsteps_Run_Sand8, path + "/Footsteps/Sand/Run/Footsteps_Run_Sand8M.wav");
+
+    m_sounds.load(Sounds::Footsteps_Sneak_Sand1, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand1M.wav");
+    m_sounds.load(Sounds::Footsteps_Sneak_Sand2, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand2M.wav");
+    m_sounds.load(Sounds::Footsteps_Sneak_Sand3, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand3M.wav");
+    m_sounds.load(Sounds::Footsteps_Sneak_Sand4, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand4M.wav");
+}
+
+
+
+

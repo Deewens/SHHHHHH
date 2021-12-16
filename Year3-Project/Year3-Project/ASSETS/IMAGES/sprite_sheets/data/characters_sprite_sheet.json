@@ -1,996 +1,996 @@
 {"frames": [
 
-{
-	"filename": "player/idling/Idle_1.png",
-	"frame": {"x":0,"y":0,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_2.png",
-	"frame": {"x":60,"y":0,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_3.png",
-	"frame": {"x":120,"y":0,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_4.png",
-	"frame": {"x":180,"y":0,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_5.png",
-	"frame": {"x":0,"y":52,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_6.png",
-	"frame": {"x":60,"y":52,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_7.png",
-	"frame": {"x":120,"y":52,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_8.png",
-	"frame": {"x":180,"y":52,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_9.png",
-	"frame": {"x":0,"y":104,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_10.png",
-	"frame": {"x":60,"y":104,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_11.png",
-	"frame": {"x":120,"y":104,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_12.png",
-	"frame": {"x":180,"y":104,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_13.png",
-	"frame": {"x":0,"y":156,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_14.png",
-	"frame": {"x":60,"y":156,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_15.png",
-	"frame": {"x":120,"y":156,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_16.png",
-	"frame": {"x":180,"y":156,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_17.png",
-	"frame": {"x":0,"y":208,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_18.png",
-	"frame": {"x":60,"y":208,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_19.png",
-	"frame": {"x":120,"y":208,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/idling/Idle_20.png",
-	"frame": {"x":180,"y":208,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_1.png",
-	"frame": {"x":0,"y":260,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_2.png",
-	"frame": {"x":60,"y":260,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_3.png",
-	"frame": {"x":120,"y":260,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_4.png",
-	"frame": {"x":180,"y":260,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_5.png",
-	"frame": {"x":0,"y":312,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_6.png",
-	"frame": {"x":60,"y":312,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_7.png",
-	"frame": {"x":120,"y":312,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_8.png",
-	"frame": {"x":180,"y":312,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_9.png",
-	"frame": {"x":0,"y":364,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_10.png",
-	"frame": {"x":60,"y":364,"w":58,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":52},
-	"sourceSize": {"w":58,"h":52}
-},
-{
-	"filename": "player/running/Running_11.png",
-	"frame": {"x":118,"y":364,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_12.png",
-	"frame": {"x":178,"y":364,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_13.png",
-	"frame": {"x":0,"y":416,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_14.png",
-	"frame": {"x":60,"y":416,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_15.png",
-	"frame": {"x":120,"y":416,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_16.png",
-	"frame": {"x":180,"y":416,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_17.png",
-	"frame": {"x":0,"y":468,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_18.png",
-	"frame": {"x":60,"y":468,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_19.png",
-	"frame": {"x":120,"y":468,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/running/Running_20.png",
-	"frame": {"x":180,"y":468,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_1.png",
-	"frame": {"x":0,"y":520,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_2.png",
-	"frame": {"x":60,"y":520,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_3.png",
-	"frame": {"x":120,"y":520,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_4.png",
-	"frame": {"x":180,"y":520,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_5.png",
-	"frame": {"x":0,"y":572,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_6.png",
-	"frame": {"x":60,"y":572,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_7.png",
-	"frame": {"x":120,"y":572,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_8.png",
-	"frame": {"x":180,"y":572,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_9.png",
-	"frame": {"x":0,"y":624,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_10.png",
-	"frame": {"x":60,"y":624,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_11.png",
-	"frame": {"x":120,"y":624,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_12.png",
-	"frame": {"x":180,"y":624,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_13.png",
-	"frame": {"x":0,"y":676,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_14.png",
-	"frame": {"x":60,"y":676,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "player/throwing/Throwing_15.png",
-	"frame": {"x":120,"y":676,"w":60,"h":52},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
-	"sourceSize": {"w":60,"h":52}
-},
-{
-	"filename": "zombies/green/idling/idling_1.png",
-	"frame": {"x":180,"y":676,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_2.png",
-	"frame": {"x":0,"y":729,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_3.png",
-	"frame": {"x":60,"y":729,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_4.png",
-	"frame": {"x":120,"y":729,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_5.png",
-	"frame": {"x":180,"y":729,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_6.png",
-	"frame": {"x":0,"y":782,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_7.png",
-	"frame": {"x":60,"y":782,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_8.png",
-	"frame": {"x":120,"y":782,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_9.png",
-	"frame": {"x":180,"y":782,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_10.png",
-	"frame": {"x":0,"y":835,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_11.png",
-	"frame": {"x":60,"y":835,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_12.png",
-	"frame": {"x":120,"y":835,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_13.png",
-	"frame": {"x":180,"y":835,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_14.png",
-	"frame": {"x":0,"y":888,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_15.png",
-	"frame": {"x":60,"y":888,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_16.png",
-	"frame": {"x":120,"y":888,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/idling/idling_17.png",
-	"frame": {"x":180,"y":888,"w":60,"h":53},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
-	"sourceSize": {"w":60,"h":53}
-},
-{
-	"filename": "zombies/green/running/running_1.png",
-	"frame": {"x":0,"y":941,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_2.png",
-	"frame": {"x":60,"y":941,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_3.png",
-	"frame": {"x":120,"y":941,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_4.png",
-	"frame": {"x":180,"y":941,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_5.png",
-	"frame": {"x":0,"y":1001,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_6.png",
-	"frame": {"x":60,"y":1001,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_7.png",
-	"frame": {"x":120,"y":1001,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_8.png",
-	"frame": {"x":180,"y":1001,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_9.png",
-	"frame": {"x":0,"y":1061,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_10.png",
-	"frame": {"x":60,"y":1061,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_11.png",
-	"frame": {"x":120,"y":1061,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_12.png",
-	"frame": {"x":180,"y":1061,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_13.png",
-	"frame": {"x":0,"y":1121,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_14.png",
-	"frame": {"x":60,"y":1121,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_15.png",
-	"frame": {"x":120,"y":1121,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_16.png",
-	"frame": {"x":180,"y":1121,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/green/running/running_17.png",
-	"frame": {"x":0,"y":1181,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_1.png",
-	"frame": {"x":60,"y":1181,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_2.png",
-	"frame": {"x":120,"y":1181,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_3.png",
-	"frame": {"x":180,"y":1181,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_4.png",
-	"frame": {"x":0,"y":1241,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_5.png",
-	"frame": {"x":60,"y":1241,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_6.png",
-	"frame": {"x":120,"y":1241,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_7.png",
-	"frame": {"x":180,"y":1241,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_8.png",
-	"frame": {"x":0,"y":1301,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_9.png",
-	"frame": {"x":60,"y":1301,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_10.png",
-	"frame": {"x":120,"y":1301,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_11.png",
-	"frame": {"x":180,"y":1301,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_12.png",
-	"frame": {"x":0,"y":1361,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_13.png",
-	"frame": {"x":60,"y":1361,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_14.png",
-	"frame": {"x":120,"y":1361,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_15.png",
-	"frame": {"x":180,"y":1361,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_16.png",
-	"frame": {"x":0,"y":1421,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/idling/idling_17.png",
-	"frame": {"x":60,"y":1421,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_1.png",
-	"frame": {"x":120,"y":1421,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_2.png",
-	"frame": {"x":180,"y":1421,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_3.png",
-	"frame": {"x":0,"y":1481,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_4.png",
-	"frame": {"x":60,"y":1481,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_5.png",
-	"frame": {"x":120,"y":1481,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_6.png",
-	"frame": {"x":180,"y":1481,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_7.png",
-	"frame": {"x":0,"y":1541,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_8.png",
-	"frame": {"x":60,"y":1541,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_9.png",
-	"frame": {"x":120,"y":1541,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_10.png",
-	"frame": {"x":180,"y":1541,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_11.png",
-	"frame": {"x":0,"y":1601,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_12.png",
-	"frame": {"x":60,"y":1601,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_13.png",
-	"frame": {"x":120,"y":1601,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_14.png",
-	"frame": {"x":180,"y":1601,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_15.png",
-	"frame": {"x":0,"y":1661,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_16.png",
-	"frame": {"x":60,"y":1661,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-},
-{
-	"filename": "zombies/purple/running/running_17.png",
-	"frame": {"x":120,"y":1661,"w":60,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
-	"sourceSize": {"w":60,"h":60}
-}],
-"meta": {
-	"app": "https://www.codeandweb.com/texturepacker",
-	"version": "1.0",
-	"image": "characters_sprite_sheet.png",
-	"format": "RGBA8888",
-	"size": {"w":240,"h":1721},
-	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:76a9c958a870b5e253c59a946cd46301:db3af719e8ec71c74e349e2962b4a2a3:214e10d7bd2c38d3dfdb3322a7fe47db$"
-}
+	{
+		"filename": "player/idling/Idle_1.png",
+		"frame": {"x":0,"y":0,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_2.png",
+		"frame": {"x":60,"y":0,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_3.png",
+		"frame": {"x":120,"y":0,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_4.png",
+		"frame": {"x":180,"y":0,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_5.png",
+		"frame": {"x":0,"y":52,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_6.png",
+		"frame": {"x":60,"y":52,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_7.png",
+		"frame": {"x":120,"y":52,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_8.png",
+		"frame": {"x":180,"y":52,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_9.png",
+		"frame": {"x":0,"y":104,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_10.png",
+		"frame": {"x":60,"y":104,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_11.png",
+		"frame": {"x":120,"y":104,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_12.png",
+		"frame": {"x":180,"y":104,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_13.png",
+		"frame": {"x":0,"y":156,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_14.png",
+		"frame": {"x":60,"y":156,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_15.png",
+		"frame": {"x":120,"y":156,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_16.png",
+		"frame": {"x":180,"y":156,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_17.png",
+		"frame": {"x":0,"y":208,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_18.png",
+		"frame": {"x":60,"y":208,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_19.png",
+		"frame": {"x":120,"y":208,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/idling/Idle_20.png",
+		"frame": {"x":180,"y":208,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_1.png",
+		"frame": {"x":0,"y":260,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_2.png",
+		"frame": {"x":60,"y":260,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_3.png",
+		"frame": {"x":120,"y":260,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_4.png",
+		"frame": {"x":180,"y":260,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_5.png",
+		"frame": {"x":0,"y":312,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_6.png",
+		"frame": {"x":60,"y":312,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_7.png",
+		"frame": {"x":120,"y":312,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_8.png",
+		"frame": {"x":180,"y":312,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_9.png",
+		"frame": {"x":0,"y":364,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_10.png",
+		"frame": {"x":60,"y":364,"w":58,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":58,"h":52},
+		"sourceSize": {"w":58,"h":52}
+	},
+	{
+		"filename": "player/running/Running_11.png",
+		"frame": {"x":118,"y":364,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_12.png",
+		"frame": {"x":178,"y":364,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_13.png",
+		"frame": {"x":0,"y":416,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_14.png",
+		"frame": {"x":60,"y":416,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_15.png",
+		"frame": {"x":120,"y":416,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_16.png",
+		"frame": {"x":180,"y":416,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_17.png",
+		"frame": {"x":0,"y":468,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_18.png",
+		"frame": {"x":60,"y":468,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_19.png",
+		"frame": {"x":120,"y":468,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/running/Running_20.png",
+		"frame": {"x":180,"y":468,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_7.png",
+		"frame": {"x":0,"y":520,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_8.png",
+		"frame": {"x":60,"y":520,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_9.png",
+		"frame": {"x":120,"y":520,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_10.png",
+		"frame": {"x":180,"y":520,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_11.png",
+		"frame": {"x":0,"y":572,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_12.png",
+		"frame": {"x":60,"y":572,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_13.png",
+		"frame": {"x":120,"y":572,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_14.png",
+		"frame": {"x":180,"y":572,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/end/Throwing_15.png",
+		"frame": {"x":0,"y":624,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_1.png",
+		"frame": {"x":60,"y":624,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_2.png",
+		"frame": {"x":120,"y":624,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_3.png",
+		"frame": {"x":180,"y":624,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_4.png",
+		"frame": {"x":0,"y":676,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_5.png",
+		"frame": {"x":60,"y":676,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "player/throwing/start/Throwing_6.png",
+		"frame": {"x":120,"y":676,"w":60,"h":52},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":52},
+		"sourceSize": {"w":60,"h":52}
+	},
+	{
+		"filename": "zombies/green/idling/idling_1.png",
+		"frame": {"x":180,"y":676,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_2.png",
+		"frame": {"x":0,"y":729,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_3.png",
+		"frame": {"x":60,"y":729,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_4.png",
+		"frame": {"x":120,"y":729,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_5.png",
+		"frame": {"x":180,"y":729,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_6.png",
+		"frame": {"x":0,"y":782,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_7.png",
+		"frame": {"x":60,"y":782,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_8.png",
+		"frame": {"x":120,"y":782,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_9.png",
+		"frame": {"x":180,"y":782,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_10.png",
+		"frame": {"x":0,"y":835,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_11.png",
+		"frame": {"x":60,"y":835,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_12.png",
+		"frame": {"x":120,"y":835,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_13.png",
+		"frame": {"x":180,"y":835,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_14.png",
+		"frame": {"x":0,"y":888,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_15.png",
+		"frame": {"x":60,"y":888,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_16.png",
+		"frame": {"x":120,"y":888,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/idling/idling_17.png",
+		"frame": {"x":180,"y":888,"w":60,"h":53},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":53},
+		"sourceSize": {"w":60,"h":53}
+	},
+	{
+		"filename": "zombies/green/running/running_1.png",
+		"frame": {"x":0,"y":941,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_2.png",
+		"frame": {"x":60,"y":941,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_3.png",
+		"frame": {"x":120,"y":941,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_4.png",
+		"frame": {"x":180,"y":941,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_5.png",
+		"frame": {"x":0,"y":1001,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_6.png",
+		"frame": {"x":60,"y":1001,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_7.png",
+		"frame": {"x":120,"y":1001,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_8.png",
+		"frame": {"x":180,"y":1001,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_9.png",
+		"frame": {"x":0,"y":1061,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_10.png",
+		"frame": {"x":60,"y":1061,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_11.png",
+		"frame": {"x":120,"y":1061,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_12.png",
+		"frame": {"x":180,"y":1061,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_13.png",
+		"frame": {"x":0,"y":1121,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_14.png",
+		"frame": {"x":60,"y":1121,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_15.png",
+		"frame": {"x":120,"y":1121,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_16.png",
+		"frame": {"x":180,"y":1121,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/green/running/running_17.png",
+		"frame": {"x":0,"y":1181,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_1.png",
+		"frame": {"x":60,"y":1181,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_2.png",
+		"frame": {"x":120,"y":1181,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_3.png",
+		"frame": {"x":180,"y":1181,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_4.png",
+		"frame": {"x":0,"y":1241,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_5.png",
+		"frame": {"x":60,"y":1241,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_6.png",
+		"frame": {"x":120,"y":1241,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_7.png",
+		"frame": {"x":180,"y":1241,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_8.png",
+		"frame": {"x":0,"y":1301,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_9.png",
+		"frame": {"x":60,"y":1301,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_10.png",
+		"frame": {"x":120,"y":1301,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_11.png",
+		"frame": {"x":180,"y":1301,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_12.png",
+		"frame": {"x":0,"y":1361,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_13.png",
+		"frame": {"x":60,"y":1361,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_14.png",
+		"frame": {"x":120,"y":1361,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_15.png",
+		"frame": {"x":180,"y":1361,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_16.png",
+		"frame": {"x":0,"y":1421,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/idling/idling_17.png",
+		"frame": {"x":60,"y":1421,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_1.png",
+		"frame": {"x":120,"y":1421,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_2.png",
+		"frame": {"x":180,"y":1421,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_3.png",
+		"frame": {"x":0,"y":1481,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_4.png",
+		"frame": {"x":60,"y":1481,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_5.png",
+		"frame": {"x":120,"y":1481,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_6.png",
+		"frame": {"x":180,"y":1481,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_7.png",
+		"frame": {"x":0,"y":1541,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_8.png",
+		"frame": {"x":60,"y":1541,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_9.png",
+		"frame": {"x":120,"y":1541,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_10.png",
+		"frame": {"x":180,"y":1541,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_11.png",
+		"frame": {"x":0,"y":1601,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_12.png",
+		"frame": {"x":60,"y":1601,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_13.png",
+		"frame": {"x":120,"y":1601,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_14.png",
+		"frame": {"x":180,"y":1601,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_15.png",
+		"frame": {"x":0,"y":1661,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_16.png",
+		"frame": {"x":60,"y":1661,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	},
+	{
+		"filename": "zombies/purple/running/running_17.png",
+		"frame": {"x":120,"y":1661,"w":60,"h":60},
+		"rotated": false,
+		"trimmed": false,
+		"spriteSourceSize": {"x":0,"y":0,"w":60,"h":60},
+		"sourceSize": {"w":60,"h":60}
+	}],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "characters_sprite_sheet.png",
+		"format": "RGBA8888",
+		"size": {"w":240,"h":1721},
+		"scale": "1",
+		"smartupdate": "$TexturePacker:SmartUpdate:d2a31c0c2cc2e7a91ece5ff495a5400f:8c0f82637bfa9be8cdae8f02ee71d368:214e10d7bd2c38d3dfdb3322a7fe47db$"
+	}
 }
