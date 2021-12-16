@@ -141,9 +141,24 @@ void Game::update(sf::Time t_deltaTime)
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
             checkCollisions();
+            checkPickUps();
             collisions.update();
             cellIdFinder(m_player.getPosition());
-            cameraMovement(t_deltaTime);            
+            cameraMovement(t_deltaTime); 
+            if (m_player.m_throw[0])
+            {
+                m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition(), m_player.m_throwPower());
+                m_player.m_throw[0] = false;
+            }
+            if (m_player.m_throw[1])
+            {
+                m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition(), m_player.m_throwPower());
+                m_player.m_throw[1] = false;
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                m_pickup[i]->move();
+            }
             break;
         case GameState::EXIT:
             m_exitGame = true;
@@ -229,11 +244,13 @@ void Game::checkCollisions()
     {
         m_pickupCollected[0] = true;
         m_hud.m_pickUpHud[0] = true;
+        m_player.m_readyToTHrow[0] = true;
     }
     if (collisions.check(m_player, *m_pickup[1]))
     {
         m_pickupCollected[1] = true;
         m_hud.m_pickUpHud[1] = true;
+        m_player.m_readyToTHrow[1] = true;
     }   
     for (Environment env : m_environment)
     {
@@ -289,7 +306,14 @@ void Game::setUpPickUps()
     m_pickup[0] =new Pickup(22);
     m_pickup[1] =new Pickup(43);
 }
-
-
-
-
+void Game::checkPickUps()
+{
+    if (m_player.m_readyToTHrow[0] == false)
+    {
+        m_hud.m_pickUpHud[0] = false;
+    }
+    if (m_player.m_readyToTHrow[1] == false)
+    {
+        m_hud.m_pickUpHud[1] = false;
+    }
+}

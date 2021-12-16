@@ -12,11 +12,14 @@ public:
 
 	sf::Sprite getSprite();
 
-	//bool pickUpCollected(sf::Sprite m_player);
+	sf::Vector2f getPosition();
 
-	sf::Vector2f Pickup::getPosition();
+	float getRadius();
 
-	float Pickup::getRadius();
+	void throwPickUp(float t_angle, sf::Vector2f t_position, float t_power);
+
+	void move();
+
 
 private:
 
@@ -31,5 +34,8 @@ private:
 	float m_row{};
 
 	sf::Vector2f m_position{};
+
+	sf::Vector2f m_bottleVelocity{};
+
 };
 

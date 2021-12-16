@@ -49,6 +49,10 @@ private:
 
     void setUpPickUps();
 
+    void checkPickUps();
+
+    void throwPickUps();
+
 
 
     sf::RenderWindow m_window; // main SFML window
@@ -68,7 +72,6 @@ private:
     Player m_player;
     Enemy m_enemy;
 
-    //std::vector<Pickup*> m_pickup;
     Pickup *m_pickup[2];
 
     bool m_pickupCollected[2] = { false,false };
