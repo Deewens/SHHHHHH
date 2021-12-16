@@ -9,6 +9,7 @@
 #include "Character.h"
 #include "Animation.h"
 #include "json.hpp"
+#include <math.h>
 #include "SoundHolder.h"
 #include "Utils.h"
 
@@ -39,7 +40,6 @@ private:
     sf::Vector2f m_velocity;
 
     void unitVector(sf::Vector2f& t_vector, float dt);
-    void move(float dt);
     void setDirection(int t_direction);
     void boundryCheck();
     sf::Vector2f getVelocity();
@@ -49,7 +49,8 @@ private:
 
     sf::RectangleShape m_powerthrow;
 
-    bool m_throw = false;
+    bool m_powerBarVisible = false;
+
 
     sf::Vector2f m_powerBarSize = { 50,5 };
     sf::Vector2f m_powerSize = { 0,4 };
@@ -73,6 +74,14 @@ public:
     void renderPowerBar(sf::RenderWindow& t_window);
 
     sf::Sprite getSprite();
+    
+    bool m_readyToTHrow[2] = { false,false };
+
+    float m_throwPower();
+
+    bool m_throw[2] = { false,false };
+
+    void move(float dt);
 
 };
 

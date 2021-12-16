@@ -46,3 +46,5 @@ const float RUNNING_SPEED = 150.f;
 enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
 
 static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
+
+const float PI = 3.14159265359;

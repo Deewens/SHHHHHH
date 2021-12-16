@@ -175,7 +175,6 @@ void Enemy::rotate(sf::Vector2f& vector, float t_angle)
 
    float cos = std::cos(t_angle*M_PI/180);
    float sin = std::sin(t_angle*M_PI/180);
-
     // Don't manipulate x and y separately, otherwise they're overwritten too early
     vector = sf::Vector2f(
         cos * vector.x - sin * vector.y,

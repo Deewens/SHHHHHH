@@ -16,6 +16,7 @@ Player::Player() :
 {
     m_speed = WALKING_SPEED;
     Player::loadTexture();
+    // Get spritesheet data
 
     // Get sprite sheet data
     std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/characters_sprite_sheet.json");
@@ -161,7 +162,7 @@ void Player::update(sf::Time deltaTime)
     }
     boundryCheck();
 
-    if (m_throw)
+    if (m_powerBarVisible)
     {
         m_endThrowingAnim.update(deltaTime.asSeconds());
         m_powerBar.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
@@ -175,7 +176,8 @@ void Player::update(sf::Time deltaTime)
         m_powerthrow.setSize(m_powerSize);
         m_powerthrow.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
         m_powerthrow.setRotation(m_sprite.getRotation());
-    }
+    } 
+  
 }
 
 
@@ -213,8 +215,25 @@ void Player::processEvents(sf::Event event)
             m_playerState = PlayerMovingState::WALKING;
         }
         if (event.key.code == sf::Keyboard::RControl)
-        {
-            m_throw = false;
+        {           
+           m_powerBarVisible = false;
+
+           
+
+           if (m_readyToTHrow[0] == true)
+           {
+               m_readyToTHrow[0] = false;
+               m_throw[0] = true;
+               return;
+           }
+           if (m_readyToTHrow[1] == true)
+           {
+               m_readyToTHrow[1] = false;
+               m_throw[1] = true;
+
+           }
+        
+            //m_throw = false;
             m_endThrowingAnim.reset();
             m_powerSize.x = 0;
         }
@@ -230,8 +249,8 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 
 void Player::renderPowerBar(sf::RenderWindow &t_window)
 {
-    if (m_throw)
-    {
+    if (m_powerBarVisible)
+    {     
         t_window.draw(m_powerBar);
         t_window.draw(m_powerthrow);
     }
@@ -250,7 +269,14 @@ void Player::move(float dt)
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::RControl))
     {
-        m_throw = true;
+        if (m_readyToTHrow[0] == true)
+        {
+            m_powerBarVisible = true;
+        }
+        if (m_readyToTHrow[1] == true)
+        {
+            m_powerBarVisible = true;
+        }
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -301,6 +327,13 @@ sf::Vector2f Player::getVelocity()
 sf::Sprite Player::getSprite()
 {
     return m_sprite;
+}
+
+float Player::m_throwPower()
+{
+    float t = m_powerBarSize.x;
+    m_powerSize.x = 0;
+    return t;
 }
 
 void Player::boundryCheck()
