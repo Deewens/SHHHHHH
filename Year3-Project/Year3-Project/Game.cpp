@@ -145,7 +145,7 @@ void Game::update(sf::Time t_deltaTime)
         case GameState::GAMEPLAY:
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
-            m_player.update(t_deltaTime);
+            m_player.update(t_deltaTime , m_worldView.getCenter());
             m_enemy.update(t_deltaTime);
             checkCollisions();
             checkPickUps();
@@ -220,8 +220,9 @@ void Game::render()
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
-            m_player.renderPowerBar(m_window);
             m_hud.render(m_window);
+            m_player.renderPowerBar(m_window);
+
             break;
         case GameState::EXIT:
             break;

@@ -46,7 +46,6 @@ private:
 
 
     sf::RectangleShape m_powerBar;
-
     sf::RectangleShape m_powerthrow;
 
     bool m_powerBarVisible = false;
@@ -60,12 +59,20 @@ private:
     std::vector<sf::Sound*> footstepSneakSounds;
     sf::Clock clock;
 
+    sf::RectangleShape m_staminaBar;
+    sf::Vector2f m_staminaBarSize{ 200,20 };
+
+    sf::RectangleShape m_staminaBarLvl;
+    sf::Vector2f m_staminaBarLvlSize{ 190,15 };
+
+    bool m_canRun = true;
+
 public:
 
     Player();
     void loadSoundHolder(SoundHolder& soundHolder);
 
-    void update(sf::Time deltaTime) override;
+    void update(sf::Time deltaTime , sf::Vector2f t_position) ;
 
     void processEvents(sf::Event event);
 

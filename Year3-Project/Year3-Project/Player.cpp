@@ -81,6 +81,10 @@ Player::Player() :
     m_powerthrow.setSize(m_powerSize);
     m_powerthrow.setOutlineThickness(1);
     m_powerthrow.setFillColor(sf::Color::Red);
+
+    m_staminaBar.setSize(m_staminaBarSize);
+    m_staminaBar.setFillColor(sf::Color::Black);
+
 }
 
 
@@ -115,7 +119,7 @@ void Player::setDirection(int t_direction)
     }
 }
 
-void Player::update(sf::Time deltaTime)
+void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
 {
     move(deltaTime.asSeconds());
     if (m_velocity.x == 0 && m_velocity.y == 0)
@@ -176,8 +180,45 @@ void Player::update(sf::Time deltaTime)
         m_powerthrow.setSize(m_powerSize);
         m_powerthrow.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
         m_powerthrow.setRotation(m_sprite.getRotation());
+
     } 
-  
+
+    
+    m_staminaBarLvl.setSize(m_staminaBarLvlSize);
+    m_staminaBar.setPosition(t_position.x, t_position.y + screen_Height / 4 - m_staminaBarSize.y-10);
+    m_staminaBarLvl.setPosition(t_position.x+5, t_position.y + screen_Height / 4 - m_staminaBarSize.y - 10 + 2.5);
+    if (m_playerState == PlayerMovingState::RUNNING && m_staminaBarLvlSize.x >=0)
+    {
+        m_staminaBarLvlSize.x--;
+    }
+    if (m_playerState != PlayerMovingState::RUNNING && m_staminaBarLvlSize.x <= 190)
+    {
+        m_staminaBarLvlSize.x = m_staminaBarLvlSize.x + 0.1f;
+    }
+    if (m_staminaBarLvlSize.x <= 2)
+    {
+        m_canRun = false;
+        m_speed = WALKING_SPEED;
+        m_playerState = PlayerMovingState::WALKING;
+    }
+    if ( m_staminaBarLvlSize.x >10)
+    {
+        m_canRun = true;
+    }
+    if (m_staminaBarLvlSize.x>=125)
+    {
+        m_staminaBarLvl.setFillColor(sf::Color::Green);
+    }
+    if (m_staminaBarLvlSize.x < 125 && m_staminaBarLvlSize.x >= 63)
+    {
+        m_staminaBarLvl.setFillColor(sf::Color::Yellow);
+    }
+    if (m_staminaBarLvlSize.x < 63)
+    {
+        m_staminaBarLvl.setFillColor(sf::Color::Red);
+    }
+
+    
 }
 
 
@@ -194,7 +235,7 @@ void Player::processEvents(sf::Event event)
                 m_speed = CROUCHING_SPEED;
                 m_playerState = PlayerMovingState::CROUCHING;
             }
-            if (event.key.code == sf::Keyboard::Space)
+            if (event.key.code == sf::Keyboard::Space && m_canRun==true)
             {
                 m_speed = RUNNING_SPEED;
                 m_playerState = PlayerMovingState::RUNNING;
@@ -254,6 +295,10 @@ void Player::renderPowerBar(sf::RenderWindow &t_window)
         t_window.draw(m_powerBar);
         t_window.draw(m_powerthrow);
     }
+
+    t_window.draw(m_staminaBar);
+    t_window.draw(m_staminaBarLvl);
+
 }
 
 void Player::move(float dt)
