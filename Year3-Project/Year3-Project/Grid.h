@@ -1,9 +1,12 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Globals.h"
+#include "NodeData.h"
 #include<iostream>
 #include<string>
 #include<vector>
+#include <set>
+
 
 class Grid : public sf::Drawable
 {
@@ -17,9 +20,13 @@ public:
 
 	void debug();
 
+    std::vector<std::vector<NodeData>>& getGrid();
+
 private:
 	int m_rows;
 	int m_cols;
+
+    std::vector<std::vector<NodeData>> m_grid; // Store the grid in a 2d array in the good order
 
 	sf::Vertex m_colLine[96];
 	sf::Vertex m_rowLine[60];

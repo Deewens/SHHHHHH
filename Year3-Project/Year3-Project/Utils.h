@@ -7,6 +7,9 @@
 
 #include <cmath>
 
+#include "Environment.h"
+#include "Grid.h"
+
 class Utils
 {
 public:
@@ -14,6 +17,8 @@ public:
     static void playRandomSound(std::vector<sf::Sound*>& sounds);
 
     static float getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q);
+
+    static std::vector<int> getNeighbours(Grid grid, int node);
 
 private:
     Utils(); // This class is not an object and cannot be instantiated - Not Implemented

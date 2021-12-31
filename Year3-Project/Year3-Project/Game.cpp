@@ -13,22 +13,63 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window(sf::VideoMode{ screen_Width, screen_Height, 32U }, "SHHHH...!"),
-	m_exitGame(false), //when true game will exit
-    m_spawnPosition(100.f, 100.f){
+        m_window(sf::VideoMode{screen_Width, screen_Height, 32U}, "SHHHH...!"),
+        m_exitGame(false), //when true game will exit
+        m_spawnPosition(100.f, 100.f),
+        m_waypoints({
+                            85, 95, // 1, 2
+                            205 // 3
+                    })
+{
+
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("1-2", std::vector<int>(
+            {85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95})));
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("2-1", std::vector<int>(
+            {95, 94, 93, 92, 91, 90, 89, 88, 87, 86, 85})));
+
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("1-3", std::vector<int>({85, 106, 127, 128, 129})));
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("3-1", std::vector<int>({129, 128, 127, 106, 85})));
+
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("2-3", std::vector<int>(
+            {74, 75, 55, 54, 53, 52, 51, 50, 49, 69, 89, 109, 129})));
+    m_ucs.insert(std::pair<std::string, std::vector<int>>("3-2", std::vector<int>(
+            {129, 109, 89, 69, 49, 50, 51, 52, 53, 54, 55, 75, 74})));
 
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
     m_enemy.loadSoundHolder(m_sounds);
+    m_ucsEnemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
     m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
+
     pauseMenuSetUp();
     setupEnvironment();
+
+    // Neighbours Algorithm DEBUG
+    // ====================================================
+    for (auto& row : m_grid.getGrid())
+    {
+        for (auto& node : row)
+        {
+            std::cout << "Is " << node.getId() << " passable: " << (node.isPassable() ? "Yes" : "No") << std::endl;
+        }
+    }
+
+    std::vector<int> neighbours = Utils::getNeighbours(m_grid, 49);
+    for (auto &neighbour: neighbours)
+        std::cout << neighbour << " ";
+
+    std::cout << std::endl;
+    // =======================================================
+
     setUpPickUps();
-    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
-    m_menuView.reset(sf::FloatRect(0,0, screen_Width, screen_Height));
+    m_worldView.reset(
+            sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
+    m_menuView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
     m_grid.debug();
+
+
 }
 
 /// <summary>
@@ -48,24 +89,25 @@ Game::~Game()
 /// if updates run slow then don't render frames
 /// </summary>
 void Game::run()
-{	
-	sf::Clock clock;
-	sf::Time timeSinceLastUpdate = sf::Time::Zero;
-	const float fps{ 60.0f };
-	sf::Time timePerFrame = sf::seconds(1.0f / fps); // 60 fps
-	while (m_window.isOpen())
-	{
-		processEvents(); // as many as possible
-		timeSinceLastUpdate += clock.restart();
-		while (timeSinceLastUpdate > timePerFrame)
-		{
-			timeSinceLastUpdate -= timePerFrame;
-			processEvents(); // at least 60 fps
-			update(timePerFrame); //60 fps
-		}
-		render(); // as many as possible
-	}
+{
+    sf::Clock clock;
+    sf::Time timeSinceLastUpdate = sf::Time::Zero;
+    const float fps{60.0f};
+    sf::Time timePerFrame = sf::seconds(1.0f / fps); // 60 fps
+    while (m_window.isOpen())
+    {
+        processEvents(); // as many as possible
+        timeSinceLastUpdate += clock.restart();
+        while (timeSinceLastUpdate > timePerFrame)
+        {
+            timeSinceLastUpdate -= timePerFrame;
+            processEvents(); // at least 60 fps
+            update(timePerFrame); //60 fps
+        }
+        render(); // as many as possible
+    }
 }
+
 /// <summary>
 /// handle user and system events/ input
 /// get key presses/ mouse moves etc. from OS
@@ -73,18 +115,18 @@ void Game::run()
 /// </summary>
 void Game::processEvents()
 {
-	sf::Event newEvent;
-	while (m_window.pollEvent(newEvent))
-	{
-		if ( sf::Event::Closed == newEvent.type) // window message
-		{
-			m_exitGame = true;
-		}
-        
-		if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
-		{
-			processKeys(newEvent);
-		}
+    sf::Event newEvent;
+    while (m_window.pollEvent(newEvent))
+    {
+        if (sf::Event::Closed == newEvent.type) // window message
+        {
+            m_exitGame = true;
+        }
+
+        if (sf::Event::KeyPressed == newEvent.type) //user pressed a key
+        {
+            processKeys(newEvent);
+        }
         if (GameState::GAMEPLAY == m_gameState)
         {
             m_player.processEvents(newEvent);
@@ -95,8 +137,7 @@ void Game::processEvents()
                     m_grid.toggleDraw();
                 }
             }
-        }
-        else if (GameState::PAUSE == m_gameState)
+        } else if (GameState::PAUSE == m_gameState)
         {
             if (sf::Event::KeyReleased == newEvent.type)
             {
@@ -106,7 +147,7 @@ void Game::processEvents()
                 }
             }
         }
-	}
+    }
 }
 
 
@@ -116,11 +157,11 @@ void Game::processEvents()
 /// <param name="t_event">key press event</param>
 void Game::processKeys(sf::Event t_event)
 {
-    
-	if (sf::Keyboard::Escape == t_event.key.code)
-	{
-		m_exitGame = true;
-	}
+
+    if (sf::Keyboard::Escape == t_event.key.code)
+    {
+        m_exitGame = true;
+    }
 }
 
 /// <summary>
@@ -129,29 +170,30 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-	if (m_exitGame)
-	{
-		m_window.close();
-	}
+    if (m_exitGame)
+    {
+        m_window.close();
+    }
     sf::Vector2f playerPos;
     sf::Vector2f enemyPos;
     float dist;
     float volume;
-	switch (m_gameState)
-	{
+    switch (m_gameState)
+    {
         case GameState::MENU:
-			m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f) sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
+            m_ucsEnemy.update(t_deltaTime);
             checkCollisions();
             checkPickUps();
             collisions.update();
             cellIdFinder(m_player.getPosition());
-            cameraMovement(t_deltaTime); 
+            cameraMovement(t_deltaTime);
             if (m_player.m_throw[0])
             {
                 m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition(), m_player.m_throwPower());
@@ -169,7 +211,7 @@ void Game::update(sf::Time t_deltaTime)
             cameraMovement(t_deltaTime);
 
             dist = m_player.getDistance(m_enemy);
-            volume = std::max<float>(0.f, 100.f - 100.f/300.f * dist);
+            volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
             m_enemy.changeSoundsVolume(volume);
             break;
         case GameState::EXIT:
@@ -184,7 +226,7 @@ void Game::update(sf::Time t_deltaTime)
             break;
         default:
             break;
-	}
+    }
 }
 
 /// <summary>
@@ -192,10 +234,10 @@ void Game::update(sf::Time t_deltaTime)
 /// </summary>
 void Game::render()
 {
-	m_window.clear(sf::Color::Black);
+    m_window.clear(sf::Color::Black);
 
-	switch (m_gameState)
-	{
+    switch (m_gameState)
+    {
         case GameState::MENU:
             m_window.draw(m_gameMenu);
             break;
@@ -204,19 +246,26 @@ void Game::render()
             m_window.clear(sf::Color(0, 157, 196));
             m_window.setView(m_worldView);
 
-            for (Environment env : m_environment)
+            for (Environment env: m_environment)
             {
                 env.render(m_window);
             }
-            for (int i=0 ; i<2 ; i++)
+
+            for (auto &object: m_objects)
             {
-                if (m_pickupCollected[i] == false)
+                object.render(m_window);
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                if (!m_pickupCollected[i])
                 {
                     m_window.draw(*m_pickup[i]);
                 }
             }
             m_window.draw(m_player);
             m_window.draw(m_enemy);
+            m_window.draw(m_ucsEnemy);
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
@@ -230,10 +279,16 @@ void Game::render()
             break;
         case GameState::PAUSE:
             m_window.setView(m_worldView);
-            for (Environment env : m_environment)
+            for (Environment env: m_environment)
             {
                 env.render(m_window);
             }
+
+            for (auto &object: m_objects)
+            {
+                object.render(m_window);
+            }
+
             m_window.draw(m_player);
             //m_window.draw(m_pickup);
             m_window.draw(m_enemy);
@@ -244,8 +299,8 @@ void Game::render()
             break;
         default:
             break;
-	}
-	m_window.display();
+    }
+    m_window.display();
 }
 
 void Game::checkCollisions()
@@ -263,20 +318,19 @@ void Game::checkCollisions()
         m_pickupCollected[1] = true;
         m_hud.m_pickUpHud[1] = true;
         m_player.m_readyToTHrow[1] = true;
-    }   
-    
-    for (Environment env : m_environment)
+    }
+
+    for (auto& object : m_objects)
     {
-        if (env.isImpassable())
-            collisions.check(m_player, env);
+        if (object.isImpassable()) collisions.check(m_player, object);
     }
 }
 
 void Game::pauseMenuSetUp()
 {
-    m_pauseRect.setSize(sf::Vector2f(screen_Width/4, screen_Height/4));
+    m_pauseRect.setSize(sf::Vector2f(screen_Width / 4, screen_Height / 4));
     m_pauseRect.setFillColor(sf::Color(225, 0, 0, 100));
-    m_pauseRect.setOrigin(screen_Width/8,screen_Height/8);
+    m_pauseRect.setOrigin(screen_Width / 8, screen_Height / 8);
 }
 
 void Game::setupEnvironment()
@@ -290,14 +344,59 @@ void Game::setupEnvironment()
 
     nlohmann::json scene = json["scene"];
     // Build scene from the json file
-    for (auto& el : scene)
+    for (auto &el: scene)
+        m_environment.emplace_back(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
+                                   screen_Width / tileSize, el["rotation"]);
+
+
+    // Debug for UCS Pathfinding
+    sf::RectangleShape waypointDebug;
+    waypointDebug.setFillColor(sf::Color::Black);
+    for (auto &w: m_waypoints)
+        m_objects.emplace_back(waypointDebug, w, screen_Height / tileSize, screen_Width / tileSize, 0, false);
+
+    // Add impassable wall for UCS Debugging
+    // ===========================================================================
+    sf::RectangleShape wall;
+    wall.setFillColor(sf::Color::Red);
+    m_objects.emplace_back(wall, 70, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 71, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 72, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 74, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 90, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 94, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 114, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 134, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 154, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 174, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 173, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 172, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 171, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 170, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 150, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 130, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    m_objects.emplace_back(wall, 110, screen_Height / tileSize, screen_Width / tileSize, 0, true);
+    // ===========================================================================
+
+    // Set the passable property for each grid node
+    for (std::vector<NodeData>& row: m_grid.getGrid())
     {
-        m_environment.push_back(Environment(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize, screen_Width / tileSize, el["rotation"]));
+        for (NodeData& node : row)
+        {
+            for (auto& object: m_objects)
+            {
+                if (object.getTileCode() == node.getId())
+                {
+                    node.setPassable(!object.isImpassable());
+                }
+            }
+
+            //std::cout << "Is " << node.getId() << " passable: " << (node.isPassable() ? "Yes" : "No") << std::endl;
+        }
+
     }
-    // Add impassable wall
-    //sf::RectangleShape wall;
-    //wall.setFillColor(sf::Color::Red);
-    //m_environment.push_back(Environment(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true));
 }
 
 void Game::cameraMovement(sf::Time dt)
@@ -314,11 +413,13 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
 
     return m_id;
 }
+
 void Game::setUpPickUps()
 {
-    m_pickup[0] =new Pickup(22);
-    m_pickup[1] =new Pickup(43);
+    m_pickup[0] = new Pickup(22);
+    m_pickup[1] = new Pickup(43);
 }
+
 void Game::checkPickUps()
 {
     if (m_player.m_readyToTHrow[0] == false)

@@ -18,6 +18,19 @@ Grid::Grid(int t_rows, int t_cols) : m_rows(t_rows), m_cols(t_cols)
 		m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{ 0,(float)(i * tileSize) });
 		m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width ,(float)(i * tileSize) });
 	}
+
+    int m_id = 0;
+
+    for (int i = 0; i < m_rows; i++)
+    {
+        std::vector<NodeData> row;
+        for(int j = 0; j < m_cols; j++)
+        {
+            row.push_back({m_id, true});
+            m_id++;
+        }
+        m_grid.push_back(row);
+    }
 }
 
 void Grid::toggleDraw()
@@ -60,4 +73,9 @@ void Grid::debug()
 			m_id++;
 		}
 	}
+}
+
+std::vector<std::vector<NodeData>>& Grid::getGrid()
+{
+    return m_grid;
 }

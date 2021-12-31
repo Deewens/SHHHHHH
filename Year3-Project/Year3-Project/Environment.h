@@ -14,6 +14,7 @@ public:
 	sf::FloatRect getCollisionRect();
 
 	bool isImpassable() const;
+    int getTileCode() const;
 
 private:
 	sf::RectangleShape m_rect;
@@ -21,4 +22,5 @@ private:
 
     float m_rotation;
     bool m_impassable; // If characters can pass through the element or not
+    int m_tileCode;
 };

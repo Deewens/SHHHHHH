@@ -77,7 +77,8 @@ private:
     bool m_pickupCollected[2] = { false,false };
 
     Grid m_grid;
-    std::vector<Environment> m_environment;
+    std::vector<Environment> m_environment; // Everything related to the ground of the scene
+    std::vector<Environment> m_objects; // Object of the scene (wall, tree, etc.)
     Menu m_gameMenu;
     HUD m_hud;
 
@@ -86,6 +87,10 @@ private:
     sf::Texture m_groundTexture;
 
     SoundHolder m_sounds;
+
+    std::vector<int> m_waypoints;
+    std::map<std::string, std::vector<int>> m_ucs;
+    Enemy m_ucsEnemy;
 };
 
 #endif // !GAME_HPP
