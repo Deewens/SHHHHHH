@@ -20,7 +20,7 @@ Game::Game() :
                             85, 95, // 1, 2
                             205 // 3
                     }),
-        m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 900))
+        m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
 {
 
     if(!m_font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))

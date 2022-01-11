@@ -115,21 +115,24 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
         }
     }
 
-/*    for (int i = 0; i < m_nodes.size(); i++)
+    for (int i = 0; i < m_nodes.size(); i++)
     {
         std::map<int, float> neighbours = getNeighbours(i);
         for (auto neighbour : neighbours)
         {
             addArc(i, neighbour.first, neighbour.second);
         }
-    }*/
+    }
 
-    std::cout << "Grid initialization" << std::endl;
+    Arc* arc = getArc(1, 22);
+    std::cout << arc->weight() << std::endl;
+
+/*    std::cout << "Grid initialization" << std::endl;
     auto neighbours = getNeighbours(5);
     for (auto& neighbour : neighbours)
     {
         std::cout << "NODE: " << neighbour.first << " - COST: " << neighbour.second << std::endl;
-    }
+    }*/
 }
 
 // ----------------------------------------------------------------
