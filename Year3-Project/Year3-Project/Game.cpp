@@ -19,8 +19,20 @@ Game::Game() :
         m_waypoints({
                             85, 95, // 1, 2
                             205 // 3
-                    })
+                    }),
+        m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 900))
 {
+
+    if(!m_font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
+    {
+        std::cout << "Problem loading font" << std::endl;
+    }
+
+    m_playerCoordsDebugText.setFont(m_font);
+    m_playerCoordsDebugText.setCharacterSize(20);
+    m_playerCoordsDebugText.setFillColor(sf::Color::White);
+    m_playerCoordsDebugText.setPosition(0, 0);
+
 
     m_ucs.insert(std::pair<std::string, std::vector<int>>("1-2", std::vector<int>(
             {85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95})));
@@ -41,18 +53,17 @@ Game::Game() :
     m_ucsEnemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
-    m_grid = Grid(screen_Height / tileSize, screen_Width / tileSize);
 
     pauseMenuSetUp();
     setupEnvironment();
 
     // Neighbours Algorithm DEBUG
     // ====================================================
-    for (auto& row : m_grid.getGrid())
+    /*for (auto& row : m_grid.getGrid())
     {
         for (auto& node : row)
         {
-            std::cout << "Is " << node.getId() << " passable: " << (node.isPassable() ? "Yes" : "No") << std::endl;
+            std::cout << "Is " << node. << " passable: " << (node.isPassable() ? "Yes" : "No") << std::endl;
         }
     }
 
@@ -60,8 +71,10 @@ Game::Game() :
     for (auto &neighbour: neighbours)
         std::cout << neighbour << " ";
 
-    std::cout << std::endl;
+    std::cout << std::endl;*/
     // =======================================================
+
+
 
     setUpPickUps();
     m_worldView.reset(
@@ -162,6 +175,11 @@ void Game::processKeys(sf::Event t_event)
     {
         m_exitGame = true;
     }
+
+    if (sf::Keyboard::F1 == t_event.key.code)
+    {
+        m_playerCoordsDebugText.setString("X: " + std::to_string(m_player.getPosition().x) + " - Y: " + std::to_string(m_player.getPosition().y));
+    }
 }
 
 /// <summary>
@@ -242,7 +260,6 @@ void Game::render()
             m_window.draw(m_gameMenu);
             break;
         case GameState::GAMEPLAY:
-
             m_window.clear(sf::Color(0, 157, 196));
             m_window.setView(m_worldView);
 
@@ -271,6 +288,9 @@ void Game::render()
             collisions.renderNoises(m_window);
             m_player.renderPowerBar(m_window);
             m_hud.render(m_window);
+
+            m_window.setView(m_window.getDefaultView());
+            m_window.draw(m_playerCoordsDebugText);
             break;
         case GameState::EXIT:
             break;
@@ -381,15 +401,15 @@ void Game::setupEnvironment()
     // ===========================================================================
 
     // Set the passable property for each grid node
-    for (std::vector<NodeData>& row: m_grid.getGrid())
+    for (auto& row: m_grid.getGrid())
     {
-        for (NodeData& node : row)
+        for (auto& node : row)
         {
             for (auto& object: m_objects)
             {
-                if (object.getTileCode() == node.getId())
+                if (object.getTileCode() == node.m_data.id)
                 {
-                    node.setPassable(!object.isImpassable());
+                    node.m_data.isPassable = !object.isImpassable();
                 }
             }
 

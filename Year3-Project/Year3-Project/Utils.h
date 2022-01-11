@@ -2,28 +2,27 @@
 #define YEAR3_PROJECT_UTILS_H
 
 #include <random>
+#include <cmath>
+#include <map>
 
 #include <SFML/Audio.hpp>
 
-#include <cmath>
-
 #include "Environment.h"
-#include "Grid.h"
+#include "Graph.h"
 
 class Utils
 {
 public:
     static int generateRandomNumber(int from, int to);
-    static void playRandomSound(std::vector<sf::Sound*>& sounds);
+
+    static void playRandomSound(std::vector<sf::Sound *> &sounds);
 
     static float getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q);
 
-    static std::vector<int> getNeighbours(Grid grid, int node);
-
 private:
     Utils(); // This class is not an object and cannot be instantiated - Not Implemented
-    Utils(const Utils& c); // Copy Constructor - Not Implemented
-    Utils& operator=(const Utils&c); // Assignment Operator - Not Implemented
+    Utils(const Utils &c); // Copy Constructor - Not Implemented
+    Utils &operator=(const Utils &c); // Assignment Operator - Not Implemented
 };
 
 

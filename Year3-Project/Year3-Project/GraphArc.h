@@ -10,44 +10,44 @@
 //              weight.
 // -------------------------------------------------------
 template<class NodeType, class ArcType>
-class GraphArc 
+class GraphArc
 {
 private:
 
 // -------------------------------------------------------
 // Description: pointer to the node that the arc points to
 // -------------------------------------------------------
-    GraphNode<NodeType, ArcType>* m_node;
+    GraphNode<NodeType, ArcType> *m_node;
 
 // -------------------------------------------------------
 // Description: Weight of the arc
 // -------------------------------------------------------
     ArcType m_weight;
 
-public:    
-    
+public:
+
     // Accessor functions
-    GraphNode<NodeType, ArcType>* node() const 
-	{
+    GraphNode<NodeType, ArcType> *node() const
+    {
         return m_node;
     }
-                              
-    ArcType weight() const 
-	{
+
+    ArcType weight() const
+    {
         return m_weight;
     }
-    
+
     // Manipulator functions
-    void setNode(GraphNode<NodeType, ArcType>* node) 
-	{
-       m_node = node;
+    void setNode(GraphNode<NodeType, ArcType> *node)
+    {
+        m_node = node;
     }
-    
-    void setWeight(ArcType weight) 
-	{
-       m_weight = weight;
+
+    void setWeight(ArcType weight)
+    {
+        m_weight = weight;
     }
-    
+
 };
 
 #endif

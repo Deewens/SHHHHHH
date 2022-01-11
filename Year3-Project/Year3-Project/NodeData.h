@@ -1,20 +1,11 @@
 #ifndef YEAR3_PROJECT_NODEDATA_H
 #define YEAR3_PROJECT_NODEDATA_H
 
-
-class NodeData
+struct NodeData
 {
-private:
-    int m_id;
-    bool m_isPassable;
-
-public:
-    NodeData(int id, bool isPassable);
-
-    int getId() const;
-
-    void setPassable(bool passable);
-    bool isPassable() const;
+    int id = 0;
+    bool isPassable = true;
+    float cost = 0.0f;
 };
 
 

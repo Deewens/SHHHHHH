@@ -17,7 +17,7 @@
 #include "Menu.h"
 #include "Pickup.h"
 #include "CollisionManager.h"
-#include "Grid.h"
+#include "Graph.h"
 #include "Environment.h"
 #include "HUD.h"
 #include "SoundHolder.h"
@@ -59,6 +59,7 @@ private:
 
 	bool m_exitGame; // control exiting game
 
+    sf::View m_hudView;
     sf::View m_worldView; // Take care of the view (camera)
 
     sf::View m_menuView;
@@ -76,7 +77,7 @@ private:
 
     bool m_pickupCollected[2] = { false,false };
 
-    Grid m_grid;
+    Graph<NodeData, float> m_grid;
     std::vector<Environment> m_environment; // Everything related to the ground of the scene
     std::vector<Environment> m_objects; // Object of the scene (wall, tree, etc.)
     Menu m_gameMenu;
@@ -85,6 +86,10 @@ private:
     sf::RectangleShape m_pauseRect;
 
     sf::Texture m_groundTexture;
+
+    sf::Font m_font;
+
+    sf::Text m_playerCoordsDebugText;
 
     SoundHolder m_sounds;
 
