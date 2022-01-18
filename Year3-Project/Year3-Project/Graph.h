@@ -23,11 +23,11 @@ public:
     typedef GraphArc<NodeType, ArcType> Arc;
     typedef GraphNode<NodeType, ArcType> Node;
 
-    Graph(int maxNodes);
+    explicit Graph(int maxNodes);
 
-    Graph(int t_rows, int t_cols, int size);
+    Graph(int t_rows, int t_cols, int maxNodes);
 
-    ~Graph();
+    ~Graph() override;
 
     void render(sf::RenderWindow &t_window);
 
@@ -43,8 +43,14 @@ public:
         return m_nodes.at(index);
     }
 
+    sf::Vector2f getNodePosition(int index);
+
     // Public member functions.
     bool addNode(NodeType data, int index);
+
+    bool updateNode(NodeData nodeData, int nodeId);
+
+    std::vector<Node*> getNodes();
 
     void removeNode(int index);
 
@@ -72,7 +78,6 @@ private:
     bool m_gridDraw = false;
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
-
 
     int m_size = 0;
 
@@ -110,37 +115,18 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
     {
         for (int j = 0; j < m_cols; j++)
         {
-            NodeData nodeData = NodeData{id};
+            NodeData nodeData = NodeData{id,sf::Vector2f((float) (j * tileSize) + ((float) tileSize/2), (float) (i * tileSize) + ((float) tileSize/2))};
             addNode(nodeData, id++);
         }
     }
-
-    for (int i = 0; i < m_nodes.size(); i++)
-    {
-        std::map<int, float> neighbours = getNeighbours(i);
-        for (auto neighbour : neighbours)
-        {
-            addArc(i, neighbour.first, neighbour.second);
-        }
-    }
-
-    Arc* arc = getArc(1, 22);
-    std::cout << arc->weight() << std::endl;
-
-/*    std::cout << "Grid initialization" << std::endl;
-    auto neighbours = getNeighbours(5);
-    for (auto& neighbour : neighbours)
-    {
-        std::cout << "NODE: " << neighbour.first << " - COST: " << neighbour.second << std::endl;
-    }*/
 }
 
-// ----------------------------------------------------------------
-//  Name:           ~Graph
-//  Description:    destructor, This deletes every node
-//  Arguments:      None.
-//  Return Value:   None.
-// ----------------------------------------------------------------
+/**
+ * Destructor, This deletes every node
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ */
 template<typename NodeType, typename ArcType>
 Graph<NodeType, ArcType>::~Graph()
 {
@@ -153,6 +139,12 @@ Graph<NodeType, ArcType>::~Graph()
     }
 }
 
+/**
+ * Draw the grid on the screen (debug purposes)
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ */
 template<typename NodeType, typename ArcType>
 void Graph<NodeType, ArcType>::toggleDraw()
 {
@@ -198,6 +190,13 @@ void Graph<NodeType, ArcType>::debug()
     }
 }
 
+/**
+ * Get a 2-Dimensional vector representing the graph/grid and containing each Node
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @return 2-Dimensional vector of nodes
+ */
 template<typename NodeType, typename ArcType>
 std::vector<std::vector<GraphNode<NodeType, ArcType>>> Graph<NodeType, ArcType>::getGrid()
 {
@@ -221,13 +220,15 @@ std::vector<std::vector<GraphNode<NodeType, ArcType>>> Graph<NodeType, ArcType>:
     return grid;
 }
 
-// ----------------------------------------------------------------
-//  Name:           addNode
-//  Description:    This adds a node at a given index in the graph.
-//  Arguments:      The first parameter is the data to store in the node.
-//                  The second parameter is the index to store the node.
-//  Return Value:   true if successful
-// ----------------------------------------------------------------
+/**
+ * This adds a node at a given index in the graph.
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param data data to store in the node.
+ * @param index index to store the node.
+ * @return true if successful
+ */
 template<class NodeType, class ArcType>
 bool Graph<NodeType, ArcType>::addNode(NodeType data, int index)
 {
@@ -245,12 +246,46 @@ bool Graph<NodeType, ArcType>::addNode(NodeType data, int index)
     return nodeNotPresent;
 }
 
-// ----------------------------------------------------------------
-//  Name:           removeNode
-//  Description:    This removes a node from the graph
-//  Arguments:      The index of the node to return.
-//  Return Value:   None.
-// ----------------------------------------------------------------
+/**
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param data data update in the node
+ * @param index index of the node to update.
+ * @return
+ */
+template<typename NodeType, class ArcType>
+bool Graph<NodeType, ArcType>::updateNode(NodeData data, int index)
+{
+    // find out if a node does not exist at that index.
+    if (m_nodes.at(index) == nullptr)
+        return false;
+
+    m_nodes.at(index)->m_data = data;
+
+    return true;
+}
+
+/**
+ * Get the list of node of the graph
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @return vector containing the node list of the graph
+ */
+template<typename NodeType, class ArcType>
+std::vector<GraphNode<NodeType, ArcType>*> Graph<NodeType, ArcType>::getNodes()
+{
+    return m_nodes;
+}
+
+/**
+ * This removes a node from the graph
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param index The index of the node to return.
+ */
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::removeNode(int index)
 {
@@ -286,15 +321,16 @@ void Graph<NodeType, ArcType>::removeNode(int index)
     }
 }
 
-// ----------------------------------------------------------------
-//  Name:           addArd
-//  Description:    Adds an arc from the first index to the
-//                  second index with the specified weight.
-//  Arguments:      The first argument is the originating node index
-//                  The second argument is the ending node index
-//                  The third argument is the weight of the arc
-//  Return Value:   true on success.
-// ----------------------------------------------------------------
+/**
+ * Adds an arc from the first index to the second index with the specified weight.
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param from originating node index
+ * @param to ending node index
+ * @param weight weight of the arc
+ * @return true on success.
+ */
 template<class NodeType, class ArcType>
 bool Graph<NodeType, ArcType>::addArc(int from, int to, ArcType weight)
 {
@@ -320,13 +356,14 @@ bool Graph<NodeType, ArcType>::addArc(int from, int to, ArcType weight)
     return proceed;
 }
 
-// ----------------------------------------------------------------
-//  Name:           removeArc
-//  Description:    This removes the arc from the first index to the second index
-//  Arguments:      The first parameter is the originating node index.
-//                  The second parameter is the ending node index.
-//  Return Value:   None.
-// ----------------------------------------------------------------
+/**
+ * This removes the arc from the first index to the second index
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param from originating node index.
+ * @param to ending node index.
+ */
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::removeArc(int from, int to)
 {
@@ -345,15 +382,15 @@ void Graph<NodeType, ArcType>::removeArc(int from, int to)
     }
 }
 
-
-// ----------------------------------------------------------------
-//  Name:           getArc
-//  Description:    Gets a pointer to an arc from the first index
-//                  to the second index.
-//  Arguments:      The first parameter is the originating node index.
-//                  The second parameter is the ending node index.
-//  Return Value:   pointer to the arc, or 0 if it doesn't exist.
-// ----------------------------------------------------------------
+/**
+ * Gets a pointer to an arc from the first index to the second index.
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param from originating node index.
+ * @param to ending node index.
+ * @return pointer to the arc, or 0 if it doesn't exist.
+ */
 template<class NodeType, class ArcType>
 GraphArc<NodeType, ArcType> *Graph<NodeType, ArcType>::getArc(int from, int to)
 {
@@ -367,13 +404,12 @@ GraphArc<NodeType, ArcType> *Graph<NodeType, ArcType>::getArc(int from, int to)
     return arc;
 }
 
-
-// ----------------------------------------------------------------
-//  Name:           clearMarks
-//  Description:    This clears every mark on every node.
-//  Arguments:      None.
-//  Return Value:   None.
-// ----------------------------------------------------------------
+/**
+ * This clears every mark on every node.
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ */
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::clearMarks()
 {
@@ -386,11 +422,15 @@ void Graph<NodeType, ArcType>::clearMarks()
     }
 }
 
-/*
- * start is a Graph node indicating the origin of the search
- * dest is the goal vertex indicating the destination of the search
- * f_visit is a function that outputs the node currently being expanded (i.e. the node at the top of the priority queue).
- * path is a container (a vector) which holds the best path generated by the algorithm’s completion
+/**
+ * Pathfinding using UCS Algorithm
+ *
+ * @tparam NodeType
+ * @tparam ArcType
+ * @param start Graph node indicating the origin of the search
+ * @param goal goal vertex indicating the destination of the search
+ * @param f_visit function that outputs the node currently being expanded (i.e. the node at the top of the priority queue).
+ * @param path container (a vector) which holds the best path generated by the algorithm’s completion
  */
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::ucs(Graph::Node *start, Graph::Node *goal, std::function<void(Node *)> f_visit,
@@ -398,15 +438,15 @@ void Graph<NodeType, ArcType>::ucs(Graph::Node *start, Graph::Node *goal, std::f
 {
     if (start == nullptr || goal == nullptr) return;
 
-    std::priority_queue<Node *, std::vector<Node *>, NodeComparer< NodeType, ArcType>>
-    pq;
+    std::priority_queue<Node*, std::vector<Node*>, NodeComparer<NodeType, ArcType>> pq;
 
     for (int i = 0; i < m_nodes.size(); i++)
     {
-        m_nodes.at(i)->m_data.m_cost = -1;
+        m_nodes.at(i)->m_data.cost = -1;
+        m_nodes.at(i)->setPrevious(nullptr);
     }
 
-    start->m_data.m_cost = 0;
+    start->m_data.cost = 0;
 
     pq.push(start);
     start->setMarked(true);
@@ -423,12 +463,11 @@ void Graph<NodeType, ArcType>::ucs(Graph::Node *start, Graph::Node *goal, std::f
             if (child != pq.top()->previous())
             {
                 int arcWeight = it->weight();
-                int distToChild = arcWeight + pq.top()->m_data.m_cost;
-                //auto distToChild = pq.top()->m_data.m_cost + (*it).node()->m_data.m_cost + pq.;
+                int distToChild = arcWeight + pq.top()->m_data.cost;
 
-                if (distToChild < child->m_data.m_cost || child->m_data.m_cost == -1)
+                if (distToChild < child->m_data.cost || child->m_data.cost == -1)
                 {
-                    (*it).node()->m_data.m_cost = distToChild;
+                    (*it).node()->m_data.cost = distToChild;
                     (*it).node()->setPrevious(pq.top());
                 }
 
@@ -498,10 +537,21 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
         if (n_row >= 0 && n_row < vectorGrid.size() && n_col >= 0 && n_col < vectorGrid[n_row].size())
         {
             // A valid neighbor:
-            if (vectorGrid[n_row][n_col].m_data.isPassable) neighbours.insert({vectorGrid[n_row][n_col].m_data.id, cost});
+            if (vectorGrid[n_row][n_col].m_data.isPassable)
+            {
+                neighbours.insert({vectorGrid[n_row][n_col].m_data.id, cost});
+            };
         }
     }
 
     return neighbours;
 }
+
+template<typename NodeType, class ArcType>
+sf::Vector2f Graph<NodeType, ArcType>::getNodePosition(int index)
+{
+
+}
+
+
 

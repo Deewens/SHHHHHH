@@ -23,6 +23,9 @@
 #include "SoundHolder.h"
 #include "Utils.h"
 
+typedef GraphArc<NodeData, float> Arc;
+typedef GraphNode<NodeData, float> Node;
+
 class Game
 {
 public:
@@ -93,9 +96,11 @@ private:
 
     SoundHolder m_sounds;
 
-    std::vector<int> m_waypoints;
-    std::map<std::string, std::vector<int>> m_ucs;
+    std::vector<int> m_ucsWaypoints;
+    std::map<std::string, std::vector<Node*>> m_ucsPaths;
+
     Enemy m_ucsEnemy;
+    std::vector<Node*> m_path;
 };
 
 #endif // !GAME_HPP

@@ -19,6 +19,12 @@ public:
 
     static float getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q);
 
+    template <typename T>
+    static float magnitude(sf::Vector2<T> v);
+
+    template<typename T>
+    static sf::Vector2<T> normalize(sf::Vector2<T> a);
+
 private:
     Utils(); // This class is not an object and cannot be instantiated - Not Implemented
     Utils(const Utils &c); // Copy Constructor - Not Implemented
