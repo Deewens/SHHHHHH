@@ -23,7 +23,7 @@ Game::Game() :
         m_spawnPosition(100.f, 100.f),
         m_ucsWaypoints({
                                85, 95,
-                                131,
+                                151,
                                205, 215,
                        }),
         m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
