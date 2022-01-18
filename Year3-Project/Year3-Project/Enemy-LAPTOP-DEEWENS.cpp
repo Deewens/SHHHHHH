@@ -217,6 +217,48 @@ void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
     m_sprite.move(m_movement);
 }
 
+void Enemy::move(sf::Vector2f t_startVec , sf::Vector2f t_finishVec)
+{
+
+    sf::Vector2f m_movement = thor::unitVector(t_startVec - t_finishVec);
+    m_movement = m_speed * m_movement;
+    if (m_movement.x <0)
+    {
+        setDirection(WEST);
+    }
+    if (m_movement.x > 0)
+    {
+        setDirection(EAST);
+    }
+    if (m_movement.y <0)
+    {
+        setDirection(NORTH);
+    }
+    if (m_movement.y > 0)
+    {
+        setDirection(SOUTH);
+    }
+    if (m_movement.x >0 && m_movement.y < 0 )
+    {
+        setDirection(NORTHEAST);
+    }
+    if (m_movement.x < 0 && m_movement.y < 0)
+    {
+        setDirection(NORTHWEST);
+    }
+    if (m_movement.x > 0 && m_movement.y > 0)
+    {
+        setDirection(SOUTHEAST);
+    }
+    if (m_movement.x < 0 && m_movement.y > 0)
+    {
+        setDirection(SOUTHWEST);
+    }
+
+
+    m_zombieSprite.move(m_movement);
+}
+
 bool Enemy::isBeingSeen()
 {
     circle_player.r = 17.0f;
@@ -278,11 +320,6 @@ void Enemy::changeSoundsVolume(float newVolume)
     for (auto sound : footstepRunSounds)
         if (sound->getVolume() != newVolume)
             sound->setVolume(newVolume);
-}
-
-void Enemy::move(sf::Vector2f& offset)
-{
-    m_sprite.move(offset);
 }
 
 

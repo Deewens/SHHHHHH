@@ -22,9 +22,8 @@ Game::Game() :
         m_exitGame(false), //when true game will exit
         m_spawnPosition(100.f, 100.f),
         m_ucsWaypoints({
-                               85, 95,
-                                131,
-                               205, 215,
+                               85, 95, // 1, 2
+                               205 // 3
                        }),
         m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
 {
@@ -68,13 +67,21 @@ Game::Game() :
         }
     }
 
+/*    std::vector<Node*> path1;
+    m_grid.ucs(m_grid.nodeIndex(85), m_grid.nodeIndex(95), visit, path1);
+    m_grid.clearMarks();
+    std::vector<Node*> path2;
+    m_grid.ucs(m_grid.nodeIndex(95), m_grid.nodeIndex(85), visit, path2);*/
+
+    //m_grid.ucs(m_grid.nodeIndex(95), m_grid.nodeIndex(85), visit, path2);
+
     for (int i = 0; i < m_ucsWaypoints.size(); i++)
     {
         for (int j = 0; j < m_ucsWaypoints.size(); j++)
         {
             if (m_ucsWaypoints[i] != m_ucsWaypoints[j])
             {
-                std::vector<Node*> path;
+                std::vector<Node *> path;
 
                 m_grid.ucs(m_grid.nodeIndex(m_ucsWaypoints[i]), m_grid.nodeIndex(m_ucsWaypoints[j]), visit, path);
                 m_ucsPaths.insert({std::to_string(i) + "-" + std::to_string(j), path});
@@ -82,6 +89,13 @@ Game::Game() :
             m_grid.clearMarks();
         }
     }
+
+    m_path = m_ucsPaths.at("0-1");
+
+/*    for (auto& neighbour : m_grid.getNeighbours(85))
+    {
+        std::cout << neighbour.first << " " << neighbour.second << std::endl;
+    }*/
 
     for (auto& path : m_ucsPaths)
     {
@@ -92,6 +106,15 @@ Game::Game() :
         }
         std::cout << std::endl;
     }
+
+    // TODO: To be deleted before merging into master
+/*    m_grid.ucs(m_grid.nodeIndex(85), m_grid.nodeIndex(95), visit, m_path);
+    for (auto it = m_path.rbegin(); it != m_path.rend(); ++it)
+    {
+        std::cout << (*it)->m_data.id << " {" << (*it)->m_data.position.x << "," << (*it)->m_data.position.y << "} -> ";
+    }
+    std::cout << std::endl;*/
+
 }
 
 /// <summary>
@@ -215,7 +238,7 @@ void Game::update(sf::Time t_deltaTime)
         {
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
-            m_player.update(t_deltaTime , m_worldView.getCenter());
+            m_player.update(t_deltaTime);
             m_enemy.update(t_deltaTime);
             m_ucsEnemy.update(t_deltaTime);
             checkCollisions();
@@ -242,6 +265,39 @@ void Game::update(sf::Time t_deltaTime)
             dist = m_player.getDistance(m_enemy);
             volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
             m_enemy.changeSoundsVolume(volume);
+
+            int zombieCell = floor(m_ucsEnemy.getPosition().x / tileSize) +
+                             (floor(m_ucsEnemy.getPosition().y / tileSize) * screen_Width / tileSize);
+
+            int secondToLastCell = 0;
+            int lastCell = 0;
+
+            if (m_path.size() > 1)
+            {
+                secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
+                if (secondToLastCell == zombieCell && m_path.size() > 2)
+                {
+                    m_path.erase(m_path.begin() + m_path.size() - 1);
+                    secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
+                }
+                lastCell = m_path[m_path.size() - 1]->m_data.id;
+
+                int m_columS = secondToLastCell % (screen_Width / tileSize);
+                int m_rowS = (secondToLastCell - m_columS) / (screen_Width / tileSize);
+
+                int m_columF = lastCell % (screen_Width / tileSize);
+                int m_rowF = (lastCell - m_columF) / (screen_Width / tileSize);
+
+                sf::Vector2f m_centerS;
+                m_centerS.y = (tileSize / 2) + (tileSize * m_rowS);
+                m_centerS.x = (tileSize / 2) + (tileSize * m_columS);
+
+                sf::Vector2f m_centerF;
+                m_centerF.y = (tileSize / 2) + (tileSize * m_rowF);
+                m_centerF.x = (tileSize / 2) + (tileSize * m_columF);
+
+                m_ucsEnemy.move(m_centerS, m_centerF);
+            }
         }
             break;
         case GameState::EXIT:
@@ -298,12 +354,11 @@ void Game::render()
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
+            m_player.renderPowerBar(m_window);
             m_hud.render(m_window);
 
             m_window.setView(m_window.getDefaultView());
             m_window.draw(m_playerCoordsDebugText);
-            m_player.renderPowerBar(m_window);
-
             break;
         case GameState::EXIT:
             break;
@@ -391,7 +446,7 @@ void Game::setupEnvironment()
 
     // Add impassable wall for UCS Debugging
     // ===========================================================================
-/*    sf::RectangleShape wall;
+    sf::RectangleShape wall;
     wall.setFillColor(sf::Color::Red);
     m_objects.emplace_back(wall, 70, screen_Height / tileSize, screen_Width / tileSize, 0, true);
     m_objects.emplace_back(wall, 71, screen_Height / tileSize, screen_Width / tileSize, 0, true);
@@ -412,7 +467,7 @@ void Game::setupEnvironment()
     m_objects.emplace_back(wall, 150, screen_Height / tileSize, screen_Width / tileSize, 0, true);
     m_objects.emplace_back(wall, 130, screen_Height / tileSize, screen_Width / tileSize, 0, true);
     m_objects.emplace_back(wall, 110, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    // ===========================================================================*/
+    // ===========================================================================
 
     // Set the passable property for each grid node
     for (auto &node: m_grid.getNodes())
@@ -427,6 +482,8 @@ void Game::setupEnvironment()
                 m_grid.updateNode(newData, node->m_data.id);
             }
         }
+
+        //std::cout << "Is " << node->m_data.id << " passable: " << (node->m_data.isPassable ? "Yes" : "No") << std::endl;
     }
 }
 

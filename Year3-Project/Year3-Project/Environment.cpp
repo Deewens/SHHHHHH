@@ -2,7 +2,7 @@
 #include "Environment.h"
 
 Environment::Environment(sf::RectangleShape& t_rect, int t_tileCode, int t_rows, int t_cols, float t_rotation,
-                         bool t_impassable) : m_rect(t_rect), m_rotation(t_rotation), m_impassable(t_impassable)
+                         bool t_impassable) : m_rect(t_rect), m_rotation(t_rotation), m_impassable(t_impassable), m_tileCode(t_tileCode)
 {
     m_rect.setSize(sf::Vector2f(tileSize, tileSize));
     m_rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
@@ -15,7 +15,7 @@ Environment::Environment(sf::RectangleShape& t_rect, int t_tileCode, int t_rows,
 
 Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, int t_tileCode, int t_rows, int t_cols,
                          float t_rotation, bool t_impassable) :
-                         m_sprite(t_texture), m_rotation(t_rotation), m_impassable(t_impassable)
+                         m_sprite(t_texture), m_rotation(t_rotation), m_impassable(t_impassable), m_tileCode(t_tileCode)
 {
     std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/ground_sprite_sheet.json");
     nlohmann::json json;
@@ -53,4 +53,9 @@ sf::FloatRect Environment::getCollisionRect()
 bool Environment::isImpassable() const
 {
     return m_impassable;
+}
+
+int Environment::getTileCode() const
+{
+    return m_tileCode;
 }
