@@ -10,6 +10,9 @@
 /// Don't forget the endif at the bottom
 /// </summary>
 #include <SFML/Graphics.hpp>
+#include <algorithm>
+#include <fstream>
+#include "json.hpp"
 #include "Globals.h"
 #include "Button.h"
 #include <iostream>
@@ -34,6 +37,7 @@ private:
 	
 	void setupSprite();
 	void setupHUD();
+	void setupOptions();
 	void manageClicks(sf::Event t_event);
 
 	sf::RenderWindow m_window; // main SFML window
@@ -51,7 +55,10 @@ private:
 	Button* deleteButton;
 	Button* upButton;
 	Button* downButton;
-	std::vector<Button*> tileOptions;
+	std::string titles[6];
+	std::vector<Button*> tileOptions[6];
+	sf::RectangleShape topScrollBlock;
+	sf::RectangleShape bottomScrollBlock;
 	Button* selectedButton;
 	sf::Texture m_texture;
 

@@ -112,14 +112,16 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(mapArea);
+	for (Button* button : tileOptions[0])
+	{
+		button->render(m_window);
+	}
+	m_window.draw(topScrollBlock);
+	m_window.draw(bottomScrollBlock);
 	saveButton->render(m_window);
 	deleteButton->render(m_window);
 	upButton->render(m_window);
 	downButton->render(m_window);
-	for (Button* button : tileOptions)
-	{
-		button->render(m_window);
-	}
 	for (int i = 0; i < mapSize; i++)
 	{
 		if (m_MapTiles[i] != nullptr)
@@ -163,6 +165,10 @@ void Game::setupSprite()
 
 void Game::setupHUD()
 {
+	if (!m_texture.loadFromFile("ASSETS/IMAGES/spritesheet.png"))
+	{
+
+	}
 	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
 	deleteButton = new Button(sf::Vector2f(screen_Width + menu_Width / 4, screen_Height - 160), sf::Vector2f(menu_Width / 2, 50), sf::Color::Red, 
 		"Delete", 30, sf::Color::Black);
@@ -170,25 +176,61 @@ void Game::setupHUD()
 		"^", 30, sf::Color::Black);
 	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), screen_Height - 230), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
 		"v", 30, sf::Color::Black);
+	topScrollBlock.setPosition(screen_Width, 0);
+	topScrollBlock.setSize(sf::Vector2f(menu_Width, tileListTop));
+	bottomScrollBlock.setPosition(screen_Width, tileListBottom);
+	bottomScrollBlock.setSize(sf::Vector2f(menu_Width, screen_Height));
 
+	setupOptions();
+}
+
+void Game::setupOptions()
+{
+	/*
+	Types:
+		UI
+		Player
+		Beach
+		Indoor_Ground
+		Outdoor_Ground
+		River
+		Green_Zombie
+		Purple_Zombie
+		Indoor_Decor
+		Outdoor_Decor
+		Wall
+	*/
+	titles[0] = "Outdoor_Ground";
+	titles[1] = "Indoor_Ground";
+	titles[2] = "River";
+	titles[3] = "Outdoor_Decor";
+	titles[4] = "Indoor_Decor";
+	titles[5] = "Wall";
+
+	std::ifstream spriteSheetData("ASSETS/IMAGES/spritesheet.json");
+	nlohmann::json json;
+	spriteSheetData >> json;
+	
+	nlohmann::json frames = json["frames"];
+	std::string category;
+	int counter[6] = { 0 };
 	Button* temp;
-	int imageCount = 8;
-	std::string images[8] = { "SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png" };
-	for (int i = 0; i < imageCount; i++)
+	sf::IntRect tempRect;
+	for (auto& el : frames)
 	{
-		if (!m_texture.loadFromFile("ASSETS/IMAGES/" + images[i]))
+		category = el["Type"];
+		bool found = false;
+		for (int i = 0; i < 6; i++)
 		{
-
+			if (category == titles[i])
+			{
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * counter[i])), sf::Vector2f(150, 150), m_texture, tempRect);
+				tileOptions[i].push_back(temp);
+				found = true;
+				counter[i]++;
+			}
 		}
-		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture, images[i]);
-		tileOptions.push_back(temp);
 	}
 }
 
@@ -200,14 +242,14 @@ void Game::manageClicks(sf::Event t_event)
 	{
 		if (upButton->isInside(click))
 		{
-			for (Button* button : tileOptions)
+			for (Button* button : tileOptions[0])
 			{
 				button->moveUp(0.2f);
 			}
 		}
 		if (downButton->isInside(click))
 		{
-			for (Button* button : tileOptions)
+			for (Button* button : tileOptions[0])
 			{
 				button->moveDown(0.2f);
 			}
@@ -219,18 +261,21 @@ void Game::manageClicks(sf::Event t_event)
 		if (click.x >= screen_Width && click.x < screen_Width + menu_Width &&
 			click.y >= 0 && click.y <= screen_Height)
 		{
-			for (Button* button : tileOptions)
+			if (click.y > tileListTop && click.y <= tileListBottom)
 			{
-				if (button->isInside(click))
+				for (Button* button : tileOptions[0])
 				{
-					if (selectedButton != nullptr)
-						selectedButton->setSelected(false);
-					selectedButton = button;
-					button->setSelected(true);
-					if (isDeleting)
+					if (button->isInside(click))
 					{
-						isDeleting = false;
-						deleteButton->setSelected(false);
+						if (selectedButton != nullptr)
+							selectedButton->setSelected(false);
+						selectedButton = button;
+						button->setSelected(true);
+						if (isDeleting)
+						{
+							isDeleting = false;
+							deleteButton->setSelected(false);
+						}
 					}
 				}
 			}
@@ -256,7 +301,7 @@ void Game::manageClicks(sf::Event t_event)
 			}
 			else if (selectedButton != nullptr)
 			{
-				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum);
+				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
 			}
 		}
 	}

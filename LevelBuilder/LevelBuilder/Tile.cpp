@@ -1,8 +1,8 @@
 #include "Tile.h"
 
-Tile::Tile(Button* t_tile, int t_tileNum) : m_tileNum(t_tileNum)
+Tile::Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture) : m_tileNum(t_tileNum)
 {
-	m_sprite.setTexture(t_tile->getTexture());
+	m_sprite.setTexture(t_texture);
 	m_passable = false;
 	m_spriteName = t_tile->getSpriteName();
 

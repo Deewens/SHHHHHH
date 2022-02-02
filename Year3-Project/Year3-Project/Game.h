@@ -11,6 +11,7 @@
 /// </summary>
 #include <fstream>
 #include <SFML/Graphics.hpp>
+#include <algorithm>
 #include "Globals.h"
 #include "Player.h"
 #include "Enemy.h"

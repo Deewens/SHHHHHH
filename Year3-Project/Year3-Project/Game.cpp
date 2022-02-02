@@ -2,8 +2,6 @@
 ///
 /// </summary>
 
-#include <algorithm>
-
 #include "Game.h"
 
 void visit(Node *t_node)

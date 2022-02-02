@@ -28,6 +28,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
   <ItemGroup>
