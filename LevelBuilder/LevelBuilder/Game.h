@@ -62,6 +62,7 @@ private:
 	sf::Text currentCategoryText;
 	int currentCategory = 0;
 	std::string titles[NUM_CATEGORIES];
+	bool passable[NUM_CATEGORIES];
 	std::vector<Button*> tileOptions[6];
 	sf::RectangleShape topScrollBlock;
 	sf::RectangleShape bottomScrollBlock;

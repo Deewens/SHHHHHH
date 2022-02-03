@@ -7,6 +7,7 @@ public:
 	Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture);
 	void render(sf::RenderWindow& t_window);
 	void rotate();
+	std::string getJsonInfo(int t_gridIndex);
 private:
 	sf::Sprite m_sprite;
 	std::string m_spriteName;

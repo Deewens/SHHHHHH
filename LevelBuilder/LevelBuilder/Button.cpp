@@ -52,14 +52,14 @@ Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Color t_color, 
 	m_buttonColor = t_color;
 }
 
-Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect) : m_texture(&t_texture)
+Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName) 
+	: m_texture(&t_texture), passable(t_passable), m_spriteName(t_spriteName), buttonStartSize(t_tempRect)
 {
 	m_sprite.setTexture(t_texture);
 	m_sprite.setPosition(t_location);
 	m_sprite.setScale(t_size.x / t_tempRect.width, t_size.y / t_tempRect.height);
 	isSprite = true;
 
-	buttonStartSize = t_tempRect;
 	m_sprite.setTextureRect(buttonStartSize);
 
 	scrollHeight = t_location.y;
@@ -163,4 +163,9 @@ std::string Button::getSpriteName()
 sf::IntRect Button::getTextRect()
 {
 	return buttonStartSize;
+}
+
+bool Button::getPassable()
+{
+	return passable;
 }

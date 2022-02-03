@@ -8,7 +8,7 @@ class Button
 public:
 	Button();
 	Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Color t_color, std::string t_text, int t_characterSize, sf::Color t_textColor);
-	Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect);
+	Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName);
 	void render(sf::RenderWindow& t_window);
 
 	bool isInside(sf::Vector2i t_click);
@@ -19,6 +19,7 @@ public:
 
 	std::string getSpriteName();
 	sf::IntRect getTextRect();
+	bool getPassable();
 private:
 	sf::Sprite m_sprite;
 	sf::Texture* m_texture;
@@ -28,6 +29,7 @@ private:
 
 	bool isSprite;
 	bool isSelected = false;
+	bool passable = false;
 
 	sf::IntRect buttonStartSize;
 	sf::FloatRect buttonSize;

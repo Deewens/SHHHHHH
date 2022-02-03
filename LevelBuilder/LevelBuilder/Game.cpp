@@ -226,6 +226,12 @@ void Game::setupOptions()
 	titles[3] = "Outdoor_Decor";
 	titles[4] = "Indoor_Decor";
 	titles[5] = "Wall";
+	passable[0] = true;
+	passable[1] = true;
+	passable[2] = false;
+	passable[3] = false;
+	passable[4] = false;
+	passable[5] = false;
 
 	assignText();
 
@@ -238,21 +244,23 @@ void Game::setupOptions()
 	int counter[6] = { 0 };
 	Button* temp;
 	sf::IntRect tempRect;
-	for (auto& el : frames)
+	for (nlohmann::json::iterator it = frames.begin(); it != frames.end(); it++)
 	{
+		auto& el = it.value();
 		category = el["Type"];
-		bool found = false;
-		for (int i = 0; i < 6; i++)
-		{
-			if (category == titles[i])
+			bool found = false;
+			for (int i = 0; i < 6; i++)
 			{
-				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
-				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), sf::Vector2f(150, 150), m_texture, tempRect);
-				tileOptions[i].push_back(temp);
-				found = true;
-				counter[i]++;
+				if (category == titles[i])
+				{
+					tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+					temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), 
+						sf::Vector2f(150, 150), m_texture, tempRect, passable[i], it.key());
+					tileOptions[i].push_back(temp);
+					found = true;
+					counter[i]++;
+				}
 			}
-		}
 	}
 }
 
@@ -345,6 +353,26 @@ void Game::manageClicks(sf::Event t_event)
 					currentCategory++;
 					assignText();
 				}
+			}
+			else if (saveButton->isInside(click))
+			{
+				std::string output = "{\n	\"scene\": {";
+				for (int i = 0; i < mapSize; i++)
+				{
+					if (m_MapTiles[i] != nullptr)
+					{
+						output += m_MapTiles[i]->getJsonInfo(i);
+					}
+				}
+				output += "\n}";
+				std::cout << output << std::endl;
+				std::ofstream MyFile("level.json");
+
+				// Write to the file
+				MyFile << output;
+
+				// Close the file
+				MyFile.close();
 			}
 		}
 		//check if you clicked on the map
