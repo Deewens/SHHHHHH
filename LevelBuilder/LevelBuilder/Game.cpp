@@ -120,6 +120,7 @@ void Game::render()
 	m_window.draw(bottomScrollBlock);
 	saveButton->render(m_window);
 	deleteButton->render(m_window);
+	rotateButton->render(m_window);
 	upButton->render(m_window);
 	downButton->render(m_window);
 	leftButton->render(m_window);
@@ -173,8 +174,10 @@ void Game::setupHUD()
 
 	}
 	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
-	deleteButton = new Button(sf::Vector2f(screen_Width + menu_Width / 4, screen_Height - 160), sf::Vector2f(menu_Width / 2, 50), sf::Color::Red, 
+	deleteButton = new Button(sf::Vector2f(screen_Width, screen_Height - 160), sf::Vector2f(menu_Width / 2, 60), sf::Color::Red, 
 		"Delete", 30, sf::Color::Black);
+	rotateButton = new Button(sf::Vector2f(screen_Width + menu_Width / 2, screen_Height - 160), sf::Vector2f(menu_Width / 2, 60), sf::Color::Blue,
+		"Rotate", 30, sf::Color::Black);
 	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListTop - 90), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
 		"^", 30, sf::Color::Black);
 	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListBottom + 30), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
@@ -295,13 +298,32 @@ void Game::manageClicks(sf::Event t_event)
 							isDeleting = false;
 							deleteButton->setSelected(false);
 						}
+						else if (isRotating)
+						{
+							isRotating = false;
+							rotateButton->setSelected(false);
+						}
 					}
 				}
 			}
-			if (deleteButton->isInside(click))
+			else if (deleteButton->isInside(click))
 			{
 				isDeleting = true;
 				deleteButton->setSelected(true);
+				isRotating = false;
+				rotateButton->setSelected(false);
+				if (selectedButton != nullptr)
+				{
+					selectedButton->setSelected(false);
+					selectedButton = nullptr;
+				}
+			}
+			else if (rotateButton->isInside(click))
+			{
+				isDeleting = false;
+				deleteButton->setSelected(false);
+				isRotating = true;
+				rotateButton->setSelected(true);
 				if (selectedButton != nullptr)
 				{
 					selectedButton->setSelected(false);
@@ -333,6 +355,10 @@ void Game::manageClicks(sf::Event t_event)
 			if (isDeleting)
 			{
 				m_MapTiles[tileNum] = nullptr;
+			}
+			else if (isRotating && m_MapTiles[tileNum] != nullptr)
+			{
+				m_MapTiles[tileNum]->rotate();
 			}
 			else if (selectedButton != nullptr)
 			{

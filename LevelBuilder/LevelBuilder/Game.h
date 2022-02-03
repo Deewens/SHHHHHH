@@ -54,6 +54,7 @@ private:
 
 	Button* saveButton;
 	Button* deleteButton;
+	Button* rotateButton;
 	Button* upButton;
 	Button* downButton;
 	Button* leftButton;
@@ -72,6 +73,7 @@ private:
 	Tile* m_MapTiles[mapSize];
 
 	bool isDeleting = false;
+	bool isRotating = false;
 };
 
 #endif // !GAME_HPP
