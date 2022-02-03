@@ -6,5 +6,7 @@ const int screen_Height = 1350;
 
 static const int tileSize{ 90 };
 
-const int tileListTop = 100;
+const int tileListTop = 200;
 const int tileListBottom = screen_Height - 260;
+
+const int NUM_CATEGORIES = 6;

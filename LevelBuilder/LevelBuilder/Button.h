@@ -18,6 +18,7 @@ public:
 	void setSelected(bool t_selected);
 
 	std::string getSpriteName();
+	sf::IntRect getTextRect();
 private:
 	sf::Sprite m_sprite;
 	sf::Texture* m_texture;

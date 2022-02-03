@@ -112,7 +112,7 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(mapArea);
-	for (Button* button : tileOptions[0])
+	for (Button* button : tileOptions[currentCategory])
 	{
 		button->render(m_window);
 	}
@@ -122,6 +122,9 @@ void Game::render()
 	deleteButton->render(m_window);
 	upButton->render(m_window);
 	downButton->render(m_window);
+	leftButton->render(m_window);
+	rightButton->render(m_window);
+	m_window.draw(currentCategoryText);
 	for (int i = 0; i < mapSize; i++)
 	{
 		if (m_MapTiles[i] != nullptr)
@@ -172,10 +175,24 @@ void Game::setupHUD()
 	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
 	deleteButton = new Button(sf::Vector2f(screen_Width + menu_Width / 4, screen_Height - 160), sf::Vector2f(menu_Width / 2, 50), sf::Color::Red, 
 		"Delete", 30, sf::Color::Black);
-	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), 20), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListTop - 90), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
 		"^", 30, sf::Color::Black);
-	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), screen_Height - 230), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListBottom + 30), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
 		"v", 30, sf::Color::Black);
+	leftButton = new Button(sf::Vector2f(screen_Width, tileListTop - 170 ), sf::Vector2f(menu_Width / 8, 50), sf::Color::Cyan,
+		"<", 30, sf::Color::Black);
+	rightButton = new Button(sf::Vector2f(screen_Width + ((menu_Width*7) / 8), tileListTop - 170), sf::Vector2f(menu_Width / 8, 50), sf::Color::Cyan,
+		">", 30, sf::Color::Black);
+	
+	if (!m_font.loadFromFile("ASSETS/FONTS/ariblk.ttf"))
+	{
+
+	}
+	currentCategoryText.setPosition(screen_Width + menu_Width / 2, tileListTop - 150);
+	currentCategoryText.setFont(m_font);
+	currentCategoryText.setCharacterSize(24);
+	currentCategoryText.setFillColor(sf::Color::Black);
+
 	topScrollBlock.setPosition(screen_Width, 0);
 	topScrollBlock.setSize(sf::Vector2f(menu_Width, tileListTop));
 	bottomScrollBlock.setPosition(screen_Width, tileListBottom);
@@ -207,6 +224,8 @@ void Game::setupOptions()
 	titles[4] = "Indoor_Decor";
 	titles[5] = "Wall";
 
+	assignText();
+
 	std::ifstream spriteSheetData("ASSETS/IMAGES/spritesheet.json");
 	nlohmann::json json;
 	spriteSheetData >> json;
@@ -225,7 +244,7 @@ void Game::setupOptions()
 			if (category == titles[i])
 			{
 				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
-				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * counter[i])), sf::Vector2f(150, 150), m_texture, tempRect);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), sf::Vector2f(150, 150), m_texture, tempRect);
 				tileOptions[i].push_back(temp);
 				found = true;
 				counter[i]++;
@@ -242,14 +261,14 @@ void Game::manageClicks(sf::Event t_event)
 	{
 		if (upButton->isInside(click))
 		{
-			for (Button* button : tileOptions[0])
+			for (Button* button : tileOptions[currentCategory])
 			{
 				button->moveUp(0.2f);
 			}
 		}
 		if (downButton->isInside(click))
 		{
-			for (Button* button : tileOptions[0])
+			for (Button* button : tileOptions[currentCategory])
 			{
 				button->moveDown(0.2f);
 			}
@@ -263,7 +282,7 @@ void Game::manageClicks(sf::Event t_event)
 		{
 			if (click.y > tileListTop && click.y <= tileListBottom)
 			{
-				for (Button* button : tileOptions[0])
+				for (Button* button : tileOptions[currentCategory])
 				{
 					if (button->isInside(click))
 					{
@@ -289,6 +308,22 @@ void Game::manageClicks(sf::Event t_event)
 					selectedButton = nullptr;
 				}
 			}
+			else if (leftButton->isInside(click))
+			{
+				if (currentCategory > 0)
+				{
+					currentCategory--;
+					assignText();
+				}
+			}
+			else if (rightButton->isInside(click))
+			{
+				if (currentCategory < (NUM_CATEGORIES - 1))
+				{
+					currentCategory++;
+					assignText();
+				}
+			}
 		}
 		//check if you clicked on the map
 		else if (click.x <= screen_Width && click.x > 0 &&
@@ -305,4 +340,10 @@ void Game::manageClicks(sf::Event t_event)
 			}
 		}
 	}
+}
+
+void Game::assignText()
+{
+	currentCategoryText.setString(titles[currentCategory]);
+	currentCategoryText.setOrigin(currentCategoryText.getGlobalBounds().width / 2, currentCategoryText.getGlobalBounds().height / 2);
 }

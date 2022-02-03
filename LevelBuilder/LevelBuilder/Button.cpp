@@ -13,7 +13,6 @@ Button::Button()
 
 	m_buttonText.setString("oof");
 	m_buttonText.setFont(m_font);
-	m_buttonText.setPosition(screen_Width, screen_Height - 100);
 	m_buttonText.setCharacterSize(30);
 	m_buttonText.setFillColor(sf::Color::Red);
 	m_buttonText.setOrigin(m_buttonText.getGlobalBounds().width / 2, m_buttonText.getGlobalBounds().height);
@@ -159,4 +158,9 @@ void Button::setSelected(bool t_selected)
 std::string Button::getSpriteName()
 {
 	return m_spriteName;
+}
+
+sf::IntRect Button::getTextRect()
+{
+	return buttonStartSize;
 }

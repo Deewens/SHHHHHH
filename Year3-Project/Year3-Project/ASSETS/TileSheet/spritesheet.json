@@ -1,18 +1,3 @@
-/* 
-	Types:
-		UI
-		Player
-		Beach
-		Indoor_Ground
-		Outdoor_Ground
-		River
-		Green_Zombie
-		Purple_Zombie
-		Indoor_Decor
-		Outdoor_Decor
-		Wall
-*/
-
 {
 	"frames": {
 		"BackPack.png": {
@@ -2494,24 +2479,6 @@
 			"frame": {
 				"x": 1760,
 				"y": 620,
-				"w": 32,
-				"h": 32
-			},
-			"Type": "Outdoor_Ground"
-		},
-		"outside_specialGrass_22.png": {
-			"frame": {
-				"x": 1664,
-				"y": 652,
-				"w": 32,
-				"h": 32
-			},
-			"Type": "Outdoor_Ground"
-		},
-		"outside_specialGrass_23.png": {
-			"frame": {
-				"x": 1696,
-				"y": 652,
 				"w": 32,
 				"h": 32
 			},

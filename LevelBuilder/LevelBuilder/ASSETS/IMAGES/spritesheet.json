@@ -2484,24 +2484,6 @@
 			},
 			"Type": "Outdoor_Ground"
 		},
-		"outside_specialGrass_22.png": {
-			"frame": {
-				"x": 1664,
-				"y": 652,
-				"w": 32,
-				"h": 32
-			},
-			"Type": "Outdoor_Ground"
-		},
-		"outside_specialGrass_23.png": {
-			"frame": {
-				"x": 1696,
-				"y": 652,
-				"w": 32,
-				"h": 32
-			},
-			"Type": "Outdoor_Ground"
-		},
 		"outside_specialGrass_24.png": {
 			"frame": {
 				"x": 1728,

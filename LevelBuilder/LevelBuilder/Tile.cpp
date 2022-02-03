@@ -3,6 +3,7 @@
 Tile::Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture) : m_tileNum(t_tileNum)
 {
 	m_sprite.setTexture(t_texture);
+	m_sprite.setTextureRect(t_tile->getTextRect());
 	m_passable = false;
 	m_spriteName = t_tile->getSpriteName();
 

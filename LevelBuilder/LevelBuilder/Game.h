@@ -39,6 +39,7 @@ private:
 	void setupHUD();
 	void setupOptions();
 	void manageClicks(sf::Event t_event);
+	void assignText();
 
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game
@@ -55,12 +56,17 @@ private:
 	Button* deleteButton;
 	Button* upButton;
 	Button* downButton;
-	std::string titles[6];
+	Button* leftButton;
+	Button* rightButton;
+	sf::Text currentCategoryText;
+	int currentCategory = 0;
+	std::string titles[NUM_CATEGORIES];
 	std::vector<Button*> tileOptions[6];
 	sf::RectangleShape topScrollBlock;
 	sf::RectangleShape bottomScrollBlock;
 	Button* selectedButton;
 	sf::Texture m_texture;
+	sf::Font m_font;
 
 	static const int mapSize = (screen_Height / tileSize) * (screen_Width / tileSize);
 	Tile* m_MapTiles[mapSize];
