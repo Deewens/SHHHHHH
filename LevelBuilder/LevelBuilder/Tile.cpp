@@ -29,17 +29,17 @@ void Tile::rotate()
 
 std::string Tile::getJsonInfo(int t_gridIndex)
 {
-	std::string pass;
-	if (m_passable)
+	std::string impassable;
+	if (!m_passable)
 	{
-		pass = "true";
+		impassable = "true";
 	}
 	else
 	{
-		pass = "false";
+		impassable = "false";
 	}
 	std::string output = "\n		{\n			\"gridIndex\": " + std::to_string(t_gridIndex) +
-		",\n			\"impassable\": " + pass + 
+		",\n			\"impassable\": " + impassable + 
 		",\n			\"rotation\": " + std::to_string(m_sprite.getRotation()) + 
 		",\n			\"spriteName\": \"" + m_spriteName + "\"\n		},";
 	return output;

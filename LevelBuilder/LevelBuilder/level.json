@@ -1,26 +1,26 @@
 {
 	"scene": {
 		{
-			"gridIndex": 64,
-			"impassable": true,
+			"gridIndex": 94,
+			"impassable": false,
 			"rotation": 0.000000,
 			"spriteName": "outside_dirt_02.png"
 		},
 		{
-			"gridIndex": 68,
-			"impassable": true,
+			"gridIndex": 105,
+			"impassable": false,
 			"rotation": 0.000000,
 			"spriteName": "outside_dirt_02.png"
 		},
 		{
-			"gridIndex": 169,
-			"impassable": true,
+			"gridIndex": 192,
+			"impassable": false,
 			"rotation": 0.000000,
 			"spriteName": "outside_dirt_02.png"
 		},
 		{
-			"gridIndex": 184,
-			"impassable": true,
+			"gridIndex": 228,
+			"impassable": false,
 			"rotation": 0.000000,
 			"spriteName": "outside_dirt_02.png"
 		},
