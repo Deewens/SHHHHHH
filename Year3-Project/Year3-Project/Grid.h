@@ -4,6 +4,8 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include <fstream>
+#include <string>
 
 class Grid : public sf::Drawable
 {

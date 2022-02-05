@@ -85,6 +85,14 @@ Player::Player() :
     m_staminaBar.setSize(m_staminaBarSize);
     m_staminaBar.setFillColor(sf::Color::Black);
 
+    if (!m_bottleTexture.loadFromFile("ASSETS\\IMAGES\\Bottle.png"))
+    {
+        // simple error message if previous call fails
+        std::cout << "problem loading backpack texture" << std::endl;
+    }
+
+    m_bottleSprite.setTexture(m_bottleTexture);
+    m_bottleSprite.setScale(0.025, 0.025);
 }
 
 
@@ -216,9 +224,7 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     if (m_staminaBarLvlSize.x < 63)
     {
         m_staminaBarLvl.setFillColor(sf::Color::Red);
-    }
-
-    
+    }    
 }
 
 
@@ -435,4 +441,6 @@ void Player::loadSoundHolder(SoundHolder &soundHolder)
     for (auto sound: footstepSneakSounds)
         sound->setVolume(20);
 }
+
+
 
