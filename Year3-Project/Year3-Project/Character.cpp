@@ -44,3 +44,18 @@ float Character::getDistance(Character& t_character)
 
 void Character::update(sf::Time deltaTime) {}
 
+void Character::setPosition(float x, float y)
+{
+    m_sprite.setPosition(x, y);
+}
+
+void Character::setPosition(sf::Vector2f position)
+{
+    m_sprite.setPosition(position);
+}
+
+float Character::getRotation()
+{
+    return m_sprite.getRotation();
+}
+

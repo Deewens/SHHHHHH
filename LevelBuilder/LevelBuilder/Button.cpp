@@ -13,7 +13,6 @@ Button::Button()
 
 	m_buttonText.setString("oof");
 	m_buttonText.setFont(m_font);
-	m_buttonText.setPosition(screen_Width, screen_Height - 100);
 	m_buttonText.setCharacterSize(30);
 	m_buttonText.setFillColor(sf::Color::Red);
 	m_buttonText.setOrigin(m_buttonText.getGlobalBounds().width / 2, m_buttonText.getGlobalBounds().height);
@@ -48,27 +47,22 @@ Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Color t_color, 
 	buttonStartSize.width = t_size.x;
 	buttonStartSize.height = t_size.y;
 
-	buttonSize = buttonStartSize;
 	scrollHeight = t_location.y;
 	
 	m_buttonColor = t_color;
 }
 
-Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture t_texture, std::string t_spriteName) : m_texture(t_texture), m_spriteName(t_spriteName)
+Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName) 
+	: m_texture(&t_texture), passable(t_passable), m_spriteName(t_spriteName), buttonStartSize(t_tempRect)
 {
-	m_sprite.setTexture(m_texture);
+	m_sprite.setTexture(t_texture);
 	m_sprite.setPosition(t_location);
-	m_sprite.setScale(t_size.x / m_texture.getSize().x, t_size.y / m_texture.getSize().y);
+	m_sprite.setScale(t_size.x / t_tempRect.width, t_size.y / t_tempRect.height);
 	isSprite = true;
 
-	buttonStartSize.left = 0;
-	buttonStartSize.top = 0;
-	buttonStartSize.width = t_size.x;
-	buttonStartSize.height = t_size.y;
+	m_sprite.setTextureRect(buttonStartSize);
 
-	buttonSize = buttonStartSize;
 	scrollHeight = t_location.y;
-	checkSpriteVisible();
 
 	m_button.setFillColor(sf::Color::Transparent);
 	m_button.setOutlineThickness(5);
@@ -80,7 +74,7 @@ void Button::render(sf::RenderWindow& t_window)
 	if (isSprite)
 	{
 		t_window.draw(m_sprite);
-		if (isSelected && scrollHeight > tileListTop - buttonStartSize.height && scrollHeight < tileListBottom)
+		if (isSelected)
 		{
 			t_window.draw(m_button);
 		}
@@ -121,7 +115,10 @@ void Button::moveUp(float t_speed)
 	if (isSprite)
 	{
 		scrollHeight -= t_speed;
-		checkSpriteVisible();
+		sf::Vector2f pos = m_sprite.getPosition();
+		pos.y = scrollHeight;
+		m_sprite.setPosition(pos);
+		m_button.setPosition(pos);
 	}
 }
 
@@ -130,7 +127,10 @@ void Button::moveDown(float t_speed)
 	if (isSprite)
 	{
 		scrollHeight += t_speed;
-		checkSpriteVisible();
+		sf::Vector2f pos = m_sprite.getPosition();
+		pos.y = scrollHeight;
+		m_sprite.setPosition(pos);
+		m_button.setPosition(pos);
 	}
 }
 
@@ -155,59 +155,17 @@ void Button::setSelected(bool t_selected)
 	}
 }
 
-sf::Texture& Button::getTexture()
-{
-	return m_texture;
-}
-
 std::string Button::getSpriteName()
 {
 	return m_spriteName;
 }
 
-void Button::checkSpriteVisible()
+sf::IntRect Button::getTextRect()
 {
-	sf::Vector2f pos;
-	sf::Vector2f scale = m_sprite.getScale();
-	pos = m_sprite.getPosition();
-	sf::IntRect texRect;
-	pos.y = scrollHeight;
-	if (scrollHeight < tileListTop)
-	{
-		float difference = tileListTop - scrollHeight;
-		if (difference <= buttonStartSize.height)
-		{
-			buttonSize.top = difference;
-			buttonSize.height = buttonStartSize.height - difference;
-		}
-		texRect.top = (buttonSize.top) / scale.x;
-		texRect.left = 0;
-		texRect.height = buttonSize.height / scale.x;
-		texRect.width = buttonSize.width / scale.y;
-		m_sprite.setTextureRect(texRect);
-		pos.y = tileListTop;
-	}
-	else if (scrollHeight > tileListBottom - buttonStartSize.height)
-	{
-		float difference = buttonStartSize.height - (scrollHeight - (tileListBottom - buttonStartSize.height));
-		texRect.top = 0;
-		texRect.left = 0;
-		if (difference <= buttonStartSize.height && difference >= 0)
-		{
-			buttonSize.height = difference;
-			texRect.height = difference / scale.x;
-		}
-		else
-		{
-			texRect.height = 0;
-		}
-		texRect.width = buttonSize.width / scale.y;
-		m_sprite.setTextureRect(texRect);
-	}
-	m_sprite.setPosition(pos);
-	if (isSelected)
-	{
-		m_button.setPosition(pos);
-		m_button.setSize(sf::Vector2f(m_sprite.getGlobalBounds().width, m_sprite.getGlobalBounds().height));
-	}
+	return buttonStartSize;
+}
+
+bool Button::getPassable()
+{
+	return passable;
 }

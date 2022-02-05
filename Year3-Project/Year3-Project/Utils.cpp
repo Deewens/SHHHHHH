@@ -1,5 +1,6 @@
 #include "Utils.h"
 
+#include <iostream>
 
 /// <summary>
 /// Generate a random number between two values
@@ -23,4 +24,16 @@ void Utils::playRandomSound(std::vector<sf::Sound*> &sounds)
 float Utils::getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q)
 {
     return sqrt(pow(q.x - p.x, 2) + pow(q.y - p.y, 2));
+}
+
+template<typename T>
+sf::Vector2<T> Utils::normalize(sf::Vector2<T> v)
+{
+    return v/magnitude(v);
+}
+
+template<typename T>
+float Utils::magnitude(sf::Vector2<T> v)
+{
+    return sqrt(v.x*v.x + v.y*v.y);
 }

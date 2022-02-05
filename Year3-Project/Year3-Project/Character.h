@@ -7,7 +7,7 @@
 #include "Globals.h"
 #include "Utils.h"
 
-class Character : public sf::Drawable, public sf::Transformable
+class Character : public sf::Drawable
 {
 protected:
     float m_speed;
@@ -18,9 +18,14 @@ protected:
 public:
     Character();
 
-    sf::Vector2f getPosition();
     float getRadius();
     float getDistance(Character& t_character);
+
+    sf::Vector2f getPosition();
+    void setPosition(float x, float y);
+    void setPosition(sf::Vector2f position);
+
+    float getRotation();
 
     // Abstract methods
     virtual void update(sf::Time deltaTime);

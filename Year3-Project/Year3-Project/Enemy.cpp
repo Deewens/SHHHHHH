@@ -280,6 +280,11 @@ void Enemy::changeSoundsVolume(float newVolume)
             sound->setVolume(newVolume);
 }
 
+void Enemy::move(sf::Vector2f& offset)
+{
+    m_sprite.move(offset);
+}
+
 
 
 

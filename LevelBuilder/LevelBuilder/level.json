@@ -1,0 +1,27 @@
+{
+	"scene": {
+		{
+			"gridIndex": 94,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_02.png"
+		},
+		{
+			"gridIndex": 105,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_02.png"
+		},
+		{
+			"gridIndex": 192,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_02.png"
+		},
+		{
+			"gridIndex": 228,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_02.png"
+		},
+}

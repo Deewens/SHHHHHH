@@ -112,14 +112,20 @@ void Game::render()
 {
 	m_window.clear(sf::Color::White);
 	m_window.draw(mapArea);
-	saveButton->render(m_window);
-	deleteButton->render(m_window);
-	upButton->render(m_window);
-	downButton->render(m_window);
-	for (Button* button : tileOptions)
+	for (Button* button : tileOptions[currentCategory])
 	{
 		button->render(m_window);
 	}
+	m_window.draw(topScrollBlock);
+	m_window.draw(bottomScrollBlock);
+	saveButton->render(m_window);
+	deleteButton->render(m_window);
+	rotateButton->render(m_window);
+	upButton->render(m_window);
+	downButton->render(m_window);
+	leftButton->render(m_window);
+	rightButton->render(m_window);
+	m_window.draw(currentCategoryText);
 	for (int i = 0; i < mapSize; i++)
 	{
 		if (m_MapTiles[i] != nullptr)
@@ -163,32 +169,98 @@ void Game::setupSprite()
 
 void Game::setupHUD()
 {
-	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
-	deleteButton = new Button(sf::Vector2f(screen_Width + menu_Width / 4, screen_Height - 160), sf::Vector2f(menu_Width / 2, 50), sf::Color::Red, 
-		"Delete", 30, sf::Color::Black);
-	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), 20), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
-		"^", 30, sf::Color::Black);
-	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), screen_Height - 230), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
-		"v", 30, sf::Color::Black);
-
-	Button* temp;
-	int imageCount = 8;
-	std::string images[8] = { "SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png",
-		"SFML-LOGO.png" };
-	for (int i = 0; i < imageCount; i++)
+	if (!m_texture.loadFromFile("ASSETS/IMAGES/spritesheet.png"))
 	{
-		if (!m_texture.loadFromFile("ASSETS/IMAGES/" + images[i]))
-		{
 
-		}
-		temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), 100 + (200 * i)), sf::Vector2f(150, 150), m_texture, images[i]);
-		tileOptions.push_back(temp);
+	}
+	saveButton = new Button(sf::Vector2f(screen_Width, screen_Height - 100), sf::Vector2f(menu_Width, 100), sf::Color::Green, "Save", 40, sf::Color::Black);
+	deleteButton = new Button(sf::Vector2f(screen_Width, screen_Height - 160), sf::Vector2f(menu_Width / 2, 60), sf::Color::Red, 
+		"Delete", 30, sf::Color::Black);
+	rotateButton = new Button(sf::Vector2f(screen_Width + menu_Width / 2, screen_Height - 160), sf::Vector2f(menu_Width / 2, 60), sf::Color::Blue,
+		"Rotate", 30, sf::Color::Black);
+	upButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListTop - 90), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+		"^", 30, sf::Color::Black);
+	downButton = new Button(sf::Vector2f(screen_Width + (3 * menu_Width / 8), tileListBottom + 30), sf::Vector2f(menu_Width / 4, 50), sf::Color::Cyan,
+		"v", 30, sf::Color::Black);
+	leftButton = new Button(sf::Vector2f(screen_Width, tileListTop - 170 ), sf::Vector2f(menu_Width / 8, 50), sf::Color::Cyan,
+		"<", 30, sf::Color::Black);
+	rightButton = new Button(sf::Vector2f(screen_Width + ((menu_Width*7) / 8), tileListTop - 170), sf::Vector2f(menu_Width / 8, 50), sf::Color::Cyan,
+		">", 30, sf::Color::Black);
+	
+	if (!m_font.loadFromFile("ASSETS/FONTS/ariblk.ttf"))
+	{
+
+	}
+	currentCategoryText.setPosition(screen_Width + menu_Width / 2, tileListTop - 150);
+	currentCategoryText.setFont(m_font);
+	currentCategoryText.setCharacterSize(24);
+	currentCategoryText.setFillColor(sf::Color::Black);
+
+	topScrollBlock.setPosition(screen_Width, 0);
+	topScrollBlock.setSize(sf::Vector2f(menu_Width, tileListTop));
+	bottomScrollBlock.setPosition(screen_Width, tileListBottom);
+	bottomScrollBlock.setSize(sf::Vector2f(menu_Width, screen_Height));
+
+	setupOptions();
+}
+
+void Game::setupOptions()
+{
+	/*
+	Types:
+		UI
+		Player
+		Beach
+		Indoor_Ground
+		Outdoor_Ground
+		River
+		Green_Zombie
+		Purple_Zombie
+		Indoor_Decor
+		Outdoor_Decor
+		Wall
+	*/
+	titles[0] = "Outdoor_Ground";
+	titles[1] = "Indoor_Ground";
+	titles[2] = "River";
+	titles[3] = "Outdoor_Decor";
+	titles[4] = "Indoor_Decor";
+	titles[5] = "Wall";
+	passable[0] = true;
+	passable[1] = true;
+	passable[2] = false;
+	passable[3] = false;
+	passable[4] = false;
+	passable[5] = false;
+
+	assignText();
+
+	std::ifstream spriteSheetData("ASSETS/IMAGES/spritesheet.json");
+	nlohmann::json json;
+	spriteSheetData >> json;
+	
+	nlohmann::json frames = json["frames"];
+	std::string category;
+	int counter[6] = { 0 };
+	Button* temp;
+	sf::IntRect tempRect;
+	for (nlohmann::json::iterator it = frames.begin(); it != frames.end(); it++)
+	{
+		auto& el = it.value();
+		category = el["Type"];
+			bool found = false;
+			for (int i = 0; i < 6; i++)
+			{
+				if (category == titles[i])
+				{
+					tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+					temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), 
+						sf::Vector2f(150, 150), m_texture, tempRect, passable[i], it.key());
+					tileOptions[i].push_back(temp);
+					found = true;
+					counter[i]++;
+				}
+			}
 	}
 }
 
@@ -200,14 +272,14 @@ void Game::manageClicks(sf::Event t_event)
 	{
 		if (upButton->isInside(click))
 		{
-			for (Button* button : tileOptions)
+			for (Button* button : tileOptions[currentCategory])
 			{
 				button->moveUp(0.2f);
 			}
 		}
 		if (downButton->isInside(click))
 		{
-			for (Button* button : tileOptions)
+			for (Button* button : tileOptions[currentCategory])
 			{
 				button->moveDown(0.2f);
 			}
@@ -219,30 +291,88 @@ void Game::manageClicks(sf::Event t_event)
 		if (click.x >= screen_Width && click.x < screen_Width + menu_Width &&
 			click.y >= 0 && click.y <= screen_Height)
 		{
-			for (Button* button : tileOptions)
+			if (click.y > tileListTop && click.y <= tileListBottom)
 			{
-				if (button->isInside(click))
+				for (Button* button : tileOptions[currentCategory])
 				{
-					if (selectedButton != nullptr)
-						selectedButton->setSelected(false);
-					selectedButton = button;
-					button->setSelected(true);
-					if (isDeleting)
+					if (button->isInside(click))
 					{
-						isDeleting = false;
-						deleteButton->setSelected(false);
+						if (selectedButton != nullptr)
+							selectedButton->setSelected(false);
+						selectedButton = button;
+						button->setSelected(true);
+						if (isDeleting)
+						{
+							isDeleting = false;
+							deleteButton->setSelected(false);
+						}
+						else if (isRotating)
+						{
+							isRotating = false;
+							rotateButton->setSelected(false);
+						}
 					}
 				}
 			}
-			if (deleteButton->isInside(click))
+			else if (deleteButton->isInside(click))
 			{
 				isDeleting = true;
 				deleteButton->setSelected(true);
+				isRotating = false;
+				rotateButton->setSelected(false);
 				if (selectedButton != nullptr)
 				{
 					selectedButton->setSelected(false);
 					selectedButton = nullptr;
 				}
+			}
+			else if (rotateButton->isInside(click))
+			{
+				isDeleting = false;
+				deleteButton->setSelected(false);
+				isRotating = true;
+				rotateButton->setSelected(true);
+				if (selectedButton != nullptr)
+				{
+					selectedButton->setSelected(false);
+					selectedButton = nullptr;
+				}
+			}
+			else if (leftButton->isInside(click))
+			{
+				if (currentCategory > 0)
+				{
+					currentCategory--;
+					assignText();
+				}
+			}
+			else if (rightButton->isInside(click))
+			{
+				if (currentCategory < (NUM_CATEGORIES - 1))
+				{
+					currentCategory++;
+					assignText();
+				}
+			}
+			else if (saveButton->isInside(click))
+			{
+				std::string output = "{\n	\"scene\": {";
+				for (int i = 0; i < mapSize; i++)
+				{
+					if (m_MapTiles[i] != nullptr)
+					{
+						output += m_MapTiles[i]->getJsonInfo(i);
+					}
+				}
+				output += "\n}";
+				std::cout << output << std::endl;
+				std::ofstream MyFile("level.json");
+
+				// Write to the file
+				MyFile << output;
+
+				// Close the file
+				MyFile.close();
 			}
 		}
 		//check if you clicked on the map
@@ -254,10 +384,20 @@ void Game::manageClicks(sf::Event t_event)
 			{
 				m_MapTiles[tileNum] = nullptr;
 			}
+			else if (isRotating && m_MapTiles[tileNum] != nullptr)
+			{
+				m_MapTiles[tileNum]->rotate();
+			}
 			else if (selectedButton != nullptr)
 			{
-				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum);
+				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
 			}
 		}
 	}
+}
+
+void Game::assignText()
+{
+	currentCategoryText.setString(titles[currentCategory]);
+	currentCategoryText.setOrigin(currentCategoryText.getGlobalBounds().width / 2, currentCategoryText.getGlobalBounds().height / 2);
 }

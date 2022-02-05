@@ -26,6 +26,10 @@ public:
     void loadSoundHolder(SoundHolder& soundHolder);
 
     void changeSoundsVolume(float newVolume);
+
+    void move(sf::Vector2f& offset);
+
+    void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
 private:
 
     void setDirection(int t_direction);   
@@ -35,8 +39,6 @@ private:
     sf::Vector2f rotatedVector(const sf::Vector2f& vector, float t_angle);
 
     void rotate(sf::Vector2f& vector, float t_angle);
-
-    void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
 
     bool isBeingSeen();
 

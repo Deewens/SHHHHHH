@@ -11,17 +11,21 @@
 /// </summary>
 #include <fstream>
 #include <SFML/Graphics.hpp>
+#include <algorithm>
 #include "Globals.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Menu.h"
 #include "Pickup.h"
 #include "CollisionManager.h"
-#include "Grid.h"
+#include "Graph.h"
 #include "Environment.h"
 #include "HUD.h"
 #include "SoundHolder.h"
 #include "Utils.h"
+
+typedef GraphArc<NodeData, float> Arc;
+typedef GraphNode<NodeData, float> Node;
 
 class Game
 {
@@ -59,6 +63,7 @@ private:
 
 	bool m_exitGame; // control exiting game
 
+    sf::View m_hudView;
     sf::View m_worldView; // Take care of the view (camera)
 
     sf::View m_menuView;
@@ -76,8 +81,9 @@ private:
 
     bool m_pickupCollected[2] = { false,false };
 
-    Grid m_grid;
-    std::vector<Environment> m_environment;
+    Graph<NodeData, float> m_grid;
+    std::vector<Environment> m_environment; // Everything related to the ground of the scene
+    std::vector<Environment> m_objects; // Object of the scene (wall, tree, etc.)
     Menu m_gameMenu;
     HUD m_hud;
 
@@ -85,7 +91,17 @@ private:
 
     sf::Texture m_groundTexture;
 
+    sf::Font m_font;
+
+    sf::Text m_playerCoordsDebugText;
+
     SoundHolder m_sounds;
+
+    std::vector<int> m_ucsWaypoints;
+    std::map<std::string, std::vector<Node*>> m_ucsPaths;
+
+    Enemy m_ucsEnemy;
+    std::vector<Node*> m_path;
 };
 
 #endif // !GAME_HPP
