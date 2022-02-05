@@ -372,7 +372,8 @@ void Game::setupEnvironment()
 
     std::ifstream spriteSheetData("scene.json");
     nlohmann::json json;
-    spriteSheetData >> json;
+
+    json =  nlohmann::json::parse(spriteSheetData);
 
     nlohmann::json scene = json["scene"];
     // Build scene from the json file
