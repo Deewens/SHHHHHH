@@ -44,6 +44,7 @@ Game::Game() :
 
     setupEnvironment();
     setUpPickUps();
+    setupPathfinding();
 
     m_worldView.reset(
             sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
@@ -420,6 +421,26 @@ void Game::loadSounds()
     m_sounds.load(Sounds::Footsteps_Sneak_Sand2, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand2M.wav");
     m_sounds.load(Sounds::Footsteps_Sneak_Sand3, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand3M.wav");
     m_sounds.load(Sounds::Footsteps_Sneak_Sand4, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand4M.wav");
+}
+
+void Game::setupPathfinding()
+{
+    std::ifstream levelData("level.json");
+    json environmentJson;
+    environmentJson = json::parse(levelData);
+    auto pathfinding = environmentJson["pathfinding"];
+
+    for (auto& waypoint : pathfinding["waypoints"])
+        m_ucsWaypoints.push_back(waypoint);
+
+    for (auto it = pathfinding["paths"].begin(); it != pathfinding["paths"].end(); ++it)
+    {
+        std::vector<int> path;
+        for (auto &tile: it.value())
+            path.push_back(tile);
+
+        m_ucsPaths.insert({it.key(), path});
+    }
 }
 
 

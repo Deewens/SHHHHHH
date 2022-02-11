@@ -48,6 +48,7 @@ private:
     void pauseMenuSetUp();
     void setupEnvironment();
     void loadSounds();
+    void setupPathfinding();
 
     void cameraMovement(sf::Time dt);
 
@@ -98,7 +99,7 @@ private:
     SoundHolder m_sounds;
 
     std::vector<int> m_ucsWaypoints;
-    std::map<std::string, std::vector<Node*>> m_ucsPaths;
+    std::map<std::string, std::vector<int>> m_ucsPaths;
 
     std::vector<Node*> m_path;
 };
