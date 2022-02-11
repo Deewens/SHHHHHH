@@ -86,7 +86,7 @@ void Button::render(sf::RenderWindow& t_window)
 	}
 }
 
-bool Button::isInside(sf::Vector2i t_click)
+bool Button::isInside(sf::Vector2f t_click)
 {
 	sf::FloatRect buttonRect;
 	if (isSprite)

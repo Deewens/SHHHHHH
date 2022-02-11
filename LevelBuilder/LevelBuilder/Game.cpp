@@ -8,6 +8,11 @@
 #include "Game.h"
 #include <iostream>
 
+void visit(Node* t_node)
+{
+	std::cout << "Visiting: " << t_node->m_data.id << std::endl;
+}
+
 /// <summary>
 /// default constructor
 /// setup the window properties
@@ -15,11 +20,23 @@
 /// load and setup thne image
 /// </summary>
 Game::Game() :
-	m_window{ sf::VideoMode{ screen_Width + menu_Width, screen_Height, 32U }, "LevelLoader" },
-	m_exitGame{false} //when true game will exit
+	//m_window{ sf::VideoMode{ screen_Width + menu_Width, screen_Height, 32U }, "LevelLoader" },
+	m_window{ sf::VideoMode{ sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height, 32U}, "LevelLoader"},
+	m_exitGame{false}, //when true game will exit
+	view(m_window.getDefaultView()),
+	m_graph(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
 {
+
+	sf::View v = m_window.getDefaultView();
+	m_window.setView(v);
+
+	calculateUcsWaypoints();
+
 	setupSprite(); // load texture
 	setupHUD();
+
+	if (!m_font.loadFromFile("ASSETS/FONTS/ariblk.ttf"))
+		std::cout << "Error when loading the ariblk font" << std::endl;
 }
 
 /// <summary>
@@ -75,6 +92,13 @@ void Game::processEvents()
 		{
 			processKeys(newEvent);
 		}
+
+		if (sf::Event::Resized == newEvent.type)
+		{
+			sf::FloatRect visibleArea(0, 0, newEvent.size.width, newEvent.size.height);
+			sf::View v(visibleArea);
+			m_window.setView(v);
+		}
 	}
 	manageClicks(newEvent);
 }
@@ -89,6 +113,11 @@ void Game::processKeys(sf::Event t_event)
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
+	}
+
+	if (t_event.key.code == sf::Keyboard::D)
+	{
+		m_graph.toggleDraw();
 	}
 	
 }
@@ -133,8 +162,14 @@ void Game::render()
 			m_MapTiles[i]->render(m_window);
 		}
 	}
-	m_window.draw(m_colLine, cols * 2, sf::Lines);
-	m_window.draw(m_rowLine, rows * 2, sf::Lines);
+
+	
+	for (auto & sprite : m_ucsDebugTiles)
+	{
+		m_window.draw(sprite);
+	}
+
+	m_window.draw(m_graph);
 	m_window.display();
 }
 
@@ -149,22 +184,6 @@ void Game::setupSprite()
 	}
 	mapArea.setTexture(mapTexture);
 	mapArea.setScale(sf::Vector2f((float)screen_Width / (float)mapTexture.getSize().x, (float)screen_Height / (float)mapTexture.getSize().y));
-	
-	for (int i = 0; i < cols; i++)
-	{
-		m_colLine[i * 2] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), 0 });
-		m_colLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), screen_Height });
-		m_colLine[i * 2].color = sf::Color::Black;
-		m_colLine[i * 2 + 1].color = sf::Color::Black;
-	}
-
-	for (int i = 0; i < rows; i++)
-	{
-		m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{ 0,(float)(i * tileSize) });
-		m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width ,(float)(i * tileSize) });
-		m_rowLine[i * 2].color = sf::Color::Black;
-		m_rowLine[i * 2 + 1].color = sf::Color::Black;
-	}
 }
 
 void Game::setupHUD()
@@ -267,35 +286,64 @@ void Game::setupOptions()
 void Game::manageClicks(sf::Event t_event)
 {
 	sf::Vector2i click = sf::Mouse::getPosition(m_window);
+	sf::Vector2f worldPosClick = m_window.mapPixelToCoords(click);
+	
+	if (t_event.type == sf::Event::MouseButtonPressed && t_event.mouseButton.button == sf::Mouse::Right)
+	{
+		isRightBtnPressed = true;
+		oldClickPos = sf::Vector2f(sf::Mouse::getPosition(m_window));
+	}
+	else if (t_event.type == sf::Event::MouseButtonReleased && t_event.mouseButton.button == sf::Mouse::Right)
+	{
+		isRightBtnPressed = false;
+	}
+	else if (t_event.type == sf::Event::MouseMoved)
+	{
+		// Prevent the bug if the mouse button is pressed and released to quickly
+		// If it happens, the btn isRightBtnPressed is not updated accordignly
+		if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) isRightBtnPressed = false;
+
+		if (isRightBtnPressed)
+		{
+			sf::Vector2f newPos = sf::Vector2f(sf::Mouse::getPosition(m_window));
+			sf::Vector2f deltaPos = oldClickPos - newPos;
+
+			view.move(deltaPos);
+			m_window.setView(view);
+			oldClickPos = newPos;
+
+		}
+	}
+
 	//holding down mouse
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 	{
-		if (upButton->isInside(click))
+		if (upButton->isInside(worldPosClick))
 		{
 			for (Button* button : tileOptions[currentCategory])
 			{
-				button->moveUp(0.2f);
+				button->moveUp(2.0f);
 			}
 		}
-		if (downButton->isInside(click))
+		if (downButton->isInside(worldPosClick))
 		{
 			for (Button* button : tileOptions[currentCategory])
 			{
-				button->moveDown(0.2f);
+				button->moveDown(2.0f);
 			}
 		}
 	}
 	if (t_event.type == sf::Event::MouseButtonReleased && t_event.mouseButton.button == sf::Mouse::Left)
 	{
 		//check if you interacted with the ui
-		if (click.x >= screen_Width && click.x < screen_Width + menu_Width &&
-			click.y >= 0 && click.y <= screen_Height)
+		if (worldPosClick.x >= screen_Width && worldPosClick.x < screen_Width + menu_Width &&
+			worldPosClick.y >= 0 && worldPosClick.y <= screen_Height)
 		{
-			if (click.y > tileListTop && click.y <= tileListBottom)
+			if (worldPosClick.y > tileListTop && worldPosClick.y <= tileListBottom)
 			{
 				for (Button* button : tileOptions[currentCategory])
 				{
-					if (button->isInside(click))
+					if (button->isInside(worldPosClick))
 					{
 						if (selectedButton != nullptr)
 							selectedButton->setSelected(false);
@@ -314,7 +362,7 @@ void Game::manageClicks(sf::Event t_event)
 					}
 				}
 			}
-			else if (deleteButton->isInside(click))
+			else if (deleteButton->isInside(worldPosClick))
 			{
 				isDeleting = true;
 				deleteButton->setSelected(true);
@@ -326,7 +374,7 @@ void Game::manageClicks(sf::Event t_event)
 					selectedButton = nullptr;
 				}
 			}
-			else if (rotateButton->isInside(click))
+			else if (rotateButton->isInside(worldPosClick))
 			{
 				isDeleting = false;
 				deleteButton->setSelected(false);
@@ -338,7 +386,7 @@ void Game::manageClicks(sf::Event t_event)
 					selectedButton = nullptr;
 				}
 			}
-			else if (leftButton->isInside(click))
+			else if (leftButton->isInside(worldPosClick))
 			{
 				if (currentCategory > 0)
 				{
@@ -346,7 +394,7 @@ void Game::manageClicks(sf::Event t_event)
 					assignText();
 				}
 			}
-			else if (rightButton->isInside(click))
+			else if (rightButton->isInside(worldPosClick))
 			{
 				if (currentCategory < (NUM_CATEGORIES - 1))
 				{
@@ -354,9 +402,66 @@ void Game::manageClicks(sf::Event t_event)
 					assignText();
 				}
 			}
-			else if (saveButton->isInside(click))
+			else if (saveButton->isInside(worldPosClick))
 			{
-				std::string output = "{\n	\"scene\": {";
+				for (int i = 0; i < mapSize; i++)
+				{
+					if (m_MapTiles[i] != nullptr)
+					{
+						auto node = m_graph.nodeIndex(i);
+						node->m_data.isPassable = selectedButton->getPassable();
+						m_graph.updateNode(node->m_data, i);
+					}
+				}
+
+				// Fill the graph with all the arcs using the neighbours algorithm
+				for (int i = 0; i < m_graph.getNodes().size(); i++)
+				{
+					std::map<int, float> neighbours = m_graph.getNeighbours(i);
+					for (auto neighbour : neighbours)
+					{
+						m_graph.addArc(i, neighbour.first, neighbour.second);
+					}
+				}
+
+				// Calculate UCS Pathfinding for each between each waypoints
+				for (int i = 0; i < m_waypointsIdx.size(); i++)
+				{
+					for (int j = 0; j < m_waypointsIdx.size(); j++)
+					{
+						if (m_waypointsIdx[i] != m_waypointsIdx[j])
+						{
+							std::vector<Node*> path;
+
+							m_graph.ucs(m_graph.nodeIndex(m_waypointsIdx[i]), m_graph.nodeIndex(m_waypointsIdx[j]), visit, path);
+							m_ucsPaths.insert({ std::to_string(m_graph.nodeIndex(m_waypointsIdx[i])->m_data.id) + "-" + std::to_string(m_graph.nodeIndex(m_waypointsIdx[j])->m_data.id), path });
+						}
+						m_graph.clearMarks();
+					}
+				}
+
+				//int rows = screen_Height / tileSize;
+				//int cols = screen_Width / tileSize;
+
+				//m_ucsDebugTiles.clear();
+				//for (auto& path : m_ucsPaths)
+				//{
+				//	for (auto& node : path.second)
+				//	{
+				//		sf::RectangleShape rect;
+				//		rect.setFillColor(sf::Color(255, 255, 0, 64));
+				//		rect.setSize(sf::Vector2f(tileSize, tileSize));
+				//		rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
+				//		float col = node->m_data.id % cols;
+				//		float row = (node->m_data.id - col) / cols;
+				//		col = (col * tileSize) + (tileSize / 2);
+				//		row = (row * tileSize) + (tileSize / 2);
+				//		rect.setPosition(sf::Vector2f(col, row));
+				//		m_ucsDebugTiles.push_back(rect);
+				//	}
+				//}
+
+				std::string output = "{\n	\"scene\": [";
 				for (int i = 0; i < mapSize; i++)
 				{
 					if (m_MapTiles[i] != nullptr)
@@ -364,6 +469,32 @@ void Game::manageClicks(sf::Event t_event)
 						output += m_MapTiles[i]->getJsonInfo(i);
 					}
 				}
+				output += "\n],";
+
+				output += "\n\"pathfinding\": {";
+				output += "\t\"waypoints\": [";
+				for (int i = 0; i < m_waypointsIdx.size(); i++)
+				{
+					output += "\n" + std::to_string(m_waypointsIdx[i]);
+					if (i < m_waypointsIdx.size() - 1) output += ", ";
+				}
+				output += "],";
+				output += "\n\"paths\": {";
+				for (auto& path : m_ucsPaths)
+				{
+					output += "\"" + path.first + "\": [";
+					// For loop count down because the calculated path is inverted
+					for (int i = path.second.size() - 1; i != -1; i--)
+					{
+						auto& node = path.second[i];
+						output += "\n" + std::to_string(node->m_data.id);
+						if (i != 0) output += ", ";
+					}
+					output += "],";
+				}
+				output += "\n}";
+				output += "\n}";
+
 				output += "\n}";
 				std::cout << output << std::endl;
 				std::ofstream MyFile("level.json");
@@ -376,10 +507,17 @@ void Game::manageClicks(sf::Event t_event)
 			}
 		}
 		//check if you clicked on the map
-		else if (click.x <= screen_Width && click.x > 0 &&
-			click.y >= 0 && click.y <= screen_Height)
+		else if (worldPosClick.x <= screen_Width && worldPosClick.x > 0 &&
+			worldPosClick.y >= 0 && worldPosClick.y <= screen_Height)
 		{
-			int tileNum = trunc(click.x / tileSize) + (trunc(click.y / tileSize) * (screen_Width / tileSize));
+			int tileNum = trunc(worldPosClick.x / tileSize) + (trunc(worldPosClick.y / tileSize) * (screen_Width / tileSize));
+			std::cout << tileNum << std::endl;
+			auto result = std::find_if(m_waypointsIdx.begin(), m_waypointsIdx.end(), [=](int val) {return val == tileNum; });
+
+			bool isUcsWaypoint = false;
+			if (result != m_waypointsIdx.end())
+				isUcsWaypoint = true;
+
 			if (isDeleting)
 			{
 				m_MapTiles[tileNum] = nullptr;
@@ -390,7 +528,14 @@ void Game::manageClicks(sf::Event t_event)
 			}
 			else if (selectedButton != nullptr)
 			{
-				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
+				if (isUcsWaypoint && !selectedButton->getPassable())
+				{
+					std::cout << "You can't place an impassable tile here." << std::endl;
+				}
+				else
+				{
+					m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
+				}
 			}
 		}
 	}
@@ -400,4 +545,41 @@ void Game::assignText()
 {
 	currentCategoryText.setString(titles[currentCategory]);
 	currentCategoryText.setOrigin(currentCategoryText.getGlobalBounds().width / 2, currentCategoryText.getGlobalBounds().height / 2);
+}
+
+/// <summary>
+/// Calculate the position of each waypoints for the UCS pathfinding calculation.
+/// Store them in the m_ucsWaypointsIdx member property
+/// </summary>
+void Game::calculateUcsWaypoints()
+{
+	float gridWidth = screen_Width / tileSize;
+	float gridHeight = screen_Height / tileSize;
+
+	// Calculate the central and the fourth edge coords
+	sf::Vector2f center{ gridWidth / 2, gridHeight / 2 }; // Calculate the central node index
+	sf::Vector2f topLeftCenter{ center.x / 2, center.y / 2 };
+	sf::Vector2f bottomLeftCenter{ topLeftCenter.x, topLeftCenter.y * 3 };
+	sf::Vector2f topRightCenter{ topLeftCenter.x * 3, topLeftCenter.y };
+	sf::Vector2f bottomRightCenter{ topLeftCenter.x * 3, topLeftCenter.y * 3 };
+
+	// Calculate the index number for the center and the fourth edge
+	// Formula: (y * gridWidth) + x
+	int centerIdx = trunc(center.x) + (trunc(center.y) * gridWidth);
+	int topLeftIdx = trunc(topLeftCenter.x) + (trunc(topLeftCenter.y) * gridWidth);
+	int bottomLeftIdx = trunc(bottomLeftCenter.x) + (trunc(bottomLeftCenter.y) * gridWidth);
+	int topRightIdx = trunc(topRightCenter.x) + (trunc(topRightCenter.y) * gridWidth);
+	int bottomRightIdx = trunc(bottomRightCenter.x) + (trunc(bottomRightCenter.y) * gridWidth);
+
+	std::cout << topLeftIdx << " - " << topRightIdx << std::endl;
+	std::cout << "   " << centerIdx << std::endl;
+	std::cout << bottomLeftIdx << " - " << bottomRightIdx << std::endl;
+
+	m_waypointsIdx.push_back(topLeftIdx);
+	m_waypointsIdx.push_back(topRightIdx);
+	m_waypointsIdx.push_back(centerIdx);
+	m_waypointsIdx.push_back(bottomLeftIdx);
+	m_waypointsIdx.push_back(bottomRightIdx);
+
+	m_graph.debug();
 }

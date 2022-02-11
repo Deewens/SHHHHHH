@@ -11,7 +11,7 @@ public:
 	Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName);
 	void render(sf::RenderWindow& t_window);
 
-	bool isInside(sf::Vector2i t_click);
+	bool isInside(sf::Vector2f t_click);
 
 	void moveUp(float t_speed);
 	void moveDown(float t_speed);
