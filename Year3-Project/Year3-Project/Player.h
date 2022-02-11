@@ -70,6 +70,7 @@ private:
     sf::Texture m_bottleTexture;
     sf::Sprite m_bottleSprite;
 
+
 public:
 
     Player();

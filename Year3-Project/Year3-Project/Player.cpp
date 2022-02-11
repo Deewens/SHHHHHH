@@ -12,7 +12,7 @@ Player::Player() :
         m_crouchingAnim(m_sprite),
         m_idlingAnim(m_sprite),
         m_startThrowingAnim(m_sprite, false),
-        m_endThrowingAnim(m_sprite, false)
+        m_endThrowingAnim(m_sprite, false)    
 {
     m_speed = WALKING_SPEED;
     Player::loadTexture();
@@ -93,6 +93,7 @@ Player::Player() :
 
     m_bottleSprite.setTexture(m_bottleTexture);
     m_bottleSprite.setScale(0.025, 0.025);
+
 }
 
 
@@ -177,7 +178,7 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     if (m_powerBarVisible)
     {
         m_endThrowingAnim.update(deltaTime.asSeconds());
-        m_powerBar.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
+        m_powerBar.setPosition(screen_Width/2, screen_Height/2);
         m_powerBar.setRotation(m_sprite.getRotation());
 
         if (m_powerSize.x < m_powerBarSize.x)
@@ -186,15 +187,17 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
         }
 
         m_powerthrow.setSize(m_powerSize);
-        m_powerthrow.setPosition(m_sprite.getPosition().x, m_sprite.getPosition().y);
+        m_powerthrow.setPosition(screen_Width/2, screen_Height/2);
         m_powerthrow.setRotation(m_sprite.getRotation());
 
     } 
 
     
     m_staminaBarLvl.setSize(m_staminaBarLvlSize);
-    m_staminaBar.setPosition(t_position.x, t_position.y + screen_Height / 4 - m_staminaBarSize.y-10);
-    m_staminaBarLvl.setPosition(t_position.x+5, t_position.y + screen_Height / 4 - m_staminaBarSize.y - 10 + 2.5);
+    //m_staminaBar.setPosition(t_position.x, t_position.y + screen_Height / 4 - m_staminaBarSize.y-10);
+    m_staminaBar.setPosition(500,850);
+
+    m_staminaBarLvl.setPosition(505, 850 + 2.5);
     if (m_playerState == PlayerMovingState::RUNNING && m_staminaBarLvlSize.x >=0)
     {
         m_staminaBarLvlSize.x--;
@@ -296,6 +299,7 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 
 void Player::renderPowerBar(sf::RenderWindow &t_window)
 {
+    
     if (m_powerBarVisible)
     {     
         t_window.draw(m_powerBar);
@@ -304,7 +308,6 @@ void Player::renderPowerBar(sf::RenderWindow &t_window)
 
     t_window.draw(m_staminaBar);
     t_window.draw(m_staminaBarLvl);
-
 }
 
 void Player::move(float dt)
@@ -393,17 +396,17 @@ void Player::boundryCheck()
     {
         m_sprite.setPosition(screen_Width - m_sprite.getTextureRect().width, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().x < getRadius())
+    if (m_sprite.getPosition().x <= getRadius()+tileSize)
     {
-        m_sprite.setPosition(getRadius(), m_sprite.getPosition().y);
+        m_sprite.setPosition(getRadius()+tileSize, m_sprite.getPosition().y);
     }
     if (m_sprite.getPosition().y > screen_Height - m_sprite.getTextureRect().height)
     {
         m_sprite.setPosition(m_sprite.getPosition().x, screen_Height - m_sprite.getTextureRect().height);
     }
-    if (m_sprite.getPosition().y < getRadius())
+    if (m_sprite.getPosition().y < getRadius()+tileSize)
     {
-        m_sprite.setPosition(m_sprite.getPosition().x, getRadius());
+        m_sprite.setPosition(m_sprite.getPosition().x, getRadius()+tileSize);
     }
 }
 
