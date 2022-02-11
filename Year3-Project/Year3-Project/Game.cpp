@@ -4,6 +4,8 @@
 
 #include "Game.h"
 
+using json = nlohmann::json;
+
 void visit(Node *t_node)
 {
     std::cout << "Visiting: " << t_node->m_data.id << std::endl;
@@ -19,11 +21,6 @@ Game::Game() :
         m_window(sf::VideoMode{screen_Width, screen_Height, 32U}, "SHHHH...!"),
         m_exitGame(false), //when true game will exit
         m_spawnPosition(100.f, 100.f),
-        m_ucsWaypoints({
-                               85, 95,
-                                151,
-                               205, 215,
-                       }),
         m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
 {
 
@@ -40,11 +37,8 @@ Game::Game() :
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
     m_enemy.loadSoundHolder(m_sounds);
-    m_ucsEnemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
-
-    m_ucsEnemy.setPosition(330, 270);
 
     pauseMenuSetUp();
 
@@ -64,31 +58,6 @@ Game::Game() :
         {
             m_grid.addArc(i, neighbour.first, neighbour.second);
         }
-    }
-
-    for (int i = 0; i < m_ucsWaypoints.size(); i++)
-    {
-        for (int j = 0; j < m_ucsWaypoints.size(); j++)
-        {
-            if (m_ucsWaypoints[i] != m_ucsWaypoints[j])
-            {
-                std::vector<Node*> path;
-
-                m_grid.ucs(m_grid.nodeIndex(m_ucsWaypoints[i]), m_grid.nodeIndex(m_ucsWaypoints[j]), visit, path);
-                m_ucsPaths.insert({std::to_string(i) + "-" + std::to_string(j), path});
-            }
-            m_grid.clearMarks();
-        }
-    }
-
-    for (auto& path : m_ucsPaths)
-    {
-        std::cout << "[" << path.first << "]: ";
-        for (auto& node : path.second)
-        {
-            std::cout << node->m_data.id << " -> ";
-        }
-        std::cout << std::endl;
     }
 }
 
@@ -215,7 +184,6 @@ void Game::update(sf::Time t_deltaTime)
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime , m_worldView.getCenter());
             m_enemy.update(t_deltaTime);
-            m_ucsEnemy.update(t_deltaTime);
             checkCollisions();
             checkPickUps();
             collisions.update();
@@ -273,12 +241,12 @@ void Game::render()
             m_window.clear(sf::Color(0, 157, 196));
             m_window.setView(m_worldView);
 
-            for (Environment env: m_environment)
+            for (Environment env: m_ground)
             {
                 env.render(m_window);
             }
 
-            for (auto &object: m_objects)
+            for (auto &object: m_environment)
             {
                 object.render(m_window);
             }
@@ -292,7 +260,6 @@ void Game::render()
             }
             m_window.draw(m_player);
             m_window.draw(m_enemy);
-            m_window.draw(m_ucsEnemy);
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
@@ -310,12 +277,12 @@ void Game::render()
             break;
         case GameState::PAUSE:
             m_window.setView(m_worldView);
-            for (Environment env: m_environment)
+            for (Environment env: m_ground)
             {
                 env.render(m_window);
             }
 
-            for (auto &object: m_objects)
+            for (auto &object: m_environment)
             {
                 object.render(m_window);
             }
@@ -323,7 +290,6 @@ void Game::render()
             m_window.draw(m_player);
             //m_window.draw(m_pickup);
             m_window.draw(m_enemy);
-            m_window.draw(m_ucsEnemy);
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
@@ -352,9 +318,10 @@ void Game::checkCollisions()
         m_player.m_readyToTHrow[1] = true;
     }
 
-    for (auto &object: m_objects)
+    for (auto &object: m_environment)
     {
-        if (object.isImpassable()) collisions.check(m_player, object);
+        if (object.isImpassable())
+            collisions.check(m_player, object);
     }
 }
 
@@ -367,65 +334,34 @@ void Game::pauseMenuSetUp()
 
 void Game::setupEnvironment()
 {
-    if (!m_groundTexture.loadFromFile("ASSETS/IMAGES/sprite_sheets/ground_sprite_sheet.png"))
-        std::cout << "problem loading character texture" << std::endl;
+    if (!m_spriteSheet.loadFromFile("ASSETS/TileSheet/spritesheet.png"))
+        std::cout << "problem loading the game sprite sheet" << std::endl;
 
     std::ifstream spriteSheetData("scene.json");
-    nlohmann::json json;
+    json groundJson;
 
-    json =  nlohmann::json::parse(spriteSheetData);
+    groundJson = json::parse(spriteSheetData);
 
-    nlohmann::json scene = json["scene"];
+    json scene = groundJson["scene"];
     // Build scene from the json file
     for (auto &el: scene)
-        m_environment.emplace_back(m_groundTexture, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-                                   screen_Width / tileSize, el["rotation"]);
+        m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
+                              screen_Width / tileSize, el["rotation"]);
 
+    std::ifstream levelData("level.json");
+    json environmentJson;
+    environmentJson = json::parse(levelData);
+    scene = environmentJson["scene"];
+    for (auto &el : scene)
+        m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
+                              screen_Width / tileSize, el["rotation"], el["impassable"]);
 
-    // Debug for UCS Pathfinding
-    sf::RectangleShape waypointDebug;
-    waypointDebug.setFillColor(sf::Color::Black);
-    for (auto &w: m_ucsWaypoints)
-        m_objects.emplace_back(waypointDebug, w, screen_Height / tileSize, screen_Width / tileSize, 0, false);
-
-    // Add impassable wall for UCS Debugging
-    // ===========================================================================
-/*    sf::RectangleShape wall;
-    wall.setFillColor(sf::Color::Red);
-    m_objects.emplace_back(wall, 70, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 71, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 72, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 73, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 74, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 90, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 94, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 114, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 134, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 154, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 174, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 173, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 172, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 171, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 170, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 150, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 130, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    m_objects.emplace_back(wall, 110, screen_Height / tileSize, screen_Width / tileSize, 0, true);
-    // ===========================================================================*/
-
-    // Set the passable property for each grid node
-    for (auto &node: m_grid.getNodes())
+    for (auto &object: m_environment)
     {
-        for (auto &object: m_objects)
-        {
-            if (object.getTileCode() == node->m_data.id)
-            {
-                // Update the node
-                NodeData newData = node->m_data;
-                newData.isPassable = !object.isImpassable();
-                m_grid.updateNode(newData, node->m_data.id);
-            }
-        }
+        auto node = m_grid.nodeIndex(object.getTileCode());
+        // Update the node
+        node->m_data.isPassable = !object.isImpassable();
+        m_grid.updateNode(node->m_data, node->m_data.id);
     }
 }
 
@@ -438,9 +374,6 @@ void Game::cameraMovement(sf::Time dt)
 int Game::cellIdFinder(sf::Vector2f t_targetLocation)
 {
     int m_id = floor(t_targetLocation.x / tileSize) + (floor(t_targetLocation.y / tileSize) * m_gridCols);
-
-    //std::cout << std::to_string(m_id) << std::endl;
-
     return m_id;
 }
 

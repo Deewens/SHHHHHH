@@ -82,14 +82,14 @@ private:
     bool m_pickupCollected[2] = { false,false };
 
     Graph<NodeData, float> m_grid;
-    std::vector<Environment> m_environment; // Everything related to the ground of the scene
-    std::vector<Environment> m_objects; // Object of the scene (wall, tree, etc.)
+    std::vector<Environment> m_ground; // Everything related to the ground of the scene
+    std::vector<Environment> m_environment; // Environment/tiles of the level (wall, tree, water...)
     Menu m_gameMenu;
     HUD m_hud;
 
     sf::RectangleShape m_pauseRect;
 
-    sf::Texture m_groundTexture;
+    sf::Texture m_spriteSheet;
 
     sf::Font m_font;
 
@@ -100,7 +100,6 @@ private:
     std::vector<int> m_ucsWaypoints;
     std::map<std::string, std::vector<Node*>> m_ucsPaths;
 
-    Enemy m_ucsEnemy;
     std::vector<Node*> m_path;
 };
 

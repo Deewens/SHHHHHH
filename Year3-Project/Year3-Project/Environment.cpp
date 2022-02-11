@@ -17,7 +17,7 @@ Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, in
                          float t_rotation, bool t_impassable) :
                          m_sprite(t_texture), m_rotation(t_rotation), m_impassable(t_impassable), m_tileCode(t_tileCode)
 {
-    std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/ground_sprite_sheet.json");
+    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
     nlohmann::json json;
     spriteSheetData >> json;
 
@@ -47,7 +47,7 @@ void Environment::render(sf::RenderWindow& t_window)
 
 sf::FloatRect Environment::getCollisionRect()
 {
-	return m_rect.getGlobalBounds();
+	return m_sprite.getGlobalBounds();
 }
 
 bool Environment::isImpassable() const
