@@ -363,6 +363,22 @@ void Game::setupEnvironment()
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
     }
+
+    auto pathfinding = environmentJson["pathfinding"];
+
+    // Store the list of waypoints
+    for (auto& waypoint : pathfinding["waypoints"])
+        m_ucsWaypoints.push_back(waypoint);
+
+    // Store each path between each waypoint
+    for (auto it = pathfinding["paths"].begin(); it != pathfinding["paths"].end(); ++it)
+    {
+        std::vector<int> path;
+        for (auto &tile: it.value())
+            path.push_back(tile);
+
+        m_ucsPaths.insert({it.key(), path});
+    }
 }
 
 void Game::cameraMovement(sf::Time dt)
