@@ -2,7 +2,8 @@
 
 Enemy::Enemy() :
         m_runningAnim(m_sprite),
-        m_idlingAnim(m_sprite)
+        m_idlingAnim(m_sprite),
+        m_grid(300)
 {
     Enemy::loadTexture();
     Enemy::setDirection(EAST);
@@ -79,7 +80,7 @@ void Enemy::setDirection(int t_direction)
     }
 }
 
-void Enemy::update(sf::Time deltaTime , Graph<NodeData, float> t_grid)
+void Enemy::update(sf::Time deltaTime)
 {
     sf::Time elapsed = clock.getElapsedTime();
 
@@ -109,7 +110,7 @@ void Enemy::update(sf::Time deltaTime , Graph<NodeData, float> t_grid)
         m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
-    //pathFinding(t_grid);
+    pathFinding();
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
@@ -261,7 +262,7 @@ void Enemy::debug()
     }
 }
 
-void Enemy::pathFinding(Graph<NodeData, float> t_grid )
+void Enemy::pathFinding()
 {
     int m_secondToLastCell = 0;
     int m_lastCell = 0;
@@ -273,7 +274,7 @@ void Enemy::pathFinding(Graph<NodeData, float> t_grid )
     if (m_searchCounter >= 50)
     {
         m_searchCounter = 0;
-        t_grid.aStar(t_grid.nodeIndex(zombieCell), t_grid.nodeIndex(playerCell),m_path);
+        m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(playerCell),m_path);
     }
     if (m_path.size() > 1)
     {
@@ -328,6 +329,11 @@ void Enemy::changeSoundsVolume(float newVolume)
 void Enemy::move(sf::Vector2f& offset)
 {
     m_sprite.move(offset);
+}
+
+void Enemy::loadGrid(Graph<NodeData, float>& t_grid)
+{
+    m_grid = t_grid;
 }
 
 

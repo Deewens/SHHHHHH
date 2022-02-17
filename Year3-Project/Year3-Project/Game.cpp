@@ -59,6 +59,8 @@ Game::Game() :
             m_grid.addArc(i, neighbour.first, neighbour.second);
         }
     }
+
+    m_enemy.loadGrid(m_grid);
 }
 
 /// <summary>
@@ -183,7 +185,7 @@ void Game::update(sf::Time t_deltaTime)
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime , m_worldView.getCenter());
-            m_enemy.update(t_deltaTime,m_grid);
+            m_enemy.update(t_deltaTime);
             checkCollisions();
             checkPickUps();
             collisions.update();

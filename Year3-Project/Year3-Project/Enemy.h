@@ -11,23 +11,23 @@
 #include "tinyc2.h"
 #include "Animation.h"
 #include "Utils.h"
-#include"Grid.h"
 
 typedef GraphNode<NodeData, float> Node;
-
 
 class Enemy : public Character
 {
 public:
     Enemy();
 
-    void update(sf::Time deltaTime , Graph<NodeData, float> t_grid);
+    void update(sf::Time deltaTime);
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
 
     void loadSoundHolder(SoundHolder& soundHolder);
+
+    void loadGrid(Graph<NodeData, float>& t_grid);
 
     void changeSoundsVolume(float newVolume);
 
@@ -50,7 +50,7 @@ private:
 
     void debug();
 
-    void pathFinding(Graph<NodeData, float> t_grid);
+    void pathFinding();
 
 private:
 
@@ -103,6 +103,7 @@ private:
 
     int m_searchCounter;
 
+    Graph<NodeData, float> m_grid;
     std::vector<Node*> m_path;
 
 };
