@@ -44,6 +44,8 @@ Enemy::Enemy() :
     m_sprite.setPosition(300, 300);
 
     m_EnemyState = EnemyState::SEEK;
+
+    m_searchCounter = 500;
 }
 
 void Enemy::setDirection(int t_direction)
@@ -77,7 +79,7 @@ void Enemy::setDirection(int t_direction)
     }
 }
 
-void Enemy::update(sf::Time deltaTime)
+void Enemy::update(sf::Time deltaTime , Graph<NodeData, float> t_grid)
 {
     sf::Time elapsed = clock.getElapsedTime();
 
@@ -107,6 +109,7 @@ void Enemy::update(sf::Time deltaTime)
         m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
+    //pathFinding(t_grid);
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
@@ -258,6 +261,48 @@ void Enemy::debug()
     }
 }
 
+void Enemy::pathFinding(Graph<NodeData, float> t_grid )
+{
+    int m_secondToLastCell = 0;
+    int m_lastCell = 0;
+
+    int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
+    int zombieCell = floor(m_sprite.getPosition().x / tileSize) + (floor(m_sprite.getPosition().y / tileSize) * screen_Width / tileSize);
+
+    m_searchCounter++;
+    if (m_searchCounter >= 50)
+    {
+        m_searchCounter = 0;
+        t_grid.aStar(t_grid.nodeIndex(zombieCell), t_grid.nodeIndex(playerCell),m_path);
+    }
+    if (m_path.size() > 1)
+    {
+        m_secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
+        if (m_secondToLastCell == zombieCell && m_path.size() > 2)
+        {
+            m_path.erase(m_path.begin() + m_path.size() - 1);
+            m_secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
+        }
+        m_lastCell = m_path[m_path.size() - 1]->m_data.id;
+    }
+
+    int m_columS = m_secondToLastCell % (screen_Width / tileSize);
+    int m_rowS = (m_secondToLastCell - m_columS) / (screen_Width / tileSize);
+
+    int m_columF = m_lastCell % (screen_Width / tileSize);
+    int m_rowF = (m_lastCell - m_columF) / (screen_Width / tileSize);
+
+    sf::Vector2f m_centerS;
+    m_centerS.y = (tileSize / 2) + (tileSize * m_rowS);
+    m_centerS.x = (tileSize / 2) + (tileSize * m_columS);
+
+    sf::Vector2f m_centerF;
+    m_centerF.y = (tileSize / 2) + (tileSize * m_rowF);
+    m_centerF.x = (tileSize / 2) + (tileSize * m_columF);
+
+    move(m_centerS, m_centerF);
+}
+
 void Enemy::loadSoundHolder(SoundHolder& soundHolder)
 {
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
@@ -284,6 +329,8 @@ void Enemy::move(sf::Vector2f& offset)
 {
     m_sprite.move(offset);
 }
+
+
 
 
 

@@ -183,7 +183,7 @@ void Game::update(sf::Time t_deltaTime)
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime , m_worldView.getCenter());
-            m_enemy.update(t_deltaTime);
+            m_enemy.update(t_deltaTime,m_grid);
             checkCollisions();
             checkPickUps();
             collisions.update();

@@ -1,13 +1,16 @@
-#ifndef YEAR3_PROJECT_NODEDATA_H
-#define YEAR3_PROJECT_NODEDATA_H
+#pragma once
+#include  <string>
 
+// ---------------------------------------------------------------------
+//  Name:           NodeData
+//  Description:    A simple struct to encapsulate all the node data.
+//                  Add or remove fields as required.               
+// ---------------------------------------------------------------------
 struct NodeData
 {
-    int id = 0;
-    sf::Vector2f position;
-    bool isPassable = true;
-    float cost = 0.0f;
+	int id = 0;
+	sf::Vector2f position;
+	bool isPassable = true;
+	float cost;
+	float heuristic;
 };
-
-
-#endif //YEAR3_PROJECT_NODEDATA_H

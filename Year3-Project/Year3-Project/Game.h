@@ -23,6 +23,7 @@
 #include "HUD.h"
 #include "SoundHolder.h"
 #include "Utils.h"
+#include "NodeData.h"
 
 typedef GraphArc<NodeData, float> Arc;
 typedef GraphNode<NodeData, float> Node;

@@ -6,6 +6,8 @@
 #include<vector>
 #include <fstream>
 #include <string>
+#include "Cell.h"
+
 
 class Grid : public sf::Drawable
 {
@@ -13,7 +15,13 @@ public:
 	Grid();
 	Grid(int t_m_rows, int t_m_cols);
 
-	void render(sf::RenderWindow& t_window);
+
+	// Resets the 'marks' (to false) on each cell
+	void reset();
+
+	void markImpassableCell(int t_cellId);
+
+	//void render(sf::RenderWindow& t_window);
 
 	void toggleDraw();
 
@@ -37,5 +45,11 @@ private:
 
 	sf::Text m_gridTextElement;
 	std::vector<sf::Text> m_gridText;
+
+	std::vector<Cell> m_cells;
+	void neighbours();
+
+
+	bool m_debugDraw = false;
 };
 

@@ -11,13 +11,17 @@
 #include "tinyc2.h"
 #include "Animation.h"
 #include "Utils.h"
+#include"Grid.h"
+
+typedef GraphNode<NodeData, float> Node;
+
 
 class Enemy : public Character
 {
 public:
     Enemy();
 
-    void update(sf::Time deltaTime) override;
+    void update(sf::Time deltaTime , Graph<NodeData, float> t_grid);
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
@@ -46,7 +50,7 @@ private:
 
     void debug();
 
-
+    void pathFinding(Graph<NodeData, float> t_grid);
 
 private:
 
@@ -96,6 +100,10 @@ private:
     }m_EnemyState;
 
     sf::Clock clock;
+
+    int m_searchCounter;
+
+    std::vector<Node*> m_path;
 
 };
 
