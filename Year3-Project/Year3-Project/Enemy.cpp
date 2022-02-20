@@ -110,7 +110,6 @@ void Enemy::update(sf::Time deltaTime)
         m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
-    pathFinding();
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
@@ -264,7 +263,20 @@ void Enemy::debug()
 
 void Enemy::pathFinding()
 {
-    int m_secondToLastCell = 0;
+    //int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
+
+    int waypoint = m_grid.getClosestWaypoint(m_sprite.getPosition());
+    int zombieCell = floor(m_sprite.getPosition().x / tileSize) + (floor(m_sprite.getPosition().y / tileSize) * screen_Width / tileSize);
+
+    m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(waypoint),m_path);
+
+    for (auto& node : m_path)
+        std::cout << node << " ";
+
+    std::cout << std::endl;
+
+
+/*    int m_secondToLastCell = 0;
     int m_lastCell = 0;
 
     int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
@@ -301,7 +313,7 @@ void Enemy::pathFinding()
     m_centerF.y = (tileSize / 2) + (tileSize * m_rowF);
     m_centerF.x = (tileSize / 2) + (tileSize * m_columF);
 
-    move(m_centerS, m_centerF);
+    move(m_centerS, m_centerF);*/
 }
 
 void Enemy::loadSoundHolder(SoundHolder& soundHolder)

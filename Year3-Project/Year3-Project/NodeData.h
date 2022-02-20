@@ -11,6 +11,6 @@ struct NodeData
 	int id = 0;
 	sf::Vector2f position;
 	bool isPassable = true;
-	float cost;
-	float heuristic;
+	int cost;
+    int heuristic;
 };

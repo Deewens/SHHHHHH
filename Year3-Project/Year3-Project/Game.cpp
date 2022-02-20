@@ -159,6 +159,24 @@ void Game::processKeys(sf::Event t_event)
         m_playerCoordsDebugText.setString(
                 "X: " + std::to_string(m_player.getPosition().x) + " - Y: " + std::to_string(m_player.getPosition().y));
     }
+
+    if (sf::Keyboard::F2 == t_event.key.code)
+    {
+        int waypoint = m_grid.getClosestWaypoint(m_player.getPosition());
+        int player = Utils::vectorToNode(m_player.getPosition());
+
+        std::cout << "Player node: " << player << std::endl;
+        std::cout << "Closest waypoint: " << waypoint << std::endl;
+
+        std::vector<Node*> path;
+        m_grid.clearMarks();
+        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);
+
+        for (auto& node : path)
+            std::cout << node->m_data.id << " ";
+
+        std::cout << std::endl;
+    }
 }
 
 /// <summary>
@@ -260,6 +278,7 @@ void Game::render()
                     m_window.draw(*m_pickup[i]);
                 }
             }
+
             m_window.draw(m_player);
             m_window.draw(m_enemy);
             m_enemy.renderVisionCone(m_window);
@@ -364,22 +383,6 @@ void Game::setupEnvironment()
         // Update the node
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
-    }
-
-    auto pathfinding = environmentJson["pathfinding"];
-
-    // Store the list of waypoints
-    for (auto& waypoint : pathfinding["waypoints"])
-        m_ucsWaypoints.push_back(waypoint);
-
-    // Store each path between each waypoint
-    for (auto it = pathfinding["paths"].begin(); it != pathfinding["paths"].end(); ++it)
-    {
-        std::vector<int> path;
-        for (auto &tile: it.value())
-            path.push_back(tile);
-
-        m_ucsPaths.insert({it.key(), path});
     }
 }
 

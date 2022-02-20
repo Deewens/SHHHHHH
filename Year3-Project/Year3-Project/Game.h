@@ -97,9 +97,6 @@ private:
     sf::Text m_playerCoordsDebugText;
 
     SoundHolder m_sounds;
-
-    std::vector<int> m_ucsWaypoints;
-    std::map<std::string, std::vector<int>> m_ucsPaths;
 };
 
 #endif // !GAME_HPP

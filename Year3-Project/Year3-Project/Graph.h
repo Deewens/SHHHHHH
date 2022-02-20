@@ -13,6 +13,7 @@
 #include "GraphArc.h"
 #include "GraphNode.h"
 #include "NodeData.h"
+#include "Utils.h"
 
 template<typename NodeType, class ArcType>
 class Graph : public sf::Drawable
@@ -42,8 +43,6 @@ public:
         return m_nodes.at(index);
     }
 
-    sf::Vector2f getNodePosition(int index);
-
     // Public member functions.
     bool addNode(NodeType data, int index);
 
@@ -63,8 +62,12 @@ public:
 
     std::map<int, float> getNeighbours(int node);
 
-    void aStar(Node* start, Node* dest, std::vector<Node*>& path);
+    std::vector<int> getWaypoints();
+    std::map<std::string, std::vector<int>> getUCSPaths();
 
+    int getClosestWaypoint(sf::Vector2f pos);
+
+    void aStar(Node* start, Node* dest, std::vector<Node*>& path);
 
 private:
     int m_rows;
@@ -85,6 +88,11 @@ private:
 
     sf::Text m_gridTextElement;
     std::vector<sf::Text> m_gridText;
+
+    std::vector<int> m_waypoints;
+    std::map<std::string, std::vector<int>> m_ucsPaths;
+
+    std::vector<sf::RectangleShape> m_pathDraw;
 };
 
 template<class NodeType, class ArcType>
@@ -128,9 +136,28 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
     {
         for (int j = 0; j < m_cols; j++)
         {
-            NodeData nodeData = NodeData{ id,sf::Vector2f((float)(j * tileSize) + ((float)tileSize / 2), (float)(i * tileSize) + ((float)tileSize / 2)) };
+            NodeData nodeData = NodeData{ id,sf::Vector2f((float)((j * tileSize) + ((float)tileSize / 2)), (float)(i * tileSize) + ((float)tileSize / 2)) };
             addNode(nodeData, id++);
         }
+    }
+
+
+    std::ifstream levelData("level.json");
+    nlohmann::json levelJson = nlohmann::json::parse(levelData);
+    auto pathfinding = levelJson["pathfinding"];
+
+    // Store the list of waypoints
+    for (auto& waypoint : pathfinding["waypoints"])
+        m_waypoints.push_back(waypoint);
+
+    // Store each path between each waypoint
+    for (auto it = pathfinding["paths"].begin(); it != pathfinding["paths"].end(); ++it)
+    {
+        std::vector<int> path;
+        for (auto &tile: it.value())
+            path.push_back(tile);
+
+        m_ucsPaths.insert({it.key(), path});
     }
 }
 
@@ -169,6 +196,9 @@ void Graph<NodeType, ArcType>::draw(sf::RenderTarget& target, sf::RenderStates s
 {
     if (m_gridDraw)
     {
+        for (auto& path : m_pathDraw)
+            target.draw(path);
+
         target.draw(m_colLine, 96, sf::Lines);
         target.draw(m_rowLine, 60, sf::Lines);
         for (int i = 0; i < m_size; i++)
@@ -472,7 +502,7 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     {
         if (direction == 4) continue; // Skip 4, this is ourself.
 
-        float cost = 10;
+        int cost = 10;
         if (direction == 0 || direction == 2 || direction == 6 || direction == 8) // Diagonal
             cost = 14;
 
@@ -493,22 +523,19 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     return neighbours;
 }
 
-template<typename NodeType, class ArcType>
-sf::Vector2f Graph<NodeType, ArcType>::getNodePosition(int index)
-{
-
-}
-
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>& path)
 {
     std::priority_queue < Node*, std::vector<Node*>, Comparer<NodeType, ArcType>> nodeQueue;
 
     //float heuristic = sqrt((dest->m_data.m_x - start->m_data.m_x)(dest->m_data.m_x - start->m_data.m_x) + (dest->m_data.m_y - start->m_data.m_y)(dest->m_data.m_y - start->m_data.m_y));
+    std::cout << "A*:" << std::endl;
+    std::cout << "--------------" << std::endl;
 
     for (Node* node : m_nodes)
     {
-        node->m_data.cost = std::numeric_limits<int>::max();
+        node->setPrevious(nullptr);
+        node->m_data.cost = std::numeric_limits<int>::max() - 10000;
         float heu = abs((dest->m_data.position.x - node->m_data.position.x) * (dest->m_data.position.x - node->m_data.position.x) + (dest->m_data.position.y - node->m_data.position.y) * (dest->m_data.position.y - node->m_data.position.y));
         node->m_data.heuristic = sqrt(heu);
     }
@@ -550,14 +577,46 @@ void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>&
 
     Node* temp = dest;
 
-/*    for (; temp->previous() != nullptr;)
+    for (; temp->previous() != nullptr;)
     {
         path.push_back(temp);
         //std::cout << temp->m_data.id << " PathCost : " << temp->m_data.cost << " Hueristics : " << temp->m_data.heuristic << std::endl;
         temp = temp->previous();
-    }*/
+    }
     path.push_back(temp);
     //std::cout << temp->m_data.id << std::endl;
 
+}
+
+template<typename NodeType, class ArcType>
+std::vector<int> Graph<NodeType, ArcType>::getWaypoints()
+{
+    return m_waypoints;
+}
+
+template<typename NodeType, class ArcType>
+std::map<std::string, std::vector<int>> Graph<NodeType, ArcType>::getUCSPaths()
+{
+    return m_ucsPaths;
+}
+
+template<typename NodeType, class ArcType>
+int Graph<NodeType, ArcType>::getClosestWaypoint(sf::Vector2f pos)
+{
+    float lowestDistance = std::numeric_limits<float>::max();
+    int closestNode = -1;
+    for (auto& waypoint : m_waypoints)
+    {
+        sf::Vector2f waypointPos = nodeIndex(waypoint)->m_data.position;
+        float distance = Utils::getDistanceBetweenPoints(waypointPos, pos);
+
+        if(distance < lowestDistance)
+        {
+            lowestDistance = distance;
+            closestNode = waypoint;
+        }
+    }
+
+    return closestNode;
 }
 
