@@ -1,6 +1,12 @@
 {
 	"scene": [
 		{
+			"gridIndex": 2,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
 			"gridIndex": 44,
 			"impassable": false,
 			"rotation": 0.000000,
