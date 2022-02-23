@@ -523,9 +523,9 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     {
         if (direction == 4) continue; // Skip 4, this is ourself.
 
-        int cost = 1;
+        int cost = 10;
         if (direction == 0 || direction == 2 || direction == 6 || direction == 8) // Diagonal
-            cost = 2;
+            cost = 14;
 
         int n_row = row + ((direction % 3) - 1); // Neighbor row
         int n_col = col + ((direction / 3) - 1); // Neighbor column

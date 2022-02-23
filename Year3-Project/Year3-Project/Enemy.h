@@ -12,18 +12,22 @@
 #include "Animation.h"
 #include "Utils.h"
 
+typedef GraphNode<NodeData, float> Node;
+
 class Enemy : public Character
 {
 public:
     Enemy();
 
-    void update(sf::Time deltaTime) override;
+    void update(sf::Time deltaTime);
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
 
     void loadSoundHolder(SoundHolder& soundHolder);
+
+    void loadGrid(Graph<NodeData, float>& t_grid);
 
     void changeSoundsVolume(float newVolume);
 
@@ -46,7 +50,7 @@ private:
 
     void debug();
 
-
+    void pathFinding();
 
 private:
 
@@ -96,6 +100,11 @@ private:
     }m_EnemyState;
 
     sf::Clock clock;
+
+    int m_searchCounter;
+
+    Graph<NodeData, float> m_grid;
+    std::vector<Node*> m_path;
 
 };
 

@@ -19,6 +19,8 @@ public:
 
     static float getDistanceBetweenPoints(sf::Vector2f p, sf::Vector2f q);
 
+    static int vectorToNode(sf::Vector2f position);
+
     template <typename T>
     static float magnitude(sf::Vector2<T> v);
 

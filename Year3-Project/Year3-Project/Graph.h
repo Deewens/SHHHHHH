@@ -13,7 +13,7 @@
 #include "GraphArc.h"
 #include "GraphNode.h"
 #include "NodeData.h"
-#include "NodeComparer.h"
+#include "Utils.h"
 
 template<typename NodeType, class ArcType>
 class Graph : public sf::Drawable
@@ -29,7 +29,7 @@ public:
 
     ~Graph() override;
 
-    void render(sf::RenderWindow &t_window);
+    void render(sf::RenderWindow& t_window);
 
     void toggleDraw();
 
@@ -38,12 +38,10 @@ public:
     std::vector<std::vector<Node>> getGrid();
 
     // Accessors
-    Node *nodeIndex(int index) const
+    Node* nodeIndex(int index) const
     {
         return m_nodes.at(index);
     }
-
-    sf::Vector2f getNodePosition(int index);
 
     // Public member functions.
     bool addNode(NodeType data, int index);
@@ -58,13 +56,18 @@ public:
 
     void removeArc(int from, int to);
 
-    Arc *getArc(int from, int to);
+    Arc* getArc(int from, int to);
 
     void clearMarks();
 
     std::map<int, float> getNeighbours(int node);
 
-    void ucs(Node *start, Node *goal, std::function<void(Node *)> f_visit, std::vector<Node *> &path);
+    std::vector<int> getWaypoints();
+    std::map<std::string, std::vector<int>> getUCSPaths();
+
+    int getClosestWaypoint(sf::Vector2f pos);
+
+    void aStar(Node* start, Node* dest, std::vector<Node*>& path);
 
 private:
     int m_rows;
@@ -77,7 +80,7 @@ private:
 
     bool m_gridDraw = false;
 
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const final;
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const final;
 
     int m_size = 0;
 
@@ -85,8 +88,26 @@ private:
 
     sf::Text m_gridTextElement;
     std::vector<sf::Text> m_gridText;
+
+    std::vector<int> m_waypoints;
+    std::map<std::string, std::vector<int>> m_ucsPaths;
+
+    std::vector<sf::RectangleShape> m_pathDraw;
 };
 
+template<class NodeType, class ArcType>
+class Comparer
+{
+public:
+
+    typedef GraphArc<NodeType, ArcType> Arc;
+    typedef GraphNode<NodeType, ArcType> Node;
+
+    bool operator()(Node* n1, Node* n2)
+    {
+        return n1->m_data.cost + n1->m_data.heuristic > n2->m_data.cost + n2->m_data.heuristic;
+    }
+};
 template<typename NodeType, typename ArcType>
 Graph<NodeType, ArcType>::Graph(int maxNodes) : m_rows(0), m_cols(0), m_nodes(maxNodes, nullptr)
 {
@@ -99,14 +120,14 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
 
     for (int i = 0; i < m_cols; i++)
     {
-        m_colLine[i * 2] = sf::Vertex(sf::Vector2f{(float) (i * tileSize), 0});
-        m_colLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{(float) (i * tileSize), screen_Height});
+        m_colLine[i * 2] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), 0 });
+        m_colLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ (float)(i * tileSize), screen_Height });
     }
 
     for (int i = 0; i < m_rows; i++)
     {
-        m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{0, (float) (i * tileSize)});
-        m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{screen_Width, (float) (i * tileSize)});
+        m_rowLine[i * 2] = sf::Vertex(sf::Vector2f{ 0, (float)(i * tileSize) });
+        m_rowLine[i * 2 + 1] = sf::Vertex(sf::Vector2f{ screen_Width, (float)(i * tileSize) });
     }
 
     int id = 0;
@@ -115,9 +136,28 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
     {
         for (int j = 0; j < m_cols; j++)
         {
-            NodeData nodeData = NodeData{id,sf::Vector2f((float) (j * tileSize) + ((float) tileSize/2), (float) (i * tileSize) + ((float) tileSize/2))};
+            NodeData nodeData = NodeData{ id,sf::Vector2f((float)((j * tileSize) + ((float)tileSize / 2)), (float)(i * tileSize) + ((float)tileSize / 2)) };
             addNode(nodeData, id++);
         }
+    }
+
+
+    std::ifstream levelData("level.json");
+    nlohmann::json levelJson = nlohmann::json::parse(levelData);
+    auto pathfinding = levelJson["pathfinding"];
+
+    // Store the list of waypoints
+    for (auto& waypoint : pathfinding["waypoints"])
+        m_waypoints.push_back(waypoint);
+
+    // Store each path between each waypoint
+    for (auto it = pathfinding["paths"].begin(); it != pathfinding["paths"].end(); ++it)
+    {
+        std::vector<int> path;
+        for (auto &tile: it.value())
+            path.push_back(tile);
+
+        m_ucsPaths.insert({it.key(), path});
     }
 }
 
@@ -152,10 +192,13 @@ void Graph<NodeType, ArcType>::toggleDraw()
 }
 
 template<typename NodeType, typename ArcType>
-void Graph<NodeType, ArcType>::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void Graph<NodeType, ArcType>::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     if (m_gridDraw)
     {
+        for (auto& path : m_pathDraw)
+            target.draw(path);
+
         target.draw(m_colLine, 96, sf::Lines);
         target.draw(m_rowLine, 60, sf::Lines);
         for (int i = 0; i < m_size; i++)
@@ -294,7 +337,7 @@ void Graph<NodeType, ArcType>::removeNode(int index)
     {
         // now find every arc that points to the node that
         // is being removed and remove it.
-        Arc *arc;
+        Arc* arc;
 
         // loop through every node
         for (int node = 0; node < m_nodes.size(); node++)
@@ -392,9 +435,9 @@ void Graph<NodeType, ArcType>::removeArc(int from, int to)
  * @return pointer to the arc, or 0 if it doesn't exist.
  */
 template<class NodeType, class ArcType>
-GraphArc<NodeType, ArcType> *Graph<NodeType, ArcType>::getArc(int from, int to)
+GraphArc<NodeType, ArcType>* Graph<NodeType, ArcType>::getArc(int from, int to)
 {
-    Arc *arc = 0;
+    Arc* arc = 0;
     // make sure the to and from nodes exist
     if (nullptr != m_nodes.at(from) && nullptr != m_nodes.at(to))
     {
@@ -419,73 +462,6 @@ void Graph<NodeType, ArcType>::clearMarks()
         {
             m_nodes.at(index)->setMarked(false);
         }
-    }
-}
-
-/**
- * Pathfinding using UCS Algorithm
- *
- * @tparam NodeType
- * @tparam ArcType
- * @param start Graph node indicating the origin of the search
- * @param goal goal vertex indicating the destination of the search
- * @param f_visit function that outputs the node currently being expanded (i.e. the node at the top of the priority queue).
- * @param path container (a vector) which holds the best path generated by the algorithm’s completion
- */
-template<class NodeType, class ArcType>
-void Graph<NodeType, ArcType>::ucs(Graph::Node *start, Graph::Node *goal, std::function<void(Node *)> f_visit,
-                                   std::vector<Node *> &path)
-{
-    if (start == nullptr || goal == nullptr) return;
-
-    std::priority_queue<Node*, std::vector<Node*>, NodeComparer<NodeType, ArcType>> pq;
-
-    for (int i = 0; i < m_nodes.size(); i++)
-    {
-        m_nodes.at(i)->m_data.cost = -1;
-        m_nodes.at(i)->setPrevious(nullptr);
-    }
-
-    start->m_data.cost = 0;
-
-    pq.push(start);
-    start->setMarked(true);
-
-    while (!pq.empty() && pq.top() != goal)
-    {
-        auto it = pq.top()->arcList().begin();
-        auto endIt = pq.top()->arcList().end();
-
-        for (; it != endIt; it++)
-        {
-            //Arc *arc = it;
-            Node *child = it->node();
-            if (child != pq.top()->previous())
-            {
-                int arcWeight = it->weight();
-                int distToChild = arcWeight + pq.top()->m_data.cost;
-
-                if (distToChild < child->m_data.cost || child->m_data.cost == -1)
-                {
-                    (*it).node()->m_data.cost = distToChild;
-                    (*it).node()->setPrevious(pq.top());
-                }
-
-                if (!child->marked())
-                {
-                    pq.push(child);
-                    child->setMarked(true);
-                }
-            }
-        }
-        pq.pop();
-    }
-
-    Node *temp = goal;
-
-    for (; temp != nullptr; temp = temp->previous())
-    {
-        path.push_back(temp);
     }
 }
 
@@ -526,9 +502,9 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     {
         if (direction == 4) continue; // Skip 4, this is ourself.
 
-        float cost = 1;
+        int cost = 10;
         if (direction == 0 || direction == 2 || direction == 6 || direction == 8) // Diagonal
-            cost = 1.5f;
+            cost = 14;
 
         int n_row = row + ((direction % 3) - 1); // Neighbor row
         int n_col = col + ((direction / 3) - 1); // Neighbor column
@@ -539,7 +515,7 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
             // A valid neighbor:
             if (vectorGrid[n_row][n_col].m_data.isPassable)
             {
-                neighbours.insert({vectorGrid[n_row][n_col].m_data.id, cost});
+                neighbours.insert({ vectorGrid[n_row][n_col].m_data.id, cost });
             };
         }
     }
@@ -547,11 +523,100 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     return neighbours;
 }
 
-template<typename NodeType, class ArcType>
-sf::Vector2f Graph<NodeType, ArcType>::getNodePosition(int index)
+template<class NodeType, class ArcType>
+void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>& path)
 {
+    std::priority_queue < Node*, std::vector<Node*>, Comparer<NodeType, ArcType>> nodeQueue;
+
+    //float heuristic = sqrt((dest->m_data.m_x - start->m_data.m_x)(dest->m_data.m_x - start->m_data.m_x) + (dest->m_data.m_y - start->m_data.m_y)(dest->m_data.m_y - start->m_data.m_y));
+    std::cout << "A*:" << std::endl;
+    std::cout << "--------------" << std::endl;
+
+    for (Node* node : m_nodes)
+    {
+        node->setPrevious(nullptr);
+        node->m_data.cost = std::numeric_limits<int>::max() - 10000;
+        float heu = abs((dest->m_data.position.x - node->m_data.position.x) * (dest->m_data.position.x - node->m_data.position.x) + (dest->m_data.position.y - node->m_data.position.y) * (dest->m_data.position.y - node->m_data.position.y));
+        node->m_data.heuristic = sqrt(heu);
+    }
+
+    start->m_data.cost = 0;
+    nodeQueue.push(start);
+    start->setMarked(true);
+
+    while (!nodeQueue.empty() && nodeQueue.top() != dest)
+    {
+        auto iter = nodeQueue.top()->arcList().begin();
+        auto endIter = nodeQueue.top()->arcList().end();
+
+
+        for (; iter != endIter; iter++)
+        {
+            Node* child = iter->node();
+
+            if (child->previous() != nodeQueue.top())
+            {
+                int weight = iter->m_weight;
+                int childCost = nodeQueue.top()->m_data.cost + weight;
+
+                if (childCost < child->m_data.cost)
+                {
+                    child->m_data.cost = childCost;
+                    child->setPrevious(nodeQueue.top());
+                    //nodeQueue.push((*iter).node());
+                }
+                if (!child->marked())
+                {
+                    nodeQueue.push(child);
+                    child->setMarked(true);
+                }
+            }
+        }
+        nodeQueue.pop();
+    }
+
+    Node* temp = dest;
+
+    for (; temp->previous() != nullptr;)
+    {
+        path.push_back(temp);
+        //std::cout << temp->m_data.id << " PathCost : " << temp->m_data.cost << " Hueristics : " << temp->m_data.heuristic << std::endl;
+        temp = temp->previous();
+    }
+    path.push_back(temp);
+    //std::cout << temp->m_data.id << std::endl;
 
 }
 
+template<typename NodeType, class ArcType>
+std::vector<int> Graph<NodeType, ArcType>::getWaypoints()
+{
+    return m_waypoints;
+}
 
+template<typename NodeType, class ArcType>
+std::map<std::string, std::vector<int>> Graph<NodeType, ArcType>::getUCSPaths()
+{
+    return m_ucsPaths;
+}
+
+template<typename NodeType, class ArcType>
+int Graph<NodeType, ArcType>::getClosestWaypoint(sf::Vector2f pos)
+{
+    float lowestDistance = std::numeric_limits<float>::max();
+    int closestNode = -1;
+    for (auto& waypoint : m_waypoints)
+    {
+        sf::Vector2f waypointPos = nodeIndex(waypoint)->m_data.position;
+        float distance = Utils::getDistanceBetweenPoints(waypointPos, pos);
+
+        if(distance < lowestDistance)
+        {
+            lowestDistance = distance;
+            closestNode = waypoint;
+        }
+    }
+
+    return closestNode;
+}
 

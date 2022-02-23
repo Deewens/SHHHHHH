@@ -23,6 +23,7 @@
 #include "HUD.h"
 #include "SoundHolder.h"
 #include "Utils.h"
+#include "NodeData.h"
 
 typedef GraphArc<NodeData, float> Arc;
 typedef GraphNode<NodeData, float> Node;
@@ -45,7 +46,6 @@ private:
 	void render();
     void checkCollisions();
 
-    void pauseMenuSetUp();
     void setupEnvironment();
     void loadSounds();
 
@@ -87,7 +87,6 @@ private:
     Menu m_gameMenu;
     HUD m_hud;
 
-    sf::RectangleShape m_pauseRect;
 
     sf::Texture m_spriteSheet;
 
@@ -97,8 +96,7 @@ private:
 
     SoundHolder m_sounds;
 
-    std::vector<int> m_ucsWaypoints;
-    std::map<std::string, std::vector<int>> m_ucsPaths;
+
 };
 
 #endif // !GAME_HPP

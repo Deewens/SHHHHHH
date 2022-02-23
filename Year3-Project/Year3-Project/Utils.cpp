@@ -37,3 +37,9 @@ float Utils::magnitude(sf::Vector2<T> v)
 {
     return sqrt(v.x*v.x + v.y*v.y);
 }
+
+int Utils::vectorToNode(sf::Vector2f position)
+{
+    return (trunc(position.y / tileSize) * screen_Width / tileSize) + trunc(position.x / tileSize);
+}
+
