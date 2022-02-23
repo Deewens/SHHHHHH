@@ -46,7 +46,6 @@ private:
 	void render();
     void checkCollisions();
 
-    void pauseMenuSetUp();
     void setupEnvironment();
     void loadSounds();
 
@@ -88,7 +87,6 @@ private:
     Menu m_gameMenu;
     HUD m_hud;
 
-    sf::RectangleShape m_pauseRect;
 
     sf::Texture m_spriteSheet;
 
@@ -97,6 +95,8 @@ private:
     sf::Text m_playerCoordsDebugText;
 
     SoundHolder m_sounds;
+
+
 };
 
 #endif // !GAME_HPP

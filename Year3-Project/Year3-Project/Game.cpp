@@ -40,14 +40,11 @@ Game::Game() :
 
     m_gameMenu.Init();
 
-    pauseMenuSetUp();
 
     setupEnvironment();
     setUpPickUps();
 
-    m_worldView.reset(
-            sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
-    m_menuView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
+    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
     m_grid.debug();
 
     // Fill the graph with all the arcs using the neighbours algorithm
@@ -136,6 +133,10 @@ void Game::processEvents()
                 {
                     m_gameState = GameState::GAMEPLAY;
                 }
+                if (newEvent.key.code == sf::Keyboard::E)
+                {
+                    m_gameState = GameState::MENU;
+                }
             }
         }
     }
@@ -196,6 +197,7 @@ void Game::update(sf::Time t_deltaTime)
     switch (m_gameState)
     {
         case GameState::MENU:
+            m_window.setView(m_worldView);
             m_gameMenu.update((sf::Vector2f) sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
@@ -233,12 +235,16 @@ void Game::update(sf::Time t_deltaTime)
         case GameState::EXIT:
             m_exitGame = true;
             break;
-        case GameState::OPTIONS:
-            std::cout << "option" << std::endl;
+        case GameState::HELP:
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::PAUSE:
-            m_pauseRect.setPosition(m_worldView.getCenter());
-            std::cout << "pause" << std::endl;
+            m_window.setView(m_worldView);
+            m_gameMenu.m_pauseRect.setPosition(m_worldView.getCenter());
+            m_gameMenu.GameBackButton1.Init(sf::Vector2f(m_worldView.getCenter().x-150,m_worldView.getCenter().y-100), m_font, sf::Vector2f(310, 40), sf::Vector2f(0,0));
+            m_gameMenu.GameBackButton2.Init(sf::Vector2f(m_worldView.getCenter().x -170, m_worldView.getCenter().y), m_font, sf::Vector2f(350, 40), sf::Vector2f(0, 0));
+
+            //m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         default:
             break;
@@ -255,10 +261,13 @@ void Game::render()
     switch (m_gameState)
     {
         case GameState::MENU:
+            m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
+            m_window.setView(m_worldView);
             m_window.draw(m_gameMenu);
             break;
         case GameState::GAMEPLAY:
             m_window.clear(sf::Color(0, 157, 196));
+            m_worldView.reset(sf::FloatRect(m_player.getPosition().x-screen_Width/4, m_player.getPosition().y-screen_Height/4, screen_Width / 2, screen_Height / 2));
             m_window.setView(m_worldView);
 
             for (Environment env: m_ground)
@@ -293,7 +302,7 @@ void Game::render()
             break;
         case GameState::EXIT:
             break;
-        case GameState::OPTIONS:
+        case GameState::HELP:
             m_window.draw(m_gameMenu);
             break;
         case GameState::PAUSE:
@@ -314,7 +323,7 @@ void Game::render()
             m_enemy.renderVisionCone(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
-            m_window.draw(m_pauseRect);
+            m_window.draw(m_gameMenu);
             break;
         default:
             break;
@@ -346,12 +355,7 @@ void Game::checkCollisions()
     }
 }
 
-void Game::pauseMenuSetUp()
-{
-    m_pauseRect.setSize(sf::Vector2f(screen_Width / 4, screen_Height / 4));
-    m_pauseRect.setFillColor(sf::Color(225, 0, 0, 100));
-    m_pauseRect.setOrigin(screen_Width / 8, screen_Height / 8);
-}
+
 
 void Game::setupEnvironment()
 {
