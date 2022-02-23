@@ -5,12 +5,16 @@ class Tile
 {
 public:
 	Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture);
+	void changeLayers(Button* t_tile);
 	void render(sf::RenderWindow& t_window);
 	void rotate();
 	std::string getJsonInfo(int t_gridIndex);
 private:
-	sf::Sprite m_sprite;
-	std::string m_spriteName;
+	bool m_objectActive = false;
+	sf::Sprite m_objectSprite;
+	std::string m_objectSpriteName;
+	bool m_groundActive = false;
+	sf::Sprite m_groundSprite;
+	std::string m_groundSpriteName;
 	int m_tileNum;
-	bool m_passable;
 };

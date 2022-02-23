@@ -390,7 +390,14 @@ void Game::manageClicks(sf::Event t_event)
 			}
 			else if (selectedButton != nullptr)
 			{
-				m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
+				if (m_MapTiles[tileNum] == nullptr)
+				{
+					m_MapTiles[tileNum] = new Tile(selectedButton, tileNum, m_texture);
+				}
+				else
+				{
+					m_MapTiles[tileNum]->changeLayers(selectedButton);
+				}
 			}
 		}
 	}
