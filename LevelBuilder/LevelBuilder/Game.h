@@ -63,7 +63,7 @@ private:
 	int currentCategory = 0;
 	std::string titles[NUM_CATEGORIES];
 	bool passable[NUM_CATEGORIES];
-	std::vector<Button*> tileOptions[6];
+	std::vector<Button*> tileOptions[NUM_CATEGORIES];
 	sf::RectangleShape topScrollBlock;
 	sf::RectangleShape bottomScrollBlock;
 	Button* selectedButton;

@@ -9,6 +9,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 	void rotate();
 	std::string getJsonInfo(int t_gridIndex);
+	std::string getSpecialJson(int t_gridIndex);
 private:
 	bool m_objectActive = false;
 	sf::Sprite m_objectSprite;
@@ -17,4 +18,5 @@ private:
 	sf::Sprite m_groundSprite;
 	std::string m_groundSpriteName;
 	int m_tileNum;
+	bool specialHere = false;
 };

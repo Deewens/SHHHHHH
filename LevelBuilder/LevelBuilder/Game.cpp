@@ -220,18 +220,23 @@ void Game::setupOptions()
 		Outdoor_Decor
 		Wall
 	*/
-	titles[0] = "Outdoor_Ground";
-	titles[1] = "Indoor_Ground";
-	titles[2] = "River";
-	titles[3] = "Outdoor_Decor";
-	titles[4] = "Indoor_Decor";
-	titles[5] = "Wall";
-	passable[0] = true;
+	bool playerAdded = false;
+	bool zombieAdded = false;
+
+	titles[0] = "Special";
+	titles[1] = "Outdoor_Ground";
+	titles[2] = "Indoor_Ground";
+	titles[3] = "River";
+	titles[4] = "Outdoor_Decor";
+	titles[5] = "Indoor_Decor";
+	titles[6] = "Wall";
+	passable[0] = false;
 	passable[1] = true;
-	passable[2] = false;
+	passable[2] = true;
 	passable[3] = false;
 	passable[4] = false;
 	passable[5] = false;
+	passable[6] = false;
 
 	assignText();
 
@@ -241,26 +246,55 @@ void Game::setupOptions()
 	
 	nlohmann::json frames = json["frames"];
 	std::string category;
-	int counter[6] = { 0 };
+	int counter[NUM_CATEGORIES] = { 0 };
 	Button* temp;
 	sf::IntRect tempRect;
 	for (nlohmann::json::iterator it = frames.begin(); it != frames.end(); it++)
 	{
 		auto& el = it.value();
 		category = el["Type"];
-			bool found = false;
-			for (int i = 0; i < 6; i++)
+		bool found = false;
+		for (int i = 1; i < NUM_CATEGORIES; i++)
+		{
+			if (category == titles[i])
 			{
-				if (category == titles[i])
-				{
-					tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
-					temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), 
-						sf::Vector2f(150, 150), m_texture, tempRect, passable[i], it.key());
-					tileOptions[i].push_back(temp);
-					found = true;
-					counter[i]++;
-				}
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[i])), 
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[i], it.key(), false);
+				tileOptions[i].push_back(temp);
+				found = true;
+				counter[i]++;
 			}
+		}
+		if (!found)
+		{
+			if (category == "UI" && it.key() == "Bottle.png")
+			{
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+				tileOptions[0].push_back(temp);
+				counter[0]++;
+			}
+			else if (!playerAdded && category == "Player")
+			{
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+				tileOptions[0].push_back(temp);
+				counter[0]++;
+				playerAdded = true;
+			}
+			else if (!zombieAdded && category == "Green_Zombie")
+			{
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+				tileOptions[0].push_back(temp);
+				counter[0]++;
+				zombieAdded = true;
+			}
+		}
 	}
 }
 
@@ -364,7 +398,15 @@ void Game::manageClicks(sf::Event t_event)
 						output += m_MapTiles[i]->getJsonInfo(i);
 					}
 				}
-				output += "\n}";
+				output += "	\n}\n	\"special\": {";
+				for (int i = 0; i < mapSize; i++)
+				{
+					if (m_MapTiles[i] != nullptr)
+					{
+						output += m_MapTiles[i]->getSpecialJson(i);
+					}
+				}
+				output += "	\n}\n}";
 				std::cout << output << std::endl;
 				std::ofstream MyFile("level.json");
 

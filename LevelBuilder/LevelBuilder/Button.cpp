@@ -52,8 +52,8 @@ Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Color t_color, 
 	m_buttonColor = t_color;
 }
 
-Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName) 
-	: m_texture(&t_texture), passable(t_passable), m_spriteName(t_spriteName), buttonStartSize(t_tempRect)
+Button::Button(sf::Vector2f t_location, sf::Vector2f t_size, sf::Texture& t_texture, sf::IntRect t_tempRect, bool t_passable, std::string t_spriteName, bool t_isSpecial)
+	: m_texture(&t_texture), passable(t_passable), m_spriteName(t_spriteName), buttonStartSize(t_tempRect), isSpecial(t_isSpecial)
 {
 	m_sprite.setTexture(t_texture);
 	m_sprite.setPosition(t_location);
@@ -168,4 +168,9 @@ sf::IntRect Button::getTextRect()
 bool Button::getPassable()
 {
 	return passable;
+}
+
+bool Button::getSpecial()
+{
+	return isSpecial;
 }

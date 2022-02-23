@@ -1,51 +1,17 @@
 {
 	"scene": {
 		{
-			"gridIndex": 111,
-			"impassable": true,
-			"rotation": 0.000000,
-			"spriteName": "outside_bush_01.png"
-		},
-		{
-			"gridIndex": 111,
+			"gridIndex": 154,
 			"impassable": false,
 			"rotation": 0.000000,
-			"spriteName": "outside_dirt_02.png"
-		},
+			"spriteName": "outside_dirt_03.png"
+		},		
+}
+	"special": {
 		{
-			"gridIndex": 112,
-			"impassable": true,
-			"rotation": 180.000000,
-			"spriteName": "outside_bush_03.png"
-		},
-		{
-			"gridIndex": 112,
-			"impassable": false,
+			"gridIndex": 108,
 			"rotation": 0.000000,
-			"spriteName": "floor_01.png"
-		},
-		{
-			"gridIndex": 131,
-			"impassable": true,
-			"rotation": 0.000000,
-			"spriteName": "outside_bush_03.png"
-		},
-		{
-			"gridIndex": 131,
-			"impassable": false,
-			"rotation": 0.000000,
-			"spriteName": "floor_01.png"
-		},
-		{
-			"gridIndex": 132,
-			"impassable": true,
-			"rotation": 270.000000,
-			"spriteName": "outside_bush_03.png"
-		},
-		{
-			"gridIndex": 132,
-			"impassable": false,
-			"rotation": 0.000000,
-			"spriteName": "floor_01.png"
-		},
+			"Type": "Player"
+		},		
+}
 }
