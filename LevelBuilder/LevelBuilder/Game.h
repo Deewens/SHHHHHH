@@ -9,14 +9,21 @@
 /// same as #pragma once
 /// Don't forget the endif at the bottom
 /// </summary>
-#include <SFML/Graphics.hpp>
+
+#include <iostream>
 #include <algorithm>
 #include <fstream>
+
+#include <SFML/Graphics.hpp>
+
 #include "json.hpp"
 #include "Globals.h"
 #include "Button.h"
-#include <iostream>
 #include "Tile.h"
+#include "Graph.h"
+
+typedef GraphArc<NodeData, float> Arc;
+typedef GraphNode<NodeData, float> Node;
 
 class Game
 {
@@ -41,16 +48,13 @@ private:
 	void manageClicks(sf::Event t_event);
 	void assignText();
 
+	void calculateUcsWaypoints();
+
 	sf::RenderWindow m_window; // main SFML window
 	bool m_exitGame; // control exiting game
 
 	sf::Sprite mapArea;
 	sf::Texture mapTexture;
-
-	static const int cols = screen_Width / tileSize;
-	sf::Vertex m_colLine[cols * 2];
-	static const int rows = screen_Height / tileSize;
-	sf::Vertex m_rowLine[rows * 2];
 
 	Button* saveButton;
 	Button* deleteButton;
@@ -71,10 +75,19 @@ private:
 	sf::Font m_font;
 
 	static const int mapSize = (screen_Height / tileSize) * (screen_Width / tileSize);
-	Tile* m_MapTiles[mapSize];
 
+	Graph<NodeData, float> m_graph;
+	std::map<std::string, std::vector<Node*>> m_ucsPaths;
+	std::vector<int> m_waypointsIdx;
+	std::vector<sf::RectangleShape> m_ucsDebugTiles;
+
+	Tile* m_MapTiles[mapSize];
 	bool isDeleting = false;
 	bool isRotating = false;
+
+	sf::View view;
+	sf::Vector2f oldClickPos;
+	bool isRightBtnPressed = false;
 };
 
 #endif // !GAME_HPP
