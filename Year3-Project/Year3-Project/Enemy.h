@@ -3,11 +3,13 @@
 
 #define _USE_MATH_DEFINES
 
-#include "Character.h"
 #include <math.h>
+#include <stdlib.h>
+
+#include "Character.h"
 #include "Globals.h"
 #include "Player.h"
-#include <stdlib.h>
+
 #include "tinyc2.h"
 #include "Animation.h"
 #include "Utils.h"
@@ -34,6 +36,10 @@ public:
     void move(sf::Vector2f& offset);
 
     void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
+
+    void setPath(int from, int to);
+
+    void moveTo(sf::Vector2f goal);
 private:
 
     void setDirection(int t_direction);   
@@ -103,8 +109,11 @@ private:
 
     int m_searchCounter;
 
+    bool m_isMoving = false;
+    sf::Vector2f m_moveTo;
+
     Graph<NodeData, float> m_grid;
-    std::vector<Node*> m_path;
+    std::vector<int> m_ucsPath;
 };
 
 

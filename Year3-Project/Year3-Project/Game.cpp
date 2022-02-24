@@ -166,17 +166,19 @@ void Game::processKeys(sf::Event t_event)
         int waypoint = m_grid.getClosestWaypoint(m_player.getPosition());
         int player = Utils::vectorToNode(m_player.getPosition());
 
-        std::cout << "Player node: " << player << std::endl;
-        std::cout << "Closest waypoint: " << waypoint << std::endl;
+//        std::cout << "Player node: " << player << std::endl;
+//        std::cout << "Closest waypoint: " << waypoint << std::endl;
 
         std::vector<Node*> path;
         m_grid.clearMarks();
         m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);
 
-        for (auto& node : path)
+/*        for (auto& node : path)
             std::cout << node->m_data.id << " ";
 
-        std::cout << std::endl;
+        std::cout << std::endl;*/
+
+        m_enemy.moveTo(m_player.getPosition());
     }
 }
 
