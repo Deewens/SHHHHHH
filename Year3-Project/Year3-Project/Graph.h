@@ -205,6 +205,23 @@ void Graph<NodeType, ArcType>::draw(sf::RenderTarget& target, sf::RenderStates s
         {
             target.draw(m_gridText[i]);
         }
+
+        sf::RectangleShape debugRect;
+        debugRect.setFillColor(sf::Color(255, 0, 0, 127));
+        debugRect.setSize(sf::Vector2f(tileSize, tileSize));
+        int m_id = 0;
+        for (int i = 0; i < m_rows; i++)
+        {
+            for (int j = 0; j < m_cols; j++)
+            {
+                if (!m_nodes.at(m_id)->m_data.isPassable)
+                {
+                    debugRect.setPosition(j * tileSize, i * tileSize);
+                    target.draw(debugRect);
+                }
+                m_id++;
+            }
+        }
     }
 }
 
@@ -220,7 +237,6 @@ void Graph<NodeType, ArcType>::debug()
     m_gridTextElement.setFillColor(sf::Color::Black);
 
     int m_id = 0;
-
     for (int i = 0; i < m_rows; i++)
     {
         for (int j = 0; j < m_cols; j++)
