@@ -105,7 +105,6 @@ private:
 
     Graph<NodeData, float> m_grid;
     std::vector<Node*> m_path;
-
 };
 
 

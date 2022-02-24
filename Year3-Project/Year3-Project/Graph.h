@@ -534,8 +534,7 @@ void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>&
 
     for (Node* node : m_nodes)
     {
-        node->setPrevious(nullptr);
-        node->m_data.cost = std::numeric_limits<int>::max() - 10000;
+        node->m_data.cost = std::numeric_limits<int>::max();
         float heu = abs((dest->m_data.position.x - node->m_data.position.x) * (dest->m_data.position.x - node->m_data.position.x) + (dest->m_data.position.y - node->m_data.position.y) * (dest->m_data.position.y - node->m_data.position.y));
         node->m_data.heuristic = sqrt(heu);
     }
@@ -556,7 +555,7 @@ void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>&
 
             if (child->previous() != nodeQueue.top())
             {
-                int weight = iter->m_weight;
+                int weight = iter->weight();
                 int childCost = nodeQueue.top()->m_data.cost + weight;
 
                 if (childCost < child->m_data.cost)

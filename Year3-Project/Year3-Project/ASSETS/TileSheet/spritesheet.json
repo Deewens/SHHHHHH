@@ -394,7 +394,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_bm_01.png": {
 			"frame": {
@@ -403,16 +404,19 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_bm_02.png": {
 			"frame": {
 				"x": 1247,
 				"y": 104,
 				"w": 128,
-				"h": 128
+				"h": 128,
+				"NoiseLevels": "1"
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_bm_03.png": {
 			"frame": {
@@ -421,7 +425,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_br.png": {
 			"frame": {
@@ -430,7 +435,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_lm_01.png": {
 			"frame": {
@@ -439,7 +445,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_lm_02.png": {
 			"frame": {
@@ -448,7 +455,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_lm_03.png": {
 			"frame": {
@@ -457,7 +465,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_rm_01.png": {
 			"frame": {
@@ -466,7 +475,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_rm_02.png": {
 			"frame": {
@@ -475,7 +485,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_rm_03.png": {
 			"frame": {
@@ -484,7 +495,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_tl.png": {
 			"frame": {
@@ -493,7 +505,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_tm_01.png": {
 			"frame": {
@@ -502,7 +515,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_tm_02.png": {
 			"frame": {
@@ -511,7 +525,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_tm_03.png": {
 			"frame": {
@@ -520,7 +535,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach2_tr.png": {
 			"frame": {
@@ -529,7 +545,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bl.png": {
 			"frame": {
@@ -538,7 +555,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bl_grass.png": {
 			"frame": {
@@ -547,7 +565,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_01.png": {
 			"frame": {
@@ -556,7 +575,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_01_grass.png": {
 			"frame": {
@@ -565,7 +585,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_02.png": {
 			"frame": {
@@ -574,7 +595,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_02_grass.png": {
 			"frame": {
@@ -583,7 +605,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_03.png": {
 			"frame": {
@@ -592,7 +615,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_03_grass.png": {
 			"frame": {
@@ -601,7 +625,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_04.png": {
 			"frame": {
@@ -610,7 +635,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_04_grass.png": {
 			"frame": {
@@ -619,7 +645,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_05.png": {
 			"frame": {
@@ -628,7 +655,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_bm_05_grass.png": {
 			"frame": {
@@ -637,7 +665,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_br.png": {
 			"frame": {
@@ -646,7 +675,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_br_grass.png": {
 			"frame": {
@@ -655,7 +685,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_l_up_diagonal.png": {
 			"frame": {
@@ -664,7 +695,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_l_up_diagonal_grass.png": {
 			"frame": {
@@ -673,7 +705,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_l_up_diagonal_neighbour.png": {
 			"frame": {
@@ -682,7 +715,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_l_up_diagonal_neighbour_grass.png": {
 			"frame": {
@@ -691,7 +725,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_01.png": {
 			"frame": {
@@ -700,7 +735,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_01_grass.png": {
 			"frame": {
@@ -709,7 +745,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_02.png": {
 			"frame": {
@@ -718,7 +755,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_02_grass.png": {
 			"frame": {
@@ -727,7 +765,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_03.png": {
 			"frame": {
@@ -736,7 +775,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_03_grass.png": {
 			"frame": {
@@ -745,7 +785,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_04.png": {
 			"frame": {
@@ -754,7 +795,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_lm_04_grass.png": {
 			"frame": {
@@ -763,7 +805,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_diagonal_neighbour.png": {
 			"frame": {
@@ -772,7 +815,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_diagonal_neighbour_grass.png": {
 			"frame": {
@@ -781,7 +825,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_down_diagonal.png": {
 			"frame": {
@@ -790,7 +835,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_down_diagonal_grass.png": {
 			"frame": {
@@ -799,7 +845,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_down_diagonal_neighbour.png": {
 			"frame": {
@@ -808,7 +855,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_down_diagonal_neighbour_grass.png": {
 			"frame": {
@@ -817,7 +865,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_up_diagonal.png": {
 			"frame": {
@@ -826,7 +875,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_r_up_diagonal_grass.png": {
 			"frame": {
@@ -835,7 +885,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_01.png": {
 			"frame": {
@@ -844,7 +895,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_01-22.png": {
 			"frame": {
@@ -853,7 +905,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_01_grass.png": {
 			"frame": {
@@ -862,7 +915,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_01_grass-22.png": {
 			"frame": {
@@ -871,7 +925,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_02.png": {
 			"frame": {
@@ -880,7 +935,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_02_grass.png": {
 			"frame": {
@@ -889,7 +945,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_03.png": {
 			"frame": {
@@ -898,7 +955,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_03_grass.png": {
 			"frame": {
@@ -907,7 +965,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_04.png": {
 			"frame": {
@@ -916,7 +975,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_04_grass.png": {
 			"frame": {
@@ -925,7 +985,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_05.png": {
 			"frame": {
@@ -934,7 +995,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_rm_05_grass.png": {
 			"frame": {
@@ -943,7 +1005,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tl.png": {
 			"frame": {
@@ -952,7 +1015,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tl_grass.png": {
 			"frame": {
@@ -961,7 +1025,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_01.png": {
 			"frame": {
@@ -970,7 +1035,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_01_grass.png": {
 			"frame": {
@@ -979,7 +1045,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_02.png": {
 			"frame": {
@@ -988,7 +1055,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_02_grass.png": {
 			"frame": {
@@ -997,7 +1065,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_03.png": {
 			"frame": {
@@ -1006,7 +1075,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_03_grass.png": {
 			"frame": {
@@ -1015,7 +1085,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_04.png": {
 			"frame": {
@@ -1024,7 +1095,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tm_04_grass.png": {
 			"frame": {
@@ -1033,7 +1105,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tr.png": {
 			"frame": {
@@ -1042,7 +1115,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"beach_tr_grass.png": {
 			"frame": {
@@ -1051,7 +1125,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"floor_01.png": {
 			"frame": {
@@ -1060,7 +1135,9 @@
 				"w": 85,
 				"h": 85
 			},
-			"Type": "Indoor_Ground"
+			"Type": "Indoor_Ground",
+			"NoiseLevels": "2"
+
 		},
 		"floor_02.png": {
 			"frame": {
@@ -1069,7 +1146,9 @@
 				"w": 85,
 				"h": 85
 			},
-			"Type": "Indoor_Ground"
+			"Type": "Indoor_Ground",
+			"NoiseLevels": "2"
+
 		},
 		"grass.png": {
 			"frame": {
@@ -1078,7 +1157,8 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
 		},
 		"green_zombie_idling_1.png": {
 			"frame": {
@@ -1393,7 +1473,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0001_Layer-2.png": {
 			"frame": {
@@ -1402,7 +1484,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0002_Layer-3.png": {
 			"frame": {
@@ -1411,7 +1495,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0003_Layer-4.png": {
 			"frame": {
@@ -1420,7 +1506,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0004_Layer-5.png": {
 			"frame": {
@@ -1429,7 +1517,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0005_Layer-6.png": {
 			"frame": {
@@ -1438,7 +1528,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0006_Layer-7.png": {
 			"frame": {
@@ -1447,7 +1539,9 @@
 				"w": 153,
 				"h": 72
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
+
 		},
 		"objects_house_0007_Layer-8.png": {
 			"frame": {
@@ -1456,7 +1550,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0008_Layer-9.png": {
 			"frame": {
@@ -1465,7 +1560,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0009_Layer-10.png": {
 			"frame": {
@@ -1474,7 +1570,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0010_Layer-11.png": {
 			"frame": {
@@ -1483,7 +1580,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0011_Layer-12.png": {
 			"frame": {
@@ -1492,7 +1590,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0012_Layer-13.png": {
 			"frame": {
@@ -1501,7 +1600,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0013_Layer-14.png": {
 			"frame": {
@@ -1510,7 +1610,8 @@
 				"w": 80,
 				"h": 71
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0014_Layer-15.png": {
 			"frame": {
@@ -1519,7 +1620,8 @@
 				"w": 49,
 				"h": 54
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0015_Layer-16.png": {
 			"frame": {
@@ -1528,7 +1630,8 @@
 				"w": 49,
 				"h": 54
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0016_Layer-17.png": {
 			"frame": {
@@ -1537,7 +1640,8 @@
 				"w": 49,
 				"h": 54
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0017_Layer-18.png": {
 			"frame": {
@@ -1546,7 +1650,8 @@
 				"w": 63,
 				"h": 43
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0018_Layer-19.png": {
 			"frame": {
@@ -1555,7 +1660,8 @@
 				"w": 63,
 				"h": 43
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0019_Layer-20.png": {
 			"frame": {
@@ -1564,7 +1670,8 @@
 				"w": 63,
 				"h": 43
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0020_Layer-21.png": {
 			"frame": {
@@ -1573,7 +1680,8 @@
 				"w": 64,
 				"h": 52
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0021_Layer-22.png": {
 			"frame": {
@@ -1582,7 +1690,8 @@
 				"w": 64,
 				"h": 52
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0022_Layer-23.png": {
 			"frame": {
@@ -1591,7 +1700,8 @@
 				"w": 64,
 				"h": 52
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0023_Layer-24.png": {
 			"frame": {
@@ -1600,7 +1710,8 @@
 				"w": 53,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0024_Layer-25.png": {
 			"frame": {
@@ -1609,7 +1720,8 @@
 				"w": 53,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0025_Layer-26.png": {
 			"frame": {
@@ -1618,7 +1730,8 @@
 				"w": 53,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0026_Layer-27.png": {
 			"frame": {
@@ -1627,7 +1740,8 @@
 				"w": 53,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0027_Layer-28.png": {
 			"frame": {
@@ -1636,7 +1750,8 @@
 				"w": 53,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0028_Layer-29.png": {
 			"frame": {
@@ -1645,7 +1760,8 @@
 				"w": 54,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0029_Layer-30.png": {
 			"frame": {
@@ -1654,7 +1770,8 @@
 				"w": 55,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0030_Layer-31.png": {
 			"frame": {
@@ -1663,7 +1780,8 @@
 				"w": 55,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0031_Layer-32.png": {
 			"frame": {
@@ -1672,7 +1790,8 @@
 				"w": 55,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0032_Layer-33.png": {
 			"frame": {
@@ -1681,7 +1800,8 @@
 				"w": 55,
 				"h": 55
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0033_Layer-34.png": {
 			"frame": {
@@ -1690,7 +1810,8 @@
 				"w": 158,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0034_Layer-35.png": {
 			"frame": {
@@ -1699,7 +1820,8 @@
 				"w": 158,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0035_Layer-36.png": {
 			"frame": {
@@ -1708,7 +1830,8 @@
 				"w": 158,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0036_Layer-37.png": {
 			"frame": {
@@ -1717,7 +1840,8 @@
 				"w": 81,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0037_Layer-38.png": {
 			"frame": {
@@ -1726,7 +1850,8 @@
 				"w": 81,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0038_Layer-39.png": {
 			"frame": {
@@ -1735,7 +1860,8 @@
 				"w": 81,
 				"h": 230
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0039_Layer-40.png": {
 			"frame": {
@@ -1744,7 +1870,8 @@
 				"w": 195,
 				"h": 68
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0040_Layer-41.png": {
 			"frame": {
@@ -1753,7 +1880,8 @@
 				"w": 195,
 				"h": 68
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0041_Layer-42.png": {
 			"frame": {
@@ -1762,7 +1890,8 @@
 				"w": 195,
 				"h": 68
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0042_Layer-43.png": {
 			"frame": {
@@ -1771,7 +1900,8 @@
 				"w": 199,
 				"h": 101
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0043_Layer-44.png": {
 			"frame": {
@@ -1780,7 +1910,8 @@
 				"w": 199,
 				"h": 101
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0044_Layer-45.png": {
 			"frame": {
@@ -1789,7 +1920,8 @@
 				"w": 199,
 				"h": 101
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0045_Layer-46.png": {
 			"frame": {
@@ -1798,7 +1930,8 @@
 				"w": 229,
 				"h": 134
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0046_Layer-47.png": {
 			"frame": {
@@ -1807,7 +1940,8 @@
 				"w": 230,
 				"h": 134
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0047_Layer-48.png": {
 			"frame": {
@@ -1816,7 +1950,8 @@
 				"w": 230,
 				"h": 134
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0048_Layer-49.png": {
 			"frame": {
@@ -1825,7 +1960,8 @@
 				"w": 130,
 				"h": 108
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0049_Layer-50.png": {
 			"frame": {
@@ -1834,7 +1970,8 @@
 				"w": 130,
 				"h": 108
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0050_Layer-51.png": {
 			"frame": {
@@ -1843,7 +1980,8 @@
 				"w": 130,
 				"h": 108
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0051_Layer-52.png": {
 			"frame": {
@@ -1852,7 +1990,8 @@
 				"w": 79,
 				"h": 79
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0052_Layer-53.png": {
 			"frame": {
@@ -1861,7 +2000,8 @@
 				"w": 79,
 				"h": 79
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0053_Layer-54.png": {
 			"frame": {
@@ -1870,7 +2010,8 @@
 				"w": 79,
 				"h": 79
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0054_Layer-55.png": {
 			"frame": {
@@ -1879,7 +2020,8 @@
 				"w": 106,
 				"h": 102
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0055_Layer-56.png": {
 			"frame": {
@@ -1888,7 +2030,8 @@
 				"w": 106,
 				"h": 102
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0056_Layer-57.png": {
 			"frame": {
@@ -1897,7 +2040,8 @@
 				"w": 110,
 				"h": 118
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0057_Layer-58.png": {
 			"frame": {
@@ -1906,7 +2050,8 @@
 				"w": 110,
 				"h": 118
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0058_Layer-59.png": {
 			"frame": {
@@ -1915,7 +2060,8 @@
 				"w": 264,
 				"h": 73
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"objects_house_0059_Layer-60.png": {
 			"frame": {
@@ -1924,7 +2070,8 @@
 				"w": 264,
 				"h": 73
 			},
-			"Type": "Indoor_Decor"
+			"Type": "Indoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_bush_01.png": {
 			"frame": {
@@ -1933,7 +2080,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_bush_02.png": {
 			"frame": {
@@ -1942,7 +2090,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_bush_03.png": {
 			"frame": {
@@ -1951,7 +2100,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_bush_04.png": {
 			"frame": {
@@ -1960,7 +2110,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_dirt_01.png": {
 			"frame": {
@@ -1969,7 +2120,9 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
+
 		},
 		"outside_dirt_02.png": {
 			"frame": {
@@ -1978,7 +2131,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_03.png": {
 			"frame": {
@@ -1987,7 +2141,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_04.png": {
 			"frame": {
@@ -1996,7 +2151,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_05.png": {
 			"frame": {
@@ -2005,7 +2161,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_06.png": {
 			"frame": {
@@ -2014,7 +2171,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_07.png": {
 			"frame": {
@@ -2023,7 +2181,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_08.png": {
 			"frame": {
@@ -2032,7 +2191,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_dirt_09.png": {
 			"frame": {
@@ -2041,7 +2201,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_01.png": {
 			"frame": {
@@ -2050,7 +2211,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_02.png": {
 			"frame": {
@@ -2059,7 +2221,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_03.png": {
 			"frame": {
@@ -2068,7 +2231,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_04.png": {
 			"frame": {
@@ -2077,7 +2241,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_05.png": {
 			"frame": {
@@ -2086,7 +2251,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_06.png": {
 			"frame": {
@@ -2095,7 +2261,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_07.png": {
 			"frame": {
@@ -2104,7 +2271,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_08.png": {
 			"frame": {
@@ -2113,7 +2281,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_09.png": {
 			"frame": {
@@ -2122,7 +2291,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_10.png": {
 			"frame": {
@@ -2131,7 +2301,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_11.png": {
 			"frame": {
@@ -2140,7 +2311,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_12.png": {
 			"frame": {
@@ -2149,7 +2321,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_13.png": {
 			"frame": {
@@ -2158,7 +2331,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_14.png": {
 			"frame": {
@@ -2167,7 +2341,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_15.png": {
 			"frame": {
@@ -2176,7 +2351,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_16.png": {
 			"frame": {
@@ -2185,7 +2361,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_grass_17.png": {
 			"frame": {
@@ -2194,7 +2371,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_plant_01.png": {
 			"frame": {
@@ -2203,7 +2381,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_plant_02.png": {
 			"frame": {
@@ -2212,7 +2391,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_plant_03.png": {
 			"frame": {
@@ -2221,7 +2401,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_01.png": {
 			"frame": {
@@ -2230,7 +2411,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_02.png": {
 			"frame": {
@@ -2239,7 +2421,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_03.png": {
 			"frame": {
@@ -2248,7 +2431,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_04.png": {
 			"frame": {
@@ -2257,7 +2441,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_05.png": {
 			"frame": {
@@ -2266,7 +2451,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_06.png": {
 			"frame": {
@@ -2275,7 +2461,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_07.png": {
 			"frame": {
@@ -2284,7 +2471,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_08.png": {
 			"frame": {
@@ -2293,7 +2481,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_rocks_09.png": {
 			"frame": {
@@ -2302,7 +2491,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_specialGrass_02.png": {
 			"frame": {
@@ -2311,7 +2501,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_03.png": {
 			"frame": {
@@ -2320,7 +2511,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_04.png": {
 			"frame": {
@@ -2329,7 +2521,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_05.png": {
 			"frame": {
@@ -2338,7 +2531,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_06.png": {
 			"frame": {
@@ -2347,7 +2541,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_07.png": {
 			"frame": {
@@ -2356,7 +2551,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_08.png": {
 			"frame": {
@@ -2365,7 +2561,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_09.png": {
 			"frame": {
@@ -2374,7 +2571,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_10.png": {
 			"frame": {
@@ -2383,7 +2581,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_11.png": {
 			"frame": {
@@ -2392,7 +2591,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_12.png": {
 			"frame": {
@@ -2401,7 +2601,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_13.png": {
 			"frame": {
@@ -2410,7 +2611,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_14.png": {
 			"frame": {
@@ -2419,7 +2621,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_15.png": {
 			"frame": {
@@ -2428,7 +2631,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_16.png": {
 			"frame": {
@@ -2437,7 +2641,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_17.png": {
 			"frame": {
@@ -2446,7 +2651,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_18.png": {
 			"frame": {
@@ -2455,7 +2661,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_19.png": {
 			"frame": {
@@ -2464,7 +2671,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_20.png": {
 			"frame": {
@@ -2473,7 +2681,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_21.png": {
 			"frame": {
@@ -2482,7 +2691,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_24.png": {
 			"frame": {
@@ -2491,7 +2701,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_25.png": {
 			"frame": {
@@ -2500,7 +2711,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_26.png": {
 			"frame": {
@@ -2509,7 +2721,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_27.png": {
 			"frame": {
@@ -2518,7 +2731,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_28.png": {
 			"frame": {
@@ -2527,7 +2741,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_29.png": {
 			"frame": {
@@ -2536,7 +2751,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_30.png": {
 			"frame": {
@@ -2545,7 +2761,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_31.png": {
 			"frame": {
@@ -2554,7 +2771,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_specialGrass_32.png": {
 			"frame": {
@@ -2563,7 +2781,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_statue_01.png": {
 			"frame": {
@@ -2572,7 +2791,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_statue_02.png": {
 			"frame": {
@@ -2581,7 +2801,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_stone_01.png": {
 			"frame": {
@@ -2590,7 +2811,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_02.png": {
 			"frame": {
@@ -2599,7 +2821,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_03.png": {
 			"frame": {
@@ -2608,7 +2831,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_04.png": {
 			"frame": {
@@ -2617,7 +2841,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_05.png": {
 			"frame": {
@@ -2626,7 +2851,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_06.png": {
 			"frame": {
@@ -2635,7 +2861,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_07.png": {
 			"frame": {
@@ -2644,7 +2871,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_08.png": {
 			"frame": {
@@ -2653,7 +2881,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_09.png": {
 			"frame": {
@@ -2662,7 +2891,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_11.png": {
 			"frame": {
@@ -2671,7 +2901,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_12.png": {
 			"frame": {
@@ -2680,7 +2911,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_13.png": {
 			"frame": {
@@ -2689,7 +2921,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_14.png": {
 			"frame": {
@@ -2698,7 +2931,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_15.png": {
 			"frame": {
@@ -2707,7 +2941,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_16.png": {
 			"frame": {
@@ -2716,7 +2951,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_17.png": {
 			"frame": {
@@ -2725,7 +2961,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_18.png": {
 			"frame": {
@@ -2734,7 +2971,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_19.png": {
 			"frame": {
@@ -2743,7 +2981,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_20.png": {
 			"frame": {
@@ -2752,7 +2991,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_21.png": {
 			"frame": {
@@ -2761,7 +3001,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_22.png": {
 			"frame": {
@@ -2770,7 +3011,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_stone_23.png": {
 			"frame": {
@@ -2779,7 +3021,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Ground"
+			"Type": "Outdoor_Ground",
+			"NoiseLevels": "2"
 		},
 		"outside_tree_01.png": {
 			"frame": {
@@ -2788,7 +3031,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_02.png": {
 			"frame": {
@@ -2797,7 +3041,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_03.png": {
 			"frame": {
@@ -2806,7 +3051,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_04.png": {
 			"frame": {
@@ -2815,7 +3061,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_05.png": {
 			"frame": {
@@ -2824,7 +3071,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_06.png": {
 			"frame": {
@@ -2833,7 +3081,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_07.png": {
 			"frame": {
@@ -2842,7 +3091,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_08.png": {
 			"frame": {
@@ -2851,7 +3101,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_09.png": {
 			"frame": {
@@ -2860,7 +3111,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_10.png": {
 			"frame": {
@@ -2869,7 +3121,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_11.png": {
 			"frame": {
@@ -2878,7 +3131,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_12.png": {
 			"frame": {
@@ -2887,7 +3141,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_13.png": {
 			"frame": {
@@ -2896,7 +3151,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_14.png": {
 			"frame": {
@@ -2905,7 +3161,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_15.png": {
 			"frame": {
@@ -2914,7 +3171,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_16.png": {
 			"frame": {
@@ -2923,7 +3181,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_17.png": {
 			"frame": {
@@ -2932,7 +3191,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_18.png": {
 			"frame": {
@@ -2941,7 +3201,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_19.png": {
 			"frame": {
@@ -2950,7 +3211,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_20.png": {
 			"frame": {
@@ -2959,7 +3221,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_21.png": {
 			"frame": {
@@ -2968,7 +3231,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_22.png": {
 			"frame": {
@@ -2977,7 +3241,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_tree_23.png": {
 			"frame": {
@@ -2986,7 +3251,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "Outdoor_Decor"
+			"Type": "Outdoor_Decor",
+			"NoiseLevels": "0"
 		},
 		"outside_water_01.png": {
 			"frame": {
@@ -2995,7 +3261,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_02.png": {
 			"frame": {
@@ -3004,7 +3271,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_03.png": {
 			"frame": {
@@ -3013,7 +3281,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_04.png": {
 			"frame": {
@@ -3022,7 +3291,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_05.png": {
 			"frame": {
@@ -3031,7 +3301,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_06.png": {
 			"frame": {
@@ -3040,7 +3311,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_07.png": {
 			"frame": {
@@ -3049,7 +3321,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_08.png": {
 			"frame": {
@@ -3058,7 +3331,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_09.png": {
 			"frame": {
@@ -3067,7 +3341,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_10.png": {
 			"frame": {
@@ -3076,7 +3351,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_11.png": {
 			"frame": {
@@ -3085,7 +3361,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_12.png": {
 			"frame": {
@@ -3094,7 +3371,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_13.png": {
 			"frame": {
@@ -3103,7 +3381,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_14.png": {
 			"frame": {
@@ -3112,7 +3391,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_15.png": {
 			"frame": {
@@ -3121,7 +3401,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_16.png": {
 			"frame": {
@@ -3130,7 +3411,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_17.png": {
 			"frame": {
@@ -3139,7 +3421,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_18.png": {
 			"frame": {
@@ -3148,7 +3431,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_19.png": {
 			"frame": {
@@ -3157,7 +3441,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_20.png": {
 			"frame": {
@@ -3166,7 +3451,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_21.png": {
 			"frame": {
@@ -3175,7 +3461,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_22.png": {
 			"frame": {
@@ -3184,7 +3471,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_23.png": {
 			"frame": {
@@ -3193,7 +3481,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_24.png": {
 			"frame": {
@@ -3202,7 +3491,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_25.png": {
 			"frame": {
@@ -3211,7 +3501,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"outside_water_26.png": {
 			"frame": {
@@ -3220,7 +3511,8 @@
 				"w": 32,
 				"h": 32
 			},
-			"Type": "River"
+			"Type": "River",
+			"NoiseLevels": "0"
 		},
 		"purpleZombie_idling_1.png": {
 			"frame": {
@@ -3535,7 +3827,9 @@
 				"w": 128,
 				"h": 128
 			},
-			"Type": "Beach"
+			"Type": "Beach",
+			"NoiseLevels": "1"
+
 		},
 		"throwing_1.png": {
 			"frame": {
@@ -3679,7 +3973,8 @@
 				"w": 66,
 				"h": 123
 			},
-			"Type": "Wall"
+			"Type": "Wall",
+			"NoiseLevels": "0"
 		},
 		"walls_0019_Layer-20.png": {
 			"frame": {
@@ -3688,7 +3983,8 @@
 				"w": 66,
 				"h": 122
 			},
-			"Type": "Wall"
+			"Type": "Wall",
+			"NoiseLevels": "0"
 		},
 		"walls_0023_Layer-24.png": {
 			"frame": {
@@ -3697,7 +3993,8 @@
 				"w": 55,
 				"h": 118
 			},
-			"Type": "Wall"
+			"Type": "Wall",
+			"NoiseLevels": "0"
 		},
 		"walls_0041_Layer-42.png": {
 			"frame": {
@@ -3706,7 +4003,8 @@
 				"w": 64,
 				"h": 110
 			},
-			"Type": "Wall"
+			"Type": "Wall",
+			"NoiseLevels": "0"
 		}
 	},
 	"meta": {

@@ -47,6 +47,8 @@ Enemy::Enemy() :
     m_EnemyState = EnemyState::SEEK;
 
     m_searchCounter = 500;
+
+
 }
 
 void Enemy::setDirection(int t_direction)
