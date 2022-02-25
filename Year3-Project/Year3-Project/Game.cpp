@@ -169,9 +169,9 @@ void Game::processKeys(sf::Event t_event)
 //        std::cout << "Player node: " << player << std::endl;
 //        std::cout << "Closest waypoint: " << waypoint << std::endl;
 
-        std::vector<Node*> path;
+/*        std::vector<Node*> path;
         m_grid.clearMarks();
-        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);
+        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);*/
 
 /*        for (auto& node : path)
             std::cout << node->m_data.id << " ";
