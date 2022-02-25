@@ -123,6 +123,7 @@ void Game::processEvents()
                 if (newEvent.key.code == sf::Keyboard::D)
                 {
                     m_grid.toggleDraw();
+                    m_enemy.changeDebug();
                 }
             }
         } else if (GameState::PAUSE == m_gameState)

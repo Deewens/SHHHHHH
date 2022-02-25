@@ -40,8 +40,13 @@ public:
     void setPath(int from, int to);
 
     void moveTo(sf::Vector2f goal);
+
+    void changeDebug();
+    
 private:
 
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    
     void setDirection(int t_direction);   
 
     void setVisionCone(float t_angel);
@@ -57,6 +62,8 @@ private:
     void debug();
 
     void pathFinding();
+    
+    void setPath(std::vector<int>);
 
 private:
 
@@ -114,6 +121,9 @@ private:
 
     Graph<NodeData, float> m_grid;
     std::vector<int> m_ucsPath;
+
+    bool debugActive = true;
+    sf::VertexArray m_path;
 };
 
 

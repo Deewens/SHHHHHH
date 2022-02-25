@@ -48,7 +48,7 @@ Enemy::Enemy() :
 
     m_searchCounter = 500;
 
-
+    m_path.setPrimitiveType(sf::LineStrip);
 }
 
 void Enemy::setDirection(int t_direction)
@@ -340,6 +340,20 @@ void Enemy::pathFinding()
     move(m_centerS, m_centerF);*/
 }
 
+void Enemy::setPath(std::vector<int> t_path)
+{
+    m_path.clear();
+    for(int val: t_path)
+    {
+        float col = val % (screen_Width / tileSize);
+        float row = (val - col) / (screen_Width / tileSize);
+        col = (col * tileSize) + (tileSize / 2);
+        row = (row * tileSize) + (tileSize / 2);
+        m_path.append(sf::Vertex(sf::Vector2f(col, row)));
+    };
+    
+}
+
 void Enemy::loadSoundHolder(SoundHolder& soundHolder)
 {
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
@@ -416,12 +430,27 @@ void Enemy::moveTo(sf::Vector2f goal)
         auto last = std::unique(finalPath.begin(), finalPath.end());
         finalPath.erase(last, finalPath.end());
 
+        setPath(finalPath);
         std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
         std::cout << std::endl;
 
         m_ucsPath = finalPath;
     }
 
+}
+
+void Enemy::changeDebug()
+{
+    debugActive = !debugActive;
+}
+
+void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(m_sprite);
+    if (debugActive)
+    {
+        target.draw(m_path);
+    }
 }
 
 
