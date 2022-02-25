@@ -403,7 +403,7 @@ void Enemy::moveTo(sf::Vector2f goal)
         int closestWaypoint = m_grid.getClosestWaypoint(getPosition());
 
         std::vector<Node*> startToFirstWPPath;
-
+        m_grid.clearMarks();
         m_grid.aStar(m_grid.nodeIndex(enemyCell), m_grid.nodeIndex(closestWaypoint), startToFirstWPPath);
         std::reverse(startToFirstWPPath.begin(), startToFirstWPPath.end());
 
@@ -421,6 +421,7 @@ void Enemy::moveTo(sf::Vector2f goal)
 
 
         std::vector<Node*> SecondWPToGoalPath;
+        m_grid.clearMarks();
         m_grid.aStar(m_grid.nodeIndex(closestWaypointFromGoal), m_grid.nodeIndex(goalCell), SecondWPToGoalPath);
 
         std::reverse(SecondWPToGoalPath.begin(), SecondWPToGoalPath.end());
