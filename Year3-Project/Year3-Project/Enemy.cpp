@@ -349,7 +349,7 @@ void Enemy::drawPath(std::vector<int> t_path)
         float row = (val - col) / (screen_Width / tileSize);
         col = (col * tileSize) + (tileSize / 2);
         row = (row * tileSize) + (tileSize / 2);
-        m_path.append(sf::Vertex(sf::Vector2f(col, row)));
+        m_path.append(sf::Vertex(sf::Vector2f(col, row), sf::Color::Red));
     };
     
 }
