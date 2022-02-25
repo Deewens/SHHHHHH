@@ -340,7 +340,7 @@ void Enemy::pathFinding()
     move(m_centerS, m_centerF);*/
 }
 
-void Enemy::setPath(std::vector<int> t_path)
+void Enemy::drawPath(std::vector<int> t_path)
 {
     m_path.clear();
     for(int val: t_path)
@@ -428,10 +428,10 @@ void Enemy::moveTo(sf::Vector2f goal)
         for (auto& node : SecondWPToGoalPath)
             finalPath.push_back(node->m_data.id);
 
+        drawPath(finalPath);
         auto last = std::unique(finalPath.begin(), finalPath.end());
         finalPath.erase(last, finalPath.end());
 
-        setPath(finalPath);
         std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
         std::cout << std::endl;
 

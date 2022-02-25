@@ -63,7 +63,7 @@ private:
 
     void pathFinding();
     
-    void setPath(std::vector<int>);
+    void drawPath(std::vector<int>);
 
 private:
 
@@ -122,7 +122,7 @@ private:
     Graph<NodeData, float> m_grid;
     std::vector<int> m_ucsPath;
 
-    bool debugActive = true;
+    bool debugActive = false;
     sf::VertexArray m_path;
 };
 
