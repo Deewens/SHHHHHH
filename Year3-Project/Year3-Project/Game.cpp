@@ -351,9 +351,10 @@ void Game::checkCollisions()
         m_player.m_readyToTHrow[1] = true;
     }
 
+    noiseCounter++;
     for (auto &object: m_environment)
     {
-         collisions.check(m_player, object);
+         collisions.check(m_player, object, noiseCounter);
     }
 }
 

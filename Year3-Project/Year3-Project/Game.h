@@ -96,7 +96,7 @@ private:
 
     SoundHolder m_sounds;
 
-
+    int noiseCounter = 0;
 };
 
 #endif // !GAME_HPP

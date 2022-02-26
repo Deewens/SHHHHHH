@@ -32,7 +32,7 @@ bool CollisionManager::check(Player& t_player, Pickup& t_pickup)
 	}
 }
 
-void CollisionManager::check(Player& t_player, Environment& t_environment)
+void CollisionManager::check(Player& t_player, Environment& t_environment, int& t_counter)
 {
 	sf::FloatRect collisionRect = t_environment.getCollisionRect();
 	float playerSize = t_player.getRadius();
@@ -50,11 +50,12 @@ void CollisionManager::check(Player& t_player, Environment& t_environment)
 		{
 			t_player.awayFrom(sf::Vector2f(closestX, closestY));
 		}
-		else
+		else if(t_counter > 60)
 		{
 			Noise newNoise;
 			newNoise.init(t_environment.getNoise(), playerPos);
 			m_noises.push_back(newNoise);
+			t_counter = 0;
 		}
 	}
 }
