@@ -3,11 +3,13 @@
 
 #define _USE_MATH_DEFINES
 
-#include "Character.h"
 #include <math.h>
+#include <stdlib.h>
+
+#include "Character.h"
 #include "Globals.h"
 #include "Player.h"
-#include <stdlib.h>
+
 #include "tinyc2.h"
 #include "Animation.h"
 #include "Utils.h"
@@ -34,8 +36,17 @@ public:
     void move(sf::Vector2f& offset);
 
     void move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec);
+
+    void setPath(int from, int to);
+
+    void moveTo(sf::Vector2f goal);
+
+    void changeDebug();
+    
 private:
 
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    
     void setDirection(int t_direction);   
 
     void setVisionCone(float t_angel);
@@ -51,6 +62,8 @@ private:
     void debug();
 
     void pathFinding();
+    
+    void drawPath(std::vector<int>);
 
 private:
 
@@ -103,8 +116,14 @@ private:
 
     int m_searchCounter;
 
+    bool m_isMoving = false;
+    sf::Vector2f m_moveTo;
+
     Graph<NodeData, float> m_grid;
-    std::vector<Node*> m_path;
+    std::vector<int> m_ucsPath;
+
+    bool debugActive = false;
+    sf::VertexArray m_path;
 };
 
 

@@ -42,13 +42,13 @@ Enemy::Enemy() :
     }
 
     m_sprite.setOrigin(30, 30);
-    m_sprite.setPosition(300, 300);
+    m_sprite.setPosition(303, 203);
 
     m_EnemyState = EnemyState::SEEK;
 
     m_searchCounter = 500;
 
-
+    m_path.setPrimitiveType(sf::LineStrip);
 }
 
 void Enemy::setDirection(int t_direction)
@@ -112,6 +112,7 @@ void Enemy::update(sf::Time deltaTime)
         m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
+    pathFinding();
 }
 
 void Enemy::renderVisionCone(sf::RenderWindow& t_window)
@@ -188,7 +189,6 @@ void Enemy::rotate(sf::Vector2f& vector, float t_angle)
 void Enemy::move(sf::Vector2f t_startVec, sf::Vector2f t_finishVec)
 {
     sf::Vector2f m_movement = t_startVec - t_finishVec;
-    
 
     float m_angleRad = atan2(m_movement.y, m_movement.x);
 
@@ -263,22 +263,44 @@ void Enemy::debug()
     }
 }
 
+void Enemy::setPath(int from, int to)
+{
+    auto ucsPaths = m_grid.getUCSPaths();
+    m_ucsPath = ucsPaths.find(std::to_string(from) + "-" + std::to_string(to))->second;
+}
+
 void Enemy::pathFinding()
 {
-    //int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
+    if (isBeingSeen()) // When the zombie see the player, we clear the path because the zombie follow the player without pathfinding
+    {
+        m_isMoving = false;
+        m_moveTo = sf::Vector2f(0, 0);
+        m_ucsPath.clear();
+    }
 
-    int waypoint = m_grid.getClosestWaypoint(m_sprite.getPosition());
-    int zombieCell = floor(m_sprite.getPosition().x / tileSize) + (floor(m_sprite.getPosition().y / tileSize) * screen_Width / tileSize);
+    int enemyPos = Utils::vectorToNode(getPosition());
+    int targetPos = Utils::vectorToNode(m_moveTo);
+/*    std::cout << "Enemy pos: " << enemyPos << std::endl;
+    std::cout << "Target pos: " << targetPos << std::endl;*/
+    if (enemyPos == targetPos) // When it reaches the target position, we stop the movement
+    {
+        m_isMoving = false;
+        m_moveTo = sf::Vector2f(0, 0);
+        m_ucsPath.erase(m_ucsPath.begin());
+    }
 
-    m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(waypoint),m_path);
+    if (!m_isMoving)
+    {
+        if (m_ucsPath.size() > 1)
+        {
+            m_isMoving = true;
+            m_moveTo = m_grid.nodeIndex(m_ucsPath.at(1))->m_data.position;
+        }
+    }
 
-    for (auto& node : m_path)
-        std::cout << node << " ";
+    if (m_isMoving) move(m_moveTo, getPosition());
 
-    std::cout << std::endl;
-
-
-/*    int m_secondToLastCell = 0;
+    /*int m_secondToLastCell = 0;
     int m_lastCell = 0;
 
     int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
@@ -288,17 +310,17 @@ void Enemy::pathFinding()
     if (m_searchCounter >= 50)
     {
         m_searchCounter = 0;
-        m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(playerCell),m_path);
+        m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(playerCell),m_ucsPath);
     }
-    if (m_path.size() > 1)
+    if (m_ucsPath.size() > 1)
     {
-        m_secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
-        if (m_secondToLastCell == zombieCell && m_path.size() > 2)
+        m_secondToLastCell = m_ucsPath[m_ucsPath.size() - 2]->m_data.id;
+        if (m_secondToLastCell == zombieCell && m_ucsPath.size() > 2)
         {
-            m_path.erase(m_path.begin() + m_path.size() - 1);
-            m_secondToLastCell = m_path[m_path.size() - 2]->m_data.id;
+            m_ucsPath.erase(m_ucsPath.begin() + m_ucsPath.size() - 1);
+            m_secondToLastCell = m_ucsPath[m_ucsPath.size() - 2]->m_data.id;
         }
-        m_lastCell = m_path[m_path.size() - 1]->m_data.id;
+        m_lastCell = m_ucsPath[m_ucsPath.size() - 1]->m_data.id;
     }
 
     int m_columS = m_secondToLastCell % (screen_Width / tileSize);
@@ -316,6 +338,20 @@ void Enemy::pathFinding()
     m_centerF.x = (tileSize / 2) + (tileSize * m_columF);
 
     move(m_centerS, m_centerF);*/
+}
+
+void Enemy::drawPath(std::vector<int> t_path)
+{
+    m_path.clear();
+    for(int val: t_path)
+    {
+        float col = val % (screen_Width / tileSize);
+        float row = (val - col) / (screen_Width / tileSize);
+        col = (col * tileSize) + (tileSize / 2);
+        row = (row * tileSize) + (tileSize / 2);
+        m_path.append(sf::Vertex(sf::Vector2f(col, row), sf::Color::Red));
+    };
+    
 }
 
 void Enemy::loadSoundHolder(SoundHolder& soundHolder)
@@ -348,6 +384,74 @@ void Enemy::move(sf::Vector2f& offset)
 void Enemy::loadGrid(Graph<NodeData, float>& t_grid)
 {
     m_grid = t_grid;
+}
+
+void Enemy::moveTo(sf::Vector2f goal)
+{
+    float distance = Utils::getDistanceBetweenPoints(getPosition(), goal);
+    int enemyCell = Utils::vectorToNode(getPosition());
+    int goalCell = Utils::vectorToNode(goal);
+
+    std::vector<int> finalPath;
+    if (distance < 10)
+    {
+        // Use A* directly to reach the goal
+    }
+    else
+    {
+        // Get the waypoint closer to the zombie
+        int closestWaypoint = m_grid.getClosestWaypoint(getPosition());
+
+        std::vector<Node*> startToFirstWPPath;
+        m_grid.clearMarks();
+        m_grid.aStar(m_grid.nodeIndex(enemyCell), m_grid.nodeIndex(closestWaypoint), startToFirstWPPath);
+        std::reverse(startToFirstWPPath.begin(), startToFirstWPPath.end());
+
+        for (auto& node : startToFirstWPPath)
+            finalPath.push_back(node->m_data.id);
+
+        // When the waypoint is reached, get the waypoint closer to the goal
+        int closestWaypointFromGoal = m_grid.getClosestWaypoint(goal);
+
+        // Using the two found waypoints, search for one of the pre-computed UCS Path
+        auto ucsPath = m_grid.getUCSPath(closestWaypoint, closestWaypointFromGoal);
+        if (ucsPath.empty()) return;
+
+        finalPath.insert(finalPath.end(), ucsPath.begin(), ucsPath.end()); // Append the UCS path to the final path
+
+
+        std::vector<Node*> SecondWPToGoalPath;
+        m_grid.clearMarks();
+        m_grid.aStar(m_grid.nodeIndex(closestWaypointFromGoal), m_grid.nodeIndex(goalCell), SecondWPToGoalPath);
+
+        std::reverse(SecondWPToGoalPath.begin(), SecondWPToGoalPath.end());
+        for (auto& node : SecondWPToGoalPath)
+            finalPath.push_back(node->m_data.id);
+
+        drawPath(finalPath);
+        auto last = std::unique(finalPath.begin(), finalPath.end());
+        finalPath.erase(last, finalPath.end());
+
+        std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
+        std::cout << std::endl;
+
+        m_ucsPath = finalPath;
+    }
+
+}
+
+void Enemy::changeDebug()
+{
+    debugActive = !debugActive;
+}
+
+void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    target.draw(m_sprite);
+    if (debugActive)
+    {
+        target.draw(m_path);
+    }
 }
 
 

@@ -64,6 +64,7 @@ public:
 
     std::vector<int> getWaypoints();
     std::map<std::string, std::vector<int>> getUCSPaths();
+    std::vector<int> getUCSPath(int from, int to);
 
     int getClosestWaypoint(sf::Vector2f pos);
 
@@ -540,16 +541,15 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
 }
 
 template<class NodeType, class ArcType>
-void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest,std::vector<Node*>& path)
+void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest, std::vector<Node*>& path)
 {
     std::priority_queue < Node*, std::vector<Node*>, Comparer<NodeType, ArcType>> nodeQueue;
 
     //float heuristic = sqrt((dest->m_data.m_x - start->m_data.m_x)(dest->m_data.m_x - start->m_data.m_x) + (dest->m_data.m_y - start->m_data.m_y)(dest->m_data.m_y - start->m_data.m_y));
-    std::cout << "A*:" << std::endl;
-    std::cout << "--------------" << std::endl;
 
     for (Node* node : m_nodes)
     {
+        node->setPrevious(nullptr);
         node->m_data.cost = std::numeric_limits<int>::max();
         float heu = abs((dest->m_data.position.x - node->m_data.position.x) * (dest->m_data.position.x - node->m_data.position.x) + (dest->m_data.position.y - node->m_data.position.y) * (dest->m_data.position.y - node->m_data.position.y));
         node->m_data.heuristic = sqrt(heu);
@@ -633,5 +633,24 @@ int Graph<NodeType, ArcType>::getClosestWaypoint(sf::Vector2f pos)
     }
 
     return closestNode;
+}
+
+/**
+ * Get one of the pre-calculated UCS Path
+ *
+ * @tparam NodeType Data stored in the Node
+ * @tparam ArcType Type of the Arc
+ * @param from index of the node where the path should come from
+ * @param to index of the node where the path should go
+ * @return the path or an empty vector if not found
+ */
+template<typename NodeType, class ArcType>
+std::vector<int> Graph<NodeType, ArcType>::getUCSPath(int from, int to)
+{
+    auto ucsPaths = getUCSPaths();
+    auto path = ucsPaths.find(std::to_string(from) + "-" + std::to_string(to));
+    if (path == ucsPaths.end()) return {};
+
+    return path->second;
 }
 

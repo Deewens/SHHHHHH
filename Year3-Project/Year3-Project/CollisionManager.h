@@ -14,7 +14,7 @@ public:
 	CollisionManager();
 	void check(Player& t_player, Enemy& t_enemy);
 	bool check(Player& t_player, Pickup& t_pickup);
-	void check(Player& t_player, Environment& t_environment);
+	void check(Player& t_player, Environment& t_environment, int& t_counter);
 
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();

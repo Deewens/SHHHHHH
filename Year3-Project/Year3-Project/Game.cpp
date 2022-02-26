@@ -123,6 +123,7 @@ void Game::processEvents()
                 if (newEvent.key.code == sf::Keyboard::D)
                 {
                     m_grid.toggleDraw();
+                    m_enemy.changeDebug();
                 }
             }
         } else if (GameState::PAUSE == m_gameState)
@@ -166,17 +167,19 @@ void Game::processKeys(sf::Event t_event)
         int waypoint = m_grid.getClosestWaypoint(m_player.getPosition());
         int player = Utils::vectorToNode(m_player.getPosition());
 
-        std::cout << "Player node: " << player << std::endl;
-        std::cout << "Closest waypoint: " << waypoint << std::endl;
+//        std::cout << "Player node: " << player << std::endl;
+//        std::cout << "Closest waypoint: " << waypoint << std::endl;
 
-        std::vector<Node*> path;
+/*        std::vector<Node*> path;
         m_grid.clearMarks();
-        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);
+        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);*/
 
-        for (auto& node : path)
+/*        for (auto& node : path)
             std::cout << node->m_data.id << " ";
 
-        std::cout << std::endl;
+        std::cout << std::endl;*/
+
+        m_enemy.moveTo(m_player.getPosition());
     }
 }
 
@@ -354,10 +357,10 @@ void Game::checkCollisions()
         m_player.m_readyToTHrow[1] = true;
     }
 
+    noiseCounter++;
     for (auto &object: m_environment)
     {
-        if (object.isImpassable())
-            collisions.check(m_player, object);
+         collisions.check(m_player, object, noiseCounter);
     }
 }
 
@@ -383,9 +386,10 @@ void Game::setupEnvironment()
     json environmentJson;
     environmentJson = json::parse(levelData);
     scene = environmentJson["scene"];
-    for (auto &el : scene)
+    
+    for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-                              screen_Width / tileSize, el["rotation"], el["impassable"]);
+            screen_Width / tileSize, el["rotation"], el["impassable"]);
 
     for (auto &object: m_environment)
     {
