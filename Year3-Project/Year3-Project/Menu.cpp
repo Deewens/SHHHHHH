@@ -7,7 +7,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
     {
         target.draw(m_backgroundSprite);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             target.draw(MainMenuButtons[i].shape);
             target.draw(MainMenuButtons[i].text);
@@ -19,6 +19,12 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
         target.draw(GameBackButton.text);
     }
     else if (m_gameState == GameState::HELP)
+    {
+        target.draw(GameBackButton.shape);
+        target.draw(GameBackButton.text);
+        target.draw(gameText);
+    }
+    else if (m_gameState == GameState::LVLLOADER)
     {
         target.draw(GameBackButton.shape);
         target.draw(GameBackButton.text);

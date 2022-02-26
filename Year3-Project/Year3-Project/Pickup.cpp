@@ -43,10 +43,10 @@ float Pickup::getRadius()
 	return m_bottleSprite.getOrigin().x;
 }
 
-void Pickup::throwPickUp(float t_angle, sf::Vector2f t_position , float t_power)
-{
-	m_bottleVelocity = sf::Vector2f(t_power * cos(PI * t_angle / 180), t_power * sin(PI * t_angle / 180)); // changes velocity (sin needs to be negative due to y axis being at top)
-}
+//void Pickup::throwPickUp(float t_angle, sf::Vector2f t_position , float t_power)
+//{
+//	m_bottleVelocity = sf::Vector2f(t_power * cos(PI * t_angle / 180), t_power * sin(PI * t_angle / 180)); // changes velocity (sin needs to be negative due to y axis being at top)
+//}
 
 void Pickup::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {	

@@ -213,12 +213,12 @@ void Game::update(sf::Time t_deltaTime)
             cameraMovement(t_deltaTime);
             if (m_player.m_throw[0])
             {
-                m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition(), m_player.m_throwPower());
+                //m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition());
                 m_player.m_throw[0] = false;
             }
             if (m_player.m_throw[1])
             {
-                m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition(), m_player.m_throwPower());
+                //m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition());
                 m_player.m_throw[1] = false;
             }
             for (int i = 0; i < 2; i++)
@@ -236,6 +236,9 @@ void Game::update(sf::Time t_deltaTime)
             m_exitGame = true;
             break;
         case GameState::HELP:
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            break;
+        case GameState::LVLLOADER:
             m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::PAUSE:
@@ -303,6 +306,9 @@ void Game::render()
         case GameState::EXIT:
             break;
         case GameState::HELP:
+            m_window.draw(m_gameMenu);
+            break;
+        case GameState::LVLLOADER:
             m_window.draw(m_gameMenu);
             break;
         case GameState::PAUSE:

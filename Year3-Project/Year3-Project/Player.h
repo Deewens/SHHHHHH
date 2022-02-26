@@ -45,14 +45,10 @@ private:
     sf::Vector2f getVelocity();
 
 
-    sf::RectangleShape m_powerBar;
-    sf::RectangleShape m_powerthrow;
 
     bool m_powerBarVisible = false;
 
 
-    sf::Vector2f m_powerBarSize = { 50,5 };
-    sf::Vector2f m_powerSize = { 0,4 };
 
     std::vector<sf::Sound*> footstepWalkSounds;
     std::vector<sf::Sound*> footstepRunSounds;
@@ -70,7 +66,10 @@ private:
     sf::Texture m_bottleTexture;
     sf::Sprite m_bottleSprite;
 
+    sf::Texture m_powerTexture;
+    sf::Sprite m_powerSprite;
 
+    sf::Vector2f powerSpriteScale{0.1,0.1};
 public:
 
     Player();
@@ -88,11 +87,12 @@ public:
     
     bool m_readyToTHrow[2] = { false,false };
 
-    float m_throwPower();
 
     bool m_throw[2] = { false,false };
 
     void move(float dt);
+
+
 
 };
 

@@ -76,11 +76,6 @@ Player::Player() :
     m_sprite.setPosition(100, 100);
     m_sprite.setOrigin(30, 26);
 
-    m_powerBar.setSize(m_powerBarSize);
-    m_powerBar.setFillColor(sf::Color::White);
-    m_powerthrow.setSize(m_powerSize);
-    m_powerthrow.setOutlineThickness(1);
-    m_powerthrow.setFillColor(sf::Color::Red);
 
     m_staminaBar.setSize(m_staminaBarSize);
     m_staminaBar.setFillColor(sf::Color::Black);
@@ -94,6 +89,16 @@ Player::Player() :
     m_bottleSprite.setTexture(m_bottleTexture);
     m_bottleSprite.setScale(0.025, 0.025);
 
+    if (!m_powerTexture.loadFromFile("ASSETS\\IMAGES\\PowerArrow.png"))
+    {
+        // simple error message if previous call fails
+        std::cout << "problem loading backpack texture" << std::endl;
+    }
+    sf::Color color = sf::Color(225.0f, 225.0f, 225.0f, 150.0f);
+    m_powerSprite.setTexture(m_powerTexture);
+    m_powerSprite.setScale(powerSpriteScale);
+    m_powerSprite.setOrigin(0, 145);
+    m_powerSprite.setColor(color);
 }
 
 
@@ -178,18 +183,8 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     if (m_powerBarVisible)
     {
         m_endThrowingAnim.update(deltaTime.asSeconds());
-        m_powerBar.setPosition(screen_Width/2, screen_Height/2);
-        m_powerBar.setRotation(m_sprite.getRotation());
-
-        if (m_powerSize.x < m_powerBarSize.x)
-        {
-            m_powerSize.x++;
-        }
-
-        m_powerthrow.setSize(m_powerSize);
-        m_powerthrow.setPosition(screen_Width/2, screen_Height/2);
-        m_powerthrow.setRotation(m_sprite.getRotation());
-
+        m_powerSprite.setPosition(screen_Width/2, screen_Height/2);
+        m_powerSprite.setRotation(m_sprite.getRotation());
     } 
 
     
@@ -265,27 +260,29 @@ void Player::processEvents(sf::Event event)
             m_playerState = PlayerMovingState::WALKING;
         }
         if (event.key.code == sf::Keyboard::RControl)
-        {           
-           m_powerBarVisible = false;
+        {
+            m_powerBarVisible = false;
 
-           
 
-           if (m_readyToTHrow[0] == true)
-           {
-               m_readyToTHrow[0] = false;
-               m_throw[0] = true;
-               return;
-           }
-           if (m_readyToTHrow[1] == true)
-           {
-               m_readyToTHrow[1] = false;
-               m_throw[1] = true;
 
-           }
-        
+            if (m_readyToTHrow[0] == true)
+            {
+                m_readyToTHrow[0] = false;
+                powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
+                m_throw[0] = true;
+                return;
+            }
+            if (m_readyToTHrow[1] == true)
+            {
+                m_readyToTHrow[1] = false;
+                powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
+                m_throw[1] = true;
+
+            }
+
             //m_throw = false;
             m_endThrowingAnim.reset();
-            m_powerSize.x = 0;
+            
         }
     }
 }
@@ -302,8 +299,7 @@ void Player::renderPowerBar(sf::RenderWindow &t_window)
     
     if (m_powerBarVisible)
     {     
-        t_window.draw(m_powerBar);
-        t_window.draw(m_powerthrow);
+        t_window.draw(m_powerSprite);
     }
 
     t_window.draw(m_staminaBar);
@@ -331,6 +327,11 @@ void Player::move(float dt)
         {
             m_powerBarVisible = true;
         }
+        if (powerSpriteScale.x < 0.5)
+        {
+            powerSpriteScale += sf::Vector2f(0.01, 0.01);
+        }
+        m_powerSprite.setScale(powerSpriteScale);
     }
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -381,13 +382,6 @@ sf::Vector2f Player::getVelocity()
 sf::Sprite Player::getSprite()
 {
     return m_sprite;
-}
-
-float Player::m_throwPower()
-{
-    float t = m_powerBarSize.x;
-    m_powerSize.x = 0;
-    return t;
 }
 
 void Player::boundryCheck()
