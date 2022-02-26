@@ -353,8 +353,7 @@ void Game::checkCollisions()
 
     for (auto &object: m_environment)
     {
-        if (object.isImpassable())
-            collisions.check(m_player, object);
+         collisions.check(m_player, object);
     }
 }
 
@@ -380,9 +379,10 @@ void Game::setupEnvironment()
     json environmentJson;
     environmentJson = json::parse(levelData);
     scene = environmentJson["scene"];
-    for (auto &el : scene)
+    
+    for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-                              screen_Width / tileSize, el["rotation"], el["impassable"]);
+            screen_Width / tileSize, el["rotation"], el["impassable"]);
 
     for (auto &object: m_environment)
     {

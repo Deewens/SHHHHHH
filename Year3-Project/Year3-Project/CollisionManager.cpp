@@ -46,7 +46,16 @@ void CollisionManager::check(Player& t_player, Environment& t_environment)
 	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 	if(distanceSquared < (playerSize * playerSize))
 	{
-		t_player.awayFrom(sf::Vector2f(closestX, closestY));
+		if (t_environment.isImpassable())
+		{
+			t_player.awayFrom(sf::Vector2f(closestX, closestY));
+		}
+		else
+		{
+			Noise newNoise;
+			newNoise.init(t_environment.getNoise(), playerPos);
+			m_noises.push_back(newNoise);
+		}
 	}
 }
 
