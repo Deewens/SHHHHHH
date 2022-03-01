@@ -81,19 +81,19 @@ void Tile::rotate()
 std::string Tile::getJsonInfo(int t_gridIndex)
 {
 	std::string output = "";
-	if (m_objectActive && !specialHere)
-	{
-		output += "\n		{\n			\"gridIndex\": " + std::to_string(t_gridIndex) +
-			",\n			\"impassable\": true" +
-			",\n			\"rotation\": " + std::to_string(m_objectSprite.getRotation()) +
-			",\n			\"spriteName\": \"" + m_objectSpriteName + "\"\n		},";
-	}
 	if (m_groundActive)
 	{
 		output += "\n		{\n			\"gridIndex\": " + std::to_string(t_gridIndex) +
 			",\n			\"impassable\": false" +
 			",\n			\"rotation\": " + std::to_string(m_groundSprite.getRotation()) +
 			",\n			\"spriteName\": \"" + m_groundSpriteName + "\"\n		},";
+	}
+	if (m_objectActive && !specialHere)
+	{
+		output += "\n		{\n			\"gridIndex\": " + std::to_string(t_gridIndex) +
+			",\n			\"impassable\": true" +
+			",\n			\"rotation\": " + std::to_string(m_objectSprite.getRotation()) +
+			",\n			\"spriteName\": \"" + m_objectSpriteName + "\"\n		},";
 	}
 	return output;
 }

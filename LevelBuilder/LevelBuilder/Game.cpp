@@ -494,6 +494,7 @@ void Game::manageClicks(sf::Event t_event)
 				//		m_ucsDebugTiles.push_back(rect);
 				//	}
 				//}
+				bool found = false;;
 
 				std::string output = "{\n	\"scene\": [";
 				for (int i = 0; i < mapSize; i++)
@@ -501,17 +502,30 @@ void Game::manageClicks(sf::Event t_event)
 					if (m_MapTiles[i] != nullptr)
 					{
 						output += m_MapTiles[i]->getJsonInfo(i);
+						found = true;
 					}
+				}
+				if (found)
+				{
+					output.pop_back();
+					found = false;
 				}
 				output += "\n],";
 				output += "\n\"special\": [";;
+				
 				for (int i = 0; i < mapSize; i++)
 				{
 					if (m_MapTiles[i] != nullptr)
 					{
 						output += m_MapTiles[i]->getSpecialJson(i);
+						found = true;
 					}
 				}
+				if (found)
+				{
+					output.pop_back();
+				}
+				
 				output += "\n],";
 				
 
@@ -541,7 +555,7 @@ void Game::manageClicks(sf::Event t_event)
 
 				output += "\n}";
 				std::cout << output << std::endl;
-				std::ofstream MyFile("level.json");
+				std::ofstream MyFile("C://Users//gameuser//Desktop//Newfolder//project21-masih-adrien-and-eoin//Year3-Project//Year3-Project//level.json");
 
 				// Write to the file
 				MyFile << output;
