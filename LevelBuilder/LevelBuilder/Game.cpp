@@ -474,27 +474,26 @@ void Game::manageClicks(sf::Event t_event)
 					}
 				}
 
-				//int rows = screen_Height / tileSize;
-				//int cols = screen_Width / tileSize;
+				int rows = screen_Height / tileSize;
+				int cols = screen_Width / tileSize;
 
-				//m_ucsDebugTiles.clear();
-				//for (auto& path : m_ucsPaths)
-				//{
-				//	for (auto& node : path.second)
-				//	{
-				//		sf::RectangleShape rect;
-				//		rect.setFillColor(sf::Color(255, 255, 0, 64));
-				//		rect.setSize(sf::Vector2f(tileSize, tileSize));
-				//		rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
-				//		float col = node->m_data.id % cols;
-				//		float row = (node->m_data.id - col) / cols;
-				//		col = (col * tileSize) + (tileSize / 2);
-				//		row = (row * tileSize) + (tileSize / 2);
-				//		rect.setPosition(sf::Vector2f(col, row));
-				//		m_ucsDebugTiles.push_back(rect);
-				//	}
-				//}
-				bool found = false;;
+				m_ucsDebugTiles.clear();
+				for (auto& path : m_ucsPaths)
+				{
+					for (auto& node : path.second)
+					{
+						sf::RectangleShape rect;
+						rect.setFillColor(sf::Color(255, 255, 0, 64));
+						rect.setSize(sf::Vector2f(tileSize, tileSize));
+						rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
+						float col = node->m_data.id % cols;
+						float row = (node->m_data.id - col) / cols;
+						col = (col * tileSize) + (tileSize / 2);
+						row = (row * tileSize) + (tileSize / 2);
+						rect.setPosition(sf::Vector2f(col, row));
+						m_ucsDebugTiles.push_back(rect);
+					}
+				}
 
 				std::string output = "{\n	\"scene\": [";
 				for (int i = 0; i < mapSize; i++)
