@@ -550,6 +550,7 @@ void Game::manageClicks(sf::Event t_event)
 					}
 					output += "],";
 				}
+				output.pop_back();
 				output += "\n}";
 				output += "\n}";
 
