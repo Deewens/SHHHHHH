@@ -53,9 +53,4 @@ void Pickup::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	target.draw(m_bottleSprite);	
 }
 
-void Pickup::move()
-{
-	m_bottleSprite.setPosition(m_bottleSprite.getPosition() + m_bottleVelocity);
-}
-
 

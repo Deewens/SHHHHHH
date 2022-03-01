@@ -6,7 +6,33 @@ void Player::unitVector(sf::Vector2f &t_vector, float dt)
     t_vector = (t_vector * m_speed * dt) / length;
 }
 
-Player::Player() :
+void Player::bottleMovement()
+{
+
+    if (m_throw[0]==true)
+    {
+        sf::Vector2f position = m_bottleSprite[0].getPosition();
+
+        sf::Vector2f newPos(position.x + std::cos(PI/ 180.0f* m_sprite.getRotation()) * m_bottleSpeed,
+            position.y + std::sin(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed);
+        m_bottleSprite[0].setRotation(m_bottleRotate);
+        m_bottleSprite[0].setPosition(newPos.x, newPos.y);
+
+    }
+
+    if (m_throw[1] == true)
+    {
+        sf::Vector2f position = m_bottleSprite[1].getPosition();
+
+        sf::Vector2f newPos(position.x + std::cos(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed,
+            position.y + std::sin(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed);
+        m_bottleSprite[1].setRotation(m_bottleRotate);
+        m_bottleSprite[1].setPosition(newPos.x, newPos.y);
+
+    }
+}
+
+Player::Player(sf::Texture& t_texture) :
         m_runningAnim(m_sprite),
         m_walkingAnim(m_sprite),
         m_crouchingAnim(m_sprite),
@@ -80,20 +106,30 @@ Player::Player() :
     m_staminaBar.setSize(m_staminaBarSize);
     m_staminaBar.setFillColor(sf::Color::Black);
 
-    if (!m_bottleTexture.loadFromFile("ASSETS\\IMAGES\\Bottle.png"))
+    std::ifstream spriteData("ASSETS/TileSheet/spritesheet.json");
+    //nlohmann::json json;
+    spriteData >> json;
+
+    nlohmann::json frame = json["frames"]["Bottle.png"]["frame"];
+    int x = frame["x"];
+    int y = frame["y"];
+    float width = frame["w"];
+    float height = frame["h"];
+   
+    for (size_t i = 0; i < 2; i++)
     {
-        // simple error message if previous call fails
-        std::cout << "problem loading backpack texture" << std::endl;
+        m_bottleSprite[i].setTexture(t_texture);
+        m_bottleSprite[i].setTextureRect(sf::IntRect(x, y, width, height));
+        m_bottleSprite[i].setScale(0.4, 0.4);
+        m_bottleSprite[i].setPosition(screen_Width / 2, screen_Height / 2);
+        m_bottleSprite[i].setOrigin(width / 2, height / 2);
     }
-
-    m_bottleSprite.setTexture(m_bottleTexture);
-    m_bottleSprite.setScale(0.025, 0.025);
-
+    
     if (!m_powerTexture.loadFromFile("ASSETS\\IMAGES\\PowerArrow.png"))
     {
         // simple error message if previous call fails
         std::cout << "problem loading backpack texture" << std::endl;
-    }
+    }      
     sf::Color color = sf::Color(225.0f, 225.0f, 225.0f, 150.0f);
     m_powerSprite.setTexture(m_powerTexture);
     m_powerSprite.setScale(powerSpriteScale);
@@ -222,7 +258,11 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     if (m_staminaBarLvlSize.x < 63)
     {
         m_staminaBarLvl.setFillColor(sf::Color::Red);
-    }    
+    }  
+
+    m_bottleRotate += 10;
+    bottleMovement();
+
 }
 
 
@@ -297,6 +337,16 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 void Player::renderPowerBar(sf::RenderWindow &t_window)
 {
     
+    if (m_throw[0]==true)
+    {
+        t_window.draw(m_bottleSprite[0]);
+    }
+    if (m_throw[1] == true)
+    {
+        t_window.draw(m_bottleSprite[1]);
+    }
+    
+   
     if (m_powerBarVisible)
     {     
         t_window.draw(m_powerSprite);
@@ -304,6 +354,8 @@ void Player::renderPowerBar(sf::RenderWindow &t_window)
 
     t_window.draw(m_staminaBar);
     t_window.draw(m_staminaBarLvl);
+
+    
 }
 
 void Player::move(float dt)
@@ -437,6 +489,17 @@ void Player::loadSoundHolder(SoundHolder &soundHolder)
 
     for (auto sound: footstepSneakSounds)
         sound->setVolume(20);
+}
+
+float Player::bottleSpriteRadius()
+{
+    sf::Vector2f origin = m_bottleSprite[0].getOrigin();
+    float value = origin.x;
+    if (origin.y > value)
+    {
+        value = origin.y;
+    }
+    return value;
 }
 
 

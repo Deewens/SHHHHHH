@@ -16,11 +16,6 @@ public:
 
 	float getRadius();
 
-	void throwPickUp(float t_angle, sf::Vector2f t_position, float t_power);
-
-	void move();
-
-
 private:
 
 	sf::Texture m_bottleTexture;

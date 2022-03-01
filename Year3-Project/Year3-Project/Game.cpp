@@ -21,7 +21,8 @@ Game::Game() :
         m_window(sf::VideoMode{screen_Width, screen_Height, 32U}, "SHHHH...!"),
         m_exitGame(false), //when true game will exit
         m_spawnPosition(100.f, 100.f),
-        m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300))
+        m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300)),
+        m_player(m_spriteSheet)
 {
 
     if (!m_font.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
@@ -214,22 +215,6 @@ void Game::update(sf::Time t_deltaTime)
             collisions.update();
             cellIdFinder(m_player.getPosition());
             cameraMovement(t_deltaTime);
-            if (m_player.m_throw[0])
-            {
-                //m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition());
-                m_player.m_throw[0] = false;
-            }
-            if (m_player.m_throw[1])
-            {
-                //m_pickup[0]->throwPickUp(m_player.getRotation(), m_player.getPosition());
-                m_player.m_throw[1] = false;
-            }
-            for (int i = 0; i < 2; i++)
-            {
-                m_pickup[i]->move();
-            }
-            cameraMovement(t_deltaTime);
-
             dist = m_player.getDistance(m_enemy);
             volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
             m_enemy.changeSoundsVolume(volume);
@@ -398,6 +383,8 @@ void Game::setupEnvironment()
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
     }
+
+  
 }
 
 void Game::cameraMovement(sf::Time dt)
