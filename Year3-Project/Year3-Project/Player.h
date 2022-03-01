@@ -13,6 +13,8 @@
 #include "SoundHolder.h"
 #include "Utils.h"
 
+
+
 struct Direction {
     bool up = false;
     bool down = false;
@@ -61,18 +63,22 @@ private:
     sf::RectangleShape m_staminaBarLvl;
     sf::Vector2f m_staminaBarLvlSize{ 190,15 };
 
-    bool m_canRun = true;
-
-    sf::Texture m_bottleTexture;
-    sf::Sprite m_bottleSprite;
+    bool m_canRun = true;    
 
     sf::Texture m_powerTexture;
     sf::Sprite m_powerSprite;
 
     sf::Vector2f powerSpriteScale{0.1,0.1};
+
+    void bottleMovement();
+
+    float m_bottleRotate = 0;
+
+    float m_bottleSpeed = 20.0f;
 public:
 
-    Player();
+    Player(sf::Texture& t_texture);
+ 
     void loadSoundHolder(SoundHolder& soundHolder);
 
     void update(sf::Time deltaTime , sf::Vector2f t_position) ;
@@ -87,11 +93,14 @@ public:
     
     bool m_readyToTHrow[2] = { false,false };
 
-
     bool m_throw[2] = { false,false };
 
     void move(float dt);
 
+    sf::Texture m_bottleTexture;
+    sf::Sprite m_bottleSprite[2];
+
+    float bottleSpriteRadius();
 
 
 };

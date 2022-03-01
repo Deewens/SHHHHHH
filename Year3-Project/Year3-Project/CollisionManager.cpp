@@ -35,15 +35,38 @@ bool CollisionManager::check(Player& t_player, Pickup& t_pickup)
 void CollisionManager::check(Player& t_player, Environment& t_environment, int& t_counter)
 {
 	sf::FloatRect collisionRect = t_environment.getCollisionRect();
+
 	float playerSize = t_player.getRadius();
 	sf::Vector2f playerPos = t_player.getPosition();
+
+	float bottleSize = t_player.bottleSpriteRadius();
+	sf::Vector2f bottlePos0 = t_player.m_bottleSprite[0].getPosition();
+	sf::Vector2f bottlePos1 = t_player.m_bottleSprite[1].getPosition();
+
+
 	float closestX = clamp(playerPos.x, collisionRect.left, collisionRect.left + collisionRect.width);
 	float closestY = clamp(playerPos.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+
+	float closestXbottle0 = clamp(bottlePos0.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestYbottle0 = clamp(bottlePos0.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+	float closestXbottle1 = clamp(bottlePos1.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestYbottle1 = clamp(bottlePos1.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
 
 	float distanceX = playerPos.x - closestX;
 	float distanceY = playerPos.y - closestY;
 
+	float bottle0distanceX = bottlePos0.x - closestXbottle0;
+	float bottle0distanceY = bottlePos0.y - closestYbottle0;
+
+	float bottle1distanceX = bottlePos1.x - closestXbottle1;
+	float bottle1distanceY = bottlePos1.y - closestYbottle1;
+
 	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+
 	if(distanceSquared < (playerSize * playerSize))
 	{
 		if (t_environment.isImpassable())
