@@ -81,7 +81,7 @@ private:
 	std::vector<int> m_waypointsIdx;
 	std::vector<sf::RectangleShape> m_ucsDebugTiles;
 
-	Tile* m_MapTiles[mapSize];
+	std::array<Tile*, mapSize> m_MapTiles;
 	bool isDeleting = false;
 	bool isRotating = false;
 

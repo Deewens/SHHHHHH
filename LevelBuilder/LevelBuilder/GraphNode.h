@@ -52,6 +52,7 @@ public:
 	Arc* getArc(Node* node);
 	void addArc(Node* node, ArcType weight);
 	void removeArc(Node* node);
+	void removeAllArcs();
 
 	// -------------------------------------------------------
 	// Description: data stored in each node
@@ -149,6 +150,12 @@ void GraphNode<NodeType, ArcType>::removeArc(Node* node)
 			m_arcList.remove((*iter));
 		}
 	}
+}
+
+template<class NodeType, class ArcType>
+void GraphNode<NodeType, ArcType>::removeAllArcs()
+{
+	m_arcList.clear();
 }
 
 #include "GraphArc.h"
