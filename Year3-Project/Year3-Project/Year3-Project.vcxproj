@@ -55,6 +55,7 @@
     <ClCompile Include="Noise.h" />
     <ClCompile Include="Pickup.h" />
     <ClInclude Include="NodeData.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SoundHolder.h" />
     <ClInclude Include="SoundIdentifiers.h" />

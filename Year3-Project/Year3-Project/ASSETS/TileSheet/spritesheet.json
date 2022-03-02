@@ -1178,7 +1178,7 @@
 				"h": 85
 			},
 			"Type": "Indoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 
 		},
 		"floor_02.png": {
@@ -1189,7 +1189,7 @@
 				"h": 85
 			},
 			"Type": "Indoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 
 		},
 		"grass.png": {

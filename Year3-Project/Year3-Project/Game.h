@@ -57,7 +57,7 @@ private:
 
     void checkPickUps();
 
-    void throwPickUps();
+    
 
     sf::RenderWindow m_window; // main SFML window
 

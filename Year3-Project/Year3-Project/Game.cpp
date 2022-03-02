@@ -417,6 +417,7 @@ void Game::checkPickUps()
     }
 }
 
+
 void Game::loadSounds()
 {
     std::string path = "ASSETS/SOUNDS";

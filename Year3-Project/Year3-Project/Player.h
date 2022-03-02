@@ -12,6 +12,7 @@
 #include <math.h>
 #include "SoundHolder.h"
 #include "Utils.h"
+#include "ParticleSystem.h"
 
 
 
@@ -74,7 +75,8 @@ private:
 
     float m_bottleRotate = 0;
 
-    float m_bottleSpeed = 20.0f;
+    float m_bottleSpeed = 10.0f;
+
 public:
 
     Player(sf::Texture& t_texture);

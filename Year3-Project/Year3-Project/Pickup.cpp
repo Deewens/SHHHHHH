@@ -16,7 +16,7 @@ void Pickup::setUpSpriteBottle()
 	}
 
 	m_bottleSprite.setTexture(m_bottleTexture);
-	m_bottleSprite.setScale(0.025, 0.025);		
+	m_bottleSprite.setScale(0.05, 0.05);		
 
 	m_col = m_gridNum % (screen_Width / tileSize);
 	m_row= (m_gridNum - m_col) / (screen_Width / tileSize);

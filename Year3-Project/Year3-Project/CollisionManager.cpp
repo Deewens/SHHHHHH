@@ -66,6 +66,9 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 
 	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
+	float distanceSquared0 = (bottle0distanceX * bottle0distanceX) + (bottle0distanceY * bottle0distanceY);
+	float distanceSquared1 = (bottle1distanceX * bottle1distanceX) + (bottle1distanceY * bottle1distanceY);
+
 
 	if(distanceSquared < (playerSize * playerSize))
 	{
@@ -81,6 +84,26 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 			t_counter = 0;
 		}
 	}
+
+	if (distanceSquared0 < (bottleSize * bottleSize) && t_player.m_throw[0])
+	{
+		if (t_environment.isImpassable())
+		{
+			t_player.m_throw[0] = false;
+			m_bottleImpact[0].Initialise(t_player.m_bottleSprite[0].getPosition(), m_color);
+			m_impact[0] = true;
+
+		}		
+	}
+	if (distanceSquared1 < (bottleSize * bottleSize) && t_player.m_throw[1])
+	{
+		if (t_environment.isImpassable())
+		{
+			t_player.m_throw[1] = false;
+			m_bottleImpact[1].Initialise(t_player.m_bottleSprite[1].getPosition(), m_color);
+			m_impact[1] = true;
+		}
+	}
 }
 
 void CollisionManager::renderNoises(sf::RenderWindow& t_window)
@@ -92,14 +115,33 @@ void CollisionManager::renderNoises(sf::RenderWindow& t_window)
             t_noise.render(t_window);
         }
 	}
+
+	if (m_impact[0])
+	{
+		m_bottleImpact[0].Draw(t_window);
+	}
+	if (m_impact[1])
+	{
+		m_bottleImpact[1].Draw(t_window);
+	}
 }
 
 void CollisionManager::update()
 {
+	for (size_t i = 0; i < 2; i++)
+	{
+		m_bottleImpact[i].Update();
+	}
+
 	for (Noise& t_noise : m_noises)
 	{
 		t_noise.update();
 	}
+}
+
+sf::Vector2f CollisionManager::impactLocation()
+{
+	return m_impactLocation;
 }
 
 float CollisionManager::distanceBetween(sf::Vector2f t_a, sf::Vector2f t_b)

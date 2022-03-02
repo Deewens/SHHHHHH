@@ -121,7 +121,7 @@ Player::Player(sf::Texture& t_texture) :
         m_bottleSprite[i].setTexture(t_texture);
         m_bottleSprite[i].setTextureRect(sf::IntRect(x, y, width, height));
         m_bottleSprite[i].setScale(0.4, 0.4);
-        m_bottleSprite[i].setPosition(screen_Width / 2, screen_Height / 2);
+        //m_bottleSprite[i].setPosition(screen_Width / 2, screen_Height / 2);
         m_bottleSprite[i].setOrigin(width / 2, height / 2);
     }
     
@@ -310,6 +310,7 @@ void Player::processEvents(sf::Event event)
                 m_readyToTHrow[0] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
                 m_throw[0] = true;
+                m_bottleSprite[0].setPosition(m_sprite.getPosition());
                 return;
             }
             if (m_readyToTHrow[1] == true)
@@ -317,7 +318,7 @@ void Player::processEvents(sf::Event event)
                 m_readyToTHrow[1] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
                 m_throw[1] = true;
-
+                m_bottleSprite[1].setPosition(m_sprite.getPosition());
             }
 
             //m_throw = false;
@@ -493,11 +494,11 @@ void Player::loadSoundHolder(SoundHolder &soundHolder)
 
 float Player::bottleSpriteRadius()
 {
-    sf::Vector2f origin = m_bottleSprite[0].getOrigin();
-    float value = origin.x;
-    if (origin.y > value)
+    sf::Vector2f origin = m_bottleSprite->getOrigin();
+    float value = origin.x * m_bottleSprite->getScale().x;
+    if (origin.y * m_bottleSprite->getScale().y > value)
     {
-        value = origin.y;
+        value = origin.y * m_bottleSprite->getScale().y;
     }
     return value;
 }
