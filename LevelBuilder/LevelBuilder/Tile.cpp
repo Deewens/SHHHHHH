@@ -1,6 +1,6 @@
 #include "Tile.h"
 
-Tile::Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture) : m_tileNum(t_tileNum)
+Tile::Tile(Button* t_tile, int t_tileNum, sf::Texture& t_texture) : m_tileNum(t_tileNum), m_isPassable(t_tile->getPassable())
 {
 	m_objectSprite.setTexture(t_texture);
 	m_groundSprite.setTexture(t_texture);
@@ -123,4 +123,9 @@ std::string Tile::getSpecialJson(int t_gridIndex)
 			",\n			\"Type\": \"" + type + "\"\n		},";
 	}
 	return output;
+}
+
+bool Tile::isPassable()
+{
+	return m_isPassable;
 }

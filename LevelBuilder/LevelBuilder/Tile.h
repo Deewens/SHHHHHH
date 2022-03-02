@@ -10,6 +10,8 @@ public:
 	void rotate();
 	std::string getJsonInfo(int t_gridIndex);
 	std::string getSpecialJson(int t_gridIndex);
+
+	bool isPassable();
 private:
 	bool m_objectActive = false;
 	sf::Sprite m_objectSprite;
@@ -19,4 +21,5 @@ private:
 	std::string m_groundSpriteName;
 	int m_tileNum;
 	bool specialHere = false;
+	bool m_isPassable;
 };

@@ -438,12 +438,19 @@ void Game::manageClicks(sf::Event t_event)
 			}
 			else if (saveButton->isInside(worldPosClick))
 			{
+				std::cout << "Save button clicked" << std::endl;
+				m_graph.removeAllArcs();
+				m_graph.clearMarks();
+				m_ucsPaths.clear();
+				m_ucsDebugTiles.clear();
+				
+
 				for (int i = 0; i < mapSize; i++)
 				{
 					if (m_MapTiles[i] != nullptr)
 					{
 						auto node = m_graph.nodeIndex(i);
-						node->m_data.isPassable = selectedButton->getPassable();
+						node->m_data.isPassable = m_MapTiles[i]->isPassable();
 						m_graph.updateNode(node->m_data, i);
 					}
 				}
@@ -454,7 +461,8 @@ void Game::manageClicks(sf::Event t_event)
 					std::map<int, float> neighbours = m_graph.getNeighbours(i);
 					for (auto neighbour : neighbours)
 					{
-						m_graph.addArc(i, neighbour.first, neighbour.second);
+						bool ret = m_graph.addArc(i, neighbour.first, neighbour.second);
+						//std::cout << "return value: " << ret << std::endl;
 					}
 				}
 
@@ -467,34 +475,34 @@ void Game::manageClicks(sf::Event t_event)
 						{
 							std::vector<Node*> path;
 
-							m_graph.ucs(m_graph.nodeIndex(m_waypointsIdx[i]), m_graph.nodeIndex(m_waypointsIdx[j]), visit, path);
+							m_graph.ucs(m_graph.nodeIndex(m_waypointsIdx[i]), m_graph.nodeIndex(m_waypointsIdx[j]), path);
 							m_ucsPaths.insert({ std::to_string(m_graph.nodeIndex(m_waypointsIdx[i])->m_data.id) + "-" + std::to_string(m_graph.nodeIndex(m_waypointsIdx[j])->m_data.id), path });
 						}
 						m_graph.clearMarks();
 					}
 				}
 
-				//int rows = screen_Height / tileSize;
-				//int cols = screen_Width / tileSize;
+				int rows = screen_Height / tileSize;
+				int cols = screen_Width / tileSize;
 
-				//m_ucsDebugTiles.clear();
-				//for (auto& path : m_ucsPaths)
-				//{
-				//	for (auto& node : path.second)
-				//	{
-				//		sf::RectangleShape rect;
-				//		rect.setFillColor(sf::Color(255, 255, 0, 64));
-				//		rect.setSize(sf::Vector2f(tileSize, tileSize));
-				//		rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
-				//		float col = node->m_data.id % cols;
-				//		float row = (node->m_data.id - col) / cols;
-				//		col = (col * tileSize) + (tileSize / 2);
-				//		row = (row * tileSize) + (tileSize / 2);
-				//		rect.setPosition(sf::Vector2f(col, row));
-				//		m_ucsDebugTiles.push_back(rect);
-				//	}
-				//}
-				bool found = false;;
+				for (auto& path : m_ucsPaths)
+				{
+					for (auto& node : path.second)
+					{
+						sf::RectangleShape rect;
+						rect.setFillColor(sf::Color(255, 255, 0, 64));
+						rect.setSize(sf::Vector2f(tileSize, tileSize));
+						rect.setOrigin(sf::Vector2f(tileSize / 2, tileSize / 2));
+						float col = node->m_data.id % cols;
+						float row = (node->m_data.id - col) / cols;
+						col = (col * tileSize) + (tileSize / 2);
+						row = (row * tileSize) + (tileSize / 2);
+						rect.setPosition(sf::Vector2f(col, row));
+						m_ucsDebugTiles.push_back(rect);
+					}
+				}
+
+				bool found = false;
 
 				std::string output = "{\n	\"scene\": [";
 				for (int i = 0; i < mapSize; i++)
@@ -555,8 +563,8 @@ void Game::manageClicks(sf::Event t_event)
 				output += "\n}";
 
 				output += "\n}";
-				std::cout << output << std::endl;
-				std::ofstream MyFile("C://Users//gameuser//Desktop//Newfolder//project21-masih-adrien-and-eoin//Year3-Project//Year3-Project//level.json");
+				//std::cout << output << std::endl;
+				std::ofstream MyFile("../../Year3-Project/Year3-Project/level.json");
 
 				// Write to the file
 				MyFile << output;
@@ -570,7 +578,6 @@ void Game::manageClicks(sf::Event t_event)
 			worldPosClick.y >= 0 && worldPosClick.y <= screen_Height)
 		{
 			int tileNum = trunc(worldPosClick.x / tileSize) + (trunc(worldPosClick.y / tileSize) * (screen_Width / tileSize));
-			std::cout << tileNum << std::endl;
 			auto result = std::find_if(m_waypointsIdx.begin(), m_waypointsIdx.end(), [=](int val) {return val == tileNum; });
 
 			bool isUcsWaypoint = false;

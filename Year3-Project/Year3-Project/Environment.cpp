@@ -39,7 +39,6 @@ Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, in
     row = (row * tileSize) + (tileSize / 2);
     m_sprite.setPosition(sf::Vector2f(col, row));
 
-    std::cout << t_sprite << std::endl;
     int noise = frame["NoiseLevels"];
     switch (noise)
     {
