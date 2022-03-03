@@ -1,1079 +1,2105 @@
 {
-  "scene": [
-    {
-      "gridIndex": 25,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 26,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 27,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 28,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 29,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 30,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 31,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 32,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 33,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 45,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 46,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_01.png"
-    },
-    {
-      "gridIndex": 47,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_02.png"
-    },
-    {
-      "gridIndex": 48,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_02.png"
-    },
-    {
-      "gridIndex": 49,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_02.png"
-    },
-    {
-      "gridIndex": 50,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_02.png"
-    },
-    {
-      "gridIndex": 51,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_02.png"
-    },
-    {
-      "gridIndex": 52,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_03.png"
-    },
-    {
-      "gridIndex": 53,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 65,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 66,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 67,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 68,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 69,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 70,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 71,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 72,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 73,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 81,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 82,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 83,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 84,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 85,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 86,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 87,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 88,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 89,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 90,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 91,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 92,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 93,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 101,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 102,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_01.png"
-    },
-    {
-      "gridIndex": 103,
-      "impassable": true,
-      "rotation": 180.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 104,
-      "impassable": true,
-      "rotation": 180.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 105,
-      "impassable": true,
-      "rotation": 180.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 106,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_13.png"
-    },
-    {
-      "gridIndex": 107,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 108,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 109,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_10.png"
-    },
-    {
-      "gridIndex": 110,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 111,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 112,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_09.png"
-    },
-    {
-      "gridIndex": 113,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 121,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 122,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 123,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 124,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 125,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 126,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 127,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 128,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 129,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 129,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 130,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 131,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 132,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 133,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 141,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 142,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 143,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 144,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 145,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 146,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 147,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 148,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 149,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 150,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 151,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 152,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 153,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 161,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 162,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 163,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 164,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 165,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 166,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 167,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 168,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 169,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 170,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 171,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 172,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 173,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 181,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 182,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_04.png"
-    },
-    {
-      "gridIndex": 183,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 184,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 185,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 186,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 187,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 188,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_05.png"
-    },
-    {
-      "gridIndex": 189,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_06.png"
-    },
-    {
-      "gridIndex": 190,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 191,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 192,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 193,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 201,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 202,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_07.png"
-    },
-    {
-      "gridIndex": 203,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 204,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 205,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 206,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 207,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 208,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_08.png"
-    },
-    {
-      "gridIndex": 209,
-      "impassable": true,
-      "rotation": 0.000000,
-      "spriteName": "outside_water_09.png"
-    },
-    {
-      "gridIndex": 210,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 211,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 212,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 213,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 221,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 222,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 223,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 224,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 225,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 226,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 227,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 228,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 229,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 230,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 231,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 232,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    },
-    {
-      "gridIndex": 233,
-      "impassable": false,
-      "rotation": 0.000000,
-      "spriteName": "outside_grass_01.png"
-    }
-  ],
-  "special": [
-  ],
-  "pathfinding": {
-    "waypoints": [
-      65,
-      75,
-      150,
-      225,
-      235
-    ],
-    "paths": {
-      "150-225": [
-        150,
-        170,
-        190,
-        210,
-        229,
-        228,
-        227,
-        226,
-        225
-      ],
-      "150-235": [
-        150,
-        151,
-        172,
-        193,
-        214,
-        235
-      ],
-      "150-65": [
-        150,
-        151,
-        132,
-        113,
-        93,
-        73,
-        53,
-        32,
-        31,
-        30,
-        29,
-        28,
-        27,
-        26,
-        45,
-        65
-      ],
-      "150-75": [
-        150,
-        151,
-        132,
-        113,
-        94,
-        75
-      ],
-      "225-150": [
-        225,
-        226,
-        227,
-        228,
-        229,
-        210,
-        190,
-        170,
-        150
-      ],
-      "225-235": [
-        225,
-        226,
-        227,
-        228,
-        229,
-        230,
-        231,
-        232,
-        233,
-        234,
-        235
-      ],
-      "225-65": [
-        225,
-        224,
-        223,
-        222,
-        201,
-        181,
-        161,
-        141,
-        121,
-        101,
-        82,
-        83,
-        84,
-        65
-      ],
-      "225-75": [
-        225,
-        226,
-        227,
-        228,
-        229,
-        210,
-        190,
-        170,
-        151,
-        132,
-        113,
-        94,
-        75
-      ],
-      "235-150": [
-        235,
-        234,
-        213,
-        192,
-        171,
-        150
-      ],
-      "235-225": [
-        235,
-        234,
-        233,
-        232,
-        231,
-        230,
-        229,
-        228,
-        227,
-        226,
-        225
-      ],
-      "235-65": [
-        235,
-        215,
-        195,
-        175,
-        155,
-        135,
-        115,
-        95,
-        74,
-        53,
-        32,
-        31,
-        30,
-        29,
-        28,
-        27,
-        26,
-        45,
-        65
-      ],
-      "235-75": [
-        235,
-        215,
-        195,
-        175,
-        155,
-        135,
-        115,
-        95,
-        75
-      ],
-      "65-150": [
-        65,
-        45,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        53,
-        73,
-        93,
-        113,
-        132,
-        131,
-        150
-      ],
-      "65-225": [
-        65,
-        64,
-        63,
-        82,
-        101,
-        121,
-        141,
-        161,
-        181,
-        201,
-        222,
-        223,
-        224,
-        225
-      ],
-      "65-235": [
-        65,
-        45,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        53,
-        73,
-        93,
-        113,
-        133,
-        153,
-        173,
-        193,
-        214,
-        235
-      ],
-      "65-75": [
-        65,
-        45,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
-        32,
-        33,
-        54,
-        75
-      ],
-      "75-150": [
-        75,
-        94,
-        113,
-        132,
-        131,
-        150
-      ],
-      "75-225": [
-        75,
-        95,
-        115,
-        134,
-        153,
-        172,
-        191,
-        210,
-        229,
-        228,
-        227,
-        226,
-        225
-      ],
-      "75-235": [
-        75,
-        95,
-        115,
-        135,
-        155,
-        175,
-        195,
-        215,
-        235
-      ],
-      "75-65": [
-        75,
-        74,
-        53,
-        32,
-        31,
-        30,
-        29,
-        28,
-        27,
-        26,
-        45,
-        65
-      ]
-    }
-  }
+	"scene": [
+		{
+			"gridIndex": 0,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_02.png"
+		},
+		{
+			"gridIndex": 1,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 2,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 3,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 4,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 5,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 6,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 7,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 8,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 9,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 10,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 11,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 12,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 13,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 14,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 15,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 16,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 17,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 18,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_03.png"
+		},
+		{
+			"gridIndex": 19,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_04.png"
+		},
+		{
+			"gridIndex": 20,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 21,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 22,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 23,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 24,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 25,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 26,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 27,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 28,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 29,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 30,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 31,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 32,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 33,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 34,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 35,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 36,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 37,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_20.png"
+		},
+		{
+			"gridIndex": 38,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 39,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 40,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 41,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 42,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_06.png"
+		},
+		{
+			"gridIndex": 43,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 44,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 45,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 46,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 47,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 48,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 49,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 50,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 51,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 52,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 53,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 54,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 54,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_water_01.png"
+		},
+		{
+			"gridIndex": 55,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 55,
+			"impassable": true,
+			"rotation": 90.000000,
+			"spriteName": "outside_water_01.png"
+		},
+		{
+			"gridIndex": 56,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 57,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 58,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 59,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 60,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 61,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 62,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_11.png"
+		},
+		{
+			"gridIndex": 63,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 64,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 65,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 66,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 67,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 67,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_bush_01.png"
+		},
+		{
+			"gridIndex": 68,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 68,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_bush_02.png"
+		},
+		{
+			"gridIndex": 69,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 70,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_05.png"
+		},
+		{
+			"gridIndex": 71,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_09.png"
+		},
+		{
+			"gridIndex": 72,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_07.png"
+		},
+		{
+			"gridIndex": 73,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 74,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 74,
+			"impassable": true,
+			"rotation": 270.000000,
+			"spriteName": "outside_water_01.png"
+		},
+		{
+			"gridIndex": 75,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 75,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "outside_water_01.png"
+		},
+		{
+			"gridIndex": 76,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 77,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 78,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 79,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 80,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 81,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 82,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 83,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_11.png"
+		},
+		{
+			"gridIndex": 84,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 85,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 86,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 87,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 87,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_bush_03.png"
+		},
+		{
+			"gridIndex": 88,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 88,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_bush_04.png"
+		},
+		{
+			"gridIndex": 89,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_05.png"
+		},
+		{
+			"gridIndex": 90,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_06.png"
+		},
+		{
+			"gridIndex": 91,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 91,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_06.png"
+		},
+		{
+			"gridIndex": 92,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_03.png"
+		},
+		{
+			"gridIndex": 93,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_04.png"
+		},
+		{
+			"gridIndex": 94,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 95,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 96,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 97,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 98,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 99,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 100,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 101,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 102,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_01.png"
+		},
+		{
+			"gridIndex": 103,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 103,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_02.png"
+		},
+		{
+			"gridIndex": 104,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_stone_04.png"
+		},
+		{
+			"gridIndex": 105,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 106,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 107,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 108,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 109,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 110,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_06.png"
+		},
+		{
+			"gridIndex": 111,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_04.png"
+		},
+		{
+			"gridIndex": 111,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_07.png"
+		},
+		{
+			"gridIndex": 112,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_06.png"
+		},
+		{
+			"gridIndex": 113,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_04.png"
+		},
+		{
+			"gridIndex": 114,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 115,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 115,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_plant_02.png"
+		},
+		{
+			"gridIndex": 116,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 117,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 118,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 119,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 120,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 121,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 122,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_08.png"
+		},
+		{
+			"gridIndex": 123,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_06.png"
+		},
+		{
+			"gridIndex": 123,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_03.png"
+		},
+		{
+			"gridIndex": 124,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 125,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_11.png"
+		},
+		{
+			"gridIndex": 126,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 127,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_17.png"
+		},
+		{
+			"gridIndex": 128,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 129,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 130,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_15.png"
+		},
+		{
+			"gridIndex": 131,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 132,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 133,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 134,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 135,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 136,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 137,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 138,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 139,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 140,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 141,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 142,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 143,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_02.png"
+		},
+		{
+			"gridIndex": 143,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_04.png"
+		},
+		{
+			"gridIndex": 144,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 145,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 146,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 147,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_13.png"
+		},
+		{
+			"gridIndex": 148,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 149,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_02.png"
+		},
+		{
+			"gridIndex": 150,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 150,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_statue_01.png"
+		},
+		{
+			"gridIndex": 151,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 152,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_07.png"
+		},
+		{
+			"gridIndex": 153,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 154,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_15.png"
+		},
+		{
+			"gridIndex": 155,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 156,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 157,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 158,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 159,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 160,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 161,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 162,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_08.png"
+		},
+		{
+			"gridIndex": 163,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_stone_03.png"
+		},
+		{
+			"gridIndex": 163,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_rocks_05.png"
+		},
+		{
+			"gridIndex": 164,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 165,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_11.png"
+		},
+		{
+			"gridIndex": 166,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 167,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_05.png"
+		},
+		{
+			"gridIndex": 168,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 169,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 170,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 170,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_statue_02.png"
+		},
+		{
+			"gridIndex": 171,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 172,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 173,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 174,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_14.png"
+		},
+		{
+			"gridIndex": 175,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 176,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 177,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 178,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 179,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 180,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 181,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 182,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_stone_01.png"
+		},
+		{
+			"gridIndex": 183,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_stone_05.png"
+		},
+		{
+			"gridIndex": 184,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_stone_01.png"
+		},
+		{
+			"gridIndex": 185,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 186,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 187,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 188,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_05.png"
+		},
+		{
+			"gridIndex": 189,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_08.png"
+		},
+		{
+			"gridIndex": 190,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 191,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_07.png"
+		},
+		{
+			"gridIndex": 192,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 193,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_08.png"
+		},
+		{
+			"gridIndex": 194,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 194,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 195,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 195,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 196,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 197,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 197,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 198,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 198,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 199,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 200,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 201,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 202,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 203,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_12.png"
+		},
+		{
+			"gridIndex": 204,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_grass_09.png"
+		},
+		{
+			"gridIndex": 205,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 206,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 207,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 208,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 209,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_05.png"
+		},
+		{
+			"gridIndex": 210,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 211,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 212,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 213,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_06.png"
+		},
+		{
+			"gridIndex": 214,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 214,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 215,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 215,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "objects_house_0020_Layer-21.png"
+		},
+		{
+			"gridIndex": 216,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_02.png"
+		},
+		{
+			"gridIndex": 217,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 217,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "objects_house_0055_Layer-56.png"
+		},
+		{
+			"gridIndex": 218,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 218,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 219,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 220,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 221,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 222,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_11.png"
+		},
+		{
+			"gridIndex": 222,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_plant_03.png"
+		},
+		{
+			"gridIndex": 223,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 224,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 225,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 226,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 227,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 228,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 229,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 230,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_05.png"
+		},
+		{
+			"gridIndex": 231,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_01.png"
+		},
+		{
+			"gridIndex": 232,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_03.png"
+		},
+		{
+			"gridIndex": 233,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 234,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 234,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 235,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_02.png"
+		},
+		{
+			"gridIndex": 236,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 237,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_02.png"
+		},
+		{
+			"gridIndex": 238,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 238,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 239,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 240,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 241,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_18.png"
+		},
+		{
+			"gridIndex": 242,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_15.png"
+		},
+		{
+			"gridIndex": 243,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 244,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 245,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 246,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 247,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 248,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 249,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 249,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_tree_01.png"
+		},
+		{
+			"gridIndex": 250,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 250,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_tree_02.png"
+		},
+		{
+			"gridIndex": 251,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_02.png"
+		},
+		{
+			"gridIndex": 252,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_16.png"
+		},
+		{
+			"gridIndex": 253,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_17.png"
+		},
+		{
+			"gridIndex": 254,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_grass_10.png"
+		},
+		{
+			"gridIndex": 254,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 255,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 255,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "objects_house_0011_Layer-12.png"
+		},
+		{
+			"gridIndex": 256,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_02.png"
+		},
+		{
+			"gridIndex": 257,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "floor_01.png"
+		},
+		{
+			"gridIndex": 258,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 258,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 259,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 260,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_05.png"
+		},
+		{
+			"gridIndex": 261,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 262,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 263,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 264,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 265,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 266,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 267,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 268,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 269,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 269,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_tree_03.png"
+		},
+		{
+			"gridIndex": 270,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 270,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_tree_04.png"
+		},
+		{
+			"gridIndex": 271,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 272,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 273,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 274,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 274,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 275,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 275,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 276,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 276,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 277,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_14.png"
+		},
+		{
+			"gridIndex": 277,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 278,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_16.png"
+		},
+		{
+			"gridIndex": 278,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "walls_0041_Layer-42.png"
+		},
+		{
+			"gridIndex": 279,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_07.png"
+		},
+		{
+			"gridIndex": 280,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_10.png"
+		},
+		{
+			"gridIndex": 281,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 282,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 283,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 284,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 285,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 286,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 287,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 288,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 289,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 290,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 291,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 292,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 293,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 294,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 295,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 296,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 297,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 298,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_11.png"
+		},
+		{
+			"gridIndex": 299,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_specialGrass_12.png"
+		}
+],
+"special": [
+		{
+			"gridIndex": 42,
+			"rotation": 0.000000,
+			"Type": "Player"
+		},
+		{
+			"gridIndex": 44,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 76,
+			"rotation": 90.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 207,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 257,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 58,
+			"rotation": 0.000000,
+			"Type": "Goal"
+		}
+],
+"pathfinding": {	"waypoints": [
+65, 
+75, 
+150, 
+225, 
+235],
+"paths": {"150-225": [
+225],"150-235": [
+235],"150-65": [
+65],"150-75": [
+75],"225-150": [
+150],"225-235": [
+235],"225-65": [
+65],"225-75": [
+75],"235-150": [
+150],"235-225": [
+225],"235-65": [
+65],"235-75": [
+75],"65-150": [
+150],"65-225": [
+225],"65-235": [
+235],"65-75": [
+75],"75-150": [
+150],"75-225": [
+225],"75-235": [
+235],"75-65": [
+65]
+}
+}
 }

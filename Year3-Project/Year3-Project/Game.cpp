@@ -367,7 +367,7 @@ void Game::setupEnvironment()
         m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
                               screen_Width / tileSize, el["rotation"]);
 
-    std::ifstream levelData("level2.json");
+    std::ifstream levelData("level1.json");
     json environmentJson;
     environmentJson = json::parse(levelData);
     scene = environmentJson["scene"];

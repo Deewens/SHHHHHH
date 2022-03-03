@@ -106,18 +106,7 @@ std::string Tile::getSpecialJson(int t_gridIndex, bool& found)
 	{
 		found = true;
 		std::string type = "error";
-		if (m_objectSpriteName == "Idle_1.png")
-		{
-			type = "Player";
-		}
-		else if(m_objectSpriteName == "Bottle.png")
-		{
-			type = "Pickup";
-		}
-		else if (m_objectSpriteName == "green_zombie_idling_1.png")
-		{
-			type = "Zombie";
-		}
+		type = m_objectSpriteName;
 		output += "\n		{\n			\"gridIndex\": " + std::to_string(t_gridIndex) +
 			//",\n			\"impassable\": true" +
 			",\n			\"rotation\": " + std::to_string(m_objectSprite.getRotation()) +
