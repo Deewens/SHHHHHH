@@ -124,6 +124,10 @@ private:
 
     bool debugActive = false;
     sf::VertexArray m_path;
+
+    std::vector<int> calculateAStarPath(int startNodeIdx, int goalNodeIdx);
+
+    void AStarMovement(int startNodeIdx, int goalNodeIdx);
 };
 
 

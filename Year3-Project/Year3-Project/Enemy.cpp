@@ -280,8 +280,7 @@ void Enemy::pathFinding()
 
     int enemyPos = Utils::vectorToNode(getPosition());
     int targetPos = Utils::vectorToNode(m_moveTo);
-/*    std::cout << "Enemy pos: " << enemyPos << std::endl;
-    std::cout << "Target pos: " << targetPos << std::endl;*/
+
     if (enemyPos == targetPos) // When it reaches the target position, we stop the movement
     {
         m_isMoving = false;
@@ -392,45 +391,48 @@ void Enemy::moveTo(sf::Vector2f goal)
     int enemyCell = Utils::vectorToNode(getPosition());
     int goalCell = Utils::vectorToNode(goal);
 
-    std::vector<int> finalPath;
-    if (distance < 10)
+    if (distance < 200)
     {
-        // Use A* directly to reach the goal
+        std::cout << "DEBUG: A small path is being generated..." << std::endl;
+        AStarMovement(enemyCell, goalCell);
     }
     else
     {
+        std::vector<int> finalPath;
+        std::cout << "DEBUG: A long path is being generated..." << std::endl;
+
         // Get the waypoint closer to the zombie
         int closestWaypoint = m_grid.getClosestWaypoint(getPosition());
 
-        std::vector<Node*> startToFirstWPPath;
-        m_grid.clearMarks();
-        m_grid.aStar(m_grid.nodeIndex(enemyCell), m_grid.nodeIndex(closestWaypoint), startToFirstWPPath);
-        std::reverse(startToFirstWPPath.begin(), startToFirstWPPath.end());
-
+        std::vector<int> startToFirstWPPath = calculateAStarPath(enemyCell, closestWaypoint);
         for (auto& node : startToFirstWPPath)
-            finalPath.push_back(node->m_data.id);
+            finalPath.push_back(node);
 
         // When the waypoint is reached, get the waypoint closer to the goal
         int closestWaypointFromGoal = m_grid.getClosestWaypoint(goal);
 
+        std::cout << "Closest waypoint: " <<  closestWaypoint << std::endl;
+        std::cout << "Closest waypoint from goal: " <<  closestWaypointFromGoal << std::endl;
+
         // Using the two found waypoints, search for one of the pre-computed UCS Path
         auto ucsPath = m_grid.getUCSPath(closestWaypoint, closestWaypointFromGoal);
-        if (ucsPath.empty()) return;
+        if (ucsPath.empty()) // Use only AStar if no UCS path has been found
+        {
+            AStarMovement(enemyCell, goalCell);
+            return;
+        }
 
         finalPath.insert(finalPath.end(), ucsPath.begin(), ucsPath.end()); // Append the UCS path to the final path
 
+        std::vector<int> SecondWPToGoalPath = calculateAStarPath(closestWaypointFromGoal, goalCell);
 
-        std::vector<Node*> SecondWPToGoalPath;
-        m_grid.clearMarks();
-        m_grid.aStar(m_grid.nodeIndex(closestWaypointFromGoal), m_grid.nodeIndex(goalCell), SecondWPToGoalPath);
-
-        std::reverse(SecondWPToGoalPath.begin(), SecondWPToGoalPath.end());
         for (auto& node : SecondWPToGoalPath)
-            finalPath.push_back(node->m_data.id);
+            finalPath.push_back(node);
 
-        drawPath(finalPath);
         auto last = std::unique(finalPath.begin(), finalPath.end());
         finalPath.erase(last, finalPath.end());
+
+        drawPath(finalPath);
 
         std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
         std::cout << std::endl;
@@ -452,6 +454,42 @@ void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         target.draw(m_path);
     }
+}
+
+/**
+ *
+ *
+ * @param startNodeIdx
+ * @param goalNodeIdx
+ * @return the list of node in the
+ */
+std::vector<int> Enemy::calculateAStarPath(int startNodeIdx, int goalNodeIdx)
+{
+    std::vector<Node*> path;
+    m_grid.clearMarks();
+    m_grid.aStar(m_grid.nodeIndex(startNodeIdx), m_grid.nodeIndex(goalNodeIdx), path);
+    std::reverse(path.begin(), path.end());
+
+    std::vector<int> pathIdx;
+
+    pathIdx.reserve(path.size());
+    for (auto& node : path)
+        pathIdx.push_back(node->m_data.id);
+
+    return pathIdx;
+}
+
+void Enemy::AStarMovement(int startNodeIdx, int goalNodeIdx)
+{
+    std::vector<int> finalPath;
+
+    finalPath = calculateAStarPath(startNodeIdx, goalNodeIdx);
+
+    std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
+    std::cout << std::endl;
+
+    drawPath(finalPath);
+    m_ucsPath = finalPath;
 }
 
 
