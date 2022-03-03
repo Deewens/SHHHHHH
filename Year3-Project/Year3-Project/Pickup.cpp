@@ -1,22 +1,30 @@
 #include "Pickup.h"
 
 
-Pickup::Pickup(int t_gridNum)
+Pickup::Pickup(int t_gridNum, sf::Texture& t_texture)
 {	
 	m_gridNum = t_gridNum;
-   setUpSpriteBottle();	
+   setUpSpriteBottle(t_texture);	
 }
 
-void Pickup::setUpSpriteBottle()
+void Pickup::setUpSpriteBottle(sf::Texture& t_texture)
 {
-	if (!m_bottleTexture.loadFromFile("ASSETS\\IMAGES\\Bottle.png"))
-	{
-		// simple error message if previous call fails
-		std::cout << "problem loading backpack texture" << std::endl;
-	}
+	std::ifstream spriteData("ASSETS/TileSheet/spritesheet.json");
+	nlohmann::json json;
+	spriteData >> json;
 
-	m_bottleSprite.setTexture(m_bottleTexture);
-	m_bottleSprite.setScale(0.05, 0.05);		
+	nlohmann::json frame = json["frames"]["Bottle.png"]["frame"];
+	
+	int x = frame["x"];
+	int y = frame["y"];
+	float width = frame["w"];
+	float height = frame["h"];
+
+	m_bottleSprite.setTexture(t_texture);
+	//m_bottleSprite.setScale(0.05, 0.05);
+	m_bottleSprite.setTextureRect(sf::IntRect(x, y, width, height));
+	m_bottleSprite.setOrigin(width / 2, height / 2);
+	m_bottleSprite.setScale(20 / width, 50 / height);
 
 	m_col = m_gridNum % (screen_Width / tileSize);
 	m_row= (m_gridNum - m_col) / (screen_Width / tileSize);
@@ -25,6 +33,7 @@ void Pickup::setUpSpriteBottle()
 	m_position.y = (m_row * tileSize) + (tileSize / 2);
 
 	m_bottleSprite.setPosition(m_position);
+	
 }
 
 

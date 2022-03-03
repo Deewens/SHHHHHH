@@ -37,13 +37,12 @@ Game::Game() :
 
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
-    m_enemy.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
 
 
     setupEnvironment();
-    setUpPickUps();
+    setUpSpecial();
 
     //m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 4, screen_Height / 4));
     m_grid.debug();
@@ -57,8 +56,6 @@ Game::Game() :
             m_grid.addArc(i, neighbour.first, neighbour.second);
         }
     }
-
-    m_enemy.loadGrid(m_grid);
 }
 
 /// <summary>
@@ -124,7 +121,10 @@ void Game::processEvents()
                 if (newEvent.key.code == sf::Keyboard::D)
                 {
                     m_grid.toggleDraw();
-                    m_enemy.changeDebug();
+                    for (Enemy* m_enemy : m_zombies)
+                    {
+                        m_enemy->changeDebug();
+                    }
                 }
             }
         } else if (GameState::PAUSE == m_gameState)
@@ -179,8 +179,10 @@ void Game::processKeys(sf::Event t_event)
             std::cout << node->m_data.id << " ";
 
         std::cout << std::endl;*/
-
-        m_enemy.moveTo(m_player.getPosition());
+        for (Enemy* m_enemy : m_zombies)
+        {
+            m_enemy->moveTo(m_player.getPosition());
+        }
     }
 }
 
@@ -209,15 +211,18 @@ void Game::update(sf::Time t_deltaTime)
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime , m_worldView.getCenter());
-            m_enemy.update(t_deltaTime);
+            for (Enemy* m_enemy : m_zombies)
+            {
+                m_enemy->update(t_deltaTime);
+                dist = m_player.getDistance(*m_enemy);
+                volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
+                m_enemy->changeSoundsVolume(volume);
+            }
             checkCollisions();
             checkPickUps();
             collisions.update();
             cellIdFinder(m_player.getPosition());
             cameraMovement(t_deltaTime);
-            dist = m_player.getDistance(m_enemy);
-            volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
-            m_enemy.changeSoundsVolume(volume);
         }
             break;
         case GameState::EXIT:
@@ -280,8 +285,11 @@ void Game::render()
             }
 
             m_window.draw(m_player);
-            m_window.draw(m_enemy);
-            m_enemy.renderVisionCone(m_window);
+            for (Enemy* m_enemy : m_zombies)
+            {
+                m_window.draw(*m_enemy);
+                m_enemy->renderVisionCone(m_window);
+            }
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_hud.render(m_window);
@@ -313,8 +321,11 @@ void Game::render()
 
             m_window.draw(m_player);
             //m_window.draw(m_pickup);
-            m_window.draw(m_enemy);
-            m_enemy.renderVisionCone(m_window);
+            for (Enemy* m_enemy : m_zombies)
+            {
+                m_window.draw(*m_enemy);
+                m_enemy->renderVisionCone(m_window);
+            }
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_window.draw(m_gameMenu);
@@ -327,7 +338,10 @@ void Game::render()
 
 void Game::checkCollisions()
 {
-    collisions.check(m_player, m_enemy);
+    for (Enemy* m_enemy : m_zombies)
+    {
+        collisions.check(m_player, *m_enemy);
+    }
 
     if (collisions.check(m_player, *m_pickup[0]))
     {
@@ -367,7 +381,7 @@ void Game::setupEnvironment()
         m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
                               screen_Width / tileSize, el["rotation"]);
 
-    std::ifstream levelData("level.json");
+    std::ifstream levelData("level1.json");
     json environmentJson;
     environmentJson = json::parse(levelData);
     scene = environmentJson["scene"];
@@ -399,10 +413,42 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
     return m_id;
 }
 
-void Game::setUpPickUps()
+void Game::setUpSpecial()
 {
-    m_pickup[0] = new Pickup(22);
-    m_pickup[1] = new Pickup(43);
+    std::ifstream levelData("level1.json");
+    json specialJSON;
+    specialJSON = json::parse(levelData);
+    json keyElements = specialJSON["special"];
+    int pickupCounter = 0;
+
+    // set defaults
+    m_pickup[0] = new Pickup(22, m_spriteSheet);
+    m_pickup[1] = new Pickup(43, m_spriteSheet);
+
+    for (auto& el : keyElements)
+    {
+        if (el["Type"] == "Player")
+        {
+            m_player.setupNewPlayer(el["gridIndex"], el["rotation"]);
+        }
+        else if (el["Type"] == "Zombie")
+        {
+            m_zombies.emplace_back(new Enemy(el["gridIndex"], el["rotation"], m_grid, m_sounds));
+        }
+        else if (el["Type"] == "Pickup")
+        {
+            m_pickup[pickupCounter] = new Pickup(el["gridIndex"], m_spriteSheet);
+            pickupCounter++;
+            if (pickupCounter > 1)
+            {
+                pickupCounter = 0;
+            }
+        }
+        else if (el["Type"] == "Goal")
+        {
+
+        }
+    }
 }
 
 void Game::checkPickUps()

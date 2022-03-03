@@ -143,7 +143,7 @@ Graph<NodeType, ArcType>::Graph(int t_rows, int t_cols, int maxNodes) : m_rows(t
     }
 
 
-    std::ifstream levelData("level.json");
+    std::ifstream levelData("level1.json");
     nlohmann::json levelJson = nlohmann::json::parse(levelData);
     auto pathfinding = levelJson["pathfinding"];
 

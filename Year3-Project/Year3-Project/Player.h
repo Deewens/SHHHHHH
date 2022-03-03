@@ -123,5 +123,7 @@ public:
     sf::Vector2f m_newPos{};
 
     sf::Vector2f m_offSet{};
+
+    void setupNewPlayer(int t_gridIndex, int t_rotation);
 };
 
