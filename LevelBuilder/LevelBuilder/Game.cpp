@@ -518,6 +518,7 @@ void Game::manageClicks(sf::Event t_event)
 					output.pop_back();
 					found = false;
 				}
+				
 				output += "\n],";
 				output += "\n\"special\": [";;
 				
@@ -525,15 +526,13 @@ void Game::manageClicks(sf::Event t_event)
 				{
 					if (m_MapTiles[i] != nullptr)
 					{
-						output += m_MapTiles[i]->getSpecialJson(i);
-						found = true;
+						output += m_MapTiles[i]->getSpecialJson(i, found);
 					}
 				}
 				if (found)
 				{
-					output.pop_back();
+					output.pop_back();	
 				}
-				
 				output += "\n],";
 				
 
@@ -563,8 +562,24 @@ void Game::manageClicks(sf::Event t_event)
 				output += "\n}";
 
 				output += "\n}";
-				//std::cout << output << std::endl;
-				std::ofstream MyFile("../../Year3-Project/Year3-Project/level.json");
+				
+				std::string location = "../../Year3-Project/Year3-Project/level";
+				std::string fileType = ".json";
+				bool spaceFound = false;
+				int level = 0;
+
+				while (!spaceFound)
+				{
+					level++;
+					std::ifstream f(location + std::to_string(level) + fileType);
+					if (!f.good())
+					{
+						spaceFound = true;
+					}
+				}
+				
+
+				std::ofstream MyFile(location + std::to_string(level) + fileType);
 
 				// Write to the file
 				MyFile << output;

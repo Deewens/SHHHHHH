@@ -9,7 +9,7 @@ public:
 	void render(sf::RenderWindow& t_window);
 	void rotate();
 	std::string getJsonInfo(int t_gridIndex);
-	std::string getSpecialJson(int t_gridIndex);
+	std::string getSpecialJson(int t_gridIndex, bool& found);
 
 	bool isPassable();
 private:

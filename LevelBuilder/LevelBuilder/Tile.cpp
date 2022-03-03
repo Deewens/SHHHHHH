@@ -98,12 +98,13 @@ std::string Tile::getJsonInfo(int t_gridIndex)
 	return output;
 }
 
-std::string Tile::getSpecialJson(int t_gridIndex)
+std::string Tile::getSpecialJson(int t_gridIndex, bool& found)
 {
 	
 	std::string output = "";
 	if (specialHere)
 	{
+		found = true;
 		std::string type = "error";
 		if (m_objectSpriteName == "Idle_1.png")
 		{
