@@ -268,6 +268,8 @@ void Game::setupOptions()
 	int counter[NUM_CATEGORIES] = { 0 };
 	Button* temp;
 	sf::IntRect tempRect;
+
+
 	for (nlohmann::json::iterator it = frames.begin(); it != frames.end(); it++)
 	{
 		auto& el = it.value();
@@ -291,7 +293,7 @@ void Game::setupOptions()
 			{
 				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
 				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
-					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], "Pickup", true);
 				tileOptions[0].push_back(temp);
 				counter[0]++;
 			}
@@ -299,7 +301,7 @@ void Game::setupOptions()
 			{
 				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
 				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
-					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], "Player", true);
 				tileOptions[0].push_back(temp);
 				counter[0]++;
 				playerAdded = true;
@@ -308,10 +310,18 @@ void Game::setupOptions()
 			{
 				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
 				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
-					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], it.key(), true);
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], "Zombie", true);
 				tileOptions[0].push_back(temp);
 				counter[0]++;
 				zombieAdded = true;
+			}
+			else if (category == "UI" && it.key() == "BackPack.png")
+			{
+				tempRect = sf::IntRect(el["frame"]["x"], el["frame"]["y"], el["frame"]["w"], el["frame"]["h"]);
+				temp = new Button(sf::Vector2f(screen_Width + (menu_Width / 2 - 75), tileListTop + (200 * counter[0])),
+					sf::Vector2f(150, 150), m_texture, tempRect, passable[0], "Goal", true);
+				tileOptions[0].push_back(temp);
+				counter[0]++;
 			}
 		}
 	}
@@ -518,6 +528,7 @@ void Game::manageClicks(sf::Event t_event)
 					output.pop_back();
 					found = false;
 				}
+				
 				output += "\n],";
 				output += "\n\"special\": [";;
 				
@@ -525,15 +536,13 @@ void Game::manageClicks(sf::Event t_event)
 				{
 					if (m_MapTiles[i] != nullptr)
 					{
-						output += m_MapTiles[i]->getSpecialJson(i);
-						found = true;
+						output += m_MapTiles[i]->getSpecialJson(i, found);
 					}
 				}
 				if (found)
 				{
-					output.pop_back();
+					output.pop_back();	
 				}
-				
 				output += "\n],";
 				
 
@@ -563,8 +572,23 @@ void Game::manageClicks(sf::Event t_event)
 				output += "\n}";
 
 				output += "\n}";
-				//std::cout << output << std::endl;
-				std::ofstream MyFile("../../Year3-Project/Year3-Project/level.json");
+				
+				std::string location = "../../Year3-Project/Year3-Project/level";
+				std::string fileType = ".json";
+				bool spaceFound = false;
+				int level = 0;
+
+				while (!spaceFound)
+				{
+					level++;
+					std::ifstream f(location + std::to_string(level) + fileType);
+					if (!f.good())
+					{
+						spaceFound = true;
+					}
+				}
+				
+				std::ofstream MyFile(location + std::to_string(level) + fileType);
 
 				// Write to the file
 				MyFile << output;

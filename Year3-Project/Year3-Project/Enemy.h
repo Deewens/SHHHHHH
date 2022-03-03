@@ -19,17 +19,13 @@ typedef GraphNode<NodeData, float> Node;
 class Enemy : public Character
 {
 public:
-    Enemy();
+    Enemy(int t_gridIndex, int rotation, Graph<NodeData, float>& t_grid, SoundHolder& soundHolder);
 
     void update(sf::Time deltaTime);
 
     void renderVisionCone(sf::RenderWindow& t_window);
 
     void visionConeCollisionCheck(sf::Vector2f t_playerLocation);
-
-    void loadSoundHolder(SoundHolder& soundHolder);
-
-    void loadGrid(Graph<NodeData, float>& t_grid);
 
     void changeSoundsVolume(float newVolume);
 
@@ -64,6 +60,8 @@ private:
     void pathFinding();
     
     void drawPath(std::vector<int>);
+    
+    void loadSoundHolder(SoundHolder& soundHolder);
 
 private:
 
@@ -119,7 +117,7 @@ private:
     bool m_isMoving = false;
     sf::Vector2f m_moveTo;
 
-    Graph<NodeData, float> m_grid;
+    Graph<NodeData, float>& m_grid;
     std::vector<int> m_ucsPath;
 
     bool debugActive = false;

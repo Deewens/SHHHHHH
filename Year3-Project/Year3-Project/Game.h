@@ -53,7 +53,7 @@ private:
 
     int cellIdFinder(sf::Vector2f t_targetLocation);
 
-    void setUpPickUps();
+    void setUpSpecial();
 
     void checkPickUps();
 
@@ -63,10 +63,8 @@ private:
 
 	bool m_exitGame; // control exiting game
 
-    sf::View m_hudView;
     sf::View m_worldView; // Take care of the view (camera)
 
-    sf::View m_menuView;
 
     sf::FloatRect m_worldBounds;
     sf::Vector2f m_spawnPosition;
@@ -75,7 +73,7 @@ private:
 
     // Game entities
     Player m_player;
-    Enemy m_enemy;
+    std::vector<Enemy*> m_zombies;
 
     Pickup *m_pickup[2];
 
