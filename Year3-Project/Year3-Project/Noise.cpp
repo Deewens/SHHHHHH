@@ -1,5 +1,7 @@
 #include "Noise.h"
 
+#include <iostream>
+
 Noise::Noise()
 {
 	m_strength = 0;
@@ -8,9 +10,15 @@ Noise::Noise()
     m_noiseDone = false;
 }
 
-void Noise::init(NoiseLevels t_noiseLevel, sf::Vector2f t_location)
+void Noise::init(NoiseLevels t_playerNoiseLevel, NoiseLevels t_envNoiseLevel, sf::Vector2f t_location)
 {
-	m_noiseLevel = t_noiseLevel;
+    int result = static_cast<int>(t_envNoiseLevel) * static_cast<int>(t_playerNoiseLevel);
+    std::cout << "Player noise level: " << static_cast<int>(t_playerNoiseLevel) << std::endl;
+    std::cout << "Surface noise level: " << static_cast<int>(t_envNoiseLevel) << std::endl;
+    std::cout << "Result: " << result << std::endl;
+
+    if (result > static_cast<int>(NoiseLevels::RED)) m_noiseLevel = NoiseLevels::RED;
+    else m_noiseLevel = static_cast<NoiseLevels>(result);
 
 	switch (m_noiseLevel)
 	{
@@ -18,16 +26,16 @@ void Noise::init(NoiseLevels t_noiseLevel, sf::Vector2f t_location)
 		m_maxStrength = 0;
 		break;
 	case NoiseLevels::GREEN:
-		m_noiseShape.setOutlineColor(sf::Color::Green);
-		m_maxStrength = 50;
-		break;
-	case NoiseLevels::YELLOW:
-		m_noiseShape.setOutlineColor(sf::Color::Yellow);
+		m_noiseShape.setOutlineColor(sf::Color(0, 255, 0, 128));
 		m_maxStrength = 100;
 		break;
+	case NoiseLevels::YELLOW:
+		m_noiseShape.setOutlineColor(sf::Color(255, 255, 0, 128));
+		m_maxStrength = 200;
+		break;
 	case NoiseLevels::RED:
-		m_noiseShape.setOutlineColor(sf::Color::Red);
-		m_maxStrength = 150;
+		m_noiseShape.setOutlineColor(sf::Color(255, 0, 0, 128));
+		m_maxStrength = 300;
 	default:
 		break;
 	}
@@ -60,4 +68,14 @@ void Noise::update()
 bool Noise::isNoiseDone()
 {
     return this->m_noiseDone;
+}
+
+sf::CircleShape Noise::getShape()
+{
+    return m_noiseShape;
+}
+
+sf::Vector2f Noise::getPosition()
+{
+    return m_noiseShape.getPosition();
 }

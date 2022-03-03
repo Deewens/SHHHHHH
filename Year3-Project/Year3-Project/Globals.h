@@ -43,9 +43,7 @@ const float CROUCHING_SPEED = 25.f;
 const float WALKING_SPEED = 75.f;
 const float RUNNING_SPEED = 150.f;
 
-enum class NoiseLevels {WHITE, GREEN , YELLOW , RED};
-
-static NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
+enum class NoiseLevels {WHITE = 0, GREEN = 1, YELLOW = 2, RED = 3};
 
 const float PI = 3.14159265359;
 

@@ -13,7 +13,7 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	t_enemy.visionConeCollisionCheck(t_player.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
-		std::cout << "collide";
+		//std::cout << "collide";
 	}
 }
 
@@ -79,7 +79,7 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 		else if(t_counter > 60)
 		{
 			Noise newNoise;
-			newNoise.init(t_environment.getNoise(), playerPos);
+			newNoise.init( t_player.getNoiseLevel(), t_environment.getNoise(), playerPos);
 			m_noises.push_back(newNoise);
 			t_counter = 0;
 		}
@@ -104,6 +104,25 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 			m_impact[1] = true;
 		}
 	}
+}
+
+
+bool CollisionManager::checkNoiseCollision(Enemy& t_enemy)
+{
+    // Check the collision of the enemy between the "Noise shape"
+    for (Noise& noise : m_noises)
+    {
+        float collisionDistance = noise.getShape().getRadius() + t_enemy.getRadius();
+        float distanceAway = distanceBetween(noise.getShape().getPosition(), t_enemy.getPosition());
+
+        if (collisionDistance >= distanceAway)
+        {
+            t_enemy.moveTo(noise.getPosition());
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void CollisionManager::renderNoises(sf::RenderWindow& t_window)
@@ -137,6 +156,11 @@ void CollisionManager::update()
 	{
 		t_noise.update();
 	}
+
+    // Will check if the noise is done, thus, will erase it from the vector
+	m_noises.erase(std::remove_if(m_noises.begin(), m_noises.end(), [](Noise& noise) {
+		return noise.isNoiseDone();
+	}), m_noises.end());
 }
 
 sf::Vector2f CollisionManager::impactLocation()

@@ -71,6 +71,8 @@ private:
 
     sf::Vector2f powerSpriteScale{0.1,0.1};
 
+    NoiseLevels m_noiseLevel = NoiseLevels::WHITE;
+
     void bottleMovement();
 
     float m_bottleRotate = 0;
@@ -104,6 +106,6 @@ public:
 
     float bottleSpriteRadius();
 
-
+    NoiseLevels getNoiseLevel();
 };
 

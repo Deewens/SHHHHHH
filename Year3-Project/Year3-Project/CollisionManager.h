@@ -16,6 +16,7 @@ public:
 	void check(Player& t_player, Enemy& t_enemy);
 	bool check(Player& t_player, Pickup& t_pickup);
 	void check(Player& t_player, Environment& t_environment, int& t_counter);
+    bool checkNoiseCollision(Enemy& t_enemy);
 
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();

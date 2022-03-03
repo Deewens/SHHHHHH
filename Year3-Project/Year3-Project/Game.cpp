@@ -165,22 +165,22 @@ void Game::processKeys(sf::Event t_event)
 
     if (sf::Keyboard::F2 == t_event.key.code)
     {
-        int waypoint = m_grid.getClosestWaypoint(m_player.getPosition());
+/*        int enemy = m_grid.getClosestWaypoint(m_enemy.getPosition());
         int player = Utils::vectorToNode(m_player.getPosition());
 
-//        std::cout << "Player node: " << player << std::endl;
-//        std::cout << "Closest waypoint: " << waypoint << std::endl;
+        std::cout << "Player node: " << player << std::endl;
+        std::cout << "Enemy node: " << enemy << std::endl;
 
-/*        std::vector<Node*> path;
+        std::vector<Node*> path;
         m_grid.clearMarks();
-        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(waypoint), path);*/
+        m_grid.aStar(m_grid.nodeIndex(player), m_grid.nodeIndex(enemy), path);
 
-/*        for (auto& node : path)
+        for (auto& node : path)
             std::cout << node->m_data.id << " ";
 
         std::cout << std::endl;*/
 
-        m_enemy.moveTo(m_player.getPosition());
+        //m_enemy.moveTo(m_player.getPosition());
     }
 }
 
@@ -347,6 +347,8 @@ void Game::checkCollisions()
     {
          collisions.check(m_player, object, noiseCounter);
     }
+
+    collisions.checkNoiseCollision(m_enemy);
 }
 
 

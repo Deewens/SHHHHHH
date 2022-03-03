@@ -177,43 +177,6 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
 
     sf::Time elapsed = clock.getElapsedTime();
 
-    // Update animations
-    switch (m_playerState)
-    {
-        case PlayerMovingState::RUNNING:
-            m_runningAnim.update(deltaTime.asSeconds());
-
-            if (elapsed.asSeconds() >= 0.25)
-            {
-                Utils::playRandomSound(footstepRunSounds);
-                clock.restart();
-            }
-            break;
-        case PlayerMovingState::WALKING:
-            m_walkingAnim.update(deltaTime.asSeconds());
-
-            if (elapsed.asSeconds() >= 0.5)
-            {
-                Utils::playRandomSound(footstepWalkSounds);
-                clock.restart();
-            }
-
-            break;
-        case PlayerMovingState::CROUCHING:
-            m_crouchingAnim.update(deltaTime.asSeconds());
-
-            if (elapsed.asSeconds() >= 2.5)
-            {
-                Utils::playRandomSound(footstepSneakSounds);
-                clock.restart();
-            }
-            break;
-        case PlayerMovingState::IDLE:
-            m_idlingAnim.update(deltaTime.asSeconds());
-            break;
-        default:
-            m_idlingAnim.update(deltaTime.asSeconds());
-    }
     boundryCheck();
 
     if (m_powerBarVisible)
@@ -263,6 +226,52 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     m_bottleRotate += 10;
     bottleMovement();
 
+    // Update according to the current player movement state
+    switch (m_playerState)
+    {
+        case PlayerMovingState::RUNNING:
+            m_runningAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 0.25)
+            {
+                Utils::playRandomSound(footstepRunSounds);
+                clock.restart();
+            }
+
+            m_noiseLevel = NoiseLevels::YELLOW;
+            break;
+        case PlayerMovingState::WALKING:
+            m_walkingAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 0.5)
+            {
+                Utils::playRandomSound(footstepWalkSounds);
+                clock.restart();
+            }
+
+            m_noiseLevel = NoiseLevels::GREEN;
+            break;
+        case PlayerMovingState::CROUCHING:
+            m_crouchingAnim.update(deltaTime.asSeconds());
+
+            if (elapsed.asSeconds() >= 2.5)
+            {
+                Utils::playRandomSound(footstepSneakSounds);
+                clock.restart();
+            }
+
+            m_noiseLevel = NoiseLevels::WHITE;
+            break;
+        case PlayerMovingState::IDLE:
+            m_idlingAnim.update(deltaTime.asSeconds());
+
+            m_noiseLevel = NoiseLevels::WHITE;
+            break;
+        default:
+            m_idlingAnim.update(deltaTime.asSeconds());
+
+            m_noiseLevel = NoiseLevels::WHITE;
+    }
 }
 
 
@@ -501,6 +510,11 @@ float Player::bottleSpriteRadius()
         value = origin.y * m_bottleSprite->getScale().y;
     }
     return value;
+}
+
+NoiseLevels Player::getNoiseLevel()
+{
+    return m_noiseLevel;
 }
 
 
