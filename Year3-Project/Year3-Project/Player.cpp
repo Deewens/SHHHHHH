@@ -503,5 +503,30 @@ float Player::bottleSpriteRadius()
     return value;
 }
 
+void Player::setupNewPlayer(int t_gridIndex, int t_rotation)
+{
+    float col = t_gridIndex % (screen_Width / tileSize);
+    float row = (t_gridIndex - col) / (screen_Width / tileSize);
+    col = (col * tileSize) + (tileSize / 2);
+    row = (row * tileSize) + (tileSize / 2);
+
+    m_sprite.setPosition(col, row);
+    switch (t_rotation)
+    {
+    case 0:
+        Player::setDirection(EAST);
+        break;
+    case 90:
+        Player::setDirection(SOUTH);
+        break;
+    case 180:
+        Player::setDirection(WEST);
+        break;
+    case 270:
+        Player::setDirection(NORTH);
+        break;
+    }
+}
+
 
 

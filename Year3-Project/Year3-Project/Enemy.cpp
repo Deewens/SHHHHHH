@@ -1,12 +1,28 @@
 #include "Enemy.h"
 
-Enemy::Enemy() :
-        m_runningAnim(m_sprite),
-        m_idlingAnim(m_sprite),
-        m_grid(300)
+Enemy::Enemy(int t_gridIndex, int rotation, Graph<NodeData, float>& t_grid, SoundHolder& soundHolder):
+    m_runningAnim(m_sprite),
+    m_idlingAnim(m_sprite),
+    m_grid(t_grid)
 {
     Enemy::loadTexture();
-    Enemy::setDirection(EAST);
+    switch (rotation)
+    {
+    case 0:
+        Enemy::setDirection(EAST);
+        break;
+    case 90:
+        Enemy::setDirection(SOUTH);
+        break;
+    case 180:
+        Enemy::setDirection(WEST);
+        break;
+    case 270:
+        Enemy::setDirection(NORTH);
+        break;
+    }
+
+    loadSoundHolder(soundHolder);
 
     std::ifstream spriteSheetData("ASSETS/IMAGES/sprite_sheets/data/characters_sprite_sheet.json");
     nlohmann::json json;
@@ -27,7 +43,7 @@ Enemy::Enemy() :
             int width = frame["w"];
             int height = frame["h"];
 
-            m_idlingAnim.addFrame({sf::IntRect(x, y, width, height)});
+            m_idlingAnim.addFrame({ sf::IntRect(x, y, width, height) });
         }
         else if (runningFound != std::string::npos)
         {
@@ -37,18 +53,24 @@ Enemy::Enemy() :
             int width = frame["w"];
             int height = frame["h"];
 
-            m_runningAnim.addFrame({sf::IntRect(x, y, width, height), 0.05});
+            m_runningAnim.addFrame({ sf::IntRect(x, y, width, height), 0.05 });
         }
     }
 
-    m_sprite.setOrigin(30, 30);
-    m_sprite.setPosition(303, 203);
+    float col = t_gridIndex % (screen_Width / tileSize);
+    float row = (t_gridIndex - col) / (screen_Width / tileSize);
+    col = (col * tileSize) + (tileSize / 2);
+    row = (row * tileSize) + (tileSize / 2);
+
+    m_sprite.setOrigin(tileSize / 2, tileSize / 2);
+    m_sprite.setPosition(col, row);
 
     m_EnemyState = EnemyState::SEEK;
 
     m_searchCounter = 500;
 
     m_path.setPrimitiveType(sf::LineStrip);
+
 }
 
 void Enemy::setDirection(int t_direction)
@@ -379,11 +401,6 @@ void Enemy::changeSoundsVolume(float newVolume)
 void Enemy::move(sf::Vector2f& offset)
 {
     m_sprite.move(offset);
-}
-
-void Enemy::loadGrid(Graph<NodeData, float>& t_grid)
-{
-    m_grid = t_grid;
 }
 
 void Enemy::moveTo(sf::Vector2f goal)

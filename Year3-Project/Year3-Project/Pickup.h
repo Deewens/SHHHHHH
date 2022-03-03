@@ -2,13 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Globals.h"
+#include "json.hpp"
+#include <fstream>
 
 class Pickup : public sf::Drawable
 {
 public:
-	Pickup(int t_gridNum);
+	Pickup(int t_gridNum, sf::Texture& t_texture);
 
-	void setUpSpriteBottle();
+	void setUpSpriteBottle(sf::Texture& t_texture);
 
 	sf::Sprite getSprite();
 
