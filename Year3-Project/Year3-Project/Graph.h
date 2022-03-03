@@ -106,7 +106,7 @@ public:
 
     bool operator()(Node* n1, Node* n2)
     {
-        return n1->m_data.cost + n1->m_data.heuristic > n2->m_data.cost + n2->m_data.heuristic;
+        return static_cast<int>(n1->m_data.g + n1->m_data.h) > static_cast<int>(n2->m_data.g + n2->m_data.h);
     }
 };
 template<typename NodeType, typename ArcType>
@@ -519,9 +519,9 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
     {
         if (direction == 4) continue; // Skip 4, this is ourself.
 
-        int cost = 10;
+        int cost = 60; // Because width/height of a cell is 60px
         if (direction == 0 || direction == 2 || direction == 6 || direction == 8) // Diagonal
-            cost = 14;
+            cost = 85; // Because diagonal of a square is sqrt(width or height) so here its sqrt(60)
 
         int n_row = row + ((direction % 3) - 1); // Neighbor row
         int n_col = col + ((direction / 3) - 1); // Neighbor column
@@ -543,63 +543,63 @@ std::map<int, float> Graph<NodeType, ArcType>::getNeighbours(int node)
 template<class NodeType, class ArcType>
 void Graph<NodeType, ArcType>::aStar(Node* start, Node* dest, std::vector<Node*>& path)
 {
-    std::priority_queue < Node*, std::vector<Node*>, Comparer<NodeType, ArcType>> nodeQueue;
+    if (start == nullptr || dest == nullptr) return;
 
-    //float heuristic = sqrt((dest->m_data.m_x - start->m_data.m_x)(dest->m_data.m_x - start->m_data.m_x) + (dest->m_data.m_y - start->m_data.m_y)(dest->m_data.m_y - start->m_data.m_y));
+    std::priority_queue<Node *, std::vector<Node *>, Comparer<NodeType, ArcType>> pq;
 
-    for (Node* node : m_nodes)
+    for (int i = 0; i < m_nodes.size(); i++)
     {
-        node->setPrevious(nullptr);
-        node->m_data.cost = std::numeric_limits<int>::max();
-        float heu = abs((dest->m_data.position.x - node->m_data.position.x) * (dest->m_data.position.x - node->m_data.position.x) + (dest->m_data.position.y - node->m_data.position.y) * (dest->m_data.position.y - node->m_data.position.y));
-        node->m_data.heuristic = sqrt(heu);
-    }
+        m_nodes.at(i)->setPrevious(nullptr);
+        int x = m_nodes.at(i)->m_data.position.x;
+        int y = m_nodes.at(i)->m_data.position.y;
+        int goalX = dest->m_data.position.x;
+        int goalY = dest->m_data.position.y;
 
-    start->m_data.cost = 0;
-    nodeQueue.push(start);
+        m_nodes.at(i)->m_data.h = sqrt(pow(goalX - x, 2) + pow(goalY - y, 2)); // Calculate euclidean distance to goal
+        m_nodes.at(i)->m_data.g = std::numeric_limits<int>::max() - 10000;
+    }
+    start->m_data.g = 0;
+    start->m_data.h = 0;
+
+    pq.push(start);
     start->setMarked(true);
 
-    while (!nodeQueue.empty() && nodeQueue.top() != dest)
+    while (!pq.empty() && pq.top() != dest)
     {
-        auto iter = nodeQueue.top()->arcList().begin();
-        auto endIter = nodeQueue.top()->arcList().end();
+        auto it = pq.top()->arcList().begin();
+        auto endIt = pq.top()->arcList().end();
 
-
-        for (; iter != endIter; iter++)
+        for (; it != endIt; it++)
         {
-            Node* child = iter->node();
-
-            if (child->previous() != nodeQueue.top())
+            //Arc *arc = it;
+            Node *child = it->node();
+            if (child != pq.top()->previous())
             {
-                int weight = iter->weight();
-                int childCost = nodeQueue.top()->m_data.cost + weight;
+                int arcWeight = it->weight();
+                int distToChild = arcWeight + pq.top()->m_data.g;
 
-                if (childCost < child->m_data.cost)
+                if (distToChild < child->m_data.g)
                 {
-                    child->m_data.cost = childCost;
-                    child->setPrevious(nodeQueue.top());
-                    //nodeQueue.push((*iter).node());
+                    child->m_data.g = distToChild;
+                    child->setPrevious(pq.top());
                 }
+
                 if (!child->marked())
                 {
-                    nodeQueue.push(child);
+                    pq.push(child);
                     child->setMarked(true);
                 }
             }
         }
-        nodeQueue.pop();
+        pq.pop();
     }
 
-    Node* temp = dest;
+    Node *temp = dest;
 
-    for (; temp->previous() != nullptr;)
+    for (; temp != nullptr; temp = temp->previous())
     {
         path.push_back(temp);
-        //std::cout << temp->m_data.id << " PathCost : " << temp->m_data.cost << " Hueristics : " << temp->m_data.heuristic << std::endl;
-        temp = temp->previous();
     }
-    path.push_back(temp);
-    //std::cout << temp->m_data.id << std::endl;
 
 }
 

@@ -1,5 +1,4 @@
 #pragma once
-#include  <string>
 
 // ---------------------------------------------------------------------
 //  Name:           NodeData
@@ -11,6 +10,6 @@ struct NodeData
 	int id = 0;
 	sf::Vector2f position;
 	bool isPassable = true;
-	int cost;
-    int heuristic;
+	int g{}; // Cost so far to reach the goal
+    int h{}; // Estimated cost to the goal from n
 };
