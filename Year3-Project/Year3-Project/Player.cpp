@@ -9,26 +9,30 @@ void Player::unitVector(sf::Vector2f &t_vector, float dt)
 void Player::bottleMovement()
 {
 
+
     if (m_throw[0]==true)
     {
+        m_readyToTHrow[0] = false;
         sf::Vector2f position = m_bottleSprite[0].getPosition();
 
-        sf::Vector2f newPos(position.x + std::cos(PI/ 180.0f* m_sprite.getRotation()) * m_bottleSpeed,
-            position.y + std::sin(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed);
+        m_newPos = { position.x + std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
+            position.y + std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
         m_bottleSprite[0].setRotation(m_bottleRotate);
-        m_bottleSprite[0].setPosition(newPos.x, newPos.y);
+        m_bottleSprite[0].setPosition(m_newPos.x, m_newPos.y);
+        m_bottleAirTime[0] -= 0.1;
 
     }
 
     if (m_throw[1] == true)
     {
+        m_readyToTHrow[1] = false;
         sf::Vector2f position = m_bottleSprite[1].getPosition();
 
-        sf::Vector2f newPos(position.x + std::cos(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed,
-            position.y + std::sin(PI / 180.0f * m_sprite.getRotation()) * m_bottleSpeed);
+        m_newPos = { position.x + std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
+            position.y + std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
         m_bottleSprite[1].setRotation(m_bottleRotate);
-        m_bottleSprite[1].setPosition(newPos.x, newPos.y);
-
+        m_bottleSprite[1].setPosition(m_newPos.x, m_newPos.y);
+        m_bottleAirTime[1] -= 0.1;
     }
 }
 
@@ -121,7 +125,6 @@ Player::Player(sf::Texture& t_texture) :
         m_bottleSprite[i].setTexture(t_texture);
         m_bottleSprite[i].setTextureRect(sf::IntRect(x, y, width, height));
         m_bottleSprite[i].setScale(0.4, 0.4);
-        //m_bottleSprite[i].setPosition(screen_Width / 2, screen_Height / 2);
         m_bottleSprite[i].setOrigin(width / 2, height / 2);
     }
     
@@ -169,8 +172,11 @@ void Player::setDirection(int t_direction)
     }
 }
 
-void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
+void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
 {
+
+    m_offSet = {screen_Width / 2 - m_sprite.getPosition().x, screen_Height / 2 - m_sprite.getPosition().y};
+
     move(deltaTime.asSeconds());
     if (m_velocity.x == 0 && m_velocity.y == 0)
         m_playerState = PlayerMovingState::IDLE;
@@ -219,7 +225,8 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     if (m_powerBarVisible)
     {
         m_endThrowingAnim.update(deltaTime.asSeconds());
-        m_powerSprite.setPosition(screen_Width/2, screen_Height/2);
+        m_powerSprite.setPosition(screen_Width/2, screen_Height/2);        
+        m_heading = m_sprite.getRotation();
         m_powerSprite.setRotation(m_sprite.getRotation());
     } 
 
@@ -261,8 +268,33 @@ void Player::update(sf::Time deltaTime ,sf::Vector2f t_position )
     }  
 
     m_bottleRotate += 10;
-    bottleMovement();
+    
+       bottleMovement();
+    
+       if (m_bottleAirTime[0] <= 0)
+       {
+           m_bottleBreak[0] = true;
+       }
+       if (m_bottleAirTime[1] <= 0)
+       {
+           m_bottleBreak[1] = true;
+       }
+       if (m_bottleBreak[0]==true)
+       {
+           m_throw[0] = false;
+           m_Impact[0].Initialise(m_bottleSprite[0].getPosition(), m_color);
+       }
+       if (m_bottleBreak[1] == true)
+       {
+           m_throw[1] = false;
+           m_Impact[1].Initialise(m_bottleSprite[1].getPosition(), m_color);
+       }
 
+       for (int i = 0; i < 2; i++)
+       {
+           m_Impact[i].Update();
+       }
+       
 }
 
 
@@ -302,28 +334,23 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::RControl)
         {
             m_powerBarVisible = false;
-
-
-
             if (m_readyToTHrow[0] == true)
             {
                 m_readyToTHrow[0] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
+                m_bottleSprite[0].setPosition(m_sprite.getPosition()+m_offSet);
                 m_throw[0] = true;
-                m_bottleSprite[0].setPosition(m_sprite.getPosition());
                 return;
             }
             if (m_readyToTHrow[1] == true)
             {
                 m_readyToTHrow[1] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
+                m_bottleSprite[1].setPosition(m_sprite.getPosition()+m_offSet);
                 m_throw[1] = true;
-                m_bottleSprite[1].setPosition(m_sprite.getPosition());
             }
-
             //m_throw = false;
-            m_endThrowingAnim.reset();
-            
+            m_endThrowingAnim.reset();            
         }
     }
 }
@@ -336,23 +363,31 @@ void Player::awayFrom(sf::Vector2f t_obstacle)
 }
 
 void Player::renderPowerBar(sf::RenderWindow &t_window)
-{
-    
-    if (m_throw[0]==true)
-    {
-        t_window.draw(m_bottleSprite[0]);
-    }
-    if (m_throw[1] == true)
-    {
-        t_window.draw(m_bottleSprite[1]);
-    }
-    
-   
+{   
     if (m_powerBarVisible)
     {     
         t_window.draw(m_powerSprite);
     }
-
+    if (m_throw[0] == true)
+    {
+        m_readyToTHrow[0] = false;
+        t_window.draw(m_bottleSprite[0]);
+    }
+    if (m_throw[1] == true)
+    {
+        m_readyToTHrow[1] = false;
+        t_window.draw(m_bottleSprite[1]);
+    }
+    if (m_bottleBreak[0]&& m_spalshTime[0]>=0)
+    {
+        m_Impact[0].Draw(t_window);
+        m_spalshTime[0]--;
+    }
+    if (m_bottleBreak[1]&& m_spalshTime[1]>= 0)
+    {
+        m_Impact[1].Draw(t_window);
+        m_spalshTime[1]--;
+    }
     t_window.draw(m_staminaBar);
     t_window.draw(m_staminaBarLvl);
 
@@ -383,6 +418,9 @@ void Player::move(float dt)
         if (powerSpriteScale.x < 0.5)
         {
             powerSpriteScale += sf::Vector2f(0.01, 0.01);
+            m_bottleAirTime[0] = powerSpriteScale.x * 8;
+            m_bottleAirTime[1] = powerSpriteScale.x * 8;
+
         }
         m_powerSprite.setScale(powerSpriteScale);
     }
@@ -502,6 +540,3 @@ float Player::bottleSpriteRadius()
     }
     return value;
 }
-
-
-

@@ -77,6 +77,18 @@ private:
 
     float m_bottleSpeed = 10.0f;
 
+    float m_bottleAirTime[2] = {1,1 };
+
+    sf::Vector2f m_worldCenter{};
+
+    float m_heading{};
+
+    ParticleSystem m_Impact[2];
+
+
+    sf::Color m_color = sf::Color(210, 105, 30);
+
+
 public:
 
     Player(sf::Texture& t_texture);
@@ -104,6 +116,12 @@ public:
 
     float bottleSpriteRadius();
 
+    float m_spalshTime[2] = { 80,80 };
 
+    bool m_bottleBreak[2] = { false,false };
+
+    sf::Vector2f m_newPos{};
+
+    sf::Vector2f m_offSet{};
 };
 
