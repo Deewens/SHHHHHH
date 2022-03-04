@@ -231,7 +231,7 @@ void Game::update(sf::Time t_deltaTime)
         case GameState::HELP:
             m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
-        case GameState::LVLLOADER:
+        case GameState::LVLBUILDER:
             m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::PAUSE:
@@ -241,6 +241,12 @@ void Game::update(sf::Time t_deltaTime)
             m_gameMenu.GameBackButton2.Init(sf::Vector2f(m_worldView.getCenter().x -170, m_worldView.getCenter().y), m_font, sf::Vector2f(350, 40), sf::Vector2f(0, 0));
 
             //m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            break;
+        case GameState::WIN:
+            break;
+        case GameState::LOSE:
+            m_window.setView(m_worldView);
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         default:
             break;
@@ -304,7 +310,7 @@ void Game::render()
         case GameState::HELP:
             m_window.draw(m_gameMenu);
             break;
-        case GameState::LVLLOADER:
+        case GameState::LVLBUILDER:
             m_window.draw(m_gameMenu);
             break;
         case GameState::PAUSE:
@@ -328,6 +334,12 @@ void Game::render()
             }
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
+            m_window.draw(m_gameMenu);
+            break;
+        case GameState::WIN:
+            m_window.draw(m_gameMenu);
+            break;
+        case GameState::LOSE:
             m_window.draw(m_gameMenu);
             break;
         default:

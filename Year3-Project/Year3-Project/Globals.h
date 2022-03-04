@@ -31,7 +31,7 @@ const int MENU_OPTION_NUMBER = 4;
 
 enum class ButtonState { READY, OVER, DOWN };
 
-enum class GameState { MENU, GAMEPLAY, EXIT, HELP,PAUSE,LVLLOADER};
+enum class GameState { MENU, GAMEPLAY, EXIT, HELP,PAUSE,LVLBUILDER, WIN, LOSE};
 
 extern GameState m_gameState;
 

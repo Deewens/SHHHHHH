@@ -78,7 +78,7 @@ public:
             }   
             if (MainMenuButtons[2].pressed == true)
             {
-                m_gameState = GameState::LVLLOADER;
+                m_gameState = GameState::LVLBUILDER;
 
             }
             if (MainMenuButtons[3].pressed == true)
@@ -110,7 +110,7 @@ public:
                 m_gameState = GameState::MENU;
             }
         }
-        else if (m_gameState == GameState::LVLLOADER)
+        else if (m_gameState == GameState::LVLBUILDER)
         {
             GameBackButton.Update(mousePos);
             if (GameBackButton.pressed == true)
@@ -118,7 +118,14 @@ public:
                 m_gameState = GameState::MENU;
             }
         }
-
+        else if (m_gameState == GameState::LOSE)
+        {
+            GameBackButton.Update(mousePos);
+            if (GameBackButton1.pressed == true)
+            {
+                m_gameState = GameState::MENU;
+            }
+        }
     }   
 
 private:

@@ -85,7 +85,6 @@ private:
     Menu m_gameMenu;
     HUD m_hud;
 
-
     sf::Texture m_spriteSheet;
 
     sf::Font m_font;
