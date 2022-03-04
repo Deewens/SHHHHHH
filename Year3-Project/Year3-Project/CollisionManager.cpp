@@ -79,7 +79,7 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 		else if(t_counter > 60)
 		{
 			Noise newNoise;
-			newNoise.init(t_environment.getNoise(), playerPos);
+			newNoise.init( t_player.getNoiseLevel(), t_environment.getNoise(), playerPos);
 			m_noises.push_back(newNoise);
 			t_counter = 0;
 		}
@@ -89,21 +89,41 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	{
 		if (t_environment.isImpassable())
 		{
-			t_player.m_throw[0] = false;
-			m_bottleImpact[0].Initialise(t_player.m_bottleSprite[0].getPosition(), m_color);
-			m_impact[0] = true;
-
+			//t_player.m_bottleBreak[0] = true;
+			std::cout << "playerlocation : " <<t_player.getPosition().x<<" , "<<t_player.getPosition().y << std::endl;
+			std::cout << "bottlelocation : " << bottlePos0.x<< " , " << bottlePos0.y << std::endl;
+			std::cout << "++++++++++++++++++++++++++++" << std::endl;
 		}		
 	}
 	if (distanceSquared1 < (bottleSize * bottleSize) && t_player.m_throw[1])
 	{
 		if (t_environment.isImpassable())
 		{
-			t_player.m_throw[1] = false;
-			m_bottleImpact[1].Initialise(t_player.m_bottleSprite[1].getPosition(), m_color);
-			m_impact[1] = true;
+			//t_player.m_bottleBreak[1] = true;
+			std::cout << "playerlocation" << t_player.getPosition().x << "," << t_player.getPosition().y << std::endl;
+			std::cout << "bottlelocation" << bottlePos1.x << " , " << bottlePos1.y << std::endl;
+			std::cout << "++++++++++++++++++++++++++++" << std::endl;
 		}
 	}
+}
+
+
+bool CollisionManager::checkNoiseCollision(Enemy& t_enemy)
+{
+    // Check the collision of the enemy between the "Noise shape"
+    for (Noise& noise : m_noises)
+    {
+        float collisionDistance = noise.getShape().getRadius() + t_enemy.getRadius();
+        float distanceAway = distanceBetween(noise.getShape().getPosition(), t_enemy.getPosition());
+
+        if (collisionDistance >= distanceAway)
+        {
+            t_enemy.moveTo(noise.getPosition());
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void CollisionManager::renderNoises(sf::RenderWindow& t_window)
@@ -137,6 +157,11 @@ void CollisionManager::update()
 	{
 		t_noise.update();
 	}
+
+    // Will check if the noise is done, thus, will erase it from the vector
+	m_noises.erase(std::remove_if(m_noises.begin(), m_noises.end(), [](Noise& noise) {
+		return noise.isNoiseDone();
+	}), m_noises.end());
 }
 
 sf::Vector2f CollisionManager::impactLocation()

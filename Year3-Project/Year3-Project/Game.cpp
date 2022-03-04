@@ -44,7 +44,7 @@ Game::Game() :
     setupEnvironment();
     setUpSpecial();
 
-    m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 2, screen_Height / 2));
+    //m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 4, screen_Height / 4));
     m_grid.debug();
 
     // Fill the graph with all the arcs using the neighbours algorithm
@@ -165,11 +165,11 @@ void Game::processKeys(sf::Event t_event)
 
     if (sf::Keyboard::F2 == t_event.key.code)
     {
-        int waypoint = m_grid.getClosestWaypoint(m_player.getPosition());
+/*        int enemy = m_grid.getClosestWaypoint(m_enemy.getPosition());
         int player = Utils::vectorToNode(m_player.getPosition());
 
-//        std::cout << "Player node: " << player << std::endl;
-//        std::cout << "Closest waypoint: " << waypoint << std::endl;
+        std::cout << "Player node: " << player << std::endl;
+        std::cout << "Enemy node: " << enemy << std::endl;
 
 /*        std::vector<Node*> path;
         m_grid.clearMarks();
@@ -179,10 +179,10 @@ void Game::processKeys(sf::Event t_event)
             std::cout << node->m_data.id << " ";
 
         std::cout << std::endl;*/
-        for (Enemy* m_enemy : m_zombies)
+/*        for (Enemy* m_enemy : m_zombies)
         {
             m_enemy->moveTo(m_player.getPosition());
-        }
+        }*/
     }
 }
 
@@ -353,6 +353,7 @@ void Game::checkCollisions()
     for (Enemy* m_enemy : m_zombies)
     {
         collisions.check(m_player, *m_enemy);
+        collisions.checkNoiseCollision(*m_enemy);
     }
 
     if (collisions.check(m_player, *m_pickup[0]))
@@ -475,7 +476,6 @@ void Game::checkPickUps()
     }
 }
 
-
 void Game::loadSounds()
 {
     std::string path = "ASSETS/SOUNDS";
@@ -502,7 +502,3 @@ void Game::loadSounds()
     m_sounds.load(Sounds::Footsteps_Sneak_Sand3, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand3M.wav");
     m_sounds.load(Sounds::Footsteps_Sneak_Sand4, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand4M.wav");
 }
-
-
-
-

@@ -63,10 +63,8 @@ private:
 
 	bool m_exitGame; // control exiting game
 
-    sf::View m_hudView;
     sf::View m_worldView; // Take care of the view (camera)
 
-    sf::View m_menuView;
 
     sf::FloatRect m_worldBounds;
     sf::Vector2f m_spawnPosition;
