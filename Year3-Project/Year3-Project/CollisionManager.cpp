@@ -40,8 +40,8 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	sf::Vector2f playerPos = t_player.getPosition();
 
 	float bottleSize = t_player.bottleSpriteRadius();
-	sf::Vector2f bottlePos0 = t_player.m_bottleSprite[0].getPosition();
-	sf::Vector2f bottlePos1 = t_player.m_bottleSprite[1].getPosition();
+	sf::Vector2f bottlePos0 = t_player.bottleLocation();
+	sf::Vector2f bottlePos1 = t_player.bottleLocation();
 
 
 	float closestX = clamp(playerPos.x, collisionRect.left, collisionRect.left + collisionRect.width);
@@ -89,20 +89,20 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	{
 		if (t_environment.isImpassable())
 		{
-			//t_player.m_bottleBreak[0] = true;
-			std::cout << "playerlocation : " <<t_player.getPosition().x<<" , "<<t_player.getPosition().y << std::endl;
+			t_player.m_bottleBreak[0] = true;
+			/*std::cout << "playerlocation : " <<t_player.getPosition().x<<" , "<<t_player.getPosition().y << std::endl;
 			std::cout << "bottlelocation : " << bottlePos0.x<< " , " << bottlePos0.y << std::endl;
-			std::cout << "++++++++++++++++++++++++++++" << std::endl;
+			std::cout << "++++++++++++++++++++++++++++" << std::endl;*/
 		}		
 	}
 	if (distanceSquared1 < (bottleSize * bottleSize) && t_player.m_throw[1])
 	{
 		if (t_environment.isImpassable())
 		{
-			//t_player.m_bottleBreak[1] = true;
-			std::cout << "playerlocation" << t_player.getPosition().x << "," << t_player.getPosition().y << std::endl;
+			t_player.m_bottleBreak[1] = true;
+			/*std::cout << "playerlocation" << t_player.getPosition().x << "," << t_player.getPosition().y << std::endl;
 			std::cout << "bottlelocation" << bottlePos1.x << " , " << bottlePos1.y << std::endl;
-			std::cout << "++++++++++++++++++++++++++++" << std::endl;
+			std::cout << "++++++++++++++++++++++++++++" << std::endl;*/
 		}
 	}
 }
