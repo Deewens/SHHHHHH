@@ -351,6 +351,12 @@ void Game::render()
 
 void Game::checkCollisions()
 {
+    bool beatLevel = false;
+    collisions.check(m_player, *m_goal, beatLevel);
+    if (beatLevel)
+    {
+        loadNewLevel();
+    }
     for (Enemy* m_enemy : m_zombies)
     {
         collisions.check(m_player, *m_enemy);

@@ -113,7 +113,7 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	}
 }
 
-void CollisionManager::check(Player& t_player, Goal& t_goal)
+void CollisionManager::check(Player& t_player, Goal& t_goal, bool& isFound)
 {
 	sf::FloatRect collisionRect = t_goal.getCollisionRect();
 	float playerSize = t_player.getRadius();
@@ -130,6 +130,7 @@ void CollisionManager::check(Player& t_player, Goal& t_goal)
 	if (distanceSquared < (playerSize * playerSize))
 	{
 		m_gameState = GameState::WINLEVEL;
+		isFound = true;
 	}
 }
 
