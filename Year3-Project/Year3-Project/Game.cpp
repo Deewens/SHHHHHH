@@ -40,7 +40,6 @@ Game::Game() :
 
     m_gameMenu.Init();
 
-
     setupEnvironment();
     setUpSpecial();
 
@@ -192,6 +191,7 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
+    
     if (m_exitGame)
     {
         m_window.close();
@@ -230,10 +230,7 @@ void Game::update(sf::Time t_deltaTime)
             break;
         case GameState::HELP:
             m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
-            break;
-        case GameState::LVLBUILDER:
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
-            break;
+            break;        
         case GameState::PAUSE:
             m_window.setView(m_worldView);
             m_gameMenu.m_pauseRect.setPosition(m_worldView.getCenter());
@@ -242,9 +239,15 @@ void Game::update(sf::Time t_deltaTime)
 
             //m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
-        case GameState::WIN:
+        case GameState::WINLEVEL:
+            m_window.setView(m_worldView);
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::LOSE:
+            m_window.setView(m_worldView);
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            break;
+        case GameState::WINGAME:
             m_window.setView(m_worldView);
             m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
@@ -309,10 +312,7 @@ void Game::render()
             break;
         case GameState::HELP:
             m_window.draw(m_gameMenu);
-            break;
-        case GameState::LVLBUILDER:
-            m_window.draw(m_gameMenu);
-            break;
+            break;        
         case GameState::PAUSE:
             m_window.setView(m_worldView);
             for (Environment env: m_ground)
@@ -336,10 +336,16 @@ void Game::render()
             collisions.renderNoises(m_window);
             m_window.draw(m_gameMenu);
             break;
-        case GameState::WIN:
+        case GameState::WINLEVEL:
+            m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
             m_window.draw(m_gameMenu);
             break;
         case GameState::LOSE:
+            m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
+            m_window.draw(m_gameMenu);
+            break;
+        case GameState::WINGAME:
+            m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
             m_window.draw(m_gameMenu);
             break;
         default:

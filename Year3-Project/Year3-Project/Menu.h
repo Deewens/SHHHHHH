@@ -12,6 +12,8 @@ public:
     MenuButton GameBackButton;
     MenuButton GameBackButton1;
     MenuButton GameBackButton2;
+    MenuButton GameBackButton3;
+
 
 
     sf::Text gameText;
@@ -35,24 +37,27 @@ public:
         m_backgroundSprite.setPosition(300, 10);
 
         GameBackButton.Init(sf::Vector2f(0, 0), font,sf::Vector2f(250, 40), sf::Vector2f(0, 0));
+        GameBackButton3.Init(sf::Vector2f(0, 60), font, sf::Vector2f(250, 40), sf::Vector2f(30, 0));
+
         GameBackButton.text.setString("Back To Menu");
 
         GameBackButton1.text.setString("Press P to Resume");
 
         GameBackButton2.text.setString("Press E to MainMenu");
 
+        GameBackButton3.text.setString("Next Level");
+
 
         gameText.setFont(font);
         //gameText.setString("Coming Soon.....");
         gameText.setPosition(200, 300);
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 3; i++)
         {
             MainMenuButtons[i].Init(sf::Vector2f(300, 80 + (i * 110)), font,sf::Vector2f(250, 100), sf::Vector2f(10, 30));
         }
         MainMenuButtons[0].text.setString("Play");
         MainMenuButtons[1].text.setString("Help");
-        MainMenuButtons[2].text.setString("LevelLoader");
-        MainMenuButtons[3].text.setString("Exit"); 
+        MainMenuButtons[2].text.setString("Exit"); 
 
         m_pauseRect.setSize(sf::Vector2f(screen_Width / 2.5, screen_Height / 2.5));
         m_pauseRect.setFillColor(sf::Color(225, 0, 0, 100));
@@ -75,13 +80,8 @@ public:
             if (MainMenuButtons[1].pressed == true)
             {
                 m_gameState = GameState::HELP;
-            }   
+            }            
             if (MainMenuButtons[2].pressed == true)
-            {
-                m_gameState = GameState::LVLBUILDER;
-
-            }
-            if (MainMenuButtons[3].pressed == true)
             {
                 m_gameState = GameState::EXIT;
             }
@@ -109,19 +109,33 @@ public:
             {
                 m_gameState = GameState::MENU;
             }
-        }
-        else if (m_gameState == GameState::LVLBUILDER)
+        }        
+        else if (m_gameState == GameState::LOSE)
         {
             GameBackButton.Update(mousePos);
-            if (GameBackButton.pressed == true)
+            if(GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
             }
         }
-        else if (m_gameState == GameState::LOSE)
+        else if (m_gameState == GameState::WINLEVEL)
         {
             GameBackButton.Update(mousePos);
-            if (GameBackButton1.pressed == true)
+            GameBackButton3.Update(mousePos);
+
+            if (GameBackButton.pressed == true)
+            {
+                m_gameState = GameState::MENU;
+            }
+            if (GameBackButton3.pressed == true)
+            {
+                std::cout << "next level" << std::endl;
+            }
+        }
+        else if (m_gameState == GameState::WINGAME)
+        {
+            GameBackButton.Update(mousePos);
+            if (GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
             }
