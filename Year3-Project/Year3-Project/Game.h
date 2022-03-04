@@ -87,6 +87,7 @@ private:
     std::vector<Environment> m_ground; // Everything related to the ground of the scene
     std::vector<Environment> m_environment; // Environment/tiles of the level (wall, tree, water...)
     Menu m_gameMenu;
+
     HUD m_hud;
 
     sf::Texture m_spriteSheet;

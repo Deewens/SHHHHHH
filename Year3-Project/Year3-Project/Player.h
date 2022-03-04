@@ -129,5 +129,7 @@ public:
     void setupNewPlayer(int t_gridIndex, int t_rotation);
 
     NoiseLevels getNoiseLevel();
+
+    sf::Vector2f bottleLocation();
 };
 

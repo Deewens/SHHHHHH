@@ -580,3 +580,8 @@ NoiseLevels Player::getNoiseLevel()
     return m_noiseLevel;
 }
 
+sf::Vector2f Player::bottleLocation()
+{
+    return m_bottleSprite->getPosition()-m_offSet;
+}
+
