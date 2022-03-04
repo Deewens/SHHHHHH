@@ -4,8 +4,6 @@
 
 #include "Game.h"
 
-using json = nlohmann::json;
-
 void visit(Node *t_node)
 {
     std::cout << "Visiting: " << t_node->m_data.id << std::endl;
@@ -35,15 +33,25 @@ Game::Game() :
     m_playerCoordsDebugText.setFillColor(sf::Color::White);
     m_playerCoordsDebugText.setPosition(0, 0);
 
+    m_loadingText.setFont(m_font);
+    m_loadingText.setCharacterSize(100);
+    m_loadingText.setFillColor(sf::Color::White);
+    m_loadingText.setString("Loading....");
+    m_loadingText.setOrigin(m_loadingText.getGlobalBounds().width / 2, m_loadingText.getGlobalBounds().height / 2);
+    m_loadingText.setPosition(screen_Width / 2, screen_Height / 2);
+    
+
+    m_window.clear(sf::Color::Black);
+    m_window.draw(m_loadingText);
+    m_window.display();
+
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
 
     m_gameMenu.Init();
 
+    setupBase();
     setupEnvironment();
-    setUpSpecial();
-
-    //m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 4, screen_Height / 4));
     m_grid.debug();
 
     // Fill the graph with all the arcs using the neighbours algorithm
@@ -204,7 +212,7 @@ void Game::update(sf::Time t_deltaTime)
     {
         case GameState::MENU:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f) sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
         {
@@ -285,12 +293,9 @@ void Game::render()
                 object.render(m_window);
             }
 
-            for (int i = 0; i < 2; i++)
+            for (Pickup* bottle : m_pickups)
             {
-                if (!m_pickupCollected[i])
-                {
-                    m_window.draw(*m_pickup[i]);
-                }
+                m_window.draw(*bottle);
             }
 
             m_window.draw(m_player);
@@ -299,6 +304,7 @@ void Game::render()
                 m_window.draw(*m_enemy);
                 m_enemy->renderVisionCone(m_window);
             }
+            m_goal->render(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_hud.render(m_window);
@@ -332,6 +338,7 @@ void Game::render()
                 m_window.draw(*m_enemy);
                 m_enemy->renderVisionCone(m_window);
             }
+            m_goal->render(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_window.draw(m_gameMenu);
@@ -352,27 +359,28 @@ void Game::render()
             break;
     }
     m_window.display();
+    
 }
 
 void Game::checkCollisions()
 {
+    bool beatLevel = false;
+    collisions.check(m_player, *m_goal, beatLevel);
+    if (beatLevel)
+    {
+        loadNewLevel();
+    }
     for (Enemy* m_enemy : m_zombies)
     {
         collisions.check(m_player, *m_enemy);
         collisions.checkNoiseCollision(*m_enemy);
     }
-
-    if (collisions.check(m_player, *m_pickup[0]))
+    for (Pickup* bottle : m_pickups)
     {
-        m_pickupCollected[0] = true;
-        m_hud.m_pickUpHud[0] = true;
-        m_player.m_readyToTHrow[0] = true;
-    }
-    if (collisions.check(m_player, *m_pickup[1]))
-    {
-        m_pickupCollected[1] = true;
-        m_hud.m_pickUpHud[1] = true;
-        m_player.m_readyToTHrow[1] = true;
+        if (!bottle->getCollected())
+        {
+            collisions.check(m_player, *bottle, m_hud);
+        }
     }
 
     noiseCounter++;
@@ -384,40 +392,55 @@ void Game::checkCollisions()
 
 
 
-void Game::setupEnvironment()
+void Game::setupBase()
 {
     if (!m_spriteSheet.loadFromFile("ASSETS/TileSheet/spritesheet.png"))
         std::cout << "problem loading the game sprite sheet" << std::endl;
 
-    std::ifstream spriteSheetData("scene.json");
+    std::ifstream levelData("scene.json");
     json groundJson;
 
-    groundJson = json::parse(spriteSheetData);
+    groundJson = json::parse(levelData);
 
     json scene = groundJson["scene"];
+
+    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    nlohmann::json frame = json["frames"];
+
     // Build scene from the json file
     for (auto &el: scene)
         m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-                              screen_Width / tileSize, el["rotation"]);
+                              screen_Width / tileSize, frame, el["rotation"]);
+}
 
-    std::ifstream levelData("level1.json");
-    json environmentJson;
-    environmentJson = json::parse(levelData);
-    scene = environmentJson["scene"];
-    
+void Game::setupEnvironment()
+{
+    std::ifstream levelData("level" + std::to_string(level) + ".json");
+    json levelJson;
+    levelJson = json::parse(levelData);
+    json scene = levelJson["scene"];
+
+    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    nlohmann::json frame = json["frames"];
+
     for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-            screen_Width / tileSize, el["rotation"], el["impassable"]);
+            screen_Width / tileSize, frame, el["rotation"], el["impassable"]);
 
-    for (auto &object: m_environment)
+    for (auto& object : m_environment)
     {
         auto node = m_grid.nodeIndex(object.getTileCode());
         // Update the node
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
     }
-
-  
+    setUpSpecial(levelJson);
 }
 
 void Game::cameraMovement(sf::Time dt)
@@ -432,17 +455,11 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
     return m_id;
 }
 
-void Game::setUpSpecial()
+void Game::setUpSpecial(json& levelData)
 {
-    std::ifstream levelData("level1.json");
-    json specialJSON;
-    specialJSON = json::parse(levelData);
-    json keyElements = specialJSON["special"];
-    int pickupCounter = 0;
-
-    // set defaults
-    m_pickup[0] = new Pickup(22, m_spriteSheet);
-    m_pickup[1] = new Pickup(43, m_spriteSheet);
+    json keyElements = levelData["special"];
+    m_zombies.clear();
+    m_pickups.clear();
 
     for (auto& el : keyElements)
     {
@@ -456,16 +473,11 @@ void Game::setUpSpecial()
         }
         else if (el["Type"] == "Pickup")
         {
-            m_pickup[pickupCounter] = new Pickup(el["gridIndex"], m_spriteSheet);
-            pickupCounter++;
-            if (pickupCounter > 1)
-            {
-                pickupCounter = 0;
-            }
+            m_pickups.emplace_back(new Pickup(el["gridIndex"], m_spriteSheet));
         }
         else if (el["Type"] == "Goal")
         {
-
+            m_goal = new Goal(el["gridIndex"]);
         }
     }
 }
@@ -479,6 +491,25 @@ void Game::checkPickUps()
     if (m_player.m_readyToTHrow[1] == false)
     {
         m_hud.m_pickUpHud[1] = false;
+    }
+}
+
+void Game::loadNewLevel()
+{
+    m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
+    m_window.clear(sf::Color::Black);
+    m_window.setView(m_worldView);
+    m_window.draw(m_loadingText);
+    m_window.display();
+    level++;
+    std::ifstream f("level" + std::to_string(level) + ".json");
+    if (f.good())
+    {
+        setupEnvironment();
+    }
+    else
+    {
+        m_gameState = GameState::WINGAME;
     }
 }
 

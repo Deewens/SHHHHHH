@@ -17,18 +17,24 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	}
 }
 
-bool CollisionManager::check(Player& t_player, Pickup& t_pickup)
+void CollisionManager::check(Player& t_player, Pickup& t_pickup, HUD& t_hud)
 {
 
 	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
 	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
-		return true;
-	}
-	else
-	{
-		return false;
+		t_pickup.collect();
+		if (!t_player.m_readyToTHrow[0])
+		{
+			t_player.m_readyToTHrow[0] = true;
+			t_hud.m_pickUpHud[0] = true;
+		}
+		else if (!t_player.m_readyToTHrow[1])
+		{
+			t_player.m_readyToTHrow[1] = true;
+			t_hud.m_pickUpHud[1] = true;
+		}
 	}
 }
 
@@ -104,6 +110,27 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 			std::cout << "bottlelocation" << bottlePos1.x << " , " << bottlePos1.y << std::endl;
 			std::cout << "++++++++++++++++++++++++++++" << std::endl;*/
 		}
+	}
+}
+
+void CollisionManager::check(Player& t_player, Goal& t_goal, bool& isFound)
+{
+	sf::FloatRect collisionRect = t_goal.getCollisionRect();
+	float playerSize = t_player.getRadius();
+	sf::Vector2f playerPos = t_player.getPosition();
+
+	float closestX = clamp(playerPos.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestY = clamp(playerPos.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+	float distanceX = playerPos.x - closestX;
+	float distanceY = playerPos.y - closestY;
+
+	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+	if (distanceSquared < (playerSize * playerSize))
+	{
+		m_gameState = GameState::WINLEVEL;
+		isFound = true;
 	}
 }
 

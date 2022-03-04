@@ -64,9 +64,9 @@ public:
         m_pauseRect.setOrigin(screen_Width / 5, screen_Height / 5);
     }
 
-    void update(sf::Vector2f mousePos)
+    bool update(sf::Vector2f mousePos)
     {
-
+        bool nextLevel = false;
         if (m_gameState == GameState::MENU)
         {
             for (int i = 0; i < 4; i++)
@@ -129,7 +129,7 @@ public:
             }
             if (GameBackButton3.pressed == true)
             {
-                std::cout << "next level" << std::endl;
+                m_gameState = GameState::GAMEPLAY;
             }
         }
         else if (m_gameState == GameState::WINGAME)
@@ -140,6 +140,7 @@ public:
                 m_gameState = GameState::MENU;
             }
         }
+        return nextLevel;
     }   
 
 private:

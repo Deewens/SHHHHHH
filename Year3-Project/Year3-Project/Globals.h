@@ -49,3 +49,5 @@ const float PI = 3.14159265359;
 
 static int const  MAX_PARTICLES = 50;
 
+extern int level;
+

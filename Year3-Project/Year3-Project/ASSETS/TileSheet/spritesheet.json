@@ -2163,7 +2163,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 
 		},
 		"outside_dirt_02.png": {
@@ -2174,7 +2174,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_03.png": {
 			"frame": {
@@ -2184,7 +2184,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_04.png": {
 			"frame": {
@@ -2194,7 +2194,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_05.png": {
 			"frame": {
@@ -2204,7 +2204,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_06.png": {
 			"frame": {
@@ -2214,7 +2214,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_07.png": {
 			"frame": {
@@ -2224,7 +2224,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_08.png": {
 			"frame": {
@@ -2234,7 +2234,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_dirt_09.png": {
 			"frame": {
@@ -2244,7 +2244,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 1
 		},
 		"outside_grass_01.png": {
 			"frame": {
@@ -2254,7 +2254,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_02.png": {
 			"frame": {
@@ -2264,7 +2264,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_03.png": {
 			"frame": {
@@ -2274,7 +2274,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_04.png": {
 			"frame": {
@@ -2284,7 +2284,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_05.png": {
 			"frame": {
@@ -2294,7 +2294,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_06.png": {
 			"frame": {
@@ -2304,7 +2304,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_07.png": {
 			"frame": {
@@ -2314,7 +2314,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_08.png": {
 			"frame": {
@@ -2324,7 +2324,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_09.png": {
 			"frame": {
@@ -2334,7 +2334,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_10.png": {
 			"frame": {
@@ -2344,7 +2344,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_11.png": {
 			"frame": {
@@ -2354,7 +2354,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_12.png": {
 			"frame": {
@@ -2364,7 +2364,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_13.png": {
 			"frame": {
@@ -2374,7 +2374,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_14.png": {
 			"frame": {
@@ -2384,7 +2384,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_15.png": {
 			"frame": {
@@ -2394,7 +2394,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_16.png": {
 			"frame": {
@@ -2404,7 +2404,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_grass_17.png": {
 			"frame": {
@@ -2414,7 +2414,7 @@
 				"h": 32
 			},
 			"Type": "Outdoor_Ground",
-			"NoiseLevels": 2
+			"NoiseLevels": 3
 		},
 		"outside_plant_01.png": {
 			"frame": {

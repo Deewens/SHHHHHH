@@ -24,6 +24,9 @@
 #include "SoundHolder.h"
 #include "Utils.h"
 #include "NodeData.h"
+#include "Goal.h"
+
+using json = nlohmann::json;
 
 typedef GraphArc<NodeData, float> Arc;
 typedef GraphNode<NodeData, float> Node;
@@ -46,6 +49,7 @@ private:
 	void render();
     void checkCollisions();
 
+    void setupBase();
     void setupEnvironment();
     void loadSounds();
 
@@ -53,9 +57,11 @@ private:
 
     int cellIdFinder(sf::Vector2f t_targetLocation);
 
-    void setUpSpecial();
+    void setUpSpecial(json& levelData);
 
     void checkPickUps();
+
+    void loadNewLevel();
 
     
 
@@ -74,10 +80,8 @@ private:
     // Game entities
     Player m_player;
     std::vector<Enemy*> m_zombies;
-
-    Pickup *m_pickup[2];
-
-    bool m_pickupCollected[2] = { false,false };
+    std::vector<Pickup*> m_pickups;
+    Goal* m_goal;
 
     Graph<NodeData, float> m_grid;
     std::vector<Environment> m_ground; // Everything related to the ground of the scene
@@ -91,6 +95,7 @@ private:
     sf::Font m_font;
 
     sf::Text m_playerCoordsDebugText;
+    sf::Text m_loadingText;
 
     SoundHolder m_sounds;
 
