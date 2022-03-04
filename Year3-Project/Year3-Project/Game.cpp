@@ -33,6 +33,18 @@ Game::Game() :
     m_playerCoordsDebugText.setFillColor(sf::Color::White);
     m_playerCoordsDebugText.setPosition(0, 0);
 
+    m_loadingText.setFont(m_font);
+    m_loadingText.setCharacterSize(100);
+    m_loadingText.setFillColor(sf::Color::White);
+    m_loadingText.setString("Loading....");
+    m_loadingText.setOrigin(m_loadingText.getGlobalBounds().width / 2, m_loadingText.getGlobalBounds().height / 2);
+    m_loadingText.setPosition(screen_Width / 2, screen_Height / 2);
+    
+
+    m_window.clear(sf::Color::Black);
+    m_window.draw(m_loadingText);
+    m_window.display();
+
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
 
@@ -347,6 +359,7 @@ void Game::render()
             break;
     }
     m_window.display();
+    
 }
 
 void Game::checkCollisions()
@@ -470,6 +483,11 @@ void Game::checkPickUps()
 
 void Game::loadNewLevel()
 {
+    m_worldView.reset(sf::FloatRect(0, 0, screen_Width, screen_Height));
+    m_window.clear(sf::Color::Black);
+    m_window.setView(m_worldView);
+    m_window.draw(m_loadingText);
+    m_window.display();
     level++;
     std::ifstream f("level" + std::to_string(level) + ".json");
     if (f.good())

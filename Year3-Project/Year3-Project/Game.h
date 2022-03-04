@@ -95,6 +95,7 @@ private:
     sf::Font m_font;
 
     sf::Text m_playerCoordsDebugText;
+    sf::Text m_loadingText;
 
     SoundHolder m_sounds;
 
