@@ -26,6 +26,7 @@
     <ClCompile Include="Environment.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Goal.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -45,6 +46,7 @@
     <ClInclude Include="Environment.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Globals.h" />
+    <ClInclude Include="Goal.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphArc.h" />
     <ClInclude Include="GraphNode.h" />

@@ -24,6 +24,7 @@
 #include "SoundHolder.h"
 #include "Utils.h"
 #include "NodeData.h"
+#include "Goal.h"
 
 typedef GraphArc<NodeData, float> Arc;
 typedef GraphNode<NodeData, float> Node;
@@ -46,6 +47,7 @@ private:
 	void render();
     void checkCollisions();
 
+    void setupBase();
     void setupEnvironment();
     void loadSounds();
 
@@ -74,8 +76,8 @@ private:
     // Game entities
     Player m_player;
     std::vector<Enemy*> m_zombies;
-
     Pickup *m_pickup[2];
+    Goal* m_goal;
 
     bool m_pickupCollected[2] = { false,false };
 

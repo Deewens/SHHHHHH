@@ -7,6 +7,7 @@
 #include "Environment.h"
 #include <ctime>
 #include "ParticleSystem.h"
+#include "Goal.h"
 
 class CollisionManager
 {
@@ -16,6 +17,7 @@ public:
 	void check(Player& t_player, Enemy& t_enemy);
 	bool check(Player& t_player, Pickup& t_pickup);
 	void check(Player& t_player, Environment& t_environment, int& t_counter);
+	void check(Player& t_player, Goal& t_goal);
     bool checkNoiseCollision(Enemy& t_enemy);
 
 	void renderNoises(sf::RenderWindow& t_window);

@@ -107,6 +107,26 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	}
 }
 
+void CollisionManager::check(Player& t_player, Goal& t_goal)
+{
+	sf::FloatRect collisionRect = t_goal.getCollisionRect();
+	float playerSize = t_player.getRadius();
+	sf::Vector2f playerPos = t_player.getPosition();
+
+	float closestX = clamp(playerPos.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestY = clamp(playerPos.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+	float distanceX = playerPos.x - closestX;
+	float distanceY = playerPos.y - closestY;
+
+	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
+
+	if (distanceSquared < (playerSize * playerSize))
+	{
+		m_gameState = GameState::WIN;
+	}
+}
+
 
 bool CollisionManager::checkNoiseCollision(Enemy& t_enemy)
 {

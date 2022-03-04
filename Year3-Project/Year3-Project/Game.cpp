@@ -41,6 +41,7 @@ Game::Game() :
     m_gameMenu.Init();
 
 
+    setupBase();
     setupEnvironment();
     setUpSpecial();
 
@@ -296,6 +297,7 @@ void Game::render()
                 m_window.draw(*m_enemy);
                 m_enemy->renderVisionCone(m_window);
             }
+            m_goal->render(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_hud.render(m_window);
@@ -332,6 +334,7 @@ void Game::render()
                 m_window.draw(*m_enemy);
                 m_enemy->renderVisionCone(m_window);
             }
+            m_goal->render(m_window);
             m_window.draw(m_grid);
             collisions.renderNoises(m_window);
             m_window.draw(m_gameMenu);
@@ -378,7 +381,7 @@ void Game::checkCollisions()
 
 
 
-void Game::setupEnvironment()
+void Game::setupBase()
 {
     if (!m_spriteSheet.loadFromFile("ASSETS/TileSheet/spritesheet.png"))
         std::cout << "problem loading the game sprite sheet" << std::endl;
@@ -393,25 +396,26 @@ void Game::setupEnvironment()
     for (auto &el: scene)
         m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
                               screen_Width / tileSize, el["rotation"]);
+}
 
+void Game::setupEnvironment()
+{
     std::ifstream levelData("level1.json");
     json environmentJson;
     environmentJson = json::parse(levelData);
-    scene = environmentJson["scene"];
-    
+    json scene = environmentJson["scene"];
+
     for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
             screen_Width / tileSize, el["rotation"], el["impassable"]);
 
-    for (auto &object: m_environment)
+    for (auto& object : m_environment)
     {
         auto node = m_grid.nodeIndex(object.getTileCode());
         // Update the node
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
     }
-
-  
 }
 
 void Game::cameraMovement(sf::Time dt)
@@ -459,7 +463,7 @@ void Game::setUpSpecial()
         }
         else if (el["Type"] == "Goal")
         {
-
+            m_goal = new Goal(el["gridIndex"]);
         }
     }
 }
