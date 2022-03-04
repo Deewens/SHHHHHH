@@ -510,6 +510,7 @@ void Game::loadNewLevel()
     else
     {
         m_gameState = GameState::WINGAME;
+        level = 0;
     }
 }
 
