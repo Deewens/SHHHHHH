@@ -95,7 +95,7 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	{
 		if (t_environment.isImpassable())
 		{
-			t_player.m_bottleBreak[0] = true;
+			//t_player.m_bottleBreak[0] = true;
 			/*std::cout << "playerlocation : " <<t_player.getPosition().x<<" , "<<t_player.getPosition().y << std::endl;
 			std::cout << "bottlelocation : " << bottlePos0.x<< " , " << bottlePos0.y << std::endl;
 			std::cout << "++++++++++++++++++++++++++++" << std::endl;*/
@@ -105,7 +105,7 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	{
 		if (t_environment.isImpassable())
 		{
-			t_player.m_bottleBreak[1] = true;
+			//t_player.m_bottleBreak[1] = true;
 			/*std::cout << "playerlocation" << t_player.getPosition().x << "," << t_player.getPosition().y << std::endl;
 			std::cout << "bottlelocation" << bottlePos1.x << " , " << bottlePos1.y << std::endl;
 			std::cout << "++++++++++++++++++++++++++++" << std::endl;*/
