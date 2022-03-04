@@ -24,7 +24,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
         target.draw(GameBackButton.text);
         target.draw(gameText);
     }
-    else if (m_gameState == GameState::LVLLOADER)
+    else if (m_gameState == GameState::LVLBUILDER)
     {
         target.draw(GameBackButton.shape);
         target.draw(GameBackButton.text);
@@ -38,6 +38,11 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
         target.draw(GameBackButton1.text);
         target.draw(GameBackButton2.shape);
         target.draw(GameBackButton2.text);
-
+    }
+    else if (m_gameState == GameState::LOSE)
+    {
+        target.draw(GameBackButton.shape);
+        target.draw(GameBackButton.text);
+        target.draw(gameText);
     }
 }

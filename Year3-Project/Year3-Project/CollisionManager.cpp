@@ -13,7 +13,7 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	t_enemy.visionConeCollisionCheck(t_player.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
-		std::cout << "collide";
+		m_gameState = GameState::LOSE;
 	}
 }
 
