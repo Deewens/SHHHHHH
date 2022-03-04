@@ -472,7 +472,7 @@ void Game::loadNewLevel()
     }
     else
     {
-        std::cout << "You Win!" << std::endl;
+        m_gameState = GameState::WINGAME;
     }
 }
 

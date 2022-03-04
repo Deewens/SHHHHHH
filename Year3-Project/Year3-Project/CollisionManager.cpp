@@ -129,7 +129,7 @@ void CollisionManager::check(Player& t_player, Goal& t_goal)
 
 	if (distanceSquared < (playerSize * playerSize))
 	{
-		m_gameState = GameState::WIN;
+		m_gameState = GameState::WINLEVEL;
 	}
 }
 
