@@ -15,14 +15,10 @@ Environment::Environment(sf::RectangleShape& t_rect, int t_tileCode, int t_rows,
 }
 
 Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, int t_tileCode, int t_rows, int t_cols,
-                         float t_rotation, bool t_impassable) :
+                            nlohmann::json& frames, float t_rotation, bool t_impassable) :
                          m_sprite(t_texture), m_rotation(t_rotation), m_impassable(t_impassable), m_tileCode(t_tileCode)
 {
-    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
-    nlohmann::json json;
-    spriteSheetData >> json;
-
-    nlohmann::json frame = json["frames"][t_sprite];
+    nlohmann::json frame = frames[t_sprite];
     int x = frame["frame"]["x"];
     int y = frame["frame"]["y"];
     float width = frame["frame"]["w"];

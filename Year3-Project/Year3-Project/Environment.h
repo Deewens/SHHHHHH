@@ -9,7 +9,7 @@ class Environment
 {
 public:
 	Environment(sf::RectangleShape& t_rect, int t_tileCode, int t_rows, int t_cols, float t_rotation = 0, bool t_impassable = true);
-    Environment(sf::Texture& t_texture, const std::string& t_sprite, int t_tileCode, int t_rows, int t_cols, float t_rotation = 0, bool t_impassable = false);
+    Environment(sf::Texture& t_texture, const std::string& t_sprite, int t_tileCode, int t_rows, int t_cols, nlohmann::json& frames, float t_rotation = 0, bool t_impassable = false);
 	void render(sf::RenderWindow& t_window);
 	sf::FloatRect getCollisionRect();
 

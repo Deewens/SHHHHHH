@@ -397,16 +397,23 @@ void Game::setupBase()
     if (!m_spriteSheet.loadFromFile("ASSETS/TileSheet/spritesheet.png"))
         std::cout << "problem loading the game sprite sheet" << std::endl;
 
-    std::ifstream spriteSheetData("scene.json");
+    std::ifstream levelData("scene.json");
     json groundJson;
 
-    groundJson = json::parse(spriteSheetData);
+    groundJson = json::parse(levelData);
 
     json scene = groundJson["scene"];
+
+    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    nlohmann::json frame = json["frames"];
+
     // Build scene from the json file
     for (auto &el: scene)
         m_ground.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-                              screen_Width / tileSize, el["rotation"]);
+                              screen_Width / tileSize, frame, el["rotation"]);
 }
 
 void Game::setupEnvironment()
@@ -416,9 +423,15 @@ void Game::setupEnvironment()
     levelJson = json::parse(levelData);
     json scene = levelJson["scene"];
 
+    std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
+    nlohmann::json json;
+    spriteSheetData >> json;
+
+    nlohmann::json frame = json["frames"];
+
     for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
-            screen_Width / tileSize, el["rotation"], el["impassable"]);
+            screen_Width / tileSize, frame, el["rotation"], el["impassable"]);
 
     for (auto& object : m_environment)
     {
