@@ -17,18 +17,24 @@ void CollisionManager::check(Player& t_player, Enemy& t_enemy)
 	}
 }
 
-bool CollisionManager::check(Player& t_player, Pickup& t_pickup)
+void CollisionManager::check(Player& t_player, Pickup& t_pickup, HUD& t_hud)
 {
 
 	float collisionDistance = t_player.getRadius() + t_pickup.getRadius();
 	float distanceAway = distanceBetween(t_player.getPosition(), t_pickup.getPosition());
 	if (collisionDistance >= distanceAway)
 	{
-		return true;
-	}
-	else
-	{
-		return false;
+		t_pickup.collect();
+		if (!t_player.m_readyToTHrow[0])
+		{
+			t_player.m_readyToTHrow[0] = true;
+			t_hud.m_pickUpHud[0] = true;
+		}
+		else if (!t_player.m_readyToTHrow[1])
+		{
+			t_player.m_readyToTHrow[1] = true;
+			t_hud.m_pickUpHud[1] = true;
+		}
 	}
 }
 

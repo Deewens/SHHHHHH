@@ -61,7 +61,6 @@ public:
 
     void update(sf::Vector2f mousePos)
     {
-
         if (m_gameState == GameState::MENU)
         {
             for (int i = 0; i < 4; i++)

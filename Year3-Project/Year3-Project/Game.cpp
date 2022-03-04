@@ -4,8 +4,6 @@
 
 #include "Game.h"
 
-using json = nlohmann::json;
-
 void visit(Node *t_node)
 {
     std::cout << "Visiting: " << t_node->m_data.id << std::endl;
@@ -40,12 +38,8 @@ Game::Game() :
 
     m_gameMenu.Init();
 
-
     setupBase();
     setupEnvironment();
-    setUpSpecial();
-
-    //m_worldView.reset(sf::FloatRect(m_player.getPosition().x, m_player.getPosition().y, screen_Width / 4, screen_Height / 4));
     m_grid.debug();
 
     // Fill the graph with all the arcs using the neighbours algorithm
@@ -205,7 +199,7 @@ void Game::update(sf::Time t_deltaTime)
     {
         case GameState::MENU:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f) sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
             break;
         case GameState::GAMEPLAY:
         {
@@ -283,12 +277,9 @@ void Game::render()
                 object.render(m_window);
             }
 
-            for (int i = 0; i < 2; i++)
+            for (Pickup* bottle : m_pickups)
             {
-                if (!m_pickupCollected[i])
-                {
-                    m_window.draw(*m_pickup[i]);
-                }
+                m_window.draw(*bottle);
             }
 
             m_window.draw(m_player);
@@ -358,18 +349,12 @@ void Game::checkCollisions()
         collisions.check(m_player, *m_enemy);
         collisions.checkNoiseCollision(*m_enemy);
     }
-
-    if (collisions.check(m_player, *m_pickup[0]))
+    for (Pickup* bottle : m_pickups)
     {
-        m_pickupCollected[0] = true;
-        m_hud.m_pickUpHud[0] = true;
-        m_player.m_readyToTHrow[0] = true;
-    }
-    if (collisions.check(m_player, *m_pickup[1]))
-    {
-        m_pickupCollected[1] = true;
-        m_hud.m_pickUpHud[1] = true;
-        m_player.m_readyToTHrow[1] = true;
+        if (!bottle->getCollected())
+        {
+            collisions.check(m_player, *bottle, m_hud);
+        }
     }
 
     noiseCounter++;
@@ -400,10 +385,10 @@ void Game::setupBase()
 
 void Game::setupEnvironment()
 {
-    std::ifstream levelData("level1.json");
-    json environmentJson;
-    environmentJson = json::parse(levelData);
-    json scene = environmentJson["scene"];
+    std::ifstream levelData("level" + std::to_string(level) + ".json");
+    json levelJson;
+    levelJson = json::parse(levelData);
+    json scene = levelJson["scene"];
 
     for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
@@ -416,6 +401,7 @@ void Game::setupEnvironment()
         node->m_data.isPassable = !object.isImpassable();
         m_grid.updateNode(node->m_data, node->m_data.id);
     }
+    setUpSpecial(levelJson);
 }
 
 void Game::cameraMovement(sf::Time dt)
@@ -430,17 +416,11 @@ int Game::cellIdFinder(sf::Vector2f t_targetLocation)
     return m_id;
 }
 
-void Game::setUpSpecial()
+void Game::setUpSpecial(json& levelData)
 {
-    std::ifstream levelData("level1.json");
-    json specialJSON;
-    specialJSON = json::parse(levelData);
-    json keyElements = specialJSON["special"];
-    int pickupCounter = 0;
-
-    // set defaults
-    m_pickup[0] = new Pickup(22, m_spriteSheet);
-    m_pickup[1] = new Pickup(43, m_spriteSheet);
+    json keyElements = levelData["special"];
+    m_zombies.clear();
+    m_pickups.clear();
 
     for (auto& el : keyElements)
     {
@@ -454,12 +434,7 @@ void Game::setUpSpecial()
         }
         else if (el["Type"] == "Pickup")
         {
-            m_pickup[pickupCounter] = new Pickup(el["gridIndex"], m_spriteSheet);
-            pickupCounter++;
-            if (pickupCounter > 1)
-            {
-                pickupCounter = 0;
-            }
+            m_pickups.emplace_back(new Pickup(el["gridIndex"], m_spriteSheet));
         }
         else if (el["Type"] == "Goal")
         {
@@ -477,6 +452,20 @@ void Game::checkPickUps()
     if (m_player.m_readyToTHrow[1] == false)
     {
         m_hud.m_pickUpHud[1] = false;
+    }
+}
+
+void Game::loadNewLevel()
+{
+    level++;
+    std::ifstream f("level" + std::to_string(level) + ".json");
+    if (f.good())
+    {
+        setupEnvironment();
+    }
+    else
+    {
+        std::cout << "You Win!" << std::endl;
     }
 }
 

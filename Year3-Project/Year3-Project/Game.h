@@ -26,6 +26,8 @@
 #include "NodeData.h"
 #include "Goal.h"
 
+using json = nlohmann::json;
+
 typedef GraphArc<NodeData, float> Arc;
 typedef GraphNode<NodeData, float> Node;
 
@@ -55,9 +57,11 @@ private:
 
     int cellIdFinder(sf::Vector2f t_targetLocation);
 
-    void setUpSpecial();
+    void setUpSpecial(json& levelData);
 
     void checkPickUps();
+
+    void loadNewLevel();
 
     
 
@@ -76,10 +80,8 @@ private:
     // Game entities
     Player m_player;
     std::vector<Enemy*> m_zombies;
-    Pickup *m_pickup[2];
+    std::vector<Pickup*> m_pickups;
     Goal* m_goal;
-
-    bool m_pickupCollected[2] = { false,false };
 
     Graph<NodeData, float> m_grid;
     std::vector<Environment> m_ground; // Everything related to the ground of the scene

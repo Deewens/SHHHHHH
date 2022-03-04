@@ -18,6 +18,9 @@ public:
 
 	float getRadius();
 
+	void collect();
+
+	bool getCollected();
 private:
 
 	sf::Texture m_bottleTexture;
@@ -33,6 +36,8 @@ private:
 	sf::Vector2f m_position{};
 
 	sf::Vector2f m_bottleVelocity{};
+
+	bool collected = false;
 
 };
 
