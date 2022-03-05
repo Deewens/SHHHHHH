@@ -21,6 +21,15 @@ public:
     sf::Texture m_backgroundTexture;
     sf::Sprite m_backgroundSprite;
 
+    sf::Texture m_loseTexture;
+    sf::Sprite m_loseSprite;
+
+    sf::Texture m_lvlPassTexture;
+    sf::Sprite m_lvlPassSprite;
+
+    sf::Texture m_gameFinishTexture;
+    sf::Sprite m_gameFinishSprite;
+
     sf::RectangleShape m_pauseRect;
 
 
@@ -32,9 +41,35 @@ public:
         {
             std::cout << "problem loading Menu Background" << std::endl;
         }
+        if (!m_loseTexture.loadFromFile("ASSETS\\IMAGES\\You-Died.png"))
+        {
+            std::cout << "problem loading lose Background" << std::endl;
+        }
+        if (!m_lvlPassTexture.loadFromFile("ASSETS\\IMAGES\\Passed.png"))
+        {
+            std::cout << "problem loading win Background" << std::endl;
+        }
+        if (!m_gameFinishTexture.loadFromFile("ASSETS\\IMAGES\\Survived.png" , sf::IntRect(90, 0, 650, 200)))
+        {
+            std::cout << "problem loading win Background" << std::endl;
+        }
+
         m_backgroundSprite.setTexture(m_backgroundTexture);
         m_backgroundSprite.setScale(1.1, 1.1);
         m_backgroundSprite.setPosition(300, 10);
+
+        m_loseSprite.setTexture(m_loseTexture);
+        m_loseSprite.setScale(0.65, 0.65);
+
+        m_lvlPassSprite.setTexture(m_lvlPassTexture);
+        m_lvlPassSprite.setScale(2, 2);
+        m_lvlPassSprite.setPosition(100, 100);
+
+        m_gameFinishSprite.setTexture(m_gameFinishTexture);
+        m_gameFinishSprite.setScale(1.7, 1.7);
+        m_gameFinishSprite.setPosition(600, 350);
+        m_gameFinishSprite.setRotation(-25);
+        m_gameFinishSprite.setOrigin(350, 100);
 
         GameBackButton.Init(sf::Vector2f(0, 0), font,sf::Vector2f(250, 40), sf::Vector2f(0, 0));
         GameBackButton3.Init(sf::Vector2f(0, 60), font, sf::Vector2f(250, 40), sf::Vector2f(30, 0));
@@ -53,7 +88,7 @@ public:
         gameText.setPosition(200, 300);
         for (int i = 0; i < 3; i++)
         {
-            MainMenuButtons[i].Init(sf::Vector2f(300, 80 + (i * 110)), font,sf::Vector2f(250, 100), sf::Vector2f(10, 30));
+            MainMenuButtons[i].Init(sf::Vector2f(0, 0 + (i * 110)), font,sf::Vector2f(250, 100), sf::Vector2f(10, 30));
         }
         MainMenuButtons[0].text.setString("Play");
         MainMenuButtons[1].text.setString("Help");

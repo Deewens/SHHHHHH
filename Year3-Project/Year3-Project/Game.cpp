@@ -18,7 +18,6 @@ void visit(Node *t_node)
 Game::Game() :
         m_window(sf::VideoMode{screen_Width, screen_Height, 32U}, "SHHHH...!"),
         m_exitGame(false), //when true game will exit
-        m_spawnPosition(100.f, 100.f),
         m_grid(Graph<NodeData, float>(screen_Height / tileSize, screen_Width / tileSize, 300)),
         m_player(m_spriteSheet)
 {

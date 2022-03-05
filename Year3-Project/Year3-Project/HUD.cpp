@@ -13,8 +13,8 @@ void HUD::update(sf::Vector2f t_position)
     m_hudOutlineCircle.setPosition(t_position.x - screen_Width/4 + m_circleRadious, t_position.y + screen_Height / 4-20);
     m_backpackSprite.setPosition(t_position.x - screen_Width / 4 + m_circleRadious, t_position.y + screen_Height / 4 - 20);
 
-    m_hudBottleSprite[0].setPosition(m_backpackSprite.getPosition()+sf::Vector2f(-10,2));
-    m_hudBottleSprite[1].setPosition(m_backpackSprite.getPosition() + sf::Vector2f(6, 2));
+    m_hudBottleSprite[0].setPosition(m_backpackSprite.getPosition()+sf::Vector2f(-16,0));
+    m_hudBottleSprite[1].setPosition(m_backpackSprite.getPosition() + sf::Vector2f(6, 0));
 
 }
 
@@ -60,7 +60,7 @@ void HUD::setUpSprite()
     }
     m_backpackSprite.setTexture(m_backpackTexture);
     m_backpackSprite.setOrigin(m_backpackSprite.getGlobalBounds().left +500, m_backpackSprite.getGlobalBounds().top+m_backpackSprite.getGlobalBounds().height - 390);
-    m_backpackSprite.setScale(0.065, 0.065);
+    m_backpackSprite.setScale(0.1, 0.1);
 
     if (!m_hudBottleTexture.loadFromFile("ASSETS\\IMAGES\\Bottle.png"))
     {
@@ -71,7 +71,7 @@ void HUD::setUpSprite()
     for (int i = 0; i < 2; i++)
     {
         m_hudBottleSprite[i].setTexture(m_hudBottleTexture);
-        m_hudBottleSprite[i].setScale(0.015, 0.015);
+        m_hudBottleSprite[i].setScale(0.03, 0.03);
     }    
 
 }

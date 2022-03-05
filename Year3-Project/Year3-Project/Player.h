@@ -59,10 +59,10 @@ private:
     sf::Clock clock;
 
     sf::RectangleShape m_staminaBar;
-    sf::Vector2f m_staminaBarSize{ 200,20 };
+    sf::Vector2f m_staminaBarSize{ 250,35 };
 
     sf::RectangleShape m_staminaBarLvl;
-    sf::Vector2f m_staminaBarLvlSize{ 190,15 };
+    sf::Vector2f m_staminaBarLvlSize{ 240,30 };
 
     bool m_canRun = true;    
 

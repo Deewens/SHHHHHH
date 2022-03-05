@@ -35,7 +35,7 @@ private:
 
     sf::Vector2f m_rectSize = { screen_Width / 1.5,50.0f };
 
-    float m_circleRadious = 50.0f;
+    float m_circleRadious = 70.0f;
 
     sf::Texture m_backpackTexture;
     sf::Sprite m_backpackSprite;

@@ -35,12 +35,14 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
     else if (m_gameState == GameState::LOSE)
     {
+        target.draw(m_loseSprite);
         target.draw(GameBackButton.shape);
         target.draw(GameBackButton.text);
         target.draw(gameText);
     }
     else if (m_gameState == GameState::WINLEVEL)
     {
+        target.draw(m_lvlPassSprite);
         target.draw(GameBackButton.shape);
         target.draw(GameBackButton.text);
         target.draw(gameText);
