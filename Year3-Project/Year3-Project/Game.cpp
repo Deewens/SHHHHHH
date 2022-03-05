@@ -50,7 +50,7 @@ Game::Game() :
     m_gameMenu.Init();
 
     setupBase();
-    m_grid.debug();
+    m_grid.debug(m_font);
 
     // Fill the graph with all the arcs using the neighbours algorithm
     for (int i = 0; i < m_grid.getNodes().size(); i++)

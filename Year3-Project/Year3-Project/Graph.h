@@ -33,7 +33,7 @@ public:
 
     void toggleDraw();
 
-    void debug();
+    void debug(sf::Font& t_font);
 
     std::vector<std::vector<Node>> getGrid();
 
@@ -227,13 +227,9 @@ void Graph<NodeType, ArcType>::draw(sf::RenderTarget& target, sf::RenderStates s
 }
 
 template<typename NodeType, typename ArcType>
-void Graph<NodeType, ArcType>::debug()
+void Graph<NodeType, ArcType>::debug(sf::Font& t_font)
 {
-    if (!m_gridFont.loadFromFile("ASSETS\\FONTS\\ariblk.ttf"))
-    {
-        std::cout << "Problem loading Grid Font" << std::endl;
-    }
-    m_gridTextElement.setFont(m_gridFont);
+    m_gridTextElement.setFont(t_font);
     m_gridTextElement.setCharacterSize(20);
     m_gridTextElement.setFillColor(sf::Color::Black);
 
