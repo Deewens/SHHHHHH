@@ -72,6 +72,7 @@ private:
     Animation m_idlingAnim;
 
     std::vector<sf::Sound*> footstepRunSounds;
+    std::vector<sf::Sound*> growlingSounds;
 
     const float VISION_CONE_LENGTH_SEEK{ 200.0f };
     const float VISION_CONE_LENGTH_ATTACK{ 300.0f };

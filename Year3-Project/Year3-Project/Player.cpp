@@ -107,7 +107,6 @@ Player::Player(sf::Texture& t_texture) :
     m_sprite.setPosition(100, 100);
     m_sprite.setOrigin(30, 26);
 
-
     m_staminaBar.setSize(m_staminaBarSize);
     m_staminaBar.setFillColor(sf::Color::Black);
 
@@ -509,6 +508,7 @@ void Player::loadSoundHolder(SoundHolder &soundHolder)
     footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand6)));
     footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand7)));
     footstepWalkSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Walk_Sand8)));
+    std::for_each(footstepWalkSounds.begin(), footstepWalkSounds.end(), [](auto sound) { sound->setVolume(20); });
 
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand1)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand2)));
@@ -518,20 +518,16 @@ void Player::loadSoundHolder(SoundHolder &soundHolder)
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand6)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand7)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand8)));
+    std::for_each(footstepRunSounds.begin(), footstepRunSounds.end(), [](auto sound) { sound->setVolume(20); });
 
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand1)));
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand2)));
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand3)));
     footstepSneakSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Sneak_Sand4)));
+    std::for_each(footstepSneakSounds.begin(), footstepSneakSounds.end(), [](auto sound) { sound->setVolume(20); });
 
-    for (auto sound: footstepWalkSounds)
-        sound->setVolume(20);
-
-    for (auto sound: footstepRunSounds)
-        sound->setVolume(20);
-
-    for (auto sound: footstepSneakSounds)
-        sound->setVolume(20);
+    brokenGlassSound = new sf::Sound(soundHolder.get(Sounds::Wine_Glass_Shatering));
+    brokenGlassSound->setVolume(20);
 }
 
 float Player::bottleSpriteRadius()
@@ -590,6 +586,8 @@ sf::Vector2f Player::checkBottleCollisions()
     sf::Vector2f t_noise = sf::Vector2f{};
     if (m_bottleBreak[0] == true)
     {
+        brokenGlassSound->play();
+
         m_throw[0] = false;
         m_Impact[0].Initialise(m_bottleSprite[0].getPosition(), m_color);
         sf::Vector2f diameter = { m_offSet[0].x / 2, m_offSet[0].y / 2 };
@@ -600,6 +598,8 @@ sf::Vector2f Player::checkBottleCollisions()
     }
     if (m_bottleBreak[1] == true)
     {
+        brokenGlassSound->play();
+
         m_throw[1] = false;
         m_Impact[1].Initialise(m_bottleSprite[1].getPosition(), m_color);
         sf::Vector2f diameter = { m_offSet[1].x / 2, m_offSet[1].y / 2 };

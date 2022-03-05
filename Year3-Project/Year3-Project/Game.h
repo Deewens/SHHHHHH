@@ -52,6 +52,7 @@ private:
     void setupBase();
     void setupEnvironment();
     void loadSounds();
+    void openMusicFiles();
 
     void cameraMovement(sf::Time dt);
 
@@ -98,6 +99,10 @@ private:
     sf::Text m_loadingText;
 
     SoundHolder m_sounds;
+
+    // Musics
+    sf::Music m_menuMusic;
+    sf::Music m_inGameMusic;
 
     int noiseCounter = 0;
 };

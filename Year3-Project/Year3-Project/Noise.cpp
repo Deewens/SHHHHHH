@@ -13,9 +13,6 @@ Noise::Noise()
 void Noise::init(NoiseLevels t_playerNoiseLevel, NoiseLevels t_envNoiseLevel, sf::Vector2f t_location)
 {
     int result = static_cast<int>(t_envNoiseLevel) * static_cast<int>(t_playerNoiseLevel);
-    std::cout << "Player noise level: " << static_cast<int>(t_playerNoiseLevel) << std::endl;
-    std::cout << "Surface noise level: " << static_cast<int>(t_envNoiseLevel) << std::endl;
-    std::cout << "Result: " << result << std::endl;
 
     if (result > static_cast<int>(NoiseLevels::RED)) m_noiseLevel = NoiseLevels::RED;
     else m_noiseLevel = static_cast<NoiseLevels>(result);

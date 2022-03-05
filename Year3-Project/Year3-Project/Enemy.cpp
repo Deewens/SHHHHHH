@@ -134,6 +134,12 @@ void Enemy::update(sf::Time deltaTime)
         m_idlingAnim.update(deltaTime.asSeconds());
     }
     //debug();
+
+    if (elapsed.asSeconds() >= 5)
+    {
+        Utils::playRandomSound(growlingSounds);
+        clock.restart();
+    }
     pathFinding();
 }
 
@@ -320,45 +326,6 @@ void Enemy::pathFinding()
     }
 
     if (m_isMoving) move(m_moveTo, getPosition());
-
-    /*int m_secondToLastCell = 0;
-    int m_lastCell = 0;
-
-    int playerCell = floor(m_playerLocation.x / tileSize) + (floor(m_playerLocation.y / tileSize) * screen_Width / tileSize);
-    int zombieCell = floor(m_sprite.getPosition().x / tileSize) + (floor(m_sprite.getPosition().y / tileSize) * screen_Width / tileSize);
-
-    m_searchCounter++;
-    if (m_searchCounter >= 50)
-    {
-        m_searchCounter = 0;
-        m_grid.aStar(m_grid.nodeIndex(zombieCell), m_grid.nodeIndex(playerCell),m_ucsPath);
-    }
-    if (m_ucsPath.size() > 1)
-    {
-        m_secondToLastCell = m_ucsPath[m_ucsPath.size() - 2]->m_data.id;
-        if (m_secondToLastCell == zombieCell && m_ucsPath.size() > 2)
-        {
-            m_ucsPath.erase(m_ucsPath.begin() + m_ucsPath.size() - 1);
-            m_secondToLastCell = m_ucsPath[m_ucsPath.size() - 2]->m_data.id;
-        }
-        m_lastCell = m_ucsPath[m_ucsPath.size() - 1]->m_data.id;
-    }
-
-    int m_columS = m_secondToLastCell % (screen_Width / tileSize);
-    int m_rowS = (m_secondToLastCell - m_columS) / (screen_Width / tileSize);
-
-    int m_columF = m_lastCell % (screen_Width / tileSize);
-    int m_rowF = (m_lastCell - m_columF) / (screen_Width / tileSize);
-
-    sf::Vector2f m_centerS;
-    m_centerS.y = (tileSize / 2) + (tileSize * m_rowS);
-    m_centerS.x = (tileSize / 2) + (tileSize * m_columS);
-
-    sf::Vector2f m_centerF;
-    m_centerF.y = (tileSize / 2) + (tileSize * m_rowF);
-    m_centerF.x = (tileSize / 2) + (tileSize * m_columF);
-
-    move(m_centerS, m_centerF);*/
 }
 
 void Enemy::drawPath(std::vector<int> t_path)
@@ -385,16 +352,31 @@ void Enemy::loadSoundHolder(SoundHolder& soundHolder)
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand6)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand7)));
     footstepRunSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Footsteps_Run_Sand8)));
+    std::for_each(footstepRunSounds.begin(), footstepRunSounds.end(), [](auto sound) { sound->setVolume(20); });
 
-    for (auto sound : footstepRunSounds)
-        sound->setVolume(20);
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_1)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_2)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_3)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_4)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_5)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_6)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_7)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_8)));
+    growlingSounds.push_back(new sf::Sound(soundHolder.get(Sounds::Zombie_Growling_9)));
+    std::for_each(growlingSounds.begin(), growlingSounds.end(), [](auto sound) { sound->setVolume(20); });
 }
 
 void Enemy::changeSoundsVolume(float newVolume)
 {
-    for (auto sound : footstepRunSounds)
+    std::for_each(footstepRunSounds.begin(), footstepRunSounds.end(), [=](auto sound) {
         if (sound->getVolume() != newVolume)
             sound->setVolume(newVolume);
+    });
+
+    std::for_each(growlingSounds.begin(), growlingSounds.end(), [=](auto sound) {
+        if (sound->getVolume() != newVolume)
+            sound->setVolume(newVolume);
+    });
 }
 
 void Enemy::move(sf::Vector2f& offset)

@@ -31,6 +31,20 @@ enum class Sounds
     Footsteps_Walk_Sand6,
     Footsteps_Walk_Sand7,
     Footsteps_Walk_Sand8,
+
+    // Zombie Growling
+    Zombie_Growling_1,
+    Zombie_Growling_2,
+    Zombie_Growling_3,
+    Zombie_Growling_4,
+    Zombie_Growling_5,
+    Zombie_Growling_6,
+    Zombie_Growling_7,
+    Zombie_Growling_8,
+    Zombie_Growling_9,
+
+    // Glass Break
+    Wine_Glass_Shatering,
 };
 
 #endif //YEAR3_PROJECT_SOUNDIDENTIFIERS_H

@@ -43,7 +43,8 @@ Game::Game() :
     m_window.clear(sf::Color::Black);
     m_window.draw(m_loadingText);
     m_window.display();
-    
+
+    openMusicFiles();
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
 
@@ -197,13 +198,9 @@ void Game::processKeys(sf::Event t_event)
 /// <param name="t_deltaTime">time interval per frame</param>
 void Game::update(sf::Time t_deltaTime)
 {
-    
     if (m_exitGame)
-    {
         m_window.close();
-    }
-    sf::Vector2f playerPos;
-    sf::Vector2f enemyPos;
+
     float dist;
     float volume;
     switch (m_gameState)
@@ -215,9 +212,22 @@ void Game::update(sf::Time t_deltaTime)
                 level = 0;
                 loadNewLevel();
             }
+
+            if (m_inGameMusic.getStatus() == sf::SoundSource::Playing)
+                m_inGameMusic.stop();
+
+            if (m_menuMusic.getStatus() == sf::SoundSource::Stopped)
+                m_menuMusic.play();
+
             break;
         case GameState::GAMEPLAY:
         {
+            if (m_menuMusic.getStatus() == sf::SoundSource::Playing)
+                m_menuMusic.stop();
+
+            if (m_inGameMusic.getStatus() == sf::SoundSource::Stopped)
+                m_inGameMusic.play();
+
             m_window.setView(m_worldView);
             m_hud.update(m_worldView.getCenter());
             m_player.update(t_deltaTime , m_worldView.getCenter());
@@ -225,6 +235,7 @@ void Game::update(sf::Time t_deltaTime)
             {
                 m_enemy->update(t_deltaTime);
                 dist = m_player.getDistance(*m_enemy);
+                // Change the volume of the sounds depending on the distance with the player
                 volume = std::max<float>(0.f, 100.f - 100.f / 300.f * dist);
                 m_enemy->changeSoundsVolume(volume);
             }
@@ -544,4 +555,28 @@ void Game::loadSounds()
     m_sounds.load(Sounds::Footsteps_Sneak_Sand2, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand2M.wav");
     m_sounds.load(Sounds::Footsteps_Sneak_Sand3, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand3M.wav");
     m_sounds.load(Sounds::Footsteps_Sneak_Sand4, path + "/Footsteps/Sand/Sneak/Footsteps_Sneak_Sand4M.wav");
+
+    // Growling
+    m_sounds.load(Sounds::Zombie_Growling_1, path + "/Growling/Zombie_1.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_2, path + "/Growling/Zombie_2.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_3, path + "/Growling/Zombie_3.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_4, path + "/Growling/Zombie_4.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_5, path + "/Growling/Zombie_5.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_6, path + "/Growling/Zombie_6.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_7, path + "/Growling/Zombie_7.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_8, path + "/Growling/Zombie_8.ogg");
+    m_sounds.load(Sounds::Zombie_Growling_9, path + "/Growling/Zombie_9.ogg");
+
+    m_sounds.load(Sounds::Wine_Glass_Shatering, path + "/Effects/Wine_Glass_Shatering.ogg");
+}
+
+void Game::openMusicFiles()
+{
+    std::string path = "ASSETS/MUSICS";
+
+    if (!m_menuMusic.openFromFile(path + "/Menu.ogg"))
+        std::cout << "Error opening menu music file" << std::endl;
+
+    if (!m_inGameMusic.openFromFile(path + "/InGameMusic.ogg"))
+        std::cout << "Error opening in game music file" << std::endl;
 }

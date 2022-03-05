@@ -56,6 +56,8 @@ private:
     std::vector<sf::Sound*> footstepWalkSounds;
     std::vector<sf::Sound*> footstepRunSounds;
     std::vector<sf::Sound*> footstepSneakSounds;
+    sf::Sound* brokenGlassSound;
+
     sf::Clock clock;
 
     sf::RectangleShape m_staminaBar;
