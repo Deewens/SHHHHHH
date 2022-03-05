@@ -121,15 +121,16 @@ public:
     float m_spalshTime[2] = { 80,80 };
 
     bool m_bottleBreak[2] = { false,false };
+    bool m_particleDraw[2] = { false, false };
 
-    sf::Vector2f m_newPos{};
-
-    sf::Vector2f m_offSet{};
+    sf::Vector2f m_offSet[2];
 
     void setupNewPlayer(int t_gridIndex, int t_rotation);
 
     NoiseLevels getNoiseLevel();
 
     sf::Vector2f bottleLocation();
+
+    sf::Vector2f checkBottleCollisions();
 };
 
