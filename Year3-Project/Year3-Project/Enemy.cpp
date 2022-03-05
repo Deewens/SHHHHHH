@@ -392,13 +392,13 @@ void Enemy::moveTo(sf::Vector2f goal)
 
     if (distance < 200)
     {
-        std::cout << "DEBUG: A small path is being generated..." << std::endl;
+        //std::cout << "DEBUG: A small path is being generated..." << std::endl;
         AStarMovement(enemyCell, goalCell);
     }
     else
     {
+        //std::cout << "DEBUG: A long path is being generated..." << std::endl;
         std::vector<int> finalPath;
-        std::cout << "DEBUG: A long path is being generated..." << std::endl;
 
         // Get the waypoint closer to the zombie
         int closestWaypoint = m_grid.getClosestWaypoint(getPosition());
@@ -409,9 +409,6 @@ void Enemy::moveTo(sf::Vector2f goal)
 
         // When the waypoint is reached, get the waypoint closer to the goal
         int closestWaypointFromGoal = m_grid.getClosestWaypoint(goal);
-
-        std::cout << "Closest waypoint: " <<  closestWaypoint << std::endl;
-        std::cout << "Closest waypoint from goal: " <<  closestWaypointFromGoal << std::endl;
 
         // Using the two found waypoints, search for one of the pre-computed UCS Path
         auto ucsPath = m_grid.getUCSPath(closestWaypoint, closestWaypointFromGoal);
@@ -433,8 +430,8 @@ void Enemy::moveTo(sf::Vector2f goal)
 
         drawPath(finalPath);
 
-        std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
-        std::cout << std::endl;
+/*        std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
+        std::cout << std::endl;*/
 
         m_ucsPath = finalPath;
     }
@@ -484,8 +481,8 @@ void Enemy::AStarMovement(int startNodeIdx, int goalNodeIdx)
 
     finalPath = calculateAStarPath(startNodeIdx, goalNodeIdx);
 
-    std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
-    std::cout << std::endl;
+/*    std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
+    std::cout << std::endl;*/
 
     drawPath(finalPath);
     m_ucsPath = finalPath;
