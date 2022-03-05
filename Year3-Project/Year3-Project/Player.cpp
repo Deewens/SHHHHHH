@@ -12,11 +12,12 @@ void Player::bottleMovement()
     {
         m_readyToTHrow[0] = false;
         sf::Vector2f position = m_bottleSprite[0].getPosition();
-
-        m_newPos = { position.x + std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
-            position.y + std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
+        sf::Vector2f change = { std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
+            std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
+        position += change;
+        m_offSet[0] += change;
         m_bottleSprite[0].setRotation(m_bottleRotate);
-        m_bottleSprite[0].setPosition(m_newPos.x, m_newPos.y);
+        m_bottleSprite[0].setPosition(position);
         m_bottleAirTime[0] -= 0.1;
 
     }
@@ -25,11 +26,12 @@ void Player::bottleMovement()
     {
         m_readyToTHrow[1] = false;
         sf::Vector2f position = m_bottleSprite[1].getPosition();
-
-        m_newPos = { position.x + std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
-            position.y + std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
+        sf::Vector2f change = { std::cos(PI / 180.0f * m_heading) * m_bottleSpeed,
+                    std::sin(PI / 180.0f * m_heading) * m_bottleSpeed };
+        position += change;
+        m_offSet[1] += change;
         m_bottleSprite[1].setRotation(m_bottleRotate);
-        m_bottleSprite[1].setPosition(m_newPos.x, m_newPos.y);
+        m_bottleSprite[1].setPosition(position);
         m_bottleAirTime[1] -= 0.1;
     }
 }
@@ -175,9 +177,6 @@ void Player::setDirection(int t_direction)
 
 void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
 {
-
-    m_offSet = {screen_Width / 2 - m_sprite.getPosition().x, screen_Height / 2 - m_sprite.getPosition().y};
-
     move(deltaTime.asSeconds());
     if (m_velocity.x == 0 && m_velocity.y == 0)
         m_playerState = PlayerMovingState::IDLE;
@@ -193,7 +192,6 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
         m_heading = m_sprite.getRotation();
         m_powerSprite.setRotation(m_sprite.getRotation());
     } 
-
     
     m_staminaBarLvl.setSize(m_staminaBarLvlSize);
     //m_staminaBar.setPosition(t_position.x, t_position.y + screen_Height / 4 - m_staminaBarSize.y-10);
@@ -230,7 +228,6 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
     {
         m_staminaBarLvl.setFillColor(sf::Color::Red);
     }  
-
     m_bottleRotate += 10;
 
    bottleMovement();
@@ -238,27 +235,18 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
    if (m_bottleAirTime[0] <= 0)
    {
        m_bottleBreak[0] = true;
+       m_bottleAirTime[0] = 1;
    }
    if (m_bottleAirTime[1] <= 0)
    {
        m_bottleBreak[1] = true;
-   }
-   if (m_bottleBreak[0]==true)
-   {
-       m_throw[0] = false;
-       m_Impact[0].Initialise(m_bottleSprite[0].getPosition(), m_color);
-   }
-   if (m_bottleBreak[1] == true)
-   {
-       m_throw[1] = false;
-       m_Impact[1].Initialise(m_bottleSprite[1].getPosition(), m_color);
+       m_bottleAirTime[1] = 1;
    }
 
     for (int i = 0; i < 2; i++)
     {
         m_Impact[i].Update();
     }
-
     // Update according to the current player movement state
     switch (m_playerState)
     {
@@ -344,11 +332,15 @@ void Player::processEvents(sf::Event event)
         if (event.key.code == sf::Keyboard::RControl)
         {
             m_powerBarVisible = false;
+
+            sf::Vector2f m_startOffset = { screen_Width / 2 - m_sprite.getPosition().x, screen_Height / 2 - m_sprite.getPosition().y };
+
             if (m_readyToTHrow[0] == true)
             {
                 m_readyToTHrow[0] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
-                m_bottleSprite[0].setPosition(m_sprite.getPosition()+m_offSet);
+                m_offSet[0] = { 0, 0 };
+                m_bottleSprite[0].setPosition(m_sprite.getPosition()+m_startOffset);
                 m_throw[0] = true;
                 return;
             }
@@ -356,7 +348,8 @@ void Player::processEvents(sf::Event event)
             {
                 m_readyToTHrow[1] = false;
                 powerSpriteScale = sf::Vector2f(0.1f, 0.1f);
-                m_bottleSprite[1].setPosition(m_sprite.getPosition()+m_offSet);
+                m_offSet[1] = { 0, 0 };
+                m_bottleSprite[1].setPosition(m_sprite.getPosition()+m_startOffset);
                 m_throw[1] = true;
             }
             //m_throw = false;
@@ -388,12 +381,12 @@ void Player::renderPowerBar(sf::RenderWindow &t_window)
         m_readyToTHrow[1] = false;
         t_window.draw(m_bottleSprite[1]);
     }
-    if (m_bottleBreak[0]&& m_spalshTime[0]>=0)
+    if (m_particleDraw[0]&& m_spalshTime[0]>=0)
     {
         m_Impact[0].Draw(t_window);
         m_spalshTime[0]--;
     }
-    if (m_bottleBreak[1]&& m_spalshTime[1]>= 0)
+    if (m_particleDraw[1]&& m_spalshTime[1]>= 0)
     {
         m_Impact[1].Draw(t_window);
         m_spalshTime[1]--;
@@ -487,21 +480,22 @@ sf::Sprite Player::getSprite()
 
 void Player::boundryCheck()
 {
-    if (m_sprite.getPosition().x > screen_Width - m_sprite.getTextureRect().width)
+    float diameter = getRadius() * 2;
+    if (m_sprite.getPosition().x > screen_Width - diameter)
     {
-        m_sprite.setPosition(screen_Width - m_sprite.getTextureRect().width, m_sprite.getPosition().y);
+        m_sprite.setPosition(screen_Width - diameter, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().x <= getRadius()+tileSize)
+    if (m_sprite.getPosition().x <= diameter)
     {
-        m_sprite.setPosition(getRadius()+tileSize, m_sprite.getPosition().y);
+        m_sprite.setPosition(diameter, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().y > screen_Height - m_sprite.getTextureRect().height)
+    if (m_sprite.getPosition().y > screen_Height - diameter)
     {
         m_sprite.setPosition(m_sprite.getPosition().x, screen_Height - m_sprite.getTextureRect().height);
     }
-    if (m_sprite.getPosition().y < getRadius()+tileSize)
+    if (m_sprite.getPosition().y < diameter)
     {
-        m_sprite.setPosition(m_sprite.getPosition().x, getRadius()+tileSize);
+        m_sprite.setPosition(m_sprite.getPosition().x, diameter);
     }
 }
 
@@ -583,6 +577,32 @@ NoiseLevels Player::getNoiseLevel()
 
 sf::Vector2f Player::bottleLocation()
 {
-    return m_bottleSprite->getPosition()-m_offSet;
+    return m_bottleSprite->getPosition();
+}
+
+sf::Vector2f Player::checkBottleCollisions()
+{
+    sf::Vector2f t_noise = sf::Vector2f{};
+    if (m_bottleBreak[0] == true)
+    {
+        m_throw[0] = false;
+        m_Impact[0].Initialise(m_bottleSprite[0].getPosition(), m_color);
+        sf::Vector2f diameter = { m_offSet[0].x / 2, m_offSet[0].y / 2 };
+        t_noise = m_sprite.getPosition() + diameter;
+        m_bottleBreak[0] = false;
+        m_particleDraw[0] = true;
+        m_spalshTime[0] = 80;
+    }
+    if (m_bottleBreak[1] == true)
+    {
+        m_throw[1] = false;
+        m_Impact[1].Initialise(m_bottleSprite[1].getPosition(), m_color);
+        sf::Vector2f diameter = { m_offSet[1].x / 2, m_offSet[1].y / 2 };
+        t_noise = m_sprite.getPosition() + diameter;
+        m_bottleBreak[1] = false;
+        m_particleDraw[1] = true;
+        m_spalshTime[1] = 80;
+    }
+    return t_noise;
 }
 
