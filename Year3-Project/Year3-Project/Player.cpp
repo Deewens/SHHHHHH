@@ -174,7 +174,6 @@ void Player::setDirection(int t_direction)
 
 void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
 {
-
     m_offSet = {screen_Width / 2 - m_sprite.getPosition().x, screen_Height / 2 - m_sprite.getPosition().y};
 
     move(deltaTime.asSeconds());
@@ -192,7 +191,6 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
         m_heading = m_sprite.getRotation();
         m_powerSprite.setRotation(m_sprite.getRotation());
     } 
-
     
     m_staminaBarLvl.setSize(m_staminaBarLvlSize);
     //m_staminaBar.setPosition(t_position.x, t_position.y + screen_Height / 4 - m_staminaBarSize.y-10);
@@ -229,7 +227,6 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
     {
         m_staminaBarLvl.setFillColor(sf::Color::Red);
     }  
-
     m_bottleRotate += 10;
 
    bottleMovement();
@@ -257,7 +254,6 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
     {
         m_Impact[i].Update();
     }
-
     // Update according to the current player movement state
     switch (m_playerState)
     {
@@ -486,21 +482,22 @@ sf::Sprite Player::getSprite()
 
 void Player::boundryCheck()
 {
-    if (m_sprite.getPosition().x > screen_Width - m_sprite.getTextureRect().width)
+    float diameter = getRadius() * 2;
+    if (m_sprite.getPosition().x > screen_Width - diameter)
     {
-        m_sprite.setPosition(screen_Width - m_sprite.getTextureRect().width, m_sprite.getPosition().y);
+        m_sprite.setPosition(screen_Width - diameter, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().x <= getRadius()+tileSize)
+    if (m_sprite.getPosition().x <= diameter)
     {
-        m_sprite.setPosition(getRadius()+tileSize, m_sprite.getPosition().y);
+        m_sprite.setPosition(diameter, m_sprite.getPosition().y);
     }
-    if (m_sprite.getPosition().y > screen_Height - m_sprite.getTextureRect().height)
+    if (m_sprite.getPosition().y > screen_Height - diameter)
     {
         m_sprite.setPosition(m_sprite.getPosition().x, screen_Height - m_sprite.getTextureRect().height);
     }
-    if (m_sprite.getPosition().y < getRadius()+tileSize)
+    if (m_sprite.getPosition().y < diameter)
     {
-        m_sprite.setPosition(m_sprite.getPosition().x, getRadius()+tileSize);
+        m_sprite.setPosition(m_sprite.getPosition().x, diameter);
     }
 }
 
