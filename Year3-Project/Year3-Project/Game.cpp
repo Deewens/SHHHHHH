@@ -510,6 +510,7 @@ void Game::loadNewLevel()
     std::ifstream f("level" + std::to_string(level) + ".json");
     if (f.good())
     {
+        collisions.clearNoises();
         setupEnvironment();
     }
     else
