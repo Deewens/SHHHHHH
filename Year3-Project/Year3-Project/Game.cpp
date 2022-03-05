@@ -396,6 +396,7 @@ void Game::setupBase()
     if (!m_spriteSheet.loadFromFile("ASSETS/TileSheet/spritesheet.png"))
         std::cout << "problem loading the game sprite sheet" << std::endl;
 
+    m_spriteSheet.setSmooth(true);
     std::ifstream levelData("scene.json");
     json groundJson;
 
@@ -423,6 +424,7 @@ void Game::setupEnvironment()
     json scene = levelJson["scene"];
 
     std::ifstream spriteSheetData("ASSETS/TileSheet/spritesheet.json");
+    
     nlohmann::json json;
     spriteSheetData >> json;
 

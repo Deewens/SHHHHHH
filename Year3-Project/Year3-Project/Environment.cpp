@@ -24,6 +24,7 @@ Environment::Environment(sf::Texture& t_texture, const std::string& t_sprite, in
     float width = frame["frame"]["w"];
     float height = frame["frame"]["h"];
 
+    t_texture.setSmooth(true);
     m_sprite.setTextureRect(sf::IntRect(x, y, width, height));
     m_sprite.setScale((float)tileSize/width, (float)tileSize/height);
 

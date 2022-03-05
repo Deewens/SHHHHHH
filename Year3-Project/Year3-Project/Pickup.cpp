@@ -20,6 +20,7 @@ void Pickup::setUpSpriteBottle(sf::Texture& t_texture)
 	float width = frame["w"];
 	float height = frame["h"];
 
+	t_texture.setSmooth(true);
 	m_bottleSprite.setTexture(t_texture);
 	//m_bottleSprite.setScale(0.05, 0.05);
 	m_bottleSprite.setTextureRect(sf::IntRect(x, y, width, height));

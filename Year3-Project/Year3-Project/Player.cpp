@@ -8,8 +8,6 @@ void Player::unitVector(sf::Vector2f &t_vector, float dt)
 
 void Player::bottleMovement()
 {
-
-
     if (m_throw[0]==true)
     {
         m_readyToTHrow[0] = false;
@@ -37,6 +35,7 @@ void Player::bottleMovement()
 }
 
 Player::Player(sf::Texture& t_texture) :
+        
         m_runningAnim(m_sprite),
         m_walkingAnim(m_sprite),
         m_crouchingAnim(m_sprite),
@@ -122,6 +121,7 @@ Player::Player(sf::Texture& t_texture) :
    
     for (size_t i = 0; i < 2; i++)
     {
+        t_texture.setSmooth(true);
         m_bottleSprite[i].setTexture(t_texture);
         m_bottleSprite[i].setTextureRect(sf::IntRect(x, y, width, height));
         m_bottleSprite[i].setScale(0.4, 0.4);
@@ -134,6 +134,7 @@ Player::Player(sf::Texture& t_texture) :
         std::cout << "problem loading backpack texture" << std::endl;
     }      
     sf::Color color = sf::Color(225.0f, 225.0f, 225.0f, 150.0f);
+    m_powerTexture.setSmooth(true);
     m_powerSprite.setTexture(m_powerTexture);
     m_powerSprite.setScale(powerSpriteScale);
     m_powerSprite.setOrigin(0, 145);
@@ -203,9 +204,9 @@ void Player::update(sf::Time deltaTime, sf::Vector2f t_position)
     {
         m_staminaBarLvlSize.x--;
     }
-    if (m_playerState != PlayerMovingState::RUNNING && m_staminaBarLvlSize.x <= 190)
+    if (m_playerState != PlayerMovingState::RUNNING && m_staminaBarLvlSize.x <= m_staminaBar.getSize().x -10)
     {
-        m_staminaBarLvlSize.x = m_staminaBarLvlSize.x + 0.1f;
+        m_staminaBarLvlSize.x += 0.1f;
     }
     if (m_staminaBarLvlSize.x <= 2)
     {

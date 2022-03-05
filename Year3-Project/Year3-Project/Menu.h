@@ -53,18 +53,21 @@ public:
         {
             std::cout << "problem loading win Background" << std::endl;
         }
-
+        m_backgroundTexture.setSmooth(true);
         m_backgroundSprite.setTexture(m_backgroundTexture);
         m_backgroundSprite.setScale(1.1, 1.1);
         m_backgroundSprite.setPosition(300, 10);
 
+        m_loseTexture.setSmooth(true);
         m_loseSprite.setTexture(m_loseTexture);
         m_loseSprite.setScale(0.65, 0.65);
 
+        m_lvlPassTexture.setSmooth(true);
         m_lvlPassSprite.setTexture(m_lvlPassTexture);
         m_lvlPassSprite.setScale(2, 2);
         m_lvlPassSprite.setPosition(100, 100);
 
+        m_gameFinishTexture.setSmooth(true);
         m_gameFinishSprite.setTexture(m_gameFinishTexture);
         m_gameFinishSprite.setScale(1.7, 1.7);
         m_gameFinishSprite.setPosition(600, 350);
