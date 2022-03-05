@@ -568,6 +568,9 @@ void Player::setupNewPlayer(int t_gridIndex, int t_rotation)
         Player::setDirection(NORTH);
         break;
     }
+    m_readyToTHrow[0] = false;
+    m_readyToTHrow[1] = false;
+    m_speed = WALKING_SPEED;
 }
 
 NoiseLevels Player::getNoiseLevel()

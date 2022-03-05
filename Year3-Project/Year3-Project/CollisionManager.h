@@ -25,6 +25,8 @@ public:
 	void renderNoises(sf::RenderWindow& t_window);
 	void update();
 
+	void clearNoises();
+
 	sf::Vector2f impactLocation();
 
 	sf::Vector2f m_impactLocation;

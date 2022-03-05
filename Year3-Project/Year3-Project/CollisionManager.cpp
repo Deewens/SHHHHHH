@@ -196,6 +196,11 @@ void CollisionManager::update()
 	}), m_noises.end());
 }
 
+void CollisionManager::clearNoises()
+{
+	m_noises.clear();
+}
+
 sf::Vector2f CollisionManager::impactLocation()
 {
 	return m_impactLocation;

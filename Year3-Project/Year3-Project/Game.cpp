@@ -50,8 +50,7 @@ Game::Game() :
     m_gameMenu.Init();
 
     setupBase();
-    setupEnvironment();
-    m_grid.debug();
+    m_grid.debug(m_font);
 
     // Fill the graph with all the arcs using the neighbours algorithm
     for (int i = 0; i < m_grid.getNodes().size(); i++)
@@ -211,7 +210,11 @@ void Game::update(sf::Time t_deltaTime)
     {
         case GameState::MENU:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
+            if (m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window))
+            {
+                level = 0;
+                loadNewLevel();
+            }
             break;
         case GameState::GAMEPLAY:
         {
@@ -430,6 +433,7 @@ void Game::setupEnvironment()
 
     nlohmann::json frame = json["frames"];
 
+    m_environment.clear();
     for (auto& el : scene)
         m_environment.emplace_back(m_spriteSheet, el["spriteName"], el["gridIndex"], screen_Height / tileSize,
             screen_Width / tileSize, frame, el["rotation"], el["impassable"]);
@@ -506,12 +510,12 @@ void Game::loadNewLevel()
     std::ifstream f("level" + std::to_string(level) + ".json");
     if (f.good())
     {
+        collisions.clearNoises();
         setupEnvironment();
     }
     else
     {
         m_gameState = GameState::WINGAME;
-        level = 0;
     }
 }
 
