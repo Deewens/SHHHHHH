@@ -101,7 +101,7 @@ public:
 
     bool update(sf::Vector2f mousePos, sf::RenderWindow& t_window)
     {
-        bool nextLevel = false;
+        bool gameStarted = false;
         if (m_gameState == GameState::MENU)
         {
             for (int i = 0; i < 4; i++)
@@ -111,6 +111,7 @@ public:
             if (MainMenuButtons[0].pressed == true)
             {
                 m_gameState = GameState::GAMEPLAY;
+                gameStarted = true;
             }
             if (MainMenuButtons[1].pressed == true)
             {
@@ -175,7 +176,7 @@ public:
                 m_gameState = GameState::MENU;
             }
         }
-        return nextLevel;
+        return gameStarted;
     }   
 
 private:
