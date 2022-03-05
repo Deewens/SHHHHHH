@@ -30,6 +30,9 @@ public:
     sf::Texture m_gameFinishTexture;
     sf::Sprite m_gameFinishSprite;
 
+    sf::Texture m_splashTexture;
+    sf::Sprite m_splashSprite;
+
     sf::RectangleShape m_pauseRect;
 
 
@@ -53,6 +56,11 @@ public:
         {
             std::cout << "problem loading win Background" << std::endl;
         }
+        if (!m_splashTexture.loadFromFile("ASSETS\\IMAGES\\Splash.png"))
+        {
+            std::cout << "problem loading win Background" << std::endl;
+        }
+
         m_backgroundTexture.setSmooth(true);
         m_backgroundSprite.setTexture(m_backgroundTexture);
         m_backgroundSprite.setScale(1.1, 1.1);
@@ -73,6 +81,11 @@ public:
         m_gameFinishSprite.setPosition(600, 350);
         m_gameFinishSprite.setRotation(-25);
         m_gameFinishSprite.setOrigin(350, 100);
+
+
+        m_splashTexture.setSmooth(true);
+        m_splashSprite.setTexture(m_splashTexture);
+        m_splashSprite.setScale(1, 0.9);
 
         GameBackButton.Init(sf::Vector2f(0, 0), font,sf::Vector2f(250, 40), sf::Vector2f(0, 0));
         GameBackButton3.Init(sf::Vector2f(0, 60), font, sf::Vector2f(250, 40), sf::Vector2f(30, 0));

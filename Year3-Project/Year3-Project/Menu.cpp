@@ -20,6 +20,7 @@ void Menu::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
     else if (m_gameState == GameState::HELP)
     {
+        target.draw(m_splashSprite);
         target.draw(GameBackButton.shape);
         target.draw(GameBackButton.text);
         target.draw(gameText);
