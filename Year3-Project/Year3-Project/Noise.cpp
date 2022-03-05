@@ -27,14 +27,17 @@ void Noise::init(NoiseLevels t_playerNoiseLevel, NoiseLevels t_envNoiseLevel, sf
 		break;
 	case NoiseLevels::GREEN:
 		m_noiseShape.setOutlineColor(sf::Color(0, 255, 0, 128));
+		m_noiseShape.setOutlineThickness(4);
 		m_maxStrength = 100;
 		break;
 	case NoiseLevels::YELLOW:
 		m_noiseShape.setOutlineColor(sf::Color(255, 255, 0, 128));
+		m_noiseShape.setOutlineThickness(4);
 		m_maxStrength = 200;
 		break;
 	case NoiseLevels::RED:
 		m_noiseShape.setOutlineColor(sf::Color(255, 0, 0, 128));
+		m_noiseShape.setOutlineThickness(4);
 		m_maxStrength = 300;
 	default:
 		break;

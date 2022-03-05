@@ -34,6 +34,7 @@ void Character::loadTexture()
     if (!m_texture.loadFromFile("ASSETS/IMAGES/sprite_sheets/characters_sprite_sheet.png"))
         std::cout << "problem loading character texture" << std::endl;
 
+    m_texture.setSmooth(true);
     m_sprite.setTexture(m_texture);
 }
 

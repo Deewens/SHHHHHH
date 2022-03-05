@@ -58,6 +58,7 @@ void HUD::setUpSprite()
         // simple error message if previous call fails
         std::cout << "problem loading backpack texture" << std::endl;
     }
+    m_backpackTexture.setSmooth(true);
     m_backpackSprite.setTexture(m_backpackTexture);
     m_backpackSprite.setOrigin(m_backpackSprite.getGlobalBounds().left +500, m_backpackSprite.getGlobalBounds().top+m_backpackSprite.getGlobalBounds().height - 390);
     m_backpackSprite.setScale(0.1, 0.1);
@@ -67,7 +68,7 @@ void HUD::setUpSprite()
         // simple error message if previous call fails
         std::cout << "problem loading backpack texture" << std::endl;
     }
-
+    m_hudBottleTexture.setSmooth(true);
     for (int i = 0; i < 2; i++)
     {
         m_hudBottleSprite[i].setTexture(m_hudBottleTexture);
