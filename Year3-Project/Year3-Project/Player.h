@@ -129,7 +129,7 @@ public:
 
     NoiseLevels getNoiseLevel();
 
-    sf::Vector2f bottleLocation();
+    sf::Vector2f bottleLocation(int t_num);
 
     sf::Vector2f checkBottleCollisions();
 };

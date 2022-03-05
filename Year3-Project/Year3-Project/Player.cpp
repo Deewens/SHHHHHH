@@ -575,9 +575,11 @@ NoiseLevels Player::getNoiseLevel()
     return m_noiseLevel;
 }
 
-sf::Vector2f Player::bottleLocation()
+sf::Vector2f Player::bottleLocation(int t_num)
 {
-    return m_bottleSprite->getPosition();
+    sf::Vector2f diameter = { m_offSet[t_num].x / 2, m_offSet[t_num].y / 2 };
+
+    return (m_bottleSprite[t_num].getPosition()+ diameter);
 }
 
 sf::Vector2f Player::checkBottleCollisions()

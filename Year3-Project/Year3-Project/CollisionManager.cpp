@@ -45,32 +45,71 @@ void CollisionManager::check(Player& t_player, Environment& t_environment, int& 
 	float playerSize = t_player.getRadius();
 	sf::Vector2f playerPos = t_player.getPosition();
 
+	float bottleSize = t_player.bottleSpriteRadius();
+	sf::Vector2f bottlePos0 = t_player.bottleLocation(0);
+	sf::Vector2f bottlePos1 = t_player.bottleLocation(1);
+
 
 	float closestX = clamp(playerPos.x, collisionRect.left, collisionRect.left + collisionRect.width);
 	float closestY = clamp(playerPos.y, collisionRect.top, collisionRect.top + collisionRect.height);
 
 
+	float closestXbottle0 = clamp(bottlePos0.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestYbottle0 = clamp(bottlePos0.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+	float closestXbottle1 = clamp(bottlePos1.x, collisionRect.left, collisionRect.left + collisionRect.width);
+	float closestYbottle1 = clamp(bottlePos1.y, collisionRect.top, collisionRect.top + collisionRect.height);
+
+
 	float distanceX = playerPos.x - closestX;
 	float distanceY = playerPos.y - closestY;
 
+	float bottle0distanceX = bottlePos0.x - closestXbottle0;
+	float bottle0distanceY = bottlePos0.y - closestYbottle0;
+
+	float bottle1distanceX = bottlePos1.x - closestXbottle1;
+	float bottle1distanceY = bottlePos1.y - closestYbottle1;
+
 	float distanceSquared = (distanceX * distanceX) + (distanceY * distanceY);
 
+	float distanceSquared0 = (bottle0distanceX * bottle0distanceX) + (bottle0distanceY * bottle0distanceY);
+	float distanceSquared1 = (bottle1distanceX * bottle1distanceX) + (bottle1distanceY * bottle1distanceY);
 
-	if(distanceSquared < (playerSize * playerSize))
+
+	if (distanceSquared < (playerSize * playerSize))
 	{
 		if (t_environment.isImpassable())
 		{
 			t_player.awayFrom(sf::Vector2f(closestX, closestY));
 		}
-		else if(t_counter > 60)
+		else if (t_counter > 60)
 		{
 			Noise newNoise;
-			newNoise.init( t_player.getNoiseLevel(), t_environment.getNoise(), playerPos);
+			newNoise.init(t_player.getNoiseLevel(), t_environment.getNoise(), playerPos);
 			m_noises.push_back(newNoise);
 			t_counter = 0;
 		}
 	}
+
+	if (distanceSquared0 < (bottleSize * bottleSize) && t_player.m_throw[0])
+	{
+		if (t_environment.isImpassable())
+		{
+			t_player.m_bottleBreak[0] = true;
+			t_player.m_particleDraw[0] = true;	
+		}
+	}
+	if (distanceSquared1 < (bottleSize * bottleSize) && t_player.m_throw[1])
+	{
+		if (t_environment.isImpassable())
+		{
+			t_player.m_bottleBreak[1] = true;
+			t_player.m_particleDraw[1] = true;
+
+		}
+	}
 }
+
 
 void CollisionManager::check(Player& t_player, Goal& t_goal, bool& isFound)
 {
