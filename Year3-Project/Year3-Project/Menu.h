@@ -99,14 +99,14 @@ public:
         m_pauseRect.setOrigin(screen_Width / 5, screen_Height / 5);
     }
 
-    bool update(sf::Vector2f mousePos)
+    bool update(sf::Vector2f mousePos, sf::RenderWindow& t_window)
     {
         bool nextLevel = false;
         if (m_gameState == GameState::MENU)
         {
             for (int i = 0; i < 4; i++)
             {
-                MainMenuButtons[i].Update(mousePos);
+                MainMenuButtons[i].Update(mousePos, t_window);
             }
             if (MainMenuButtons[0].pressed == true)
             {
@@ -123,7 +123,7 @@ public:
         }
         else if (m_gameState == GameState::GAMEPLAY)
         {
-            GameBackButton.Update(mousePos);
+            GameBackButton.Update(mousePos, t_window);
             if (GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
@@ -131,7 +131,7 @@ public:
         }
         else if (m_gameState == GameState::HELP)
         {
-            GameBackButton.Update(mousePos);
+            GameBackButton.Update(mousePos, t_window);
             if (GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
@@ -139,7 +139,7 @@ public:
         }
         else if (m_gameState == GameState::PAUSE)
         {
-            GameBackButton1.Update(mousePos);
+            GameBackButton1.Update(mousePos, t_window);
             if (GameBackButton1.pressed == true)
             {
                 m_gameState = GameState::MENU;
@@ -147,7 +147,7 @@ public:
         }        
         else if (m_gameState == GameState::LOSE)
         {
-            GameBackButton.Update(mousePos);
+            GameBackButton.Update(mousePos, t_window);
             if(GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;
@@ -155,8 +155,8 @@ public:
         }
         else if (m_gameState == GameState::WINLEVEL)
         {
-            GameBackButton.Update(mousePos);
-            GameBackButton3.Update(mousePos);
+            GameBackButton.Update(mousePos, t_window);
+            GameBackButton3.Update(mousePos, t_window);
 
             if (GameBackButton.pressed == true)
             {
@@ -169,7 +169,7 @@ public:
         }
         else if (m_gameState == GameState::WINGAME)
         {
-            GameBackButton.Update(mousePos);
+            GameBackButton.Update(mousePos, t_window);
             if (GameBackButton.pressed == true)
             {
                 m_gameState = GameState::MENU;

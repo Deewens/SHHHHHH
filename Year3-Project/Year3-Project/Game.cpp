@@ -43,7 +43,7 @@ Game::Game() :
     m_window.clear(sf::Color::Black);
     m_window.draw(m_loadingText);
     m_window.display();
-
+    
     loadSounds();
     m_player.loadSoundHolder(m_sounds);
 
@@ -211,7 +211,7 @@ void Game::update(sf::Time t_deltaTime)
     {
         case GameState::MENU:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
             break;
         case GameState::GAMEPLAY:
         {
@@ -236,7 +236,7 @@ void Game::update(sf::Time t_deltaTime)
             m_exitGame = true;
             break;
         case GameState::HELP:
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
             break;        
         case GameState::PAUSE:
             m_window.setView(m_worldView);
@@ -248,15 +248,15 @@ void Game::update(sf::Time t_deltaTime)
             break;
         case GameState::WINLEVEL:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
             break;
         case GameState::LOSE:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
             break;
         case GameState::WINGAME:
             m_window.setView(m_worldView);
-            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window));
+            m_gameMenu.update((sf::Vector2f)sf::Mouse::getPosition(m_window), m_window);
             break;
         default:
             break;
