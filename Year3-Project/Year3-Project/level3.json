@@ -1,0 +1,356 @@
+{
+	"scene": [
+		{
+			"gridIndex": 48,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 67,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 75,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 89,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 104,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_bush_01.png"
+		},
+		{
+			"gridIndex": 105,
+			"impassable": true,
+			"rotation": 90.000000,
+			"spriteName": "outside_bush_01.png"
+		},
+		{
+			"gridIndex": 109,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 124,
+			"impassable": true,
+			"rotation": 270.000000,
+			"spriteName": "outside_bush_01.png"
+		},
+		{
+			"gridIndex": 125,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "outside_bush_01.png"
+		},
+		{
+			"gridIndex": 130,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 134,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 169,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 192,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 211,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		}
+],
+"special": [
+		{
+			"gridIndex": 44,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 50,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 53,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 57,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 82,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 93,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 117,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 151,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 165,
+			"rotation": 0.000000,
+			"Type": "Player"
+		},
+		{
+			"gridIndex": 174,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 177,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 218,
+			"rotation": 0.000000,
+			"Type": "Goal"
+		},
+		{
+			"gridIndex": 228,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 233,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 246,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 257,
+			"rotation": 0.000000,
+			"Type": "Zombie"
+		},
+		{
+			"gridIndex": 262,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		}
+],
+"pathfinding": {	"waypoints": [
+65, 
+75, 
+150, 
+225, 
+235],
+"paths": {"150-225": [
+150, 
+149, 
+168, 
+187, 
+206, 
+225],"150-235": [
+150, 
+171, 
+172, 
+193, 
+214, 
+235],"150-65": [
+150, 
+149, 
+128, 
+107, 
+86, 
+65],"150-75": [
+150, 
+131, 
+132, 
+113, 
+94, 
+75],"225-150": [
+225, 
+226, 
+207, 
+188, 
+169, 
+150],"225-235": [
+225, 
+226, 
+227, 
+208, 
+209, 
+210, 
+211, 
+212, 
+213, 
+214, 
+235],"225-65": [
+225, 
+205, 
+185, 
+166, 
+146, 
+126, 
+106, 
+86, 
+65],"225-75": [
+225, 
+226, 
+207, 
+188, 
+169, 
+150, 
+131, 
+132, 
+113, 
+94, 
+75],"235-150": [
+235, 
+234, 
+213, 
+192, 
+171, 
+150],"235-225": [
+235, 
+234, 
+213, 
+212, 
+211, 
+210, 
+209, 
+208, 
+207, 
+206, 
+225],"235-65": [
+235, 
+234, 
+213, 
+212, 
+191, 
+170, 
+149, 
+128, 
+107, 
+86, 
+65],"235-75": [
+235, 
+215, 
+195, 
+175, 
+155, 
+135, 
+115, 
+95, 
+75],"65-150": [
+65, 
+66, 
+87, 
+108, 
+129, 
+150],"65-225": [
+65, 
+85, 
+106, 
+126, 
+146, 
+166, 
+186, 
+206, 
+225],"65-235": [
+65, 
+66, 
+87, 
+108, 
+129, 
+150, 
+171, 
+172, 
+193, 
+214, 
+235],"65-75": [
+65, 
+66, 
+67, 
+68, 
+69, 
+70, 
+71, 
+72, 
+73, 
+74, 
+75],"75-150": [
+75, 
+94, 
+113, 
+112, 
+131, 
+150],"75-225": [
+75, 
+74, 
+73, 
+92, 
+111, 
+130, 
+149, 
+168, 
+187, 
+206, 
+225],"75-235": [
+75, 
+95, 
+115, 
+135, 
+155, 
+175, 
+195, 
+215, 
+235],"75-65": [
+75, 
+74, 
+73, 
+72, 
+71, 
+70, 
+69, 
+68, 
+67, 
+66, 
+65]
+}
+}
+}
