@@ -30,7 +30,6 @@
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Noise.cpp" />
     <ClCompile Include="Pickup.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -39,7 +38,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="Cell.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Enemy.h" />
