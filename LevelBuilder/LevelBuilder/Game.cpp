@@ -486,7 +486,10 @@ void Game::manageClicks(sf::Event t_event)
 							std::vector<Node*> path;
 
 							m_graph.ucs(m_graph.nodeIndex(m_waypointsIdx[i]), m_graph.nodeIndex(m_waypointsIdx[j]), path);
-							m_ucsPaths.insert({ std::to_string(m_graph.nodeIndex(m_waypointsIdx[i])->m_data.id) + "-" + std::to_string(m_graph.nodeIndex(m_waypointsIdx[j])->m_data.id), path });
+							m_ucsPaths.insert({ 
+								std::to_string(m_graph.nodeIndex(m_waypointsIdx[i])->m_data.id) + "-" + std::to_string(m_graph.nodeIndex(m_waypointsIdx[j])->m_data.id), 
+								path 
+							});
 						}
 						m_graph.clearMarks();
 					}

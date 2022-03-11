@@ -391,27 +391,20 @@ void Enemy::moveTo(sf::Vector2f goal)
     int goalCell = Utils::vectorToNode(goal);
 
     if (distance < 200)
-    {
-        //std::cout << "DEBUG: A small path is being generated..." << std::endl;
         AStarMovement(enemyCell, goalCell);
-    }
     else
     {
-        //std::cout << "DEBUG: A long path is being generated..." << std::endl;
         std::vector<int> finalPath;
 
-        // Get the waypoint closer to the zombie
-        int closestWaypoint = m_grid.getClosestWaypoint(getPosition());
+        int closestWaypoint = m_grid.getClosestWaypoint(getPosition()); // Get the waypoint closer to the zombie
 
         std::vector<int> startToFirstWPPath = calculateAStarPath(enemyCell, closestWaypoint);
         for (auto& node : startToFirstWPPath)
             finalPath.push_back(node);
 
-        // When the waypoint is reached, get the waypoint closer to the goal
-        int closestWaypointFromGoal = m_grid.getClosestWaypoint(goal);
+        int closestWaypointFromGoal = m_grid.getClosestWaypoint(goal); // When the waypoint is reached, get the waypoint closer to the goal
 
-        // Using the two found waypoints, search for one of the pre-computed UCS Path
-        auto ucsPath = m_grid.getUCSPath(closestWaypoint, closestWaypointFromGoal);
+        auto ucsPath = m_grid.getUCSPath(closestWaypoint, closestWaypointFromGoal); // Using the two found waypoints, search for one of the pre-computed UCS Path
         if (ucsPath.empty()) // Use only AStar if no UCS path has been found
         {
             AStarMovement(enemyCell, goalCell);
@@ -430,12 +423,8 @@ void Enemy::moveTo(sf::Vector2f goal)
 
         drawPath(finalPath);
 
-/*        std::for_each(finalPath.begin(), finalPath.end(), [](int val) { std::cout << val << " "; });
-        std::cout << std::endl;*/
-
         m_ucsPath = finalPath;
     }
-
 }
 
 void Enemy::changeDebug()
