@@ -1,0 +1,284 @@
+{
+	"scene": [
+		{
+			"gridIndex": 90,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "outside_water_06.png"
+		},
+		{
+			"gridIndex": 91,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_water_06.png"
+		},
+		{
+			"gridIndex": 110,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "outside_water_06.png"
+		},
+		{
+			"gridIndex": 111,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_water_06.png"
+		},
+		{
+			"gridIndex": 150,
+			"impassable": false,
+			"rotation": 0.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 151,
+			"impassable": false,
+			"rotation": 90.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 170,
+			"impassable": false,
+			"rotation": 270.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 171,
+			"impassable": false,
+			"rotation": 180.000000,
+			"spriteName": "outside_dirt_01.png"
+		},
+		{
+			"gridIndex": 190,
+			"impassable": true,
+			"rotation": 90.000000,
+			"spriteName": "outside_water_07.png"
+		},
+		{
+			"gridIndex": 191,
+			"impassable": true,
+			"rotation": 180.000000,
+			"spriteName": "outside_water_07.png"
+		},
+		{
+			"gridIndex": 210,
+			"impassable": true,
+			"rotation": 0.000000,
+			"spriteName": "outside_water_07.png"
+		},
+		{
+			"gridIndex": 211,
+			"impassable": true,
+			"rotation": 270.000000,
+			"spriteName": "outside_water_07.png"
+		}
+],
+"special": [
+		{
+			"gridIndex": 88,
+			"rotation": 0.000000,
+			"Type": "Goal"
+		},
+		{
+			"gridIndex": 108,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 113,
+			"rotation": 0.000000,
+			"Type": "Pickup"
+		},
+		{
+			"gridIndex": 145,
+			"rotation": 0.000000,
+			"Type": "Player"
+		},
+		{
+			"gridIndex": 155,
+			"rotation": 180.000000,
+			"Type": "Zombie"
+		}
+],
+"pathfinding": {	"waypoints": [
+65, 
+75, 
+150, 
+225, 
+235],
+"paths": {"150-225": [
+150, 
+149, 
+168, 
+187, 
+206, 
+225],"150-235": [
+150, 
+151, 
+172, 
+193, 
+214, 
+235],"150-65": [
+150, 
+149, 
+128, 
+107, 
+86, 
+65],"150-75": [
+150, 
+131, 
+112, 
+93, 
+94, 
+75],"225-150": [
+225, 
+226, 
+207, 
+188, 
+169, 
+150],"225-235": [
+225, 
+226, 
+227, 
+228, 
+229, 
+230, 
+231, 
+232, 
+233, 
+234, 
+235],"225-65": [
+225, 
+205, 
+185, 
+165, 
+144, 
+124, 
+104, 
+84, 
+65],"225-75": [
+225, 
+226, 
+207, 
+188, 
+169, 
+150, 
+131, 
+112, 
+93, 
+94, 
+75],"235-150": [
+235, 
+234, 
+213, 
+192, 
+171, 
+150],"235-225": [
+235, 
+234, 
+233, 
+232, 
+231, 
+230, 
+229, 
+228, 
+227, 
+226, 
+225],"235-65": [
+235, 
+234, 
+213, 
+192, 
+171, 
+170, 
+149, 
+128, 
+107, 
+86, 
+65],"235-75": [
+235, 
+215, 
+195, 
+175, 
+154, 
+134, 
+114, 
+94, 
+75],"65-150": [
+65, 
+86, 
+107, 
+128, 
+129, 
+150],"65-225": [
+65, 
+85, 
+105, 
+125, 
+144, 
+164, 
+184, 
+204, 
+225],"65-235": [
+65, 
+86, 
+107, 
+128, 
+129, 
+130, 
+151, 
+172, 
+193, 
+214, 
+235],"65-75": [
+65, 
+66, 
+67, 
+68, 
+69, 
+70, 
+71, 
+72, 
+73, 
+74, 
+75],"75-150": [
+75, 
+74, 
+93, 
+112, 
+131, 
+150],"75-225": [
+75, 
+74, 
+93, 
+112, 
+131, 
+130, 
+149, 
+168, 
+187, 
+206, 
+225],"75-235": [
+75, 
+95, 
+115, 
+135, 
+154, 
+174, 
+194, 
+214, 
+235],"75-65": [
+75, 
+74, 
+73, 
+72, 
+71, 
+70, 
+69, 
+68, 
+67, 
+66, 
+65]
+}
+}
+}
