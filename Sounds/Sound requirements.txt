@@ -1,6 +1,0 @@
-- Zombie grunting
-- Zombie walking
-- Footstep
-- Heartbeat
-- Zombie gronning
-- 
